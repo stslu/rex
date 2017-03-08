@@ -1,0 +1,83 @@
+<Packages>
+    <ApplicationName>QtitanDataGrid 5.1.1 for Qt.C++ (Licensed Source Code)</ApplicationName>
+    <ApplicationVersion>5.1.1</ApplicationVersion>
+    <Package>
+        <Name>devmachines.qt</Name>
+        <Pixmap></Pixmap>
+        <Title>Qt Framework</Title>
+        <Description>Installation of Qt libraries that were used to build the QtitanDataGrid binaries. This option allows you to avoid problems with the launch of the demo examples due to a mismatch of Qt versions.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>42502760</Size>
+        <Dependencies></Dependencies>
+    </Package>
+    <Package>
+        <Name>devmachines.public</Name>
+        <Pixmap></Pixmap>
+        <Title>QtitanDataGrid Headers &amp; Libraries</Title>
+        <Description>QtitanDataGrid Public Qt.C++ Headers &amp; Libraries.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>21607635</Size>
+        <Dependencies></Dependencies>
+    </Package>
+    <Package>
+        <Name>devmachines.private</Name>
+        <Pixmap></Pixmap>
+        <Title>Licensed Source Code</Title>
+        <Description>QtitanDataGrid Source Code (Private C++ Headers &amp; Files)</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>2744390</Size>
+        <Dependencies></Dependencies>
+    </Package>
+    <Package>
+        <Name>devmachines.docs</Name>
+        <Pixmap></Pixmap>
+        <Title>Documentation</Title>
+        <Description>QtitanDataGrid component documentation in HTML and QCH formats.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>13627177</Size>
+        <Dependencies></Dependencies>
+    </Package>
+    <Package>
+        <Name>devmachines.misc</Name>
+        <Pixmap></Pixmap>
+        <Title>Misc Files</Title>
+        <Description>Misc Files.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>30054</Size>
+        <Dependencies></Dependencies>
+        <ForcedInstallation>true</ForcedInstallation>
+        <Virtual>true</Virtual>
+    </Package>
+    <Package>
+        <Name>devmachines.designer</Name>
+        <Pixmap></Pixmap>
+        <Title>Plugin for Qt-Designer</Title>
+        <Description>QtitanDataGrid design-time plugin. Allows add component to UI form in Qt-Designer.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>2201088</Size>
+        <Dependencies>devmachines.public</Dependencies>
+    </Package>
+    <Package>
+        <Name>devmachines.demo</Name>
+        <Pixmap></Pixmap>
+        <Title>Demos &amp; Examples</Title>
+        <Description>QtitanDataGrid Demo &amp; Examples. Contains Qt-Projects and binaries for demonstration of main product's features.</Description>
+        <Version>5.1.1</Version>
+        <LastUpdateDate></LastUpdateDate>
+        <InstallDate>2016-12-01</InstallDate>
+        <Size>14006066</Size>
+        <Dependencies>devmachines.public,devmachines.designer</Dependencies>
+    </Package>
+</Packages>

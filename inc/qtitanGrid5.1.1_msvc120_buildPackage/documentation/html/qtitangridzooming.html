@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridZooming.qdoc -->
+  <title>Zooming - usage and customization | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>Zooming - usage and customization</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#overview">Overview</a></li>
+<li class="level1"><a href="#zooming-usage">Zooming Usage</a></li>
+<li class="level1"><a href="#zoom-indicator-customization">Zoom indicator customization</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Zooming - usage and customization</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangridzooming.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="overview"></a>
+<h2 id="overview">Overview</h2>
+<p>In the QtitanDataGrid implemented a convenient mechanism for zooming. The mechanism allows proportional increase or decrease the size of the fonts, cells, rows, and grid's columns. For these purposes keyboard shortcuts (Control + Num+/Num-), the mouse wheel or contextual menu are used.</p>
+<a name="zooming-usage"></a>
+<h2 id="zooming-usage">Zooming Usage</h2>
+<p>To enable the mechanism of zooming you can use the following code:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>;
+Qtitan<span class="operator">::</span>GridTableView<span class="operator">*</span> view <span class="operator">=</span> grid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>Qtitan<span class="operator">::</span>GridTableView<span class="operator">&gt;</span>();
+view<span class="operator">-</span><span class="operator">&gt;</span>options()<span class="operator">.</span>setZoomEnabled(<span class="keyword">true</span>);</pre>
+<p>The mode is enabled by default.</p>
+<p>The minimum value for the zooming is limited to 25%. The maximum to 500%. To set the value for zooming you can use the <a href="gridviewoptions.html#zoomFactor">GridViewOptions::zoomFactor</a>() property:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>;
+Qtitan<span class="operator">::</span>GridTableView<span class="operator">*</span> view <span class="operator">=</span> grid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>Qtitan<span class="operator">::</span>GridTableView<span class="operator">&gt;</span>();
+view<span class="operator">-</span><span class="operator">&gt;</span>options()<span class="operator">.</span>setZoomFactor(<span class="number">1.5</span>); <span class="comment">//Increase the font size to 150%</span></pre>
+<p>By default the <a href="gridviewoptions.html#zoomFactor">GridViewOptions::zoomFactor</a>() is 1.0 (it is equal 100%). If the property GridViewOptions::zoomEnalbed() is false, then the <a href="gridviewoptions.html#zoomFactor">GridViewOptions::zoomFactor</a>() value is ignored.</p>
+<a name="zoom-indicator-customization"></a>
+<h2 id="zoom-indicator-customization">Zoom indicator customization</h2>
+<p>When the value of the zoom factor is changed then the grid for a moment highlights the current value of this property in the special indicator element. This element is called zoom indicator. Using an zoom indicator controlled by the <a href="gridviewoptions.html#isZoomIndicatorActive">GridViewOptions::isZoomIndicatorActive</a>() property. The property is true by default. The size of an zoom indicator is automatically adjusted to fit the current grid's view. Thus it is always visible in the center of view and takes approximately 1/4 of its size.</p>
+<p>100% zooming</p>
+<p class="centerAlign"><img src="images/grid_zoom100.png" alt="" /></p><p>125% zooming</p>
+<p class="centerAlign"><img src="images/grid_zoom125.png" alt="" /></p></div>
+<!-- @@@qtitangridzooming.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+QTITANGRID_INSTALL_PREFIX = $$PWD/..
+
+contains(QMAKE_HOST.arch, x86_64) : {
+	QTITANGRID_INSTALL_LIBS      = $${QTITANGRID_INSTALL_PREFIX}/lib/msvc120_x64
+} else {
+	QTITANGRID_INSTALL_LIBS      = $${QTITANGRID_INSTALL_PREFIX}/lib/msvc120_x86
+}
+
+INCLUDEPATH += $${QTITANGRID_INSTALL_PREFIX}/include/qtitangrid
+
+win32 {
+    CONFIG(debug, debug|release) {
+		    LIBS += -l$${QTITANGRID_INSTALL_LIBS}/debug/qtndbgridd5 
+		} else {
+			LIBS += -l$${QTITANGRID_INSTALL_LIBS}/release/qtndbgrid5 
+	}
+}
+
+
+
+unix {
+    !macx {
+        LIBS += -lqtndbgrid -L$${QTITANGRID_INSTALL_LIBS}
+        target.path = /usr/local/qtitangrid/bin
+    } else {
+        QMAKE_LFLAGS += -F$$PWD
+        LIBS += -framework qtitangrid
+    }
+}
+
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets printsupport
+}

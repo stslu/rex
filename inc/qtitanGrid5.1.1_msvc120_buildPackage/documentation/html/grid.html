@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGrid.cpp -->
+  <title>Grid Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>Grid</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#properties">Properties</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Grid Class</h1>
+<!-- $$$Grid-brief -->
+<p>Class is used to add QtitanDataGrid to the form. It is descendant of QWidget so you can use any QWidget's pattern to locate grid into the layout of other widget. After class was created you need to specify the type of view wich will be used to show data. The Qt-model's should be attached to this view. Not to this class directly. <a href="#details">More...</a></p>
+<!-- @@@Grid -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;Grid&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="graphiccontrol.html">GraphicControl</a></td></tr></table></div><ul>
+<li><a href="grid-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="grid.html#GridViewType-enum">GridViewType</a></b> { UndefinedView, TableView, BandedTableView, CardView }</td></tr>
+</table></div>
+<a name="properties"></a>
+<h2 id="properties">Properties</h2>
+<ul>
+<li class="fn"><b><a href="grid.html#rootView-prop">rootView</a></b> : GridViewBase * const</li>
+<li class="fn"><b><a href="grid.html#viewType-prop">viewType</a></b> : GridViewType</li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="grid.html#Grid">Grid</a></b>(QWidget *<i>parent</i> = 0)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="grid.html#dtor.Grid">~Grid</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridHitInfo *</td><td class="memItemRight bottomAlign"><b><a href="grid.html#hitInfo">hitInfo</a></b>(const QPoint &amp;<i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#loadLayoutFromDevice">loadLayoutFromDevice</a></b>(QIODevice *<i>device</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#loadLayoutFromFile">loadLayoutFromFile</a></b>(const QString &amp;<i>fileName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridViewBase *</td><td class="memItemRight bottomAlign"><b><a href="grid.html#rootView">rootView</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#saveLayoutToDevice">saveLayoutToDevice</a></b>(QIODevice *<i>device</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#saveLayoutToFile">saveLayoutToFile</a></b>(const QString &amp;<i>fileName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grid.html#setViewType">setViewType</a></b>(GridViewType <i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QSize </td><td class="memItemRight bottomAlign"><b><a href="grid.html#sizeHint">sizeHint</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridThemeManager *</td><td class="memItemRight bottomAlign"><b><a href="grid.html#themeManager">themeManager</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> ViewType *</td><td class="memItemRight bottomAlign"><b><a href="grid.html#view">view</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridViewType </td><td class="memItemRight bottomAlign"><b><a href="grid.html#viewType">viewType</a></b>() const</td></tr>
+</table></div>
+<ul>
+<li class="fn">12 public functions inherited from <a href="graphiccontrol.html#public-functions">GraphicControl</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#loadTranslation">loadTranslation</a></b>(const QString &amp;<i>country</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="grid.html#tr_compatible">tr_compatible</a></b>(const char *<i>s</i>, const char *<i>c</i> = 0)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grid.html#setRootView">setRootView</a></b>(GridViewBase *<i>view</i>)</td></tr>
+</table></div>
+<a name="reimplemented-protected-functions"></a>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="grid.html#isLocked">isLocked</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grid.html#paintEvent">paintEvent</a></b>(<i>QPaintEvent *</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">30 protected functions inherited from <a href="graphiccontrol.html#protected-functions">GraphicControl</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$Grid-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>Class is used to add QtitanDataGrid to the form. It is descendant of QWidget so you can use any QWidget's pattern to locate grid into the layout of other widget. After class was created you need to specify the type of view wich will be used to show data. The Qt-model's should be attached to this view. Not to this class directly.</p>
+</div>
+<!-- @@@Grid -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$GridViewType$$$UndefinedView$$$TableView$$$BandedTableView$$$CardView -->
+<h3 class="fn" id="GridViewType-enum"><a name="GridViewType-enum"></a>enum Grid::<span class="name">GridViewType</span></h3>
+<!-- @@@GridViewType -->
+</div>
+<div class="prop">
+<h2>Property Documentation</h2>
+<!-- $$$rootView-prop$$$rootView -->
+<h3 class="fn" id="rootView-prop"><a name="rootView-prop"></a><span class="name">rootView</span> : <span class="type"><a href="gridviewbase.html">GridViewBase</a></span> * const</h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> GridViewBase *</td><td class="memItemRight bottomAlign"><span class="name"><b><a href="grid.html#rootView">rootView</a></b></span>() const</td></tr>
+</table></div>
+<!-- @@@rootView -->
+<!-- $$$viewType-prop$$$viewType$$$setViewTypeGridViewType -->
+<h3 class="fn" id="viewType-prop"><a name="viewType-prop"></a><span class="name">viewType</span> : <span class="type"><a href="grid.html#GridViewType-enum">GridViewType</a></span></h3>
+<p><b>Access functions:</b></p>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft topAlign rightAlign"> GridViewType </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="grid.html#viewType">viewType</a></b></span>() const</td></tr>
+<tr><td class="memItemLeft topAlign rightAlign"> void </td><td class="memItemRight bottomAlign"><span class="name"><b><a href="grid.html#setViewType">setViewType</a></b></span>(GridViewType <i>type</i>)</td></tr>
+</table></div>
+<!-- @@@viewType -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$Grid[overload1]$$$GridQWidget* -->
+<h3 class="fn" id="Grid"><a name="Grid"></a>Grid::<span class="name">Grid</span>(<span class="type">QWidget</span> *<i>parent</i> = 0)</h3>
+<p>Constructor of the class Qtitan::Grid. The parameter <code>parent</code> is a widget wtich will be parent and owner for the grid.</p>
+<!-- @@@Grid -->
+<!-- $$$~Grid[overload1]$$$~Grid -->
+<h3 class="fn" id="dtor.Grid"><a name="dtor.Grid"></a><code>[virtual] </code>Grid::<span class="name">~Grid</span>()</h3>
+<p>Destuctor of the class Qtitan::Grid.</p>
+<!-- @@@~Grid -->
+<!-- $$$hitInfo[overload1]$$$hitInfoconstQPoint& -->
+<h3 class="fn" id="hitInfo"><a name="hitInfo"></a><span class="type">GridHitInfo</span> *Grid::<span class="name">hitInfo</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<p>Returns a hint info by given point. The method is used to determine the type of element which is located at the given point of the grid.</p>
+<!-- @@@hitInfo -->
+<!-- $$$isLocked[overload1]$$$isLocked -->
+<h3 class="fn" id="isLocked"><a name="isLocked"></a><code>[virtual protected] </code><span class="type">bool</span> Grid::<span class="name">isLocked</span>() const</h3>
+<!-- @@@isLocked -->
+<!-- $$$loadLayoutFromDevice[overload1]$$$loadLayoutFromDeviceQIODevice* -->
+<h3 class="fn" id="loadLayoutFromDevice"><a name="loadLayoutFromDevice"></a><span class="type">bool</span> Grid::<span class="name">loadLayoutFromDevice</span>(<span class="type">QIODevice</span> *<i>device</i>)</h3>
+<p>Load layout of the internals view from the given device.</p>
+<p><b>See also </b><a href="grid.html#loadLayoutFromFile">loadLayoutFromFile</a>().</p>
+<!-- @@@loadLayoutFromDevice -->
+<!-- $$$loadLayoutFromFile[overload1]$$$loadLayoutFromFileconstQString& -->
+<h3 class="fn" id="loadLayoutFromFile"><a name="loadLayoutFromFile"></a><span class="type">bool</span> Grid::<span class="name">loadLayoutFromFile</span>(const <span class="type">QString</span> &amp;<i>fileName</i>)</h3>
+<p>Load layout of the internals view from the given device.</p>
+<p><b>See also </b><a href="grid.html#loadLayoutFromDevice">loadLayoutFromDevice</a>().</p>
+<!-- @@@loadLayoutFromFile -->
+<!-- $$$loadTranslation[overload1]$$$loadTranslationconstQString& -->
+<h3 class="fn" id="loadTranslation"><a name="loadTranslation"></a><code>[static] </code><span class="type">bool</span> Grid::<span class="name">loadTranslation</span>(const <span class="type">QString</span> &amp;<i>country</i> = QString())</h3>
+<p>Installs translator to QApplication based on <i>country</i> variable. Format variable is de_de, ru_ru, fr_fr. If <i>country</i> is empty then loaded QTranslator based on current locale setting.</p>
+<!-- @@@loadTranslation -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
+<h3 class="fn" id="paintEvent"><a name="paintEvent"></a><code>[virtual protected] </code><span class="type">void</span> Grid::<span class="name">paintEvent</span>(<i>QPaintEvent *</i>)</h3>
+<!-- @@@paintEvent -->
+<!-- $$$rootView -->
+<h3 class="fn" id="rootView"><a name="rootView"></a><span class="type"><a href="gridviewbase.html">GridViewBase</a></span> *Grid::<span class="name">rootView</span>() const</h3>
+<p>Returns a reference to a base class of the view. This reference must be converted into the desired type of view by youself. If the <a href="grid.html#viewType-prop">viewType</a> is <a href="grid.html#GridViewType-enum">UndefinedView</a> then this function return NULL.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid();
+grid<span class="operator">-</span><span class="operator">&gt;</span>setViewType(Qtitan<span class="operator">::</span>TableView);
+GridTableView<span class="operator">*</span> view <span class="operator">=</span> qobject_cast<span class="operator">&lt;</span>GridTableView <span class="operator">*</span><span class="operator">&gt;</span>(grid<span class="operator">-</span><span class="operator">&gt;</span>rootView());</pre>
+<p><b>Note:</b> Getter function for property <a href="grid.html#rootView-prop">rootView</a>. </p><p><b>See also </b><a href="grid.html#setRootView">setRootView</a>(), <a href="grid.html#viewType">viewType</a>(), <a href="grid.html#setViewType">setViewType</a>(), and <a href="grid.html#view">view</a>().</p>
+<!-- @@@rootView -->
+<!-- $$$saveLayoutToDevice[overload1]$$$saveLayoutToDeviceQIODevice* -->
+<h3 class="fn" id="saveLayoutToDevice"><a name="saveLayoutToDevice"></a><span class="type">bool</span> Grid::<span class="name">saveLayoutToDevice</span>(<span class="type">QIODevice</span> *<i>device</i>)</h3>
+<p>Save layout of the internals view to the given device. The layout includes column's or band's sizing, order of grouping, visual positions of the elements and etc.</p>
+<p><b>See also </b><a href="grid.html#saveLayoutToFile">saveLayoutToFile</a>().</p>
+<!-- @@@saveLayoutToDevice -->
+<!-- $$$saveLayoutToFile[overload1]$$$saveLayoutToFileconstQString& -->
+<h3 class="fn" id="saveLayoutToFile"><a name="saveLayoutToFile"></a><span class="type">bool</span> Grid::<span class="name">saveLayoutToFile</span>(const <span class="type">QString</span> &amp;<i>fileName</i>)</h3>
+<p>Save layout of the internals view to the file given by filename. The layout includes column's or band's sizing, order of grouping, visual position of the elements and etc.</p>
+<p><b>See also </b><a href="grid.html#saveLayoutToDevice">saveLayoutToDevice</a>().</p>
+<!-- @@@saveLayoutToFile -->
+<!-- $$$setRootView[overload1]$$$setRootViewGridViewBase* -->
+<h3 class="fn" id="setRootView"><a name="setRootView"></a><code>[protected] </code><span class="type">void</span> Grid::<span class="name">setRootView</span>(<span class="type"><a href="gridviewbase.html">GridViewBase</a></span> *<i>view</i>)</h3>
+<p>Sets the view instance to the grid. For internal purpose only.</p>
+<p><b>See also </b><a href="grid.html#rootView">rootView</a>().</p>
+<!-- @@@setRootView -->
+<!-- $$$setViewType -->
+<h3 class="fn" id="setViewType"><a name="setViewType"></a><span class="type">void</span> Grid::<span class="name">setViewType</span>(<span class="type"><a href="grid.html#GridViewType-enum">GridViewType</a></span> <i>type</i>)</h3>
+<p>Sets the root view type for the current grid. The view might be table view or banded table view. Banded table view allows to grouping columns in the logical structure called bands. The band looks like ordinary column but has not the cell. After the type of the column has been specified the instance of the view can be obtained using <a href="grid.html#view">view</a>() function.</p>
+<p><b>Note:</b> Setter function for property <a href="grid.html#viewType-prop">viewType</a>. </p><p><b>See also </b><a href="grid.html#viewType">viewType</a>() and <a href="grid.html#view">view</a>().</p>
+<!-- @@@setViewType -->
+<!-- $$$sizeHint[overload1]$$$sizeHint -->
+<h3 class="fn" id="sizeHint"><a name="sizeHint"></a><code>[virtual] </code><span class="type">QSize</span> Grid::<span class="name">sizeHint</span>() const</h3>
+<p>Returns an optimal size of the grid.</p>
+<!-- @@@sizeHint -->
+<!-- $$$themeManager[overload1]$$$themeManager -->
+<h3 class="fn" id="themeManager"><a name="themeManager"></a><span class="type"><a href="gridthememanager.html">GridThemeManager</a></span> *Grid::<span class="name">themeManager</span>() const</h3>
+<!-- @@@themeManager -->
+<!-- $$$tr_compatible[overload1]$$$tr_compatibleconstchar*constchar* -->
+<h3 class="fn" id="tr_compatible"><a name="tr_compatible"></a><code>[static] </code><span class="type">QString</span> Grid::<span class="name">tr_compatible</span>(const <span class="type">char</span> *<i>s</i>, const <span class="type">char</span> *<i>c</i> = 0)</h3>
+<!-- @@@tr_compatible -->
+<!-- $$$view[overload1]$$$view -->
+<h3 class="fn" id="view"><a name="view"></a><span class="type">ViewType</span> *Grid::<span class="name">view</span>() const</h3>
+<p>Returns the instance of the view for the current grid. The function is a C++ template. It's allow you to get the view desired type.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid();
+grid<span class="operator">-</span><span class="operator">&gt;</span>setViewType(Qtitan<span class="operator">::</span>TableView);
+GridTableView<span class="operator">*</span> view <span class="operator">=</span> grid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>GridTableView<span class="operator">&gt;</span>();</pre>
+<p>Alternatively, there is a method rootViev() which returns a reference to a base class of the view. This reference must be converted into the desired type of view by youself. If the <a href="grid.html#viewType-prop">viewType</a> is <a href="grid.html#GridViewType-enum">UndefinedView</a> then this function return NULL.</p>
+<p><b>See also </b><a href="grid.html#setViewType">setViewType</a>() and <a href="grid.html#viewType">viewType</a>().</p>
+<!-- @@@view -->
+<!-- $$$viewType -->
+<h3 class="fn" id="viewType"><a name="viewType"></a><span class="type"><a href="grid.html#GridViewType-enum">GridViewType</a></span> Grid::<span class="name">viewType</span>() const</h3>
+<p>Returns the root view type for the current grid.</p>
+<p><b>Note:</b> Getter function for property <a href="grid.html#viewType-prop">viewType</a>. </p><p><b>See also </b><a href="grid.html#setViewType">setViewType</a>().</p>
+<!-- @@@viewType -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

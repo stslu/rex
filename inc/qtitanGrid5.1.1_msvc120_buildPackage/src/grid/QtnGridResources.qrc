@@ -1,0 +1,67 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>../../res/grid_arrow.png</file>
+    <file>../../res/grid_removecursor.png</file>
+    <file>../../res/grid_scrollleftcursor.png</file>
+    <file>../../res/grid_scrollrightcursor.png</file>
+    <file>../../res/grid_quickbutton.png</file>
+    <file>../../res/grid_focusrowselect.png</file>
+    <file>../../res/grid_rowedit_icon.png</file>
+    <file>../../res/grid_rowedit_modify_icon.png</file>
+    <file>../../res/grid_newrow_icon.png</file>
+    <file>../../res/cbimageicon.png</file>
+    <file>../../res/cbtexticon.png</file>
+    <file>../../res/cbtable.png</file>
+    <file>../../res/grid_sort_indicator_menu_asc.png</file>
+    <file>../../res/grid_sort_indicator_menu_desc.png</file>
+    <file>../../res/grid_groupbybox_icon.png</file>
+    <file>../../res/grid_groupbyfield_icon.png</file>
+    <file>../../res/grid_fieldchooser_icon.png</file>
+    <file>../../res/summaryMenuAvg.png</file>
+    <file>../../res/summaryMenuCount.png</file>
+    <file>../../res/summaryMenuMax.png</file>
+    <file>../../res/summaryMenuMin.png</file>
+    <file>../../res/summaryMenuSum.png</file>
+    <file>../../res/gridoffice11plus.png</file>
+    <file>../../res/gridoffice11minus.png</file>
+    <file>../../res/gridcross.png</file>
+    <file>../../res/gridcancel.png</file>
+    <file>../../res/grid_filter.png</file>
+    <file>../../res/grid_filter_over.png</file>
+    <file>../../res/grid_glass_bg.png</file>
+    <file>../../res/grid_glass_column_bg.png</file>
+    <file>../../res/grid_header_tab_close.png</file>
+    <file>../../res/grid_header_tab_close_over.png</file>
+    <file>../../res/grid_header_tab_close_press.png</file>
+    <file>../../res/grid_filter_autohide_on.png</file>
+    <file>../../res/grid_filter_autohide_off.png</file>
+    <file>../../res/grid_choice_btn.png</file>
+    <file>../../res/grid_select_btn.png</file>
+    <file>../../res/grid_text_btn.png</file>
+    <file>../../res/grid_clear_btn.png</file>
+    <file>../../res/grid_settings_btn.png</file>
+    <file>../../res/qtitanlogo32x32.png</file>
+    <file>../../res/grid_rowedit_valid_icon.png</file>
+    <file>../../res/grid_frozen_pin_on.png</file>
+    <file>../../res/grid_frozen_pin_off.png</file>
+    <file>../../res/grid_frozen_place_top.png</file>
+    <file>../../res/grid_frozen_place_bottom.png</file>
+    <file>../../res/grid_dragdrop_icon.png</file>
+    <file>../../res/grid_fieldchooser_background.png</file>
+    <file>../../res/grid_fieldchooser_button_icon.png</file>
+    <file>../../res/grid_sort_indicator_asc.png</file>
+    <file>../../res/grid_sort_indicator_desc.png</file>
+    <file>../../res/grid_menu_button_icon.png</file>
+    <file>../../res/grid_checkbox_on.png</file>
+    <file>../../res/grid_checkbox_off.png</file>
+    <file>../../res/grid_preview_row_button.png</file>
+    <file>../../res/grid_zoom_in_icon.png</file>
+    <file>../../res/grid_zoom_out_icon.png</file>
+    <file>../../res/grid_align_right_icon.png</file>
+    <file>../../res/grid_align_left_icon.png</file>
+    <file>../../res/grid_align_center_icon.png</file>
+    <file>../../res/grid_fixed_left_icon.png</file>
+    <file>../../res/grid_fixed_right_icon.png</file>
+</qresource>
+</RCC>
+

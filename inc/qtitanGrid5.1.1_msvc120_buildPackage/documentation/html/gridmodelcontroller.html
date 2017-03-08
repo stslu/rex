@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridModelController.cpp -->
+  <title>GridModelController Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridModelController</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#protected-slots">Protected Slots</a></li>
+<li class="level1"><a href="#static-protected-members">Static Protected Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridModelController Class</h1>
+<!-- $$$GridModelController-brief -->
+<p><a href="gridmodelcontroller.html">GridModelController</a> class processes the tabular data from Qt models and provides them in a convenient way to display in the view. Inside of it are performed grouping and sorting operations, focus handling, column's data binding and other important data-related operations. <a href="#details">More...</a></p>
+<!-- @@@GridModelController -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridModelController&gt;</span>
+</td></tr></table></div><ul>
+<li><a href="gridmodelcontroller-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> typedef </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#ModelGroupList-typedef">ModelGroupList</a></b></td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#GridModelController">GridModelController</a></b>(GridViewInterface *<i>viewInterface</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#dtor.GridModelController">~GridModelController</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#addModelRowToFrozenFilter">addModelRowToFrozenFilter</a></b>(int <i>modelRowIndex</i>, <i>GridRow::FrozenPlace</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#addingModelRowIndex">addingModelRowIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#beginAddRow">beginAddRow</a></b>(int <i>row</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#beginSelect">beginSelect</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#beginUpdate">beginUpdate</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearFilters">clearFilters</a></b>(bool <i>clearHistory</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearGrouping">clearGrouping</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearSelect">clearSelect</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearSorting">clearSorting</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#collapseAllGroup">collapseAllGroup</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#collapseGroup">collapseGroup</a></b>(GridModelGroup *<i>group</i>, bool <i>disableChanged</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#defaultValue">defaultValue</a></b>(int <i>modelColumn</i>, Qt::ItemDataRole <i>role</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridEditStrategy </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#editStrategy">editStrategy</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#endAddRow">endAddRow</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#endSelect">endSelect</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#endUpdate">endUpdate</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#ensureVisible">ensureVisible</a></b>(int <i>modelRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#expandAllGroup">expandAllGroup</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#expandGroup">expandGroup</a></b>(GridModelGroup *<i>group</i>, bool <i>disableChanged</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridFilter *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#filter">filter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridFilter *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#findFilter">findFilter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#focusedColumnIndex">focusedColumnIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#focusedRow">focusedRow</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#focusedRowIndex">focusedRowIndex</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow::FrozenPlace </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#frozenPlace">frozenPlace</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridFilter *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#frozenRowsFilter">frozenRowsFilter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getFrozenBottomGridRowCount">getFrozenBottomGridRowCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getFrozenTopGridRowCount">getFrozenTopGridRowCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getGridRow">getGridRow</a></b>(int <i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getGridRowByModelRow">getGridRowByModelRow</a></b>(int <i>modelRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getGridRowCount">getGridRowCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SortOrder </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getGroupOrder">getGroupOrder</a></b>(GridModelDataBinding *<i>dataBinding</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getModelColumnCount">getModelColumnCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getModelRowIndexByRecord">getModelRowIndexByRecord</a></b>(int <i>record</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getModelValue">getModelValue</a></b>(int <i>modelColumn</i>, int <i>modelRow</i>, Qt::ItemDataRole <i>role</i>, QVariant &amp;<i>retval</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getPreviewModelValue">getPreviewModelValue</a></b>(int <i>modelRow</i>, QVariant &amp;<i>retval</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getPureRowCount">getPureRowCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getRecordCount">getRecordCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SortOrder </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getSortOrder">getSortOrder</a></b>(GridModelDataBinding *<i>dataBinding</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#groupingDepth">groupingDepth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> ModelGroupList &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#groups">groups</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#hasChanges">hasChanges</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#hasGrouping">hasGrouping</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#insertModelRow">insertModelRow</a></b>(int <i>modelRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isAllSelected">isAllSelected</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isCellFocused">isCellFocused</a></b>(GridRow *<i>row</i>, int <i>columnIndex</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isCellSelected">isCellSelected</a></b>(const GridCell &amp;<i>cell</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isDataUpdating">isDataUpdating</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isNewRowMode">isNewRowMode</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isRowFocused">isRowFocused</a></b>(GridRow *<i>row</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#isRowSelected">isRowSelected</a></b>(const GridRow *<i>row</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAbstractItemModel *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#model">model</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelGroup *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelGroup">modelGroup</a></b>(int <i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelGroupCount">modelGroupCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#oldFocusedColumnIndex">oldFocusedColumnIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#oldFocusedRowIndex">oldFocusedRowIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QModelIndex &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#parentIndex">parentIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#previewRowDataBinding">previewRowDataBinding</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#refresh">refresh</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridFilter *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#relationFilter">relationFilter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#removeDataBinding">removeDataBinding</a></b>(GridModelDataBinding *<i>dataBinding</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#removeDefaultValue">removeDefaultValue</a></b>(int <i>modelColumn</i>, Qt::ItemDataRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#removeDefaultValues">removeDefaultValues</a></b>(int <i>modelColumn</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#removeModelRow">removeModelRow</a></b>(int <i>modelRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#removeModelRowFromFrozenFilter">removeModelRowFromFrozenFilter</a></b>(int <i>modelRowIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#selectRanges">selectRanges</a></b>(const SelectionRanges &amp;<i>ranges</i>, const SelectionOperation &amp;<i>operation</i> = Qtitan::Select)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridSelection *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#selection">selection</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QItemSelectionModel *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#selectionModel">selectionModel</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setCellFocus">setCellFocus</a></b>(GridRow *<i>row</i>, int <i>columnIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setDefaultValue">setDefaultValue</a></b>(int <i>modelColumn</i>, const QVariant &amp;<i>value</i>, Qt::ItemDataRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setEditStrategy">setEditStrategy</a></b>(GridEditStrategy <i>strategy</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setFrozenPlace">setFrozenPlace</a></b>(GridRow::FrozenPlace <i>place</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setGroupOrder">setGroupOrder</a></b>(GridModelDataBinding *<i>dataBinding</i>, int <i>groupIndex</i>, SortOrder <i>order</i>, bool <i>caseSensitivity</i> = false, bool <i>localeAware</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setModel">setModel</a></b>(QAbstractItemModel *<i>model</i>, QModelIndex <i>parent</i> = QModelIndex())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setModelValue">setModelValue</a></b>(int <i>modelColumn</i>, int <i>modelRow</i>, Qt::ItemDataRole <i>role</i>, const QVariant &amp;<i>retval</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setSelectionModel">setSelectionModel</a></b>(QItemSelectionModel *<i>selectionModel</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setShowWaitCursor">setShowWaitCursor</a></b>(bool <i>show</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#setSortOrder">setSortOrder</a></b>(GridModelDataBinding *<i>dataBinding</i>, int <i>sortIndex</i>, SortOrder <i>order</i>, bool <i>caseSensitivity</i> = false, bool <i>localeAware</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#showWaitCursor">showWaitCursor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const GridSortColumnRules &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#sortRules">sortRules</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#submitData">submitData</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridSummary *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#summary">summary</a></b>() const</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#aboutToBeChanged">aboutToBeChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#aboutToBeFiltered">aboutToBeFiltered</a></b>(bool &amp;<i>cancel</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#aboutToBeSorted">aboutToBeSorted</a></b>(bool &amp;<i>cancel</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#aboutToBeSummaryCalculated">aboutToBeSummaryCalculated</a></b>(bool &amp;<i>cancel</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#changed">changed</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#filterCompleted">filterCompleted</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#filterProgress">filterProgress</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#selectChanged">selectChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#sortCompleted">sortCompleted</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#sortProgress">sortProgress</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#summaryCompleted">summaryCompleted</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#summaryProgress">summaryProgress</a></b>(int <i>value</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#addModelRowToMap">addModelRowToMap</a></b>(int <i>modelRowIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelGroup *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#appendModelGroup">appendModelGroup</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#applyChanges">applyChanges</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearGroupingState">clearGroupingState</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearModelGroups">clearModelGroups</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#clearPersistRows">clearPersistRows</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#commitCurrentSelect">commitCurrentSelect</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#createModelGroups">createModelGroups</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelGroup *</td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#findGroup">findGroup</a></b>(int <i>row</i>, int &amp;<i>groupIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#findRecordByModelRow">findRecordByModelRow</a></b>(int <i>modelRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#findRowIndexByRecord">findRowIndexByRecord</a></b>(int <i>record</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#getRowIndexByPersistentRow">getRowIndexByPersistentRow</a></b>(const GridPersistentRow *<i>persistentRow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#resizeModelRows">resizeModelRows</a></b>(int <i>size</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#restoreSelectState">restoreSelectState</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#saveGroupingState">saveGroupingState</a></b>()</td></tr>
+</table></div>
+<a name="protected-slots"></a>
+<h2 id="protected-slots">Protected Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelAboutToBeReset">modelAboutToBeReset</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelColumnsInserted">modelColumnsInserted</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelColumnsMoved">modelColumnsMoved</a></b>(const QModelIndex &amp;<i>sourceParent</i>, int <i>sourceStart</i>, int <i>sourceEnd</i>, const QModelIndex &amp;<i>destinationParent</i>, int <i>destinationColumn</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelColumnsRemoved">modelColumnsRemoved</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelDataChanged">modelDataChanged</a></b>(const QModelIndex &amp;<i>topLeft</i>, const QModelIndex &amp;<i>bottomRight</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelLayoutChanged">modelLayoutChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelReset">modelReset</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelRowsAboutToBeInserted">modelRowsAboutToBeInserted</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelRowsAboutToBeRemoved">modelRowsAboutToBeRemoved</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelRowsInserted">modelRowsInserted</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#modelRowsRemoved">modelRowsRemoved</a></b>(const QModelIndex &amp;<i>parent</i>, int <i>start</i>, int <i>end</i>)</td></tr>
+</table></div>
+<a name="static-protected-members"></a>
+<h2 id="static-protected-members">Static Protected Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodelcontroller.html#compareModelRows">compareModelRows</a></b>(GridModelController *<i>controller</i>, const int &amp;<i>firstRow</i>, const int &amp;<i>secondRow</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridModelController-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="gridmodelcontroller.html">GridModelController</a> class processes the tabular data from Qt models and provides them in a convenient way to display in the view. Inside of it are performed grouping and sorting operations, focus handling, column's data binding and other important data-related operations.</p>
+</div>
+<!-- @@@GridModelController -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$ModelGroupList -->
+<h3 class="fn" id="ModelGroupList-typedef"><a name="ModelGroupList-typedef"></a>typedef GridModelController::<span class="name">ModelGroupList</span></h3>
+<!-- @@@ModelGroupList -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridModelController[overload1]$$$GridModelControllerGridViewInterface* -->
+<h3 class="fn" id="GridModelController"><a name="GridModelController"></a>GridModelController::<span class="name">GridModelController</span>(<span class="type">GridViewInterface</span> *<i>viewInterface</i>)</h3>
+<p>Default constructs an instance of GridModelController.</p><!-- @@@GridModelController -->
+<!-- $$$~GridModelController[overload1]$$$~GridModelController -->
+<h3 class="fn" id="dtor.GridModelController"><a name="dtor.GridModelController"></a><code>[virtual] </code>GridModelController::<span class="name">~GridModelController</span>()</h3>
+<p>Destroys the instance of GridModelController. The destructor is virtual.</p><!-- @@@~GridModelController -->
+<!-- $$$aboutToBeChanged[overload1]$$$aboutToBeChanged -->
+<h3 class="fn" id="aboutToBeChanged"><a name="aboutToBeChanged"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">aboutToBeChanged</span>()</h3>
+<!-- @@@aboutToBeChanged -->
+<!-- $$$aboutToBeFiltered[overload1]$$$aboutToBeFilteredbool& -->
+<h3 class="fn" id="aboutToBeFiltered"><a name="aboutToBeFiltered"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">aboutToBeFiltered</span>(<span class="type">bool</span> &amp;<i>cancel</i>)</h3>
+<!-- @@@aboutToBeFiltered -->
+<!-- $$$aboutToBeSorted[overload1]$$$aboutToBeSortedbool& -->
+<h3 class="fn" id="aboutToBeSorted"><a name="aboutToBeSorted"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">aboutToBeSorted</span>(<span class="type">bool</span> &amp;<i>cancel</i>)</h3>
+<!-- @@@aboutToBeSorted -->
+<!-- $$$aboutToBeSummaryCalculated[overload1]$$$aboutToBeSummaryCalculatedbool& -->
+<h3 class="fn" id="aboutToBeSummaryCalculated"><a name="aboutToBeSummaryCalculated"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">aboutToBeSummaryCalculated</span>(<span class="type">bool</span> &amp;<i>cancel</i>)</h3>
+<!-- @@@aboutToBeSummaryCalculated -->
+<!-- $$$addModelRowToFrozenFilter[overload1]$$$addModelRowToFrozenFilterintGridRow::FrozenPlace -->
+<h3 class="fn" id="addModelRowToFrozenFilter"><a name="addModelRowToFrozenFilter"></a><span class="type">void</span> GridModelController::<span class="name">addModelRowToFrozenFilter</span>(<span class="type">int</span> <i>modelRowIndex</i>, <i>GridRow::FrozenPlace</i>)</h3>
+<!-- @@@addModelRowToFrozenFilter -->
+<!-- $$$addModelRowToMap[overload1]$$$addModelRowToMapint -->
+<h3 class="fn" id="addModelRowToMap"><a name="addModelRowToMap"></a><code>[protected] </code><span class="type">bool</span> GridModelController::<span class="name">addModelRowToMap</span>(<span class="type">int</span> <i>modelRowIndex</i>)</h3>
+<!-- @@@addModelRowToMap -->
+<!-- $$$addingModelRowIndex[overload1]$$$addingModelRowIndex -->
+<h3 class="fn" id="addingModelRowIndex"><a name="addingModelRowIndex"></a><span class="type">int</span> GridModelController::<span class="name">addingModelRowIndex</span>() const</h3>
+<!-- @@@addingModelRowIndex -->
+<!-- $$$appendModelGroup[overload1]$$$appendModelGroup -->
+<h3 class="fn" id="appendModelGroup"><a name="appendModelGroup"></a><code>[protected] </code><span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *GridModelController::<span class="name">appendModelGroup</span>()</h3>
+<!-- @@@appendModelGroup -->
+<!-- $$$applyChanges[overload1]$$$applyChanges -->
+<h3 class="fn" id="applyChanges"><a name="applyChanges"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">applyChanges</span>()</h3>
+<!-- @@@applyChanges -->
+<!-- $$$beginAddRow[overload1]$$$beginAddRowint -->
+<h3 class="fn" id="beginAddRow"><a name="beginAddRow"></a><span class="type">void</span> GridModelController::<span class="name">beginAddRow</span>(<span class="type">int</span> <i>row</i>)</h3>
+<!-- @@@beginAddRow -->
+<!-- $$$beginSelect[overload1]$$$beginSelect -->
+<h3 class="fn" id="beginSelect"><a name="beginSelect"></a><span class="type">void</span> GridModelController::<span class="name">beginSelect</span>()</h3>
+<!-- @@@beginSelect -->
+<!-- $$$beginUpdate[overload1]$$$beginUpdate -->
+<h3 class="fn" id="beginUpdate"><a name="beginUpdate"></a><span class="type">void</span> GridModelController::<span class="name">beginUpdate</span>()</h3>
+<!-- @@@beginUpdate -->
+<!-- $$$changed[overload1]$$$changed -->
+<h3 class="fn" id="changed"><a name="changed"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">changed</span>()</h3>
+<!-- @@@changed -->
+<!-- $$$clearFilters[overload1]$$$clearFiltersbool -->
+<h3 class="fn" id="clearFilters"><a name="clearFilters"></a><span class="type">void</span> GridModelController::<span class="name">clearFilters</span>(<span class="type">bool</span> <i>clearHistory</i>)</h3>
+<!-- @@@clearFilters -->
+<!-- $$$clearGrouping[overload1]$$$clearGrouping -->
+<h3 class="fn" id="clearGrouping"><a name="clearGrouping"></a><span class="type">void</span> GridModelController::<span class="name">clearGrouping</span>()</h3>
+<!-- @@@clearGrouping -->
+<!-- $$$clearGroupingState[overload1]$$$clearGroupingState -->
+<h3 class="fn" id="clearGroupingState"><a name="clearGroupingState"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">clearGroupingState</span>()</h3>
+<!-- @@@clearGroupingState -->
+<!-- $$$clearModelGroups[overload1]$$$clearModelGroups -->
+<h3 class="fn" id="clearModelGroups"><a name="clearModelGroups"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">clearModelGroups</span>()</h3>
+<!-- @@@clearModelGroups -->
+<!-- $$$clearPersistRows[overload1]$$$clearPersistRows -->
+<h3 class="fn" id="clearPersistRows"><a name="clearPersistRows"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">clearPersistRows</span>()</h3>
+<!-- @@@clearPersistRows -->
+<!-- $$$clearSelect[overload1]$$$clearSelect -->
+<h3 class="fn" id="clearSelect"><a name="clearSelect"></a><span class="type">void</span> GridModelController::<span class="name">clearSelect</span>()</h3>
+<!-- @@@clearSelect -->
+<!-- $$$clearSorting[overload1]$$$clearSorting -->
+<h3 class="fn" id="clearSorting"><a name="clearSorting"></a><span class="type">void</span> GridModelController::<span class="name">clearSorting</span>()</h3>
+<!-- @@@clearSorting -->
+<!-- $$$collapseAllGroup[overload1]$$$collapseAllGroup -->
+<h3 class="fn" id="collapseAllGroup"><a name="collapseAllGroup"></a><span class="type">void</span> GridModelController::<span class="name">collapseAllGroup</span>()</h3>
+<!-- @@@collapseAllGroup -->
+<!-- $$$collapseGroup[overload1]$$$collapseGroupGridModelGroup*bool -->
+<h3 class="fn" id="collapseGroup"><a name="collapseGroup"></a><span class="type">bool</span> GridModelController::<span class="name">collapseGroup</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>, <span class="type">bool</span> <i>disableChanged</i> = false)</h3>
+<!-- @@@collapseGroup -->
+<!-- $$$commitCurrentSelect[overload1]$$$commitCurrentSelect -->
+<h3 class="fn" id="commitCurrentSelect"><a name="commitCurrentSelect"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">commitCurrentSelect</span>()</h3>
+<!-- @@@commitCurrentSelect -->
+<!-- $$$compareModelRows[overload1]$$$compareModelRowsGridModelController*constint&constint& -->
+<h3 class="fn" id="compareModelRows"><a name="compareModelRows"></a><code>[static protected] </code><span class="type">int</span> GridModelController::<span class="name">compareModelRows</span>(<span class="type"><a href="gridmodelcontroller.html#GridModelController">GridModelController</a></span> *<i>controller</i>, const <span class="type">int</span> &amp;<i>firstRow</i>, const <span class="type">int</span> &amp;<i>secondRow</i>)</h3>
+<!-- @@@compareModelRows -->
+<!-- $$$createModelGroups[overload1]$$$createModelGroups -->
+<h3 class="fn" id="createModelGroups"><a name="createModelGroups"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">createModelGroups</span>()</h3>
+<!-- @@@createModelGroups -->
+<!-- $$$defaultValue[overload1]$$$defaultValueintQt::ItemDataRole -->
+<h3 class="fn" id="defaultValue"><a name="defaultValue"></a><span class="type">QVariant</span> GridModelController::<span class="name">defaultValue</span>(<span class="type">int</span> <i>modelColumn</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>) const</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#setDefaultValue">setDefaultValue</a>().</p>
+<!-- @@@defaultValue -->
+<!-- $$$editStrategy[overload1]$$$editStrategy -->
+<h3 class="fn" id="editStrategy"><a name="editStrategy"></a><span class="type">GridEditStrategy</span> GridModelController::<span class="name">editStrategy</span>() const</h3>
+<p>Returns the strategy for data submiting to the model after the cell's value has changed.</p>
+<p><b>See also </b><a href="gridmodelcontroller.html#setEditStrategy">setEditStrategy</a>().</p>
+<!-- @@@editStrategy -->
+<!-- $$$endAddRow[overload1]$$$endAddRow -->
+<h3 class="fn" id="endAddRow"><a name="endAddRow"></a><span class="type">void</span> GridModelController::<span class="name">endAddRow</span>()</h3>
+<!-- @@@endAddRow -->
+<!-- $$$endSelect[overload1]$$$endSelect -->
+<h3 class="fn" id="endSelect"><a name="endSelect"></a><span class="type">void</span> GridModelController::<span class="name">endSelect</span>()</h3>
+<!-- @@@endSelect -->
+<!-- $$$endUpdate[overload1]$$$endUpdate -->
+<h3 class="fn" id="endUpdate"><a name="endUpdate"></a><span class="type">void</span> GridModelController::<span class="name">endUpdate</span>()</h3>
+<!-- @@@endUpdate -->
+<!-- $$$ensureVisible[overload1]$$$ensureVisibleint -->
+<h3 class="fn" id="ensureVisible"><a name="ensureVisible"></a><span class="type">int</span> GridModelController::<span class="name">ensureVisible</span>(<span class="type">int</span> <i>modelRow</i>)</h3>
+<!-- @@@ensureVisible -->
+<!-- $$$expandAllGroup[overload1]$$$expandAllGroup -->
+<h3 class="fn" id="expandAllGroup"><a name="expandAllGroup"></a><span class="type">void</span> GridModelController::<span class="name">expandAllGroup</span>()</h3>
+<!-- @@@expandAllGroup -->
+<!-- $$$expandGroup[overload1]$$$expandGroupGridModelGroup*bool -->
+<h3 class="fn" id="expandGroup"><a name="expandGroup"></a><span class="type">bool</span> GridModelController::<span class="name">expandGroup</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>, <span class="type">bool</span> <i>disableChanged</i> = false)</h3>
+<!-- @@@expandGroup -->
+<!-- $$$filter[overload1]$$$filter -->
+<h3 class="fn" id="filter"><a name="filter"></a><span class="type">GridFilter</span> *GridModelController::<span class="name">filter</span>() const</h3>
+<!-- @@@filter -->
+<!-- $$$filterCompleted[overload1]$$$filterCompleted -->
+<h3 class="fn" id="filterCompleted"><a name="filterCompleted"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">filterCompleted</span>()</h3>
+<!-- @@@filterCompleted -->
+<!-- $$$filterProgress[overload1]$$$filterProgressint -->
+<h3 class="fn" id="filterProgress"><a name="filterProgress"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">filterProgress</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@filterProgress -->
+<!-- $$$findFilter[overload1]$$$findFilter -->
+<h3 class="fn" id="findFilter"><a name="findFilter"></a><span class="type">GridFilter</span> *GridModelController::<span class="name">findFilter</span>() const</h3>
+<!-- @@@findFilter -->
+<!-- $$$findGroup[overload1]$$$findGroupintint& -->
+<h3 class="fn" id="findGroup"><a name="findGroup"></a><code>[protected] </code><span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *GridModelController::<span class="name">findGroup</span>(<span class="type">int</span> <i>row</i>, <span class="type">int</span> &amp;<i>groupIndex</i>)</h3>
+<!-- @@@findGroup -->
+<!-- $$$findRecordByModelRow[overload1]$$$findRecordByModelRowint -->
+<h3 class="fn" id="findRecordByModelRow"><a name="findRecordByModelRow"></a><code>[protected] </code><span class="type">int</span> GridModelController::<span class="name">findRecordByModelRow</span>(<span class="type">int</span> <i>modelRow</i>)</h3>
+<!-- @@@findRecordByModelRow -->
+<!-- $$$findRowIndexByRecord[overload1]$$$findRowIndexByRecordint -->
+<h3 class="fn" id="findRowIndexByRecord"><a name="findRowIndexByRecord"></a><code>[protected] </code><span class="type">int</span> GridModelController::<span class="name">findRowIndexByRecord</span>(<span class="type">int</span> <i>record</i>)</h3>
+<!-- @@@findRowIndexByRecord -->
+<!-- $$$focusedColumnIndex[overload1]$$$focusedColumnIndex -->
+<h3 class="fn" id="focusedColumnIndex"><a name="focusedColumnIndex"></a><span class="type">int</span> GridModelController::<span class="name">focusedColumnIndex</span>() const</h3>
+<!-- @@@focusedColumnIndex -->
+<!-- $$$focusedRow[overload1]$$$focusedRow -->
+<h3 class="fn" id="focusedRow"><a name="focusedRow"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridModelController::<span class="name">focusedRow</span>()</h3>
+<!-- @@@focusedRow -->
+<!-- $$$focusedRowIndex[overload1]$$$focusedRowIndex -->
+<h3 class="fn" id="focusedRowIndex"><a name="focusedRowIndex"></a><span class="type">int</span> GridModelController::<span class="name">focusedRowIndex</span>()</h3>
+<!-- @@@focusedRowIndex -->
+<!-- $$$frozenPlace[overload1]$$$frozenPlace -->
+<h3 class="fn" id="frozenPlace"><a name="frozenPlace"></a><span class="type"><a href="gridrow.html#FrozenPlace-enum">GridRow::FrozenPlace</a></span> GridModelController::<span class="name">frozenPlace</span>() const</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#setFrozenPlace">setFrozenPlace</a>().</p>
+<!-- @@@frozenPlace -->
+<!-- $$$frozenRowsFilter[overload1]$$$frozenRowsFilter -->
+<h3 class="fn" id="frozenRowsFilter"><a name="frozenRowsFilter"></a><span class="type">GridFilter</span> *GridModelController::<span class="name">frozenRowsFilter</span>() const</h3>
+<!-- @@@frozenRowsFilter -->
+<!-- $$$getFrozenBottomGridRowCount[overload1]$$$getFrozenBottomGridRowCount -->
+<h3 class="fn" id="getFrozenBottomGridRowCount"><a name="getFrozenBottomGridRowCount"></a><span class="type">int</span> GridModelController::<span class="name">getFrozenBottomGridRowCount</span>() const</h3>
+<!-- @@@getFrozenBottomGridRowCount -->
+<!-- $$$getFrozenTopGridRowCount[overload1]$$$getFrozenTopGridRowCount -->
+<h3 class="fn" id="getFrozenTopGridRowCount"><a name="getFrozenTopGridRowCount"></a><span class="type">int</span> GridModelController::<span class="name">getFrozenTopGridRowCount</span>() const</h3>
+<!-- @@@getFrozenTopGridRowCount -->
+<!-- $$$getGridRow[overload1]$$$getGridRowint -->
+<h3 class="fn" id="getGridRow"><a name="getGridRow"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridModelController::<span class="name">getGridRow</span>(<span class="type">int</span> <i>index</i>)</h3>
+<!-- @@@getGridRow -->
+<!-- $$$getGridRowByModelRow[overload1]$$$getGridRowByModelRowint -->
+<h3 class="fn" id="getGridRowByModelRow"><a name="getGridRowByModelRow"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridModelController::<span class="name">getGridRowByModelRow</span>(<span class="type">int</span> <i>modelRow</i>)</h3>
+<!-- @@@getGridRowByModelRow -->
+<!-- $$$getGridRowCount[overload1]$$$getGridRowCount -->
+<h3 class="fn" id="getGridRowCount"><a name="getGridRowCount"></a><span class="type">int</span> GridModelController::<span class="name">getGridRowCount</span>() const</h3>
+<!-- @@@getGridRowCount -->
+<!-- $$$getGroupOrder[overload1]$$$getGroupOrderGridModelDataBinding* -->
+<h3 class="fn" id="getGroupOrder"><a name="getGroupOrder"></a><span class="type">SortOrder</span> GridModelController::<span class="name">getGroupOrder</span>(<span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>dataBinding</i>) const</h3>
+<!-- @@@getGroupOrder -->
+<!-- $$$getModelColumnCount[overload1]$$$getModelColumnCount -->
+<h3 class="fn" id="getModelColumnCount"><a name="getModelColumnCount"></a><span class="type">int</span> GridModelController::<span class="name">getModelColumnCount</span>() const</h3>
+<!-- @@@getModelColumnCount -->
+<!-- $$$getModelRowIndexByRecord[overload1]$$$getModelRowIndexByRecordint -->
+<h3 class="fn" id="getModelRowIndexByRecord"><a name="getModelRowIndexByRecord"></a><span class="type">int</span> GridModelController::<span class="name">getModelRowIndexByRecord</span>(<span class="type">int</span> <i>record</i>) const</h3>
+<!-- @@@getModelRowIndexByRecord -->
+<!-- $$$getModelValue[overload1]$$$getModelValueintintQt::ItemDataRoleQVariant& -->
+<h3 class="fn" id="getModelValue"><a name="getModelValue"></a><span class="type">bool</span> GridModelController::<span class="name">getModelValue</span>(<span class="type">int</span> <i>modelColumn</i>, <span class="type">int</span> <i>modelRow</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>, <span class="type">QVariant</span> &amp;<i>retval</i>) const</h3>
+<!-- @@@getModelValue -->
+<!-- $$$getPreviewModelValue[overload1]$$$getPreviewModelValueintQVariant& -->
+<h3 class="fn" id="getPreviewModelValue"><a name="getPreviewModelValue"></a><span class="type">bool</span> GridModelController::<span class="name">getPreviewModelValue</span>(<span class="type">int</span> <i>modelRow</i>, <span class="type">QVariant</span> &amp;<i>retval</i>)</h3>
+<!-- @@@getPreviewModelValue -->
+<!-- $$$getPureRowCount[overload1]$$$getPureRowCount -->
+<h3 class="fn" id="getPureRowCount"><a name="getPureRowCount"></a><span class="type">int</span> GridModelController::<span class="name">getPureRowCount</span>() const</h3>
+<!-- @@@getPureRowCount -->
+<!-- $$$getRecordCount[overload1]$$$getRecordCount -->
+<h3 class="fn" id="getRecordCount"><a name="getRecordCount"></a><span class="type">int</span> GridModelController::<span class="name">getRecordCount</span>() const</h3>
+<!-- @@@getRecordCount -->
+<!-- $$$getRowIndexByPersistentRow[overload1]$$$getRowIndexByPersistentRowconstGridPersistentRow* -->
+<h3 class="fn" id="getRowIndexByPersistentRow"><a name="getRowIndexByPersistentRow"></a><code>[protected] </code><span class="type">int</span> GridModelController::<span class="name">getRowIndexByPersistentRow</span>(const <span class="type"><a href="gridpersistentrow.html">GridPersistentRow</a></span> *<i>persistentRow</i>)</h3>
+<!-- @@@getRowIndexByPersistentRow -->
+<!-- $$$getSortOrder[overload1]$$$getSortOrderGridModelDataBinding* -->
+<h3 class="fn" id="getSortOrder"><a name="getSortOrder"></a><span class="type">SortOrder</span> GridModelController::<span class="name">getSortOrder</span>(<span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>dataBinding</i>) const</h3>
+<!-- @@@getSortOrder -->
+<!-- $$$groupingDepth[overload1]$$$groupingDepth -->
+<h3 class="fn" id="groupingDepth"><a name="groupingDepth"></a><span class="type">int</span> GridModelController::<span class="name">groupingDepth</span>() const</h3>
+<!-- @@@groupingDepth -->
+<!-- $$$groups[overload1]$$$groups -->
+<h3 class="fn" id="groups"><a name="groups"></a><span class="type"><a href="gridmodelcontroller.html#ModelGroupList-typedef">ModelGroupList</a></span> &amp;GridModelController::<span class="name">groups</span>()</h3>
+<!-- @@@groups -->
+<!-- $$$hasChanges[overload1]$$$hasChanges -->
+<h3 class="fn" id="hasChanges"><a name="hasChanges"></a><span class="type">bool</span> GridModelController::<span class="name">hasChanges</span>() const</h3>
+<!-- @@@hasChanges -->
+<!-- $$$hasGrouping[overload1]$$$hasGrouping -->
+<h3 class="fn" id="hasGrouping"><a name="hasGrouping"></a><span class="type">bool</span> GridModelController::<span class="name">hasGrouping</span>() const</h3>
+<!-- @@@hasGrouping -->
+<!-- $$$insertModelRow[overload1]$$$insertModelRowint -->
+<h3 class="fn" id="insertModelRow"><a name="insertModelRow"></a><span class="type">bool</span> GridModelController::<span class="name">insertModelRow</span>(<span class="type">int</span> <i>modelRow</i>)</h3>
+<!-- @@@insertModelRow -->
+<!-- $$$isAllSelected[overload1]$$$isAllSelected -->
+<h3 class="fn" id="isAllSelected"><a name="isAllSelected"></a><span class="type">bool</span> GridModelController::<span class="name">isAllSelected</span>() const</h3>
+<!-- @@@isAllSelected -->
+<!-- $$$isCellFocused[overload1]$$$isCellFocusedGridRow*int -->
+<h3 class="fn" id="isCellFocused"><a name="isCellFocused"></a><span class="type">bool</span> GridModelController::<span class="name">isCellFocused</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>, <span class="type">int</span> <i>columnIndex</i>) const</h3>
+<!-- @@@isCellFocused -->
+<!-- $$$isCellSelected[overload1]$$$isCellSelectedconstGridCell& -->
+<h3 class="fn" id="isCellSelected"><a name="isCellSelected"></a><span class="type">bool</span> GridModelController::<span class="name">isCellSelected</span>(const <span class="type">GridCell</span> &amp;<i>cell</i>) const</h3>
+<!-- @@@isCellSelected -->
+<!-- $$$isDataUpdating[overload1]$$$isDataUpdating -->
+<h3 class="fn" id="isDataUpdating"><a name="isDataUpdating"></a><span class="type">bool</span> GridModelController::<span class="name">isDataUpdating</span>() const</h3>
+<!-- @@@isDataUpdating -->
+<!-- $$$isNewRowMode[overload1]$$$isNewRowMode -->
+<h3 class="fn" id="isNewRowMode"><a name="isNewRowMode"></a><span class="type">bool</span> GridModelController::<span class="name">isNewRowMode</span>() const</h3>
+<!-- @@@isNewRowMode -->
+<!-- $$$isRowFocused[overload1]$$$isRowFocusedGridRow* -->
+<h3 class="fn" id="isRowFocused"><a name="isRowFocused"></a><span class="type">bool</span> GridModelController::<span class="name">isRowFocused</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>)</h3>
+<!-- @@@isRowFocused -->
+<!-- $$$isRowSelected[overload1]$$$isRowSelectedconstGridRow* -->
+<h3 class="fn" id="isRowSelected"><a name="isRowSelected"></a><span class="type">bool</span> GridModelController::<span class="name">isRowSelected</span>(const <span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>) const</h3>
+<!-- @@@isRowSelected -->
+<!-- $$$model[overload1]$$$model -->
+<h3 class="fn" id="model"><a name="model"></a><span class="type">QAbstractItemModel</span> *GridModelController::<span class="name">model</span>() const</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#setModel">setModel</a>().</p>
+<!-- @@@model -->
+<!-- $$$modelAboutToBeReset[overload1]$$$modelAboutToBeReset -->
+<h3 class="fn" id="modelAboutToBeReset"><a name="modelAboutToBeReset"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelAboutToBeReset</span>()</h3>
+<!-- @@@modelAboutToBeReset -->
+<!-- $$$modelColumnsInserted[overload1]$$$modelColumnsInsertedconstQModelIndex&intint -->
+<h3 class="fn" id="modelColumnsInserted"><a name="modelColumnsInserted"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelColumnsInserted</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelColumnsInserted -->
+<!-- $$$modelColumnsMoved[overload1]$$$modelColumnsMovedconstQModelIndex&intintconstQModelIndex&int -->
+<h3 class="fn" id="modelColumnsMoved"><a name="modelColumnsMoved"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelColumnsMoved</span>(const <span class="type">QModelIndex</span> &amp;<i>sourceParent</i>, <span class="type">int</span> <i>sourceStart</i>, <span class="type">int</span> <i>sourceEnd</i>, const <span class="type">QModelIndex</span> &amp;<i>destinationParent</i>, <span class="type">int</span> <i>destinationColumn</i>)</h3>
+<!-- @@@modelColumnsMoved -->
+<!-- $$$modelColumnsRemoved[overload1]$$$modelColumnsRemovedconstQModelIndex&intint -->
+<h3 class="fn" id="modelColumnsRemoved"><a name="modelColumnsRemoved"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelColumnsRemoved</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelColumnsRemoved -->
+<!-- $$$modelDataChanged[overload1]$$$modelDataChangedconstQModelIndex&constQModelIndex& -->
+<h3 class="fn" id="modelDataChanged"><a name="modelDataChanged"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelDataChanged</span>(const <span class="type">QModelIndex</span> &amp;<i>topLeft</i>, const <span class="type">QModelIndex</span> &amp;<i>bottomRight</i>)</h3>
+<!-- @@@modelDataChanged -->
+<!-- $$$modelGroup[overload1]$$$modelGroupint -->
+<h3 class="fn" id="modelGroup"><a name="modelGroup"></a><span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *GridModelController::<span class="name">modelGroup</span>(<span class="type">int</span> <i>index</i>)</h3>
+<!-- @@@modelGroup -->
+<!-- $$$modelGroupCount[overload1]$$$modelGroupCount -->
+<h3 class="fn" id="modelGroupCount"><a name="modelGroupCount"></a><span class="type">int</span> GridModelController::<span class="name">modelGroupCount</span>() const</h3>
+<!-- @@@modelGroupCount -->
+<!-- $$$modelLayoutChanged[overload1]$$$modelLayoutChanged -->
+<h3 class="fn" id="modelLayoutChanged"><a name="modelLayoutChanged"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelLayoutChanged</span>()</h3>
+<!-- @@@modelLayoutChanged -->
+<!-- $$$modelReset[overload1]$$$modelReset -->
+<h3 class="fn" id="modelReset"><a name="modelReset"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelReset</span>()</h3>
+<!-- @@@modelReset -->
+<!-- $$$modelRowsAboutToBeInserted[overload1]$$$modelRowsAboutToBeInsertedconstQModelIndex&intint -->
+<h3 class="fn" id="modelRowsAboutToBeInserted"><a name="modelRowsAboutToBeInserted"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelRowsAboutToBeInserted</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelRowsAboutToBeInserted -->
+<!-- $$$modelRowsAboutToBeRemoved[overload1]$$$modelRowsAboutToBeRemovedconstQModelIndex&intint -->
+<h3 class="fn" id="modelRowsAboutToBeRemoved"><a name="modelRowsAboutToBeRemoved"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelRowsAboutToBeRemoved</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelRowsAboutToBeRemoved -->
+<!-- $$$modelRowsInserted[overload1]$$$modelRowsInsertedconstQModelIndex&intint -->
+<h3 class="fn" id="modelRowsInserted"><a name="modelRowsInserted"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelRowsInserted</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelRowsInserted -->
+<!-- $$$modelRowsRemoved[overload1]$$$modelRowsRemovedconstQModelIndex&intint -->
+<h3 class="fn" id="modelRowsRemoved"><a name="modelRowsRemoved"></a><code>[protected slot] </code><span class="type">void</span> GridModelController::<span class="name">modelRowsRemoved</span>(const <span class="type">QModelIndex</span> &amp;<i>parent</i>, <span class="type">int</span> <i>start</i>, <span class="type">int</span> <i>end</i>)</h3>
+<!-- @@@modelRowsRemoved -->
+<!-- $$$oldFocusedColumnIndex[overload1]$$$oldFocusedColumnIndex -->
+<h3 class="fn" id="oldFocusedColumnIndex"><a name="oldFocusedColumnIndex"></a><span class="type">int</span> GridModelController::<span class="name">oldFocusedColumnIndex</span>() const</h3>
+<!-- @@@oldFocusedColumnIndex -->
+<!-- $$$oldFocusedRowIndex[overload1]$$$oldFocusedRowIndex -->
+<h3 class="fn" id="oldFocusedRowIndex"><a name="oldFocusedRowIndex"></a><span class="type">int</span> GridModelController::<span class="name">oldFocusedRowIndex</span>() const</h3>
+<!-- @@@oldFocusedRowIndex -->
+<!-- $$$parentIndex[overload1]$$$parentIndex -->
+<h3 class="fn" id="parentIndex"><a name="parentIndex"></a>const <span class="type">QModelIndex</span> &amp;GridModelController::<span class="name">parentIndex</span>() const</h3>
+<!-- @@@parentIndex -->
+<!-- $$$previewRowDataBinding[overload1]$$$previewRowDataBinding -->
+<h3 class="fn" id="previewRowDataBinding"><a name="previewRowDataBinding"></a><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *GridModelController::<span class="name">previewRowDataBinding</span>() const</h3>
+<!-- @@@previewRowDataBinding -->
+<!-- $$$refresh[overload1]$$$refresh -->
+<h3 class="fn" id="refresh"><a name="refresh"></a><span class="type">void</span> GridModelController::<span class="name">refresh</span>()</h3>
+<!-- @@@refresh -->
+<!-- $$$relationFilter[overload1]$$$relationFilter -->
+<h3 class="fn" id="relationFilter"><a name="relationFilter"></a><span class="type">GridFilter</span> *GridModelController::<span class="name">relationFilter</span>() const</h3>
+<!-- @@@relationFilter -->
+<!-- $$$removeDataBinding[overload1]$$$removeDataBindingGridModelDataBinding* -->
+<h3 class="fn" id="removeDataBinding"><a name="removeDataBinding"></a><span class="type">void</span> GridModelController::<span class="name">removeDataBinding</span>(<span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>dataBinding</i>)</h3>
+<!-- @@@removeDataBinding -->
+<!-- $$$removeDefaultValue[overload1]$$$removeDefaultValueintQt::ItemDataRole -->
+<h3 class="fn" id="removeDefaultValue"><a name="removeDefaultValue"></a><span class="type">void</span> GridModelController::<span class="name">removeDefaultValue</span>(<span class="type">int</span> <i>modelColumn</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>)</h3>
+<!-- @@@removeDefaultValue -->
+<!-- $$$removeDefaultValues[overload1]$$$removeDefaultValuesint -->
+<h3 class="fn" id="removeDefaultValues"><a name="removeDefaultValues"></a><span class="type">void</span> GridModelController::<span class="name">removeDefaultValues</span>(<span class="type">int</span> <i>modelColumn</i>)</h3>
+<!-- @@@removeDefaultValues -->
+<!-- $$$removeModelRow[overload1]$$$removeModelRowint -->
+<h3 class="fn" id="removeModelRow"><a name="removeModelRow"></a><span class="type">bool</span> GridModelController::<span class="name">removeModelRow</span>(<span class="type">int</span> <i>modelRow</i>)</h3>
+<!-- @@@removeModelRow -->
+<!-- $$$removeModelRowFromFrozenFilter[overload1]$$$removeModelRowFromFrozenFilterint -->
+<h3 class="fn" id="removeModelRowFromFrozenFilter"><a name="removeModelRowFromFrozenFilter"></a><span class="type">void</span> GridModelController::<span class="name">removeModelRowFromFrozenFilter</span>(<span class="type">int</span> <i>modelRowIndex</i>)</h3>
+<!-- @@@removeModelRowFromFrozenFilter -->
+<!-- $$$resizeModelRows[overload1]$$$resizeModelRowsint -->
+<h3 class="fn" id="resizeModelRows"><a name="resizeModelRows"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">resizeModelRows</span>(<span class="type">int</span> <i>size</i>)</h3>
+<!-- @@@resizeModelRows -->
+<!-- $$$restoreSelectState[overload1]$$$restoreSelectState -->
+<h3 class="fn" id="restoreSelectState"><a name="restoreSelectState"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">restoreSelectState</span>()</h3>
+<!-- @@@restoreSelectState -->
+<!-- $$$saveGroupingState[overload1]$$$saveGroupingState -->
+<h3 class="fn" id="saveGroupingState"><a name="saveGroupingState"></a><code>[protected] </code><span class="type">void</span> GridModelController::<span class="name">saveGroupingState</span>()</h3>
+<!-- @@@saveGroupingState -->
+<!-- $$$selectChanged[overload1]$$$selectChanged -->
+<h3 class="fn" id="selectChanged"><a name="selectChanged"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">selectChanged</span>()</h3>
+<!-- @@@selectChanged -->
+<!-- $$$selectRanges[overload1]$$$selectRangesconstSelectionRanges&constSelectionOperation& -->
+<h3 class="fn" id="selectRanges"><a name="selectRanges"></a><span class="type">void</span> GridModelController::<span class="name">selectRanges</span>(const <span class="type">SelectionRanges</span> &amp;<i>ranges</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i> = Qtitan::Select)</h3>
+<!-- @@@selectRanges -->
+<!-- $$$selection[overload1]$$$selection -->
+<h3 class="fn" id="selection"><a name="selection"></a><span class="type"><a href="gridselection.html">GridSelection</a></span> *GridModelController::<span class="name">selection</span>() const</h3>
+<!-- @@@selection -->
+<!-- $$$selectionModel[overload1]$$$selectionModel -->
+<h3 class="fn" id="selectionModel"><a name="selectionModel"></a><span class="type">QItemSelectionModel</span> *GridModelController::<span class="name">selectionModel</span>() const</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#setSelectionModel">setSelectionModel</a>().</p>
+<!-- @@@selectionModel -->
+<!-- $$$setCellFocus[overload1]$$$setCellFocusGridRow*int -->
+<h3 class="fn" id="setCellFocus"><a name="setCellFocus"></a><span class="type">bool</span> GridModelController::<span class="name">setCellFocus</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>, <span class="type">int</span> <i>columnIndex</i>)</h3>
+<!-- @@@setCellFocus -->
+<!-- $$$setDefaultValue[overload1]$$$setDefaultValueintconstQVariant&Qt::ItemDataRole -->
+<h3 class="fn" id="setDefaultValue"><a name="setDefaultValue"></a><span class="type">void</span> GridModelController::<span class="name">setDefaultValue</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QVariant</span> &amp;<i>value</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>)</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#defaultValue">defaultValue</a>().</p>
+<!-- @@@setDefaultValue -->
+<!-- $$$setEditStrategy[overload1]$$$setEditStrategyGridEditStrategy -->
+<h3 class="fn" id="setEditStrategy"><a name="setEditStrategy"></a><span class="type">void</span> GridModelController::<span class="name">setEditStrategy</span>(<span class="type">GridEditStrategy</span> <i>strategy</i>)</h3>
+<p>Sets the strategy for data submiting to the model after the cell's value has changed. Please note what the setting does not has effect if QSqlTableModel is used with edit strategy equal to QSqlTableModel::OnFieldChange.</p>
+<p><b>See also </b><a href="gridmodelcontroller.html#editStrategy">editStrategy</a>().</p>
+<!-- @@@setEditStrategy -->
+<!-- $$$setFrozenPlace[overload1]$$$setFrozenPlaceGridRow::FrozenPlace -->
+<h3 class="fn" id="setFrozenPlace"><a name="setFrozenPlace"></a><span class="type">void</span> GridModelController::<span class="name">setFrozenPlace</span>(<span class="type"><a href="gridrow.html#FrozenPlace-enum">GridRow::FrozenPlace</a></span> <i>place</i>)</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#frozenPlace">frozenPlace</a>().</p>
+<!-- @@@setFrozenPlace -->
+<!-- $$$setGroupOrder[overload1]$$$setGroupOrderGridModelDataBinding*intSortOrderboolbool -->
+<h3 class="fn" id="setGroupOrder"><a name="setGroupOrder"></a><span class="type">void</span> GridModelController::<span class="name">setGroupOrder</span>(<span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>dataBinding</i>, <span class="type">int</span> <i>groupIndex</i>, <span class="type">SortOrder</span> <i>order</i>, <span class="type">bool</span> <i>caseSensitivity</i> = false, <span class="type">bool</span> <i>localeAware</i> = false)</h3>
+<!-- @@@setGroupOrder -->
+<!-- $$$setModel[overload1]$$$setModelQAbstractItemModel*QModelIndex -->
+<h3 class="fn" id="setModel"><a name="setModel"></a><span class="type">void</span> GridModelController::<span class="name">setModel</span>(<span class="type">QAbstractItemModel</span> *<i>model</i>, <span class="type">QModelIndex</span> <i>parent</i> = QModelIndex())</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#model">model</a>().</p>
+<!-- @@@setModel -->
+<!-- $$$setModelValue[overload1]$$$setModelValueintintQt::ItemDataRoleconstQVariant& -->
+<h3 class="fn" id="setModelValue"><a name="setModelValue"></a><span class="type">bool</span> GridModelController::<span class="name">setModelValue</span>(<span class="type">int</span> <i>modelColumn</i>, <span class="type">int</span> <i>modelRow</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>, const <span class="type">QVariant</span> &amp;<i>retval</i>)</h3>
+<!-- @@@setModelValue -->
+<!-- $$$setSelectionModel[overload1]$$$setSelectionModelQItemSelectionModel* -->
+<h3 class="fn" id="setSelectionModel"><a name="setSelectionModel"></a><span class="type">void</span> GridModelController::<span class="name">setSelectionModel</span>(<span class="type">QItemSelectionModel</span> *<i>selectionModel</i>)</h3>
+<p><b>See also </b><a href="gridmodelcontroller.html#selectionModel">selectionModel</a>().</p>
+<!-- @@@setSelectionModel -->
+<!-- $$$setShowWaitCursor[overload1]$$$setShowWaitCursorbool -->
+<h3 class="fn" id="setShowWaitCursor"><a name="setShowWaitCursor"></a><span class="type">void</span> GridModelController::<span class="name">setShowWaitCursor</span>(<span class="type">bool</span> <i>show</i>)</h3>
+<p>Enables or disables wait cursor if controller is busy for lengthy operations with data like sorting or grouping.</p>
+<p><b>See also </b><a href="gridmodelcontroller.html#showWaitCursor">showWaitCursor</a>().</p>
+<!-- @@@setShowWaitCursor -->
+<!-- $$$setSortOrder[overload1]$$$setSortOrderGridModelDataBinding*intSortOrderboolbool -->
+<h3 class="fn" id="setSortOrder"><a name="setSortOrder"></a><span class="type">void</span> GridModelController::<span class="name">setSortOrder</span>(<span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>dataBinding</i>, <span class="type">int</span> <i>sortIndex</i>, <span class="type">SortOrder</span> <i>order</i>, <span class="type">bool</span> <i>caseSensitivity</i> = false, <span class="type">bool</span> <i>localeAware</i> = false)</h3>
+<!-- @@@setSortOrder -->
+<!-- $$$showWaitCursor[overload1]$$$showWaitCursor -->
+<h3 class="fn" id="showWaitCursor"><a name="showWaitCursor"></a><span class="type">bool</span> GridModelController::<span class="name">showWaitCursor</span>()</h3>
+<p>Indicates whether or not to show the wait cursor when the controller performs lengthy operations with data like sorting or grouping.</p>
+<p><b>See also </b><a href="gridmodelcontroller.html#setShowWaitCursor">setShowWaitCursor</a>().</p>
+<!-- @@@showWaitCursor -->
+<!-- $$$sortCompleted[overload1]$$$sortCompleted -->
+<h3 class="fn" id="sortCompleted"><a name="sortCompleted"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">sortCompleted</span>()</h3>
+<!-- @@@sortCompleted -->
+<!-- $$$sortProgress[overload1]$$$sortProgressint -->
+<h3 class="fn" id="sortProgress"><a name="sortProgress"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">sortProgress</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@sortProgress -->
+<!-- $$$sortRules[overload1]$$$sortRules -->
+<h3 class="fn" id="sortRules"><a name="sortRules"></a>const <span class="type">GridSortColumnRules</span> &amp;GridModelController::<span class="name">sortRules</span>() const</h3>
+<!-- @@@sortRules -->
+<!-- $$$submitData[overload1]$$$submitData -->
+<h3 class="fn" id="submitData"><a name="submitData"></a><span class="type">bool</span> GridModelController::<span class="name">submitData</span>()</h3>
+<!-- @@@submitData -->
+<!-- $$$summary[overload1]$$$summary -->
+<h3 class="fn" id="summary"><a name="summary"></a><span class="type"><a href="gridsummary.html">GridSummary</a></span> *GridModelController::<span class="name">summary</span>() const</h3>
+<!-- @@@summary -->
+<!-- $$$summaryCompleted[overload1]$$$summaryCompleted -->
+<h3 class="fn" id="summaryCompleted"><a name="summaryCompleted"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">summaryCompleted</span>()</h3>
+<!-- @@@summaryCompleted -->
+<!-- $$$summaryProgress[overload1]$$$summaryProgressint -->
+<h3 class="fn" id="summaryProgress"><a name="summaryProgress"></a><code>[signal] </code><span class="type">void</span> GridModelController::<span class="name">summaryProgress</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@summaryProgress -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

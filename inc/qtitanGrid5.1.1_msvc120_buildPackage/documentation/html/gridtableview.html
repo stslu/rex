@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtngirdtableview.qdoc -->
+  <title>GridTableView Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridTableView</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridTableView Class</h1>
+<!-- $$$GridTableView-brief -->
+<p><a href="gridtableview.html">GridTableView</a> class - represents a very simple variant of view to display simple tabular data. View allows you to create columns of the grid at one level and relate them to the model's columns and data. An instance of the view is automatically created by grid once the type of view will be specifying - TableView. So later to obtain the pointer to the view instance you must use the method of the grid Qtitan::Grid::view() with the <a href="gridtableview.html">GridTableView</a> as a template parameter. For example: <a href="#details">More...</a></p>
+<!-- @@@GridTableView -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridTableView&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="gridviewbase.html">GridViewBase</a></td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="gridbandedtableview.html">GridBandedTableView</a></p>
+</td></tr></table></div><ul>
+<li><a href="gridtableview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#GridTableView">GridTableView</a></b>(Grid *<i>grid</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#dtor.GridTableView">~GridTableView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#addColumn">addColumn</a></b>(const QString &amp;<i>modelColumnName</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#addColumn-1">addColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableViewOptions &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#options">options</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#scrollToColumn">scrollToColumn</a></b>(int <i>columnIndex</i>, bool <i>firstPosition</i> = true)</td></tr>
+</table></div>
+<a name="reimplemented-public-functions"></a>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridNativeDragObject *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createNativeDragDropObject">createNativeDragDropObject</a></b>(const QPoint &amp;<i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#navigateDown">navigateDown</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#navigateLeft">navigateLeft</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#navigateRight">navigateRight</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#navigateUp">navigateUp</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+</table></div>
+<ul>
+<li class="fn">79 public functions inherited from <a href="gridviewbase.html#public-functions">GridViewBase</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableView *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#create">create</a></b>(Grid *<i>grid</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#checkHorSizing">checkHorSizing</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableHeaderGraphic *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createHeaderPanel">createHeaderPanel</a></b>(GraphicPrimitive *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual ColumnFixedKind </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getColumnFixedKind">getColumnFixedKind</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getColumnViewWidth">getColumnViewWidth</a></b>(const GridTableColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getFixedColumns">getFixedColumns</a></b>(GridTableColumnBase *&amp;<i>left</i>, GridTableColumnBase *&amp;<i>right</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getMaximumVisualIndex">getMaximumVisualIndex</a></b>(const GridTableColumnBase *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getNextResizeColumn">getNextResizeColumn</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#getPreviousResizeColumn">getPreviousResizeColumn</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#isColumnOnScreen">isColumnOnScreen</a></b>(GridTableColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#isHorizontalResizable">isHorizontalResizable</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#isVerticalResizable">isVerticalResizable</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableViewPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#layout">layout</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#setColumnFixedKind">setColumnFixedKind</a></b>(GridTableColumnBase *<i>columnBase</i>, ColumnFixedKind <i>kind</i>)</td></tr>
+</table></div>
+<a name="reimplemented-protected-functions"></a>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#bestFitForView">bestFitForView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createColumn">createColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridFooterSummaryPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createFooterSummaryPanel">createFooterSummaryPanel</a></b>(GraphicPrimitive *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewPrimitiveBase *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createLayout">createLayout</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewOptions *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createOptions">createOptions</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridRowsPrimitiveAbstract *</td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#createRowsGraphic">createRowsGraphic</a></b>(GraphicPrimitive *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#initialize">initialize</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridtableview.html#printHeader">printHeader</a></b>(QPainter &amp;<i>painter</i>, int &amp;<i>pageLength</i>, int &amp;<i>itemIndex</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">71 protected functions inherited from <a href="gridviewbase.html#protected-functions">GridViewBase</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">19 public slots inherited from <a href="gridviewbase.html#public-slots">GridViewBase</a></li>
+<li class="fn">42 signals inherited from <a href="gridviewbase.html#signals">GridViewBase</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$GridTableView-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="gridtableview.html">GridTableView</a> class - represents a very simple variant of view to display simple tabular data. View allows you to create columns of the grid at one level and relate them to the model's columns and data. An instance of the view is automatically created by grid once the type of view will be specifying - TableView. So later to obtain the pointer to the view instance you must use the method of the grid Qtitan::Grid::view() with the <a href="gridtableview.html">GridTableView</a> as a template parameter. For example:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid();
+<span class="type">QSqlTableModel</span><span class="operator">*</span> model <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlTableModel</span>(<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>);
+grid<span class="operator">-</span><span class="operator">&gt;</span>setViewType(Qtitan<span class="operator">::</span>Grid<span class="operator">::</span>TableView);
+Qtitan<span class="operator">::</span>GridTableView<span class="operator">*</span> view <span class="operator">=</span> grid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>Qtitan<span class="operator">::</span>GridTableView<span class="operator">&gt;</span>();
+view<span class="operator">-</span><span class="operator">&gt;</span>setModel(model);</pre>
+</div>
+<!-- @@@GridTableView -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridTableView[overload1]$$$GridTableViewGrid* -->
+<h3 class="fn" id="GridTableView"><a name="GridTableView"></a>GridTableView::<span class="name">GridTableView</span>(<span class="type"><a href="grid.html">Grid</a></span> *<i>grid</i>)</h3>
+<p>Default constructs an instance of GridTableView.</p><!-- @@@GridTableView -->
+<!-- $$$~GridTableView[overload1]$$$~GridTableView -->
+<h3 class="fn" id="dtor.GridTableView"><a name="dtor.GridTableView"></a><code>[virtual] </code>GridTableView::<span class="name">~GridTableView</span>()</h3>
+<p>Destroys the instance of GridTableView. The destructor is virtual.</p><!-- @@@~GridTableView -->
+<!-- $$$addColumn[overload1]$$$addColumnconstQString&constQString& -->
+<h3 class="fn" id="addColumn"><a name="addColumn"></a><span class="type"><a href="gridtablecolumn.html">GridTableColumn</a></span> *GridTableView::<span class="name">addColumn</span>(const <span class="type">QString</span> &amp;<i>modelColumnName</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$addColumn$$$addColumnintconstQString& -->
+<h3 class="fn" id="addColumn-1"><a name="addColumn-1"></a><span class="type"><a href="gridtablecolumn.html">GridTableColumn</a></span> *GridTableView::<span class="name">addColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$bestFitForView[overload1]$$$bestFitForView -->
+<h3 class="fn" id="bestFitForView"><a name="bestFitForView"></a><code>[virtual protected] </code><span class="type">void</span> GridTableView::<span class="name">bestFitForView</span>()</h3>
+<!-- @@@bestFitForView -->
+<!-- $$$checkHorSizing[overload1]$$$checkHorSizingconstGridColumnBase* -->
+<h3 class="fn" id="checkHorSizing"><a name="checkHorSizing"></a><code>[virtual protected] </code><span class="type">bool</span> GridTableView::<span class="name">checkHorSizing</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkHorSizing -->
+<!-- $$$create[overload1]$$$createGrid* -->
+<h3 class="fn" id="create"><a name="create"></a><code>[static] </code><span class="type"><a href="gridtableview.html#GridTableView">GridTableView</a></span> *GridTableView::<span class="name">create</span>(<span class="type"><a href="grid.html">Grid</a></span> *<i>grid</i>)</h3>
+<!-- @@@create -->
+<!-- $$$createColumn[overload1]$$$createColumnintconstQString& -->
+<h3 class="fn" id="createColumn"><a name="createColumn"></a><code>[virtual protected] </code><span class="type">GridColumnBase</span> *GridTableView::<span class="name">createColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i>)</h3>
+<!-- @@@createColumn -->
+<!-- $$$createFooterSummaryPanel[overload1]$$$createFooterSummaryPanelGraphicPrimitive* -->
+<h3 class="fn" id="createFooterSummaryPanel"><a name="createFooterSummaryPanel"></a><code>[virtual protected] </code><span class="type">GridFooterSummaryPrimitive</span> *GridTableView::<span class="name">createFooterSummaryPanel</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createFooterSummaryPanel -->
+<!-- $$$createHeaderPanel[overload1]$$$createHeaderPanelGraphicPrimitive* -->
+<h3 class="fn" id="createHeaderPanel"><a name="createHeaderPanel"></a><code>[virtual protected] </code><span class="type">GridTableHeaderGraphic</span> *GridTableView::<span class="name">createHeaderPanel</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createHeaderPanel -->
+<!-- $$$createLayout[overload1]$$$createLayout -->
+<h3 class="fn" id="createLayout"><a name="createLayout"></a><code>[virtual protected] </code><span class="type">GridViewPrimitiveBase</span> *GridTableView::<span class="name">createLayout</span>()</h3>
+<!-- @@@createLayout -->
+<!-- $$$createNativeDragDropObject[overload1]$$$createNativeDragDropObjectconstQPoint& -->
+<h3 class="fn" id="createNativeDragDropObject"><a name="createNativeDragDropObject"></a><code>[virtual] </code><span class="type">GridNativeDragObject</span> *GridTableView::<span class="name">createNativeDragDropObject</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@createNativeDragDropObject -->
+<!-- $$$createOptions[overload1]$$$createOptions -->
+<h3 class="fn" id="createOptions"><a name="createOptions"></a><code>[virtual protected] </code><span class="type"><a href="gridviewoptions.html">GridViewOptions</a></span> *GridTableView::<span class="name">createOptions</span>()</h3>
+<!-- @@@createOptions -->
+<!-- $$$createRowsGraphic[overload1]$$$createRowsGraphicGraphicPrimitive* -->
+<h3 class="fn" id="createRowsGraphic"><a name="createRowsGraphic"></a><code>[virtual protected] </code><span class="type">GridRowsPrimitiveAbstract</span> *GridTableView::<span class="name">createRowsGraphic</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createRowsGraphic -->
+<!-- $$$getColumnFixedKind[overload1]$$$getColumnFixedKindconstGridTableColumnBase* -->
+<h3 class="fn" id="getColumnFixedKind"><a name="getColumnFixedKind"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html#ColumnFixedKind-enum">ColumnFixedKind</a></span> GridTableView::<span class="name">getColumnFixedKind</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnFixedKind -->
+<!-- $$$getColumnViewWidth[overload1]$$$getColumnViewWidthconstGridTableColumnBase* -->
+<h3 class="fn" id="getColumnViewWidth"><a name="getColumnViewWidth"></a><code>[virtual protected] </code><span class="type">int</span> GridTableView::<span class="name">getColumnViewWidth</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>column</i>)</h3>
+<!-- @@@getColumnViewWidth -->
+<!-- $$$getFixedColumns[overload1]$$$getFixedColumnsGridTableColumnBase*&GridTableColumnBase*& -->
+<h3 class="fn" id="getFixedColumns"><a name="getFixedColumns"></a><code>[virtual protected] </code><span class="type">void</span> GridTableView::<span class="name">getFixedColumns</span>(<span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *&amp;<i>left</i>, <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *&amp;<i>right</i>) const</h3>
+<!-- @@@getFixedColumns -->
+<!-- $$$getMaximumVisualIndex[overload1]$$$getMaximumVisualIndexconstGridTableColumnBase* -->
+<h3 class="fn" id="getMaximumVisualIndex"><a name="getMaximumVisualIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridTableView::<span class="name">getMaximumVisualIndex</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getMaximumVisualIndex -->
+<!-- $$$getNextResizeColumn[overload1]$$$getNextResizeColumnconstGridTableColumnBase* -->
+<h3 class="fn" id="getNextResizeColumn"><a name="getNextResizeColumn"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *GridTableView::<span class="name">getNextResizeColumn</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getNextResizeColumn -->
+<!-- $$$getPreviousResizeColumn[overload1]$$$getPreviousResizeColumnconstGridTableColumnBase* -->
+<h3 class="fn" id="getPreviousResizeColumn"><a name="getPreviousResizeColumn"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *GridTableView::<span class="name">getPreviousResizeColumn</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getPreviousResizeColumn -->
+<!-- $$$initialize[overload1]$$$initialize -->
+<h3 class="fn" id="initialize"><a name="initialize"></a><code>[virtual protected] </code><span class="type">void</span> GridTableView::<span class="name">initialize</span>()</h3>
+<!-- @@@initialize -->
+<!-- $$$isColumnOnScreen[overload1]$$$isColumnOnScreenGridTableColumnBase* -->
+<h3 class="fn" id="isColumnOnScreen"><a name="isColumnOnScreen"></a><code>[protected] </code><span class="type">bool</span> GridTableView::<span class="name">isColumnOnScreen</span>(<span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>column</i>) const</h3>
+<!-- @@@isColumnOnScreen -->
+<!-- $$$isHorizontalResizable[overload1]$$$isHorizontalResizableconstGridTableColumnBase* -->
+<h3 class="fn" id="isHorizontalResizable"><a name="isHorizontalResizable"></a><code>[virtual protected] </code><span class="type">bool</span> GridTableView::<span class="name">isHorizontalResizable</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@isHorizontalResizable -->
+<!-- $$$isVerticalResizable[overload1]$$$isVerticalResizableconstGridTableColumnBase* -->
+<h3 class="fn" id="isVerticalResizable"><a name="isVerticalResizable"></a><code>[virtual protected] </code><span class="type">bool</span> GridTableView::<span class="name">isVerticalResizable</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@isVerticalResizable -->
+<!-- $$$layout[overload1]$$$layout -->
+<h3 class="fn" id="layout"><a name="layout"></a><code>[protected] </code><span class="type">GridTableViewPrimitive</span> *GridTableView::<span class="name">layout</span>() const</h3>
+<!-- @@@layout -->
+<!-- $$$navigateDown[overload1]$$$navigateDownQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateDown"><a name="navigateDown"></a><code>[virtual] </code><span class="type">void</span> GridTableView::<span class="name">navigateDown</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateDown -->
+<!-- $$$navigateLeft[overload1]$$$navigateLeftQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateLeft"><a name="navigateLeft"></a><code>[virtual] </code><span class="type">void</span> GridTableView::<span class="name">navigateLeft</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateLeft -->
+<!-- $$$navigateRight[overload1]$$$navigateRightQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateRight"><a name="navigateRight"></a><code>[virtual] </code><span class="type">void</span> GridTableView::<span class="name">navigateRight</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateRight -->
+<!-- $$$navigateUp[overload1]$$$navigateUpQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateUp"><a name="navigateUp"></a><code>[virtual] </code><span class="type">void</span> GridTableView::<span class="name">navigateUp</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateUp -->
+<!-- $$$options[overload1]$$$options -->
+<h3 class="fn" id="options"><a name="options"></a><span class="type"><a href="gridtableviewoptions.html">GridTableViewOptions</a></span> &amp;GridTableView::<span class="name">options</span>() const</h3>
+<!-- @@@options -->
+<!-- $$$printHeader[overload1]$$$printHeaderQPainter&int&int& -->
+<h3 class="fn" id="printHeader"><a name="printHeader"></a><code>[virtual protected] </code><span class="type">bool</span> GridTableView::<span class="name">printHeader</span>(<span class="type">QPainter</span> &amp;<i>painter</i>, <span class="type">int</span> &amp;<i>pageLength</i>, <span class="type">int</span> &amp;<i>itemIndex</i>)</h3>
+<!-- @@@printHeader -->
+<!-- $$$scrollToColumn[overload1]$$$scrollToColumnintbool -->
+<h3 class="fn" id="scrollToColumn"><a name="scrollToColumn"></a><code>[virtual] </code><span class="type">void</span> GridTableView::<span class="name">scrollToColumn</span>(<span class="type">int</span> <i>columnIndex</i>, <span class="type">bool</span> <i>firstPosition</i> = true)</h3>
+<!-- @@@scrollToColumn -->
+<!-- $$$setColumnFixedKind[overload1]$$$setColumnFixedKindGridTableColumnBase*ColumnFixedKind -->
+<h3 class="fn" id="setColumnFixedKind"><a name="setColumnFixedKind"></a><code>[virtual protected] </code><span class="type">void</span> GridTableView::<span class="name">setColumnFixedKind</span>(<span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>, <span class="type"><a href="gridtablecolumnbase.html#ColumnFixedKind-enum">ColumnFixedKind</a></span> <i>kind</i>)</h3>
+<!-- @@@setColumnFixedKind -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

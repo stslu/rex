@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridEditors.cpp -->
+  <title>GridEditor Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridEditor</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridEditor Class</h1>
+<!-- $$$GridEditor-brief -->
+<p>Interface for grid editors. <a href="#details">More...</a></p>
+<!-- @@@GridEditor -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridEditor&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="grideditorbase.html">GridEditorBase</a></p>
+</td></tr></table></div><ul>
+<li><a href="grideditor-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridEditorRepository *</td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#editorRepository">editorRepository</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#getCellWidget">getCellWidget</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QVariant </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#getContextValue">getContextValue</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#initEditor">initEditor</a></b>(GridEditorRepository *<i>repository</i>, GridEditorSite *<i>site</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#isContextModified">isContextModified</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#isEditMode">isEditMode</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#isValidated">isValidated</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseClickEvent">mouseClickEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseDblClickEvent">mouseDblClickEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseMoveEvent">mouseMoveEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseOutEvent">mouseOutEvent</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseOverEvent">mouseOverEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mousePressEvent">mousePressEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#mouseReleaseEvent">mouseReleaseEvent</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#paintEvent">paintEvent</a></b>(QPainter &amp;<i>painter</i>, const GridEditorStyleOption &amp;<i>option</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#repositoryUpdated">repositoryUpdated</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#setEditMode">setEditMode</a></b>(bool <i>mode</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridEditorSite *</td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#site">site</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#updateContext">updateContext</a></b>(const QVariant &amp;<i>value</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="grideditor.html#validate">validate</a></b>() = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridEditor-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>Interface for grid editors.</p>
+</div>
+<!-- @@@GridEditor -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$editorRepository[overload1]$$$editorRepository -->
+<h3 class="fn" id="editorRepository"><a name="editorRepository"></a><code>[pure virtual] </code><span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *GridEditor::<span class="name">editorRepository</span>() const</h3>
+<!-- @@@editorRepository -->
+<!-- $$$getCellWidget[overload1]$$$getCellWidget -->
+<h3 class="fn" id="getCellWidget"><a name="getCellWidget"></a><code>[pure virtual] </code><span class="type">QWidget</span> *GridEditor::<span class="name">getCellWidget</span>()</h3>
+<!-- @@@getCellWidget -->
+<!-- $$$getContextValue[overload1]$$$getContextValue -->
+<h3 class="fn" id="getContextValue"><a name="getContextValue"></a><code>[pure virtual] </code><span class="type">QVariant</span> GridEditor::<span class="name">getContextValue</span>()</h3>
+<!-- @@@getContextValue -->
+<!-- $$$initEditor[overload1]$$$initEditorGridEditorRepository*GridEditorSite* -->
+<h3 class="fn" id="initEditor"><a name="initEditor"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">initEditor</span>(<span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *<i>repository</i>, <span class="type"><a href="grideditorsite.html">GridEditorSite</a></span> *<i>site</i>)</h3>
+<!-- @@@initEditor -->
+<!-- $$$isContextModified[overload1]$$$isContextModified -->
+<h3 class="fn" id="isContextModified"><a name="isContextModified"></a><code>[pure virtual] </code><span class="type">bool</span> GridEditor::<span class="name">isContextModified</span>()</h3>
+<!-- @@@isContextModified -->
+<!-- $$$isEditMode[overload1]$$$isEditMode -->
+<h3 class="fn" id="isEditMode"><a name="isEditMode"></a><code>[pure virtual] </code><span class="type">bool</span> GridEditor::<span class="name">isEditMode</span>()</h3>
+<!-- @@@isEditMode -->
+<!-- $$$isValidated[overload1]$$$isValidated -->
+<h3 class="fn" id="isValidated"><a name="isValidated"></a><code>[pure virtual] </code><span class="type">bool</span> GridEditor::<span class="name">isValidated</span>()</h3>
+<!-- @@@isValidated -->
+<!-- $$$mouseClickEvent[overload1]$$$mouseClickEventconstQPoint& -->
+<h3 class="fn" id="mouseClickEvent"><a name="mouseClickEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseClickEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mouseClickEvent -->
+<!-- $$$mouseDblClickEvent[overload1]$$$mouseDblClickEventconstQPoint& -->
+<h3 class="fn" id="mouseDblClickEvent"><a name="mouseDblClickEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseDblClickEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mouseDblClickEvent -->
+<!-- $$$mouseMoveEvent[overload1]$$$mouseMoveEventconstQPoint& -->
+<h3 class="fn" id="mouseMoveEvent"><a name="mouseMoveEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseMoveEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mouseMoveEvent -->
+<!-- $$$mouseOutEvent[overload1]$$$mouseOutEvent -->
+<h3 class="fn" id="mouseOutEvent"><a name="mouseOutEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseOutEvent</span>()</h3>
+<!-- @@@mouseOutEvent -->
+<!-- $$$mouseOverEvent[overload1]$$$mouseOverEventconstQPoint& -->
+<h3 class="fn" id="mouseOverEvent"><a name="mouseOverEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseOverEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mouseOverEvent -->
+<!-- $$$mousePressEvent[overload1]$$$mousePressEventconstQPoint& -->
+<h3 class="fn" id="mousePressEvent"><a name="mousePressEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mousePressEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mousePressEvent -->
+<!-- $$$mouseReleaseEvent[overload1]$$$mouseReleaseEventconstQPoint& -->
+<h3 class="fn" id="mouseReleaseEvent"><a name="mouseReleaseEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">mouseReleaseEvent</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@mouseReleaseEvent -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPainter&constGridEditorStyleOption& -->
+<h3 class="fn" id="paintEvent"><a name="paintEvent"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">paintEvent</span>(<span class="type">QPainter</span> &amp;<i>painter</i>, const <span class="type">GridEditorStyleOption</span> &amp;<i>option</i>)</h3>
+<!-- @@@paintEvent -->
+<!-- $$$repositoryUpdated[overload1]$$$repositoryUpdated -->
+<h3 class="fn" id="repositoryUpdated"><a name="repositoryUpdated"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">repositoryUpdated</span>()</h3>
+<!-- @@@repositoryUpdated -->
+<!-- $$$setEditMode[overload1]$$$setEditModebool -->
+<h3 class="fn" id="setEditMode"><a name="setEditMode"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">setEditMode</span>(<span class="type">bool</span> <i>mode</i>)</h3>
+<p><b>See also </b><a href="grideditor.html#isEditMode">isEditMode</a>().</p>
+<!-- @@@setEditMode -->
+<!-- $$$site[overload1]$$$site -->
+<h3 class="fn" id="site"><a name="site"></a><code>[pure virtual] </code><span class="type"><a href="grideditorsite.html">GridEditorSite</a></span> *GridEditor::<span class="name">site</span>() const</h3>
+<!-- @@@site -->
+<!-- $$$updateContext[overload1]$$$updateContextconstQVariant& -->
+<h3 class="fn" id="updateContext"><a name="updateContext"></a><code>[pure virtual] </code><span class="type">void</span> GridEditor::<span class="name">updateContext</span>(const <span class="type">QVariant</span> &amp;<i>value</i>)</h3>
+<!-- @@@updateContext -->
+<!-- $$$validate[overload1]$$$validate -->
+<h3 class="fn" id="validate"><a name="validate"></a><code>[pure virtual] </code><span class="type">bool</span> GridEditor::<span class="name">validate</span>()</h3>
+<!-- @@@validate -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

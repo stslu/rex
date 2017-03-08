@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnColumnsLayoutTopic.qdoc -->
+  <title>Save and load column's layout to XML | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>Save and load column's layout to XML</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Save and load column's layout to XML</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangridlayout.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>The grid offers an easy way to save and restore the grid layout - that is, the location of its main elements. You can save column properties, bands, focus location, grouping and sorting settings. The layout can be saved directly to a file or a child of QIODevice. XML is used for storing this information.</p>
+<p>This mechanism is used when you need to restore the initial grid layout after the changes made by the user. The same mechanism is applied when you need to have different grid layouts for different situations. You just need to have several files with saved layouts and load them when needed.</p>
+<p>Use the following code to save a grid layout into a file:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid;
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+grid<span class="operator">-</span><span class="operator">&gt;</span>saveLayoutToFile(<span class="string">&quot;c:\\layout01.xml&quot;</span>);</pre>
+<p>Use the follwing code to load a layout from a file:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid;
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+grid<span class="operator">-</span><span class="operator">&gt;</span>loadLayoutFromFile(<span class="string">&quot;c:\\layout01.xml&quot;</span>);</pre>
+<p>The availability of this functionality depends on the QtXml module. You can compile the grid without this dependency. To do it, use the QTITAN_NOUSE_QXML definition in your project. In this case, the layout saving/loading mechanism will not be available.</p>
+</div>
+<!-- @@@qtitangridlayout.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridModelController.cpp -->
+  <title>GridModelDataBinding Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridModelDataBinding</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridModelDataBinding Class</h1>
+<!-- $$$GridModelDataBinding-brief -->
+<p><a href="gridmodeldatabinding.html">GridModelDataBinding</a> class contains the set of functions and methods for binding QtitanDataGrid columns to the data model. <a href="#details">More...</a></p>
+<!-- @@@GridModelDataBinding -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridModelDataBinding&gt;</span>
+</td></tr></table></div><ul>
+<li><a href="gridmodeldatabinding-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#RelationMode-enum">RelationMode</a></b> { NoRelation, Relation, MasterDetailsRelation }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#GridModelDataBinding">GridModelDataBinding</a></b>(GridModelController *<i>modelController</i>, int <i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#dtor.GridModelDataBinding">~GridModelDataBinding</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#column">column</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#columnName">columnName</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelController *</td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#controller">controller</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#displayRole">displayRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#editRole">editRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#findRelationModelIndex">findRelationModelIndex</a></b>(const QVariant &amp;<i>foreignKeyValue</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#foreignKeyColumn">foreignKeyColumn</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#foreignKeyColumnName">foreignKeyColumnName</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#foreignKeyMasterRole">foreignKeyMasterRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#foreignKeyRole">foreignKeyRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#getForeignColumnMapping">getForeignColumnMapping</a></b>(Qt::ItemDataRole <i>role</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#getForeignColumnNameMapping">getForeignColumnNameMapping</a></b>(Qt::ItemDataRole <i>role</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#getForeignRoleMapping">getForeignRoleMapping</a></b>(Qt::ItemDataRole <i>role</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#getValue">getValue</a></b>(int <i>modelRowIndex</i>, Qt::ItemDataRole <i>role</i>, QVariant &amp;<i>retval</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> RelationMode </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#relationMode">relationMode</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAbstractItemModel *</td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#relationModel">relationModel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QModelIndex &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#relationParentIndex">relationParentIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setColumn">setColumn</a></b>(int <i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setDisplayRole">setDisplayRole</a></b>(Qt::ItemDataRole <i>role</i> = Qt::DisplayRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setEditRole">setEditRole</a></b>(Qt::ItemDataRole <i>role</i> = Qt::EditRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a></b>(int <i>foreignColumn</i>, Qt::ItemDataRole <i>foreignRole</i> = Qt::DisplayRole, Qt::ItemDataRole <i>masterRole</i> = Qt::EditRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setForeignKey-1">setForeignKey</a></b>(const QString &amp;<i>foreignColumnName</i>, Qt::ItemDataRole <i>foreignRole</i> = Qt::DisplayRole, Qt::ItemDataRole <i>masterRole</i> = Qt::EditRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setRelationMode">setRelationMode</a></b>(RelationMode <i>mode</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setRelationModel">setRelationModel</a></b>(QAbstractItemModel *<i>model</i>, QModelIndex <i>parentIndex</i> = QModelIndex())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setRoleMapping">setRoleMapping</a></b>(Qt::ItemDataRole <i>role</i>, const QString &amp;<i>foreignColumnName</i>, Qt::ItemDataRole <i>foreignRole</i> = Qt::DisplayRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setRoleMapping-1">setRoleMapping</a></b>(Qt::ItemDataRole <i>role</i>, int <i>foreignColumn</i>, Qt::ItemDataRole <i>foreignRole</i> = Qt::DisplayRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setSortRole">setSortRole</a></b>(Qt::ItemDataRole <i>role</i> = Qt::DisplayRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setSummaryRole">setSummaryRole</a></b>(Qt::ItemDataRole <i>role</i> = Qt::DisplayRole)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setSupportedSummaryTypes">setSupportedSummaryTypes</a></b>(SummaryTypes <i>types</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#setValue">setValue</a></b>(int <i>modelRowIndex</i>, Qt::ItemDataRole <i>role</i>, const QVariant &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#sortRole">sortRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::ItemDataRole </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#summaryRole">summaryRole</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SummaryTypes </td><td class="memItemRight bottomAlign"><b><a href="gridmodeldatabinding.html#supportedSummaryTypes">supportedSummaryTypes</a></b>() const</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridModelDataBinding-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="gridmodeldatabinding.html">GridModelDataBinding</a> class contains the set of functions and methods for binding QtitanDataGrid columns to the data model.</p>
+</div>
+<!-- @@@GridModelDataBinding -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$RelationMode$$$NoRelation$$$Relation$$$MasterDetailsRelation -->
+<h3 class="fn" id="RelationMode-enum"><a name="RelationMode-enum"></a>enum GridModelDataBinding::<span class="name">RelationMode</span></h3>
+<p>The enumerator of the relation modes used in QtitanDataGrid. More information about relation modes can be found in this thread Relation mode in QtitanDataGrid</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>GridModelDataBinding::NoRelation</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">The relation mode is not used.</td></tr>
+<tr><td class="topAlign"><code>GridModelDataBinding::Relation</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">Relation mode. This mode allows the developer to create a mechanism used in the QSqlRelationalTableModel class in Qt.</td></tr>
+<tr><td class="topAlign"><code>GridModelDataBinding::MasterDetailsRelation</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">Master-details relation. A special mode that helps to implement the relation of a master-detail in a grid cell.</td></tr>
+</table></div>
+<!-- @@@RelationMode -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridModelDataBinding[overload1]$$$GridModelDataBindingGridModelController*int -->
+<h3 class="fn" id="GridModelDataBinding"><a name="GridModelDataBinding"></a>GridModelDataBinding::<span class="name">GridModelDataBinding</span>(<span class="type"><a href="gridmodelcontroller.html">GridModelController</a></span> *<i>modelController</i>, <span class="type">int</span> <i>column</i>)</h3>
+<p>Default constructs an instance of GridModelDataBinding.</p><!-- @@@GridModelDataBinding -->
+<!-- $$$~GridModelDataBinding[overload1]$$$~GridModelDataBinding -->
+<h3 class="fn" id="dtor.GridModelDataBinding"><a name="dtor.GridModelDataBinding"></a><code>[virtual] </code>GridModelDataBinding::<span class="name">~GridModelDataBinding</span>()</h3>
+<p>Destroys the instance of GridModelDataBinding. The destructor is virtual.</p><!-- @@@~GridModelDataBinding -->
+<!-- $$$column[overload1]$$$column -->
+<h3 class="fn" id="column"><a name="column"></a><span class="type">int</span> GridModelDataBinding::<span class="name">column</span>() const</h3>
+<p>Returns a model column associated with the binding.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setColumn">setColumn</a>().</p>
+<!-- @@@column -->
+<!-- $$$columnName[overload1]$$$columnName -->
+<h3 class="fn" id="columnName"><a name="columnName"></a><span class="type">QString</span> GridModelDataBinding::<span class="name">columnName</span>() const</h3>
+<p>Returns the name of the model column assosicated with the binding.</p>
+<!-- @@@columnName -->
+<!-- $$$controller[overload1]$$$controller -->
+<h3 class="fn" id="controller"><a name="controller"></a><span class="type"><a href="gridmodelcontroller.html">GridModelController</a></span> *GridModelDataBinding::<span class="name">controller</span>() const</h3>
+<!-- @@@controller -->
+<!-- $$$displayRole[overload1]$$$displayRole -->
+<h3 class="fn" id="displayRole"><a name="displayRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">displayRole</span>() const</h3>
+<p>Returns the role that should be used as the role for displaying the data of the Qt model. By default, Qt::DisplayRole is used.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setDisplayRole">setDisplayRole</a>().</p>
+<!-- @@@displayRole -->
+<!-- $$$editRole[overload1]$$$editRole -->
+<h3 class="fn" id="editRole"><a name="editRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">editRole</span>() const</h3>
+<p>Returns the role that will be used as the role for editing data in the Qt model. Qt::EditRole is used by default.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setEditRole">setEditRole</a>().</p>
+<!-- @@@editRole -->
+<!-- $$$findRelationModelIndex[overload1]$$$findRelationModelIndexconstQVariant& -->
+<h3 class="fn" id="findRelationModelIndex"><a name="findRelationModelIndex"></a><span class="type">QModelIndex</span> GridModelDataBinding::<span class="name">findRelationModelIndex</span>(const <span class="type">QVariant</span> &amp;<i>foreignKeyValue</i>) const</h3>
+<p>Searches for a cell in the relation model of the <i>foreignKeyValue</i> key by its value using the settings set with the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() method. If the key is not found in the external model, an invalid QModelIndex is returned.</p>
+<!-- @@@findRelationModelIndex -->
+<!-- $$$foreignKeyColumn[overload1]$$$foreignKeyColumn -->
+<h3 class="fn" id="foreignKeyColumn"><a name="foreignKeyColumn"></a><span class="type">int</span> GridModelDataBinding::<span class="name">foreignKeyColumn</span>() const</h3>
+<p>Returns the relation column of the model that is used for storing the external key. For more details, see the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() method.</p>
+<!-- @@@foreignKeyColumn -->
+<!-- $$$foreignKeyColumnName[overload1]$$$foreignKeyColumnName -->
+<h3 class="fn" id="foreignKeyColumnName"><a name="foreignKeyColumnName"></a><span class="type">QString</span> GridModelDataBinding::<span class="name">foreignKeyColumnName</span>() const</h3>
+<p>Returns the name of the relation column of the model that is used for storing the external key. For details, see the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() method.</p>
+<!-- @@@foreignKeyColumnName -->
+<!-- $$$foreignKeyMasterRole[overload1]$$$foreignKeyMasterRole -->
+<h3 class="fn" id="foreignKeyMasterRole"><a name="foreignKeyMasterRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">foreignKeyMasterRole</span>() const</h3>
+<p>Returns the role of the model that is used for obtaining the external key for the current model. For more information, see the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() method.</p>
+<!-- @@@foreignKeyMasterRole -->
+<!-- $$$foreignKeyRole[overload1]$$$foreignKeyRole -->
+<h3 class="fn" id="foreignKeyRole"><a name="foreignKeyRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">foreignKeyRole</span>() const</h3>
+<p>Returns the role of the relation model that is used for storing the external key. For more information, see the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() method.</p>
+<!-- @@@foreignKeyRole -->
+<!-- $$$getForeignColumnMapping[overload1]$$$getForeignColumnMappingQt::ItemDataRole -->
+<h3 class="fn" id="getForeignColumnMapping"><a name="getForeignColumnMapping"></a><span class="type">int</span> GridModelDataBinding::<span class="name">getForeignColumnMapping</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>) const</h3>
+<p>Returns the column of the external model that is mapped to the role of the current cell set by the <i>role</i> parameter.</p>
+<!-- @@@getForeignColumnMapping -->
+<!-- $$$getForeignColumnNameMapping[overload1]$$$getForeignColumnNameMappingQt::ItemDataRole -->
+<h3 class="fn" id="getForeignColumnNameMapping"><a name="getForeignColumnNameMapping"></a><span class="type">QString</span> GridModelDataBinding::<span class="name">getForeignColumnNameMapping</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>) const</h3>
+<p>Returns the name of the column in the external model that is mapped to the role of the current cell defined by the <i>role</i> parameter.</p>
+<!-- @@@getForeignColumnNameMapping -->
+<!-- $$$getForeignRoleMapping[overload1]$$$getForeignRoleMappingQt::ItemDataRole -->
+<h3 class="fn" id="getForeignRoleMapping"><a name="getForeignRoleMapping"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">getForeignRoleMapping</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>) const</h3>
+<p>Returns the role of the external model that is mapped to the role of the current cell set by the <i>role</i> parameter.</p>
+<!-- @@@getForeignRoleMapping -->
+<!-- $$$getValue[overload1]$$$getValueintQt::ItemDataRoleQVariant& -->
+<h3 class="fn" id="getValue"><a name="getValue"></a><span class="type">bool</span> GridModelDataBinding::<span class="name">getValue</span>(<span class="type">int</span> <i>modelRowIndex</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>, <span class="type">QVariant</span> &amp;<i>retval</i>) const</h3>
+<!-- @@@getValue -->
+<!-- $$$relationMode[overload1]$$$relationMode -->
+<h3 class="fn" id="relationMode"><a name="relationMode"></a><span class="type"><a href="gridmodeldatabinding.html#RelationMode-enum">RelationMode</a></span> GridModelDataBinding::<span class="name">relationMode</span>() const</h3>
+<p>Returns the current relation mode used for this binding. By default, <a href="gridmodeldatabinding.html#RelationMode-enum">NoRelation</a> is returned.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setRelationMode">setRelationMode</a>().</p>
+<!-- @@@relationMode -->
+<!-- $$$relationModel[overload1]$$$relationModel -->
+<h3 class="fn" id="relationModel"><a name="relationModel"></a><span class="type">QAbstractItemModel</span> *GridModelDataBinding::<span class="name">relationModel</span>()</h3>
+<p>Returns a link to the external model.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setRelationModel">setRelationModel</a>().</p>
+<!-- @@@relationModel -->
+<!-- $$$relationParentIndex[overload1]$$$relationParentIndex -->
+<h3 class="fn" id="relationParentIndex"><a name="relationParentIndex"></a>const <span class="type">QModelIndex</span> &amp;GridModelDataBinding::<span class="name">relationParentIndex</span>() const</h3>
+<p>Returns the index of the parent of the relation model. It's used for access to the lower levels of the hierarchy of the relation model.</p>
+<!-- @@@relationParentIndex -->
+<!-- $$$setColumn[overload1]$$$setColumnint -->
+<h3 class="fn" id="setColumn"><a name="setColumn"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setColumn</span>(<span class="type">int</span> <i>column</i>)</h3>
+<p><b>See also </b><a href="gridmodeldatabinding.html#column">column</a>().</p>
+<!-- @@@setColumn -->
+<!-- $$$setDisplayRole[overload1]$$$setDisplayRoleQt::ItemDataRole -->
+<h3 class="fn" id="setDisplayRole"><a name="setDisplayRole"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setDisplayRole</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i> = Qt::DisplayRole)</h3>
+<p>Defines the role that should be used as the role for displaying the data of the Qt model.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#displayRole">displayRole</a>().</p>
+<!-- @@@setDisplayRole -->
+<!-- $$$setEditRole[overload1]$$$setEditRoleQt::ItemDataRole -->
+<h3 class="fn" id="setEditRole"><a name="setEditRole"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setEditRole</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i> = Qt::EditRole)</h3>
+<p>Defines the role that should be used as the role for editing the data of the Qt model.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#editRole">editRole</a>().</p>
+<!-- @@@setEditRole -->
+<!-- $$$setForeignKey[overload1]$$$setForeignKeyintQt::ItemDataRoleQt::ItemDataRole -->
+<h3 class="fn" id="setForeignKey"><a name="setForeignKey"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setForeignKey</span>(<span class="type">int</span> <i>foreignColumn</i>, <span class="type">Qt::ItemDataRole</span> <i>foreignRole</i> = Qt::DisplayRole, <span class="type">Qt::ItemDataRole</span> <i>masterRole</i> = Qt::EditRole)</h3>
+<p>Defines the settings of the external key for the current relation mode. foreignColumn - The column of the model that is used for storing the external key in an external model. foreignRole - The role for obtaining the external key from an external model. masterRole - The role for obtaining the value of the external key of the current cell.</p>
+<!-- @@@setForeignKey -->
+<!-- $$$setForeignKey$$$setForeignKeyconstQString&Qt::ItemDataRoleQt::ItemDataRole -->
+<h3 class="fn" id="setForeignKey-1"><a name="setForeignKey-1"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setForeignKey</span>(const <span class="type">QString</span> &amp;<i>foreignColumnName</i>, <span class="type">Qt::ItemDataRole</span> <i>foreignRole</i> = Qt::DisplayRole, <span class="type">Qt::ItemDataRole</span> <i>masterRole</i> = Qt::EditRole)</h3>
+<p>Defines the settings of the external key for the current relation mode. foreignColumnName - The name of the column of the model that is used for storing the external key in an external model. foreignRole - The role for obtaining the external key from an external model. masterRole - The role for obtaining the value of the external key of the current cell.</p>
+<!-- @@@setForeignKey -->
+<!-- $$$setRelationMode[overload1]$$$setRelationModeRelationMode -->
+<h3 class="fn" id="setRelationMode"><a name="setRelationMode"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setRelationMode</span>(<span class="type"><a href="gridmodeldatabinding.html#RelationMode-enum">RelationMode</a></span> <i>mode</i>)</h3>
+<p>Sets the Relation mode that should be used for the current binding. For more information about Relation modes, see Relation mode in QtitanDataGrid.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#relationMode">relationMode</a>().</p>
+<!-- @@@setRelationMode -->
+<!-- $$$setRelationModel[overload1]$$$setRelationModelQAbstractItemModel*QModelIndex -->
+<h3 class="fn" id="setRelationModel"><a name="setRelationModel"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setRelationModel</span>(<span class="type">QAbstractItemModel</span> *<i>model</i>, <span class="type">QModelIndex</span> <i>parentIndex</i> = QModelIndex())</h3>
+<p>Defines the external model to be used in one of the Relation modes. The <i>parentIndex</i> parameter is used for gaining access to the lower levels of the hierarchy of the model set by the <i>model</i> parameter.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#relationModel">relationModel</a>().</p>
+<!-- @@@setRelationModel -->
+<!-- $$$setRoleMapping[overload1]$$$setRoleMappingQt::ItemDataRoleconstQString&Qt::ItemDataRole -->
+<h3 class="fn" id="setRoleMapping"><a name="setRoleMapping"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setRoleMapping</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>, const <span class="type">QString</span> &amp;<i>foreignColumnName</i>, <span class="type">Qt::ItemDataRole</span> <i>foreignRole</i> = Qt::DisplayRole)</h3>
+<p>Defines the mapping rule for obtaining the value of the current cell for the role set by the <i>role</i> parameter. The value will be taken from the column of the external model set by the foreignColumnName parameter and the role set by the foreignRole role. Once the method is called and the grid needs to obtain the value for the <i>role</i> role from the current cell, the grid will use an external key set by the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() function to determine a row in the external modeal and obtain this value from the foreignColumnName column and the foreignRole role.</p>
+<!-- @@@setRoleMapping -->
+<!-- $$$setRoleMapping$$$setRoleMappingQt::ItemDataRoleintQt::ItemDataRole -->
+<h3 class="fn" id="setRoleMapping-1"><a name="setRoleMapping-1"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setRoleMapping</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>, <span class="type">int</span> <i>foreignColumn</i>, <span class="type">Qt::ItemDataRole</span> <i>foreignRole</i> = Qt::DisplayRole)</h3>
+<p>Defines the mapping rule for obtaining the value of the current cell for the role set by the <i>role</i> parameter. The value will be taken from the column of the external model set by the foreignColumn parameter and the role set by the foreignRole role. Once the method is called and the grid needs to obtain the value for the <i>role</i> role from the current cell, the grid will use an external key set by the <a href="gridmodeldatabinding.html#setForeignKey">setForeignKey</a>() function to determine a row in the external modeal and obtain this value from the foreignColumn column and the foreignRole role.</p>
+<!-- @@@setRoleMapping -->
+<!-- $$$setSortRole[overload1]$$$setSortRoleQt::ItemDataRole -->
+<h3 class="fn" id="setSortRole"><a name="setSortRole"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setSortRole</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i> = Qt::DisplayRole)</h3>
+<p><b>See also </b><a href="gridmodeldatabinding.html#sortRole">sortRole</a>().</p>
+<!-- @@@setSortRole -->
+<!-- $$$setSummaryRole[overload1]$$$setSummaryRoleQt::ItemDataRole -->
+<h3 class="fn" id="setSummaryRole"><a name="setSummaryRole"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setSummaryRole</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i> = Qt::DisplayRole)</h3>
+<p>Defines the role for which summaries will be calculated if the user needs them.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#summaryRole">summaryRole</a>().</p>
+<!-- @@@setSummaryRole -->
+<!-- $$$setSupportedSummaryTypes[overload1]$$$setSupportedSummaryTypesSummaryTypes -->
+<h3 class="fn" id="setSupportedSummaryTypes"><a name="setSupportedSummaryTypes"></a><span class="type">void</span> GridModelDataBinding::<span class="name">setSupportedSummaryTypes</span>(<span class="type">SummaryTypes</span> <i>types</i>)</h3>
+<p>Defines acceptable summaries for binding.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#supportedSummaryTypes">supportedSummaryTypes</a>().</p>
+<!-- @@@setSupportedSummaryTypes -->
+<!-- $$$setValue[overload1]$$$setValueintQt::ItemDataRoleconstQVariant& -->
+<h3 class="fn" id="setValue"><a name="setValue"></a><span class="type">bool</span> GridModelDataBinding::<span class="name">setValue</span>(<span class="type">int</span> <i>modelRowIndex</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>, const <span class="type">QVariant</span> &amp;<i>value</i>)</h3>
+<!-- @@@setValue -->
+<!-- $$$sortRole[overload1]$$$sortRole -->
+<h3 class="fn" id="sortRole"><a name="sortRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">sortRole</span>() const</h3>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setSortRole">setSortRole</a>().</p>
+<!-- @@@sortRole -->
+<!-- $$$summaryRole[overload1]$$$summaryRole -->
+<h3 class="fn" id="summaryRole"><a name="summaryRole"></a><span class="type">Qt::ItemDataRole</span> GridModelDataBinding::<span class="name">summaryRole</span>() const</h3>
+<p>Returns the role for which summaries will be calculated if the user needs them. By default, Qt::DisplayRole is used for calculating summaries.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setSummaryRole">setSummaryRole</a>().</p>
+<!-- @@@summaryRole -->
+<!-- $$$supportedSummaryTypes[overload1]$$$supportedSummaryTypes -->
+<h3 class="fn" id="supportedSummaryTypes"><a name="supportedSummaryTypes"></a><span class="type">SummaryTypes</span> GridModelDataBinding::<span class="name">supportedSummaryTypes</span>() const</h3>
+<p>Returns acceptable summaries for binding.</p>
+<p><b>See also </b><a href="gridmodeldatabinding.html#setSupportedSummaryTypes">setSupportedSummaryTypes</a>().</p>
+<!-- @@@supportedSummaryTypes -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

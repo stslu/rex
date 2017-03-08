@@ -1,0 +1,15 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>res/importance.png</file>
+    <file>res/attachment.png</file>
+    <file>res/attachmentcell.png</file>
+    <file>res/flag.png</file>
+    <file>res/flag_red.png</file>
+    <file>res/mail.png</file>
+    <file>res/mailandarrow.png</file>
+    <file>res/read.png</file>
+    <file>res/reminder.png</file>
+    <file>res/status.png</file>
+</qresource>
+</RCC>
+

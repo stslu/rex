@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridTableView.cpp -->
+  <title>GridDataTableColumn Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridDataTableColumn</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#related-non-members">Related Non-Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridDataTableColumn Class</h1>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridDataTableColumn&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="gridtablecolumnbase.html">GridTableColumnBase</a></td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="gridcardcolumn.html">GridCardColumn</a> and <a href="gridtablecolumn.html">GridTableColumn</a></p>
+</td></tr></table></div><ul>
+<li><a href="griddatatablecolumn-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#addButton">addButton</a></b>(CellButtonKind <i>kind</i> = SelectButton, CellButtonPosition <i>position</i> = RightPosition, CellButtonActivatePolicy <i>policy</i> = FixedPolicy, const QIcon &amp;<i>icon</i> = QIcon(), const QString &amp;<i>title</i> = QString(), int <i>buttonWidth</i> = -1)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#buttonCount">buttonCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#dataBinding">dataBinding</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridEditorRepository *</td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#editorRepository">editorRepository</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridEditorType </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#editorType">editorType</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#groupIndex">groupIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isFilterButtonVisible">isFilterButtonVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isGroupSortEnabled">isGroupSortEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isGroupingEnabled">isGroupingEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isHidingOnGroupingEnabled">isHidingOnGroupingEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isSortEnabled">isSortEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#isSortLocaleAware">isSortLocaleAware</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#removeButton">removeButton</a></b>(int <i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#rowSpan">rowSpan</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setDefaultGroupSummary">setDefaultGroupSummary</a></b>(GridSummaryType <i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setEditorRepository">setEditorRepository</a></b>(GridEditorRepository *<i>repository</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setEditorType">setEditorType</a></b>(GridEditorType <i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setFilterButtonVisible">setFilterButtonVisible</a></b>(bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setFooterSummary">setFooterSummary</a></b>(GridSummaryType <i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setGroupIndex">setGroupIndex</a></b>(int <i>groupIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setGroupSortEnabled">setGroupSortEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setGroupSummary">setGroupSummary</a></b>(GridTableColumn *<i>groupColumn</i>, GridSummaryType <i>type</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setGroupingEnabled">setGroupingEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setHidingOnGroupingEnabled">setHidingOnGroupingEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setRowSpan">setRowSpan</a></b>(int <i>span</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setSortCaseSensitivity">setSortCaseSensitivity</a></b>(bool <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setSortEnabled">setSortEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setSortLocaleAware">setSortLocaleAware</a></b>(bool <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setSortOrder">setSortOrder</a></b>(SortOrder <i>order</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#sortCaseSensitivity">sortCaseSensitivity</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SortOrder </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#sortOrder">sortOrder</a></b>() const</td></tr>
+</table></div>
+<ul>
+<li class="fn">20 public functions inherited from <a href="gridtablecolumnbase.html#public-functions">GridTableColumnBase</a></li>
+<li class="fn">29 public functions inherited from <a href="gridcolumnbase.html#public-functions">GridColumnBase</a></li>
+</ul>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#buttonClicked">buttonClicked</a></b>(CellButtonClickEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#buttonStateChanged">buttonStateChanged</a></b>(CellButtonEventArgs *<i>args</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#GridDataTableColumn">GridDataTableColumn</a></b>(GridViewBase *<i>view</i>, int <i>modelColumn</i>, const QString &amp;<i>caption</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#dtor.GridDataTableColumn">~GridDataTableColumn</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setActionIcons">setActionIcons</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#setSortIndex">setSortIndex</a></b>(int <i>sortIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#sortIndex">sortIndex</a></b>() const</td></tr>
+</table></div>
+<a name="reimplemented-protected-functions"></a>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#click">click</a></b>(QMouseEvent *<i>e</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#initStyleOption">initStyleOption</a></b>(QStyleOptionHeader &amp;<i>styleOption</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">4 protected functions inherited from <a href="gridtablecolumnbase.html#protected-functions">GridTableColumnBase</a></li>
+<li class="fn">6 protected functions inherited from <a href="gridcolumnbase.html#protected-functions">GridColumnBase</a></li>
+</ul>
+<a name="related-non-members"></a>
+<h2 id="related-non-members">Related Non-Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#CellButtonKind-enum">CellButtonKind</a></b> { ChoiceButton, SelectButton, ClearButton, TextButton, IconButton }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#CellButtonPosition-enum">CellButtonPosition</a></b> { LeftPosition, RightPosition }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="griddatatablecolumn.html#GridEditorType-enum">GridEditorType</a></b> { AutoEditorType, StringEditorType, MemoEditorType, ComboBoxBlobEditorType, ..., CustomEditType }</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridDataTableColumn-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="griddatatablecolumn.html">GridDataTableColumn</a> represents the base class of the grid column that has a link to the data via <a href="griddatatablecolumn.html#dataBinding">dataBinding</a> property.</p>
+</div>
+<!-- @@@GridDataTableColumn -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridDataTableColumn[overload1]$$$GridDataTableColumnGridViewBase*intconstQString& -->
+<h3 class="fn" id="GridDataTableColumn"><a name="GridDataTableColumn"></a><code>[protected] </code>GridDataTableColumn::<span class="name">GridDataTableColumn</span>(<span class="type"><a href="gridviewbase.html">GridViewBase</a></span> *<i>view</i>, <span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i>)</h3>
+<p>Default constructs an instance of GridDataTableColumn.</p><!-- @@@GridDataTableColumn -->
+<!-- $$$~GridDataTableColumn[overload1]$$$~GridDataTableColumn -->
+<h3 class="fn" id="dtor.GridDataTableColumn"><a name="dtor.GridDataTableColumn"></a><code>[virtual protected] </code>GridDataTableColumn::<span class="name">~GridDataTableColumn</span>()</h3>
+<p>Destroys the instance of GridDataTableColumn. The destructor is virtual.</p><!-- @@@~GridDataTableColumn -->
+<!-- $$$addButton[overload1]$$$addButtonCellButtonKindCellButtonPositionCellButtonActivatePolicyconstQIcon&constQString&int -->
+<h3 class="fn" id="addButton"><a name="addButton"></a><span class="type">int</span> GridDataTableColumn::<span class="name">addButton</span>(<span class="type"><a href="griddatatablecolumn.html#CellButtonKind-enum">CellButtonKind</a></span> <i>kind</i> = SelectButton, <span class="type"><a href="griddatatablecolumn.html#CellButtonPosition-enum">CellButtonPosition</a></span> <i>position</i> = RightPosition, <span class="type"><a href="gridtablecolumn.html#CellButtonActivatePolicy-enum">CellButtonActivatePolicy</a></span> <i>policy</i> = FixedPolicy, const <span class="type">QIcon</span> &amp;<i>icon</i> = QIcon(), const <span class="type">QString</span> &amp;<i>title</i> = QString(), <span class="type">int</span> <i>buttonWidth</i> = -1)</h3>
+<!-- @@@addButton -->
+<!-- $$$buttonClicked[overload1]$$$buttonClickedCellButtonClickEventArgs* -->
+<h3 class="fn" id="buttonClicked"><a name="buttonClicked"></a><code>[signal] </code><span class="type">void</span> GridDataTableColumn::<span class="name">buttonClicked</span>(<span class="type"><a href="cellbuttonclickeventargs.html">CellButtonClickEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@buttonClicked -->
+<!-- $$$buttonCount[overload1]$$$buttonCount -->
+<h3 class="fn" id="buttonCount"><a name="buttonCount"></a><span class="type">int</span> GridDataTableColumn::<span class="name">buttonCount</span>() const</h3>
+<!-- @@@buttonCount -->
+<!-- $$$buttonStateChanged[overload1]$$$buttonStateChangedCellButtonEventArgs* -->
+<h3 class="fn" id="buttonStateChanged"><a name="buttonStateChanged"></a><code>[signal] </code><span class="type">void</span> GridDataTableColumn::<span class="name">buttonStateChanged</span>(<span class="type"><a href="cellbuttoneventargs.html">CellButtonEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@buttonStateChanged -->
+<!-- $$$click[overload1]$$$clickQMouseEvent* -->
+<h3 class="fn" id="click"><a name="click"></a><code>[virtual protected] </code><span class="type">void</span> GridDataTableColumn::<span class="name">click</span>(<span class="type">QMouseEvent</span> *<i>e</i>)</h3>
+<!-- @@@click -->
+<!-- $$$dataBinding[overload1]$$$dataBinding -->
+<h3 class="fn" id="dataBinding"><a name="dataBinding"></a><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *GridDataTableColumn::<span class="name">dataBinding</span>() const</h3>
+<!-- @@@dataBinding -->
+<!-- $$$editorRepository[overload1]$$$editorRepository -->
+<h3 class="fn" id="editorRepository"><a name="editorRepository"></a><span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *GridDataTableColumn::<span class="name">editorRepository</span>()</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setEditorRepository">setEditorRepository</a>().</p>
+<!-- @@@editorRepository -->
+<!-- $$$editorType[overload1]$$$editorType -->
+<h3 class="fn" id="editorType"><a name="editorType"></a><span class="type"><a href="griddatatablecolumn.html#GridEditorType-enum">GridEditorType</a></span> GridDataTableColumn::<span class="name">editorType</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setEditorType">setEditorType</a>().</p>
+<!-- @@@editorType -->
+<!-- $$$groupIndex[overload1]$$$groupIndex -->
+<h3 class="fn" id="groupIndex"><a name="groupIndex"></a><span class="type">int</span> GridDataTableColumn::<span class="name">groupIndex</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setGroupIndex">setGroupIndex</a>().</p>
+<!-- @@@groupIndex -->
+<!-- $$$initStyleOption[overload1]$$$initStyleOptionQStyleOptionHeader& -->
+<h3 class="fn" id="initStyleOption"><a name="initStyleOption"></a><code>[virtual protected] </code><span class="type">void</span> GridDataTableColumn::<span class="name">initStyleOption</span>(<span class="type">QStyleOptionHeader</span> &amp;<i>styleOption</i>)</h3>
+<!-- @@@initStyleOption -->
+<!-- $$$isFilterButtonVisible[overload1]$$$isFilterButtonVisible -->
+<h3 class="fn" id="isFilterButtonVisible"><a name="isFilterButtonVisible"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isFilterButtonVisible</span>() const</h3>
+<!-- @@@isFilterButtonVisible -->
+<!-- $$$isGroupSortEnabled[overload1]$$$isGroupSortEnabled -->
+<h3 class="fn" id="isGroupSortEnabled"><a name="isGroupSortEnabled"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isGroupSortEnabled</span>() const</h3>
+<!-- @@@isGroupSortEnabled -->
+<!-- $$$isGroupingEnabled[overload1]$$$isGroupingEnabled -->
+<h3 class="fn" id="isGroupingEnabled"><a name="isGroupingEnabled"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isGroupingEnabled</span>() const</h3>
+<!-- @@@isGroupingEnabled -->
+<!-- $$$isHidingOnGroupingEnabled[overload1]$$$isHidingOnGroupingEnabled -->
+<h3 class="fn" id="isHidingOnGroupingEnabled"><a name="isHidingOnGroupingEnabled"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isHidingOnGroupingEnabled</span>() const</h3>
+<!-- @@@isHidingOnGroupingEnabled -->
+<!-- $$$isSortEnabled[overload1]$$$isSortEnabled -->
+<h3 class="fn" id="isSortEnabled"><a name="isSortEnabled"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isSortEnabled</span>() const</h3>
+<!-- @@@isSortEnabled -->
+<!-- $$$isSortLocaleAware[overload1]$$$isSortLocaleAware -->
+<h3 class="fn" id="isSortLocaleAware"><a name="isSortLocaleAware"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">isSortLocaleAware</span>() const</h3>
+<!-- @@@isSortLocaleAware -->
+<!-- $$$removeButton[overload1]$$$removeButtonint -->
+<h3 class="fn" id="removeButton"><a name="removeButton"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">removeButton</span>(<span class="type">int</span> <i>index</i>)</h3>
+<!-- @@@removeButton -->
+<!-- $$$rowSpan[overload1]$$$rowSpan -->
+<h3 class="fn" id="rowSpan"><a name="rowSpan"></a><span class="type">int</span> GridDataTableColumn::<span class="name">rowSpan</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setRowSpan">setRowSpan</a>().</p>
+<!-- @@@rowSpan -->
+<!-- $$$setActionIcons[overload1]$$$setActionIcons -->
+<h3 class="fn" id="setActionIcons"><a name="setActionIcons"></a><code>[virtual protected] </code><span class="type">void</span> GridDataTableColumn::<span class="name">setActionIcons</span>()</h3>
+<!-- @@@setActionIcons -->
+<!-- $$$setDefaultGroupSummary[overload1]$$$setDefaultGroupSummaryGridSummaryType -->
+<h3 class="fn" id="setDefaultGroupSummary"><a name="setDefaultGroupSummary"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setDefaultGroupSummary</span>(<span class="type"><a href="gridsummary.html#GridSummaryType-enum">GridSummaryType</a></span> <i>type</i>)</h3>
+<!-- @@@setDefaultGroupSummary -->
+<!-- $$$setEditorRepository[overload1]$$$setEditorRepositoryGridEditorRepository* -->
+<h3 class="fn" id="setEditorRepository"><a name="setEditorRepository"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setEditorRepository</span>(<span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *<i>repository</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#editorRepository">editorRepository</a>().</p>
+<!-- @@@setEditorRepository -->
+<!-- $$$setEditorType[overload1]$$$setEditorTypeGridEditorType -->
+<h3 class="fn" id="setEditorType"><a name="setEditorType"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setEditorType</span>(<span class="type"><a href="griddatatablecolumn.html#GridEditorType-enum">GridEditorType</a></span> <i>type</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#editorType">editorType</a>().</p>
+<!-- @@@setEditorType -->
+<!-- $$$setFilterButtonVisible[overload1]$$$setFilterButtonVisiblebool -->
+<h3 class="fn" id="setFilterButtonVisible"><a name="setFilterButtonVisible"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setFilterButtonVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isFilterButtonVisible">isFilterButtonVisible</a>().</p>
+<!-- @@@setFilterButtonVisible -->
+<!-- $$$setFooterSummary[overload1]$$$setFooterSummaryGridSummaryType -->
+<h3 class="fn" id="setFooterSummary"><a name="setFooterSummary"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setFooterSummary</span>(<span class="type"><a href="gridsummary.html#GridSummaryType-enum">GridSummaryType</a></span> <i>type</i>)</h3>
+<!-- @@@setFooterSummary -->
+<!-- $$$setGroupIndex[overload1]$$$setGroupIndexint -->
+<h3 class="fn" id="setGroupIndex"><a name="setGroupIndex"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setGroupIndex</span>(<span class="type">int</span> <i>groupIndex</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#groupIndex">groupIndex</a>().</p>
+<!-- @@@setGroupIndex -->
+<!-- $$$setGroupSortEnabled[overload1]$$$setGroupSortEnabledbool -->
+<h3 class="fn" id="setGroupSortEnabled"><a name="setGroupSortEnabled"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setGroupSortEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isGroupSortEnabled">isGroupSortEnabled</a>().</p>
+<!-- @@@setGroupSortEnabled -->
+<!-- $$$setGroupSummary[overload1]$$$setGroupSummaryGridTableColumn*GridSummaryType -->
+<h3 class="fn" id="setGroupSummary"><a name="setGroupSummary"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setGroupSummary</span>(<span class="type"><a href="gridtablecolumn.html">GridTableColumn</a></span> *<i>groupColumn</i>, <span class="type"><a href="gridsummary.html#GridSummaryType-enum">GridSummaryType</a></span> <i>type</i>)</h3>
+<!-- @@@setGroupSummary -->
+<!-- $$$setGroupingEnabled[overload1]$$$setGroupingEnabledbool -->
+<h3 class="fn" id="setGroupingEnabled"><a name="setGroupingEnabled"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setGroupingEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isGroupingEnabled">isGroupingEnabled</a>().</p>
+<!-- @@@setGroupingEnabled -->
+<!-- $$$setHidingOnGroupingEnabled[overload1]$$$setHidingOnGroupingEnabledbool -->
+<h3 class="fn" id="setHidingOnGroupingEnabled"><a name="setHidingOnGroupingEnabled"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setHidingOnGroupingEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isHidingOnGroupingEnabled">isHidingOnGroupingEnabled</a>().</p>
+<!-- @@@setHidingOnGroupingEnabled -->
+<!-- $$$setRowSpan[overload1]$$$setRowSpanint -->
+<h3 class="fn" id="setRowSpan"><a name="setRowSpan"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setRowSpan</span>(<span class="type">int</span> <i>span</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#rowSpan">rowSpan</a>().</p>
+<!-- @@@setRowSpan -->
+<!-- $$$setSortCaseSensitivity[overload1]$$$setSortCaseSensitivitybool -->
+<h3 class="fn" id="setSortCaseSensitivity"><a name="setSortCaseSensitivity"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setSortCaseSensitivity</span>(<span class="type">bool</span> <i>value</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#sortCaseSensitivity">sortCaseSensitivity</a>().</p>
+<!-- @@@setSortCaseSensitivity -->
+<!-- $$$setSortEnabled[overload1]$$$setSortEnabledbool -->
+<h3 class="fn" id="setSortEnabled"><a name="setSortEnabled"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setSortEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isSortEnabled">isSortEnabled</a>().</p>
+<!-- @@@setSortEnabled -->
+<!-- $$$setSortIndex[overload1]$$$setSortIndexint -->
+<h3 class="fn" id="setSortIndex"><a name="setSortIndex"></a><code>[protected] </code><span class="type">void</span> GridDataTableColumn::<span class="name">setSortIndex</span>(<span class="type">int</span> <i>sortIndex</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#sortIndex">sortIndex</a>().</p>
+<!-- @@@setSortIndex -->
+<!-- $$$setSortLocaleAware[overload1]$$$setSortLocaleAwarebool -->
+<h3 class="fn" id="setSortLocaleAware"><a name="setSortLocaleAware"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setSortLocaleAware</span>(<span class="type">bool</span> <i>value</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#isSortLocaleAware">isSortLocaleAware</a>().</p>
+<!-- @@@setSortLocaleAware -->
+<!-- $$$setSortOrder[overload1]$$$setSortOrderSortOrder -->
+<h3 class="fn" id="setSortOrder"><a name="setSortOrder"></a><span class="type">void</span> GridDataTableColumn::<span class="name">setSortOrder</span>(<span class="type">SortOrder</span> <i>order</i>)</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#sortOrder">sortOrder</a>().</p>
+<!-- @@@setSortOrder -->
+<!-- $$$sortCaseSensitivity[overload1]$$$sortCaseSensitivity -->
+<h3 class="fn" id="sortCaseSensitivity"><a name="sortCaseSensitivity"></a><span class="type">bool</span> GridDataTableColumn::<span class="name">sortCaseSensitivity</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setSortCaseSensitivity">setSortCaseSensitivity</a>().</p>
+<!-- @@@sortCaseSensitivity -->
+<!-- $$$sortIndex[overload1]$$$sortIndex -->
+<h3 class="fn" id="sortIndex"><a name="sortIndex"></a><code>[protected] </code><span class="type">int</span> GridDataTableColumn::<span class="name">sortIndex</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setSortIndex">setSortIndex</a>().</p>
+<!-- @@@sortIndex -->
+<!-- $$$sortOrder[overload1]$$$sortOrder -->
+<h3 class="fn" id="sortOrder"><a name="sortOrder"></a><span class="type">SortOrder</span> GridDataTableColumn::<span class="name">sortOrder</span>() const</h3>
+<p><b>See also </b><a href="griddatatablecolumn.html#setSortOrder">setSortOrder</a>().</p>
+<!-- @@@sortOrder -->
+</div>
+<div class="relnonmem">
+<h2>Related Non-Members</h2>
+<!-- $$$CellButtonKind$$$ChoiceButton$$$SelectButton$$$ClearButton$$$TextButton$$$IconButton -->
+<h3 class="fn" id="CellButtonKind-enum"><a name="CellButtonKind-enum"></a>enum <span class="name">CellButtonKind</span></h3>
+<p>Enumerator describes the predefined kinds of cell buttons.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>ChoiceButton</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">Button with predefined choice icon.</td></tr>
+<tr><td class="topAlign"><code>SelectButton</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">Button with predefined select icon.</td></tr>
+<tr><td class="topAlign"><code>ClearButton</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">Button with predefined clear icon.</td></tr>
+<tr><td class="topAlign"><code>TextButton</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">Button with predefined text icon.</td></tr>
+<tr><td class="topAlign"><code>IconButton</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign">Button with user-defined custom icon.</td></tr>
+</table></div>
+<!-- @@@CellButtonKind -->
+<!-- $$$CellButtonPosition$$$LeftPosition$$$RightPosition -->
+<h3 class="fn" id="CellButtonPosition-enum"><a name="CellButtonPosition-enum"></a>enum <span class="name">CellButtonPosition</span></h3>
+<p>Enumerator describes the position of the button inside cell.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>LeftPosition</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">Button at the left side of the cell.</td></tr>
+<tr><td class="topAlign"><code>RightPosition</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">Button at the right side of the cell.</td></tr>
+</table></div>
+<!-- @@@CellButtonPosition -->
+<!-- $$$GridEditorType$$$AutoEditorType$$$StringEditorType$$$MemoEditorType$$$ComboBoxBlobEditorType$$$NumericEditorType$$$CheckBoxEditorType$$$ComboBoxEditorType$$$TableEditorType$$$DateTimeEditorType$$$TimeEditorType$$$DateEditorType$$$PictureEditorType$$$ComboBoxPictureEditorType$$$DelegateAdapterEditorType$$$ProgressEditorType$$$CustomEditType -->
+<h3 class="fn" id="GridEditorType-enum"><a name="GridEditorType-enum"></a>enum <span class="name">GridEditorType</span></h3>
+<p>This enumerator describes the possible types of grid cell editors for table view, banded table view, card view.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Photo&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorType(Qtitan<span class="operator">::</span>PictureEditorType);
+Qtitan<span class="operator">::</span>GridPictureEditorRepository<span class="operator">*</span> pictureEditor <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridPictureEditorRepository <span class="operator">*</span>)column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository();
+pictureEditor<span class="operator">-</span><span class="operator">&gt;</span>setAspectRatioMode(<span class="type">Qt</span><span class="operator">::</span>KeepAspectRatio);</pre>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>AutoEditorType</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">Automatic selection of the editor by edited value. By default.</td></tr>
+<tr><td class="topAlign"><code>StringEditorType</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">The editor of an unary line. See <a href="gridstringeditorrepository.html">GridStringEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>MemoEditorType</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">The editor of multi-line text. See <a href="gridmemoeditorrepository.html">GridMemoEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>ComboBoxBlobEditorType</code></td><td class="topAlign tblval"><code>3</code></td><td class="topAlign">The editor of multi-line text in popup window. See <a href="gridblobeditorrepository.html">GridBlobEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>NumericEditorType</code></td><td class="topAlign tblval"><code>4</code></td><td class="topAlign">The editor of numerical value. See <a href="gridnumericeditorrepository.html">GridNumericEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>CheckBoxEditorType</code></td><td class="topAlign tblval"><code>5</code></td><td class="topAlign">The editor of boolean value. See <a href="gridcheckboxeditorrepository.html">GridCheckBoxEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>ComboBoxEditorType</code></td><td class="topAlign tblval"><code>6</code></td><td class="topAlign">The editor allows to show combo boxes in the grid cell. See GridComboBoxEditorRepository for the details.</td></tr>
+<tr><td class="topAlign"><code>TableEditorType</code></td><td class="topAlign tblval"><code>7</code></td><td class="topAlign">The editor allows to specify the other datagrid as details for the editing value. Details grid will be shown in the popup window by clicking on the button that embeded to the grid cell. See <a href="gridtableeditorrepository.html">GridTableEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>DateTimeEditorType</code></td><td class="topAlign tblval"><code>8</code></td><td class="topAlign">The editor of DateTime value. See <a href="griddatetimeeditorrepository.html">GridDateTimeEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>TimeEditorType</code></td><td class="topAlign tblval"><code>9</code></td><td class="topAlign">The editor of Time value. See <a href="gridtimeeditorrepository.html">GridTimeEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>DateEditorType</code></td><td class="topAlign tblval"><code>10</code></td><td class="topAlign">The editor of Date value. See <a href="griddateeditorrepository.html">GridDateEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>PictureEditorType</code></td><td class="topAlign tblval"><code>11</code></td><td class="topAlign">The editor of picturies or images. See <a href="gridpictureeditorrepository.html">GridPictureEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>ComboBoxPictureEditorType</code></td><td class="topAlign tblval"><code>12</code></td><td class="topAlign">The editor of picturies and images. The pucture will be edited in the popup window like combobox. See <a href="gridpicturecomboboxeditorrepository.html">GridPictureComboBoxEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>DelegateAdapterEditorType</code></td><td class="topAlign tblval"><code>13</code></td><td class="topAlign">The type of editor which allows you to use delegates from the regular table QTableView in the QtitanDataGrid. For more details see <a href="griddelegateadaptereditorrepository.html">GridDelegateAdapterEditorRepository</a> or follow this topic - <a href="qtitangrideditortutorial.html">QtitanDataGrid cell editor</a></td></tr>
+<tr><td class="topAlign"><code>ProgressEditorType</code></td><td class="topAlign tblval"><code>14</code></td><td class="topAlign">The editor for showing and editing numeric value. Custom ProgressBar widget is used for this purposes. See <a href="gridprogresseditorrepository.html">GridProgressEditorRepository</a> for the details.</td></tr>
+<tr><td class="topAlign"><code>CustomEditType</code></td><td class="topAlign tblval"><code>15</code></td><td class="topAlign">The editor of value creating by cutomer. Please read this article for more details - <a href="qtitangrideditortutorial.html">QtitanDataGrid cell editor</a></td></tr>
+</table></div>
+<!-- @@@GridEditorType -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

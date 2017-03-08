@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridDragAndDrop.qdoc -->
+  <title>QtitanDataGrid Drag and Drop | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>QtitanDataGrid Drag and Drop</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#overview">Overview</a></li>
+<li class="level1"><a href="#grid-as-a-data-source-for-draging">Grid as a data source for draging</a></li>
+<li class="level1"><a href="#grid-as-a-target-for-draging">Grid as a target for draging</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QtitanDataGrid Drag and Drop</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangriddragdrop.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="overview"></a>
+<h2 id="overview">Overview</h2>
+<p>This section describes how to implement drag and drop technology in the QtitanDataGrid.</p>
+<p>Grid supports this technology fully. It is possible to drag the selected grid's cells outside and to drag data anywhere (from any external application) into the grid. In other words, the grid can serve as a source of data for the drag and drop operation or as a data receiver. It is also possible to abstract from the standart model and implement arbitrary drag and drop logic. For example it is possible to drag the picture from the Explorer to the grid view and set this picure for grid's background.</p>
+<a name="grid-as-a-data-source-for-draging"></a>
+<h2 id="grid-as-a-data-source-for-draging">Grid as a data source for draging</h2>
+<p>To enable the source mode it is needed to set the property <a href="gridviewoptions.html#dragEnabled">GridViewOptions::dragEnabled</a>() to true. This property triggers the mechanism which tracks the beginning of drag (occurs if the user clicks the left mouse button over the grid cell, and moves the mouse a few pixels away).</p>
+<p>At the beginning of dragging the signal <a href="gridviewbase.html#startDragDrop">GridViewBase::startDragDrop</a>() is occur. The signal has a parameter <a href="dragdropargs.html">DragDropArgs</a>, which contains a list of selected indexies. Analysis of those indexies in the slot makes it possible to start the beginning of dragging. Also the list of indexes used to create a data for dragging - QMimeData.</p>
+<p>If the QMimeData is not created and not set to the <a href="dragdropargs.html">DragDropArgs</a>, the grid will refer to the model for these data. For this purpose method - QAbstractItemModel::mimeData() is used. Dragging will start if the QMimeData will be obtained, either of these two methods.</p>
+<p>If there is no signal's subscribers then the grid will start dragging the indixies with Qt::ItemIsDragEnabled flag. Other indexes are not involved in dragging. To override this behavior sets the property DragDropArgs::isHandled() to true. By default, this property is false.</p>
+<p>After finishing drag and drop operation, in the source, a signal <a href="gridviewbase.html#endDragDrop">GridViewBase::endDragDrop</a>() is raised. In the handler for this signal it is possible to analyze how the receiver has processed the data being dragged. If there is no signal's' subscribers, then the grid is able to perform the default action - remove data from the drag source if the receiver chose move command. To override this behavior sets the property DragDropArgs::isHandled() to true. By default, this property is false.</p>
+<a name="grid-as-a-target-for-draging"></a>
+<h2 id="grid-as-a-target-for-draging">Grid as a target for draging</h2>
+<p>To receive events about drag and drop into the grid, you need to configure grid to work in drop mode. To do this, you need to set the property <a href="gridviewoptions.html#dropEnabled">GridViewOptions::dropEnabled</a>() to true. At the moment whenever something dragged to the grid, a signal <a href="gridviewbase.html#checkDragDrop">GridViewBase::checkDragDrop</a>() is raised. Signal has a parameter - <a href="dragdropargs.html">DragDropArgs</a> from which you can get the data being dragged - QMimeData.</p>
+<p>If the handler for signal <a href="gridviewbase.html#checkDragDrop">GridViewBase::checkDragDrop</a>() is empty or it is not specified, then the default action is executed. Grid examines the property of the model QAbstractItemModel::mimeTypes() and make a decision whether to process the current drag and drop data. To cancel a standard processing the method <a href="baseeventargs.html#setHandled">DragDropArgs::setHandled</a>(true) must be called. To inform the grid, that dragging is not possible, you should call <a href="dragdropargs.html#setAccepted">DragDropArgs::setAccepted</a>(false).</p>
+<p>At a time when the user releases the left mouse button and drag may occur in the grid the signal <a href="gridviewbase.html#dragDrop">GridViewBase::dragDrop</a>() is raised.</p>
+<p>In the handler of <a href="gridviewbase.html#dragDrop">GridViewBase::dragDrop</a>() signal you need to process the dragging data. For example, insert a new rows into the grid, based on the data. If the handler for signal <a href="gridviewbase.html#dragDrop">GridViewBase::dragDrop</a>() is empty or it is not specified, then the default action is executed. The default action for this signal is invoking the QAbstractItemModel::drop() fuction. To cancel a standard processing the method <a href="baseeventargs.html#setHandled">DragDropArgs::setHandled</a>(true) must be called.</p>
+</div>
+<!-- @@@qtitangriddragdrop.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

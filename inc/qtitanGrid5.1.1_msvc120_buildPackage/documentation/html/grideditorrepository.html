@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridEditors.cpp -->
+  <title>GridEditorRepository Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridEditorRepository</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#related-non-members">Related Non-Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridEditorRepository Class</h1>
+<!-- $$$GridEditorRepository-brief -->
+<p>The <a href="grideditorrepository.html">GridEditorRepository</a> class is a repository for the cell's editor. <a href="#details">More...</a></p>
+<!-- @@@GridEditorRepository -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridEditorRepository&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="gridcheckboxeditorrepository.html">GridCheckBoxEditorRepository</a>, <a href="griddatetimeeditorrepository.html">GridDateTimeEditorRepository</a>, <a href="griddelegateadaptereditorrepository.html">GridDelegateAdapterEditorRepository</a>, <a href="gridmemoeditorrepository.html">GridMemoEditorRepository</a>, <a href="gridnumericeditorrepository.html">GridNumericEditorRepository</a>, <a href="gridpicturecomboboxeditorrepository.html">GridPictureComboBoxEditorRepository</a>, <a href="gridpictureeditorrepository.html">GridPictureEditorRepository</a>, <a href="gridprogresseditorrepository.html">GridProgressEditorRepository</a>, <a href="gridstringeditorrepository.html">GridStringEditorRepository</a>, and <a href="gridtableeditorrepository.html">GridTableEditorRepository</a></p>
+</td></tr></table></div><ul>
+<li><a href="grideditorrepository-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#GridEditorRepository">GridEditorRepository</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#dtor.GridEditorRepository">~GridEditorRepository</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Qt::Alignment </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#alignment">alignment</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#autoSelect">autoSelect</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#changed">changed</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridEditor *</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#createEditor">createEditor</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#dataBinding">dataBinding</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QVariant </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#defaultValue">defaultValue</a></b>(Qt::ItemDataRole <i>role</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const GridEditorActivationPolicy &amp;</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#editorActivationPolicy">editorActivationPolicy</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#heightHint">heightHint</a></b>(int <i>width</i>, const QVariant &amp;<i>v</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QIcon &amp;</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#icon">icon</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> IconApperance </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#iconApperance">iconApperance</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#immediatePost">immediatePost</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#initialize">initialize</a></b>(GridViewBase *<i>view</i>, GridModelDataBinding *<i>binding</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#isAutoGeneratedValue">isAutoGeneratedValue</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#isEditable">isEditable</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#isEnabled">isEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#isHintVisible">isHintVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#isValidationEnabled">isValidationEnabled</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#removeDefaultValue">removeDefaultValue</a></b>(Qt::ItemDataRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setAlignment">setAlignment</a></b>(Qt::Alignment <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setAutoGeneratedValue">setAutoGeneratedValue</a></b>(bool <i>autoGenerated</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setAutoSelect">setAutoSelect</a></b>(bool <i>autoSelect</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setDefaultValue">setDefaultValue</a></b>(const QVariant &amp;<i>value</i>, Qt::ItemDataRole <i>role</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setEditable">setEditable</a></b>(bool <i>editable</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setEditorActivationPolicy">setEditorActivationPolicy</a></b>(const GridEditorActivationPolicy &amp;<i>activationPolicy</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setEnabled">setEnabled</a></b>(bool <i>enabled</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setHintVisible">setHintVisible</a></b>(bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setIcon">setIcon</a></b>(const QIcon &amp;<i>icon</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setIconApperance">setIconApperance</a></b>(IconApperance <i>apperance</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setImmediatePost">setImmediatePost</a></b>(bool <i>b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setTransparentBackground">setTransparentBackground</a></b>(bool <i>transparent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setValidateOnEnter">setValidateOnEnter</a></b>(bool <i>flag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setValidationEnabled">setValidationEnabled</a></b>(bool <i>b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#setValidator">setValidator</a></b>(QValidator *<i>validator</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#transparentBackground">transparentBackground</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#validateOnEnter">validateOnEnter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QValidator *</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#validator">validator</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridViewBase *</td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#view">view</a></b>() const</td></tr>
+</table></div>
+<a name="related-non-members"></a>
+<h2 id="related-non-members">Related Non-Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></b> { NoPolicy, ClickNoFocused, ClickFocused, Click, ..., AnyEvents }</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridEditorRepository-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="grideditorrepository.html">GridEditorRepository</a> class is a repository for the cell's editor.</p>
+</div>
+<!-- @@@GridEditorRepository -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridEditorRepository[overload1]$$$GridEditorRepository -->
+<h3 class="fn" id="GridEditorRepository"><a name="GridEditorRepository"></a>GridEditorRepository::<span class="name">GridEditorRepository</span>()</h3>
+<p>Default constructs an instance of GridEditorRepository.</p><!-- @@@GridEditorRepository -->
+<!-- $$$~GridEditorRepository[overload1]$$$~GridEditorRepository -->
+<h3 class="fn" id="dtor.GridEditorRepository"><a name="dtor.GridEditorRepository"></a><code>[virtual] </code>GridEditorRepository::<span class="name">~GridEditorRepository</span>()</h3>
+<p>Destroys the instance of GridEditorRepository. The destructor is virtual.</p><!-- @@@~GridEditorRepository -->
+<!-- $$$alignment[overload1]$$$alignment -->
+<h3 class="fn" id="alignment"><a name="alignment"></a><span class="type">Qt::Alignment</span> GridEditorRepository::<span class="name">alignment</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setAlignment">setAlignment</a>().</p>
+<!-- @@@alignment -->
+<!-- $$$autoSelect[overload1]$$$autoSelect -->
+<h3 class="fn" id="autoSelect"><a name="autoSelect"></a><span class="type">bool</span> GridEditorRepository::<span class="name">autoSelect</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setAutoSelect">setAutoSelect</a>().</p>
+<!-- @@@autoSelect -->
+<!-- $$$changed[overload1]$$$changed -->
+<h3 class="fn" id="changed"><a name="changed"></a><span class="type">void</span> GridEditorRepository::<span class="name">changed</span>()</h3>
+<!-- @@@changed -->
+<!-- $$$createEditor[overload1]$$$createEditor -->
+<h3 class="fn" id="createEditor"><a name="createEditor"></a><code>[pure virtual] </code><span class="type"><a href="grideditor.html">GridEditor</a></span> *GridEditorRepository::<span class="name">createEditor</span>()</h3>
+<!-- @@@createEditor -->
+<!-- $$$dataBinding[overload1]$$$dataBinding -->
+<h3 class="fn" id="dataBinding"><a name="dataBinding"></a><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *GridEditorRepository::<span class="name">dataBinding</span>() const</h3>
+<!-- @@@dataBinding -->
+<!-- $$$defaultValue[overload1]$$$defaultValueQt::ItemDataRole -->
+<h3 class="fn" id="defaultValue"><a name="defaultValue"></a><span class="type">QVariant</span> GridEditorRepository::<span class="name">defaultValue</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>) const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setDefaultValue">setDefaultValue</a>().</p>
+<!-- @@@defaultValue -->
+<!-- $$$editorActivationPolicy[overload1]$$$editorActivationPolicy -->
+<h3 class="fn" id="editorActivationPolicy"><a name="editorActivationPolicy"></a>const <span class="type">GridEditorActivationPolicy</span> &amp;GridEditorRepository::<span class="name">editorActivationPolicy</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setEditorActivationPolicy">setEditorActivationPolicy</a>().</p>
+<!-- @@@editorActivationPolicy -->
+<!-- $$$heightHint[overload1]$$$heightHintintconstQVariant& -->
+<h3 class="fn" id="heightHint"><a name="heightHint"></a><code>[virtual] </code><span class="type">int</span> GridEditorRepository::<span class="name">heightHint</span>(<span class="type">int</span> <i>width</i>, const <span class="type">QVariant</span> &amp;<i>v</i>)</h3>
+<!-- @@@heightHint -->
+<!-- $$$icon[overload1]$$$icon -->
+<h3 class="fn" id="icon"><a name="icon"></a>const <span class="type">QIcon</span> &amp;GridEditorRepository::<span class="name">icon</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setIcon">setIcon</a>().</p>
+<!-- @@@icon -->
+<!-- $$$iconApperance[overload1]$$$iconApperance -->
+<h3 class="fn" id="iconApperance"><a name="iconApperance"></a><span class="type">IconApperance</span> GridEditorRepository::<span class="name">iconApperance</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setIconApperance">setIconApperance</a>().</p>
+<!-- @@@iconApperance -->
+<!-- $$$immediatePost[overload1]$$$immediatePost -->
+<h3 class="fn" id="immediatePost"><a name="immediatePost"></a><span class="type">bool</span> GridEditorRepository::<span class="name">immediatePost</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setImmediatePost">setImmediatePost</a>().</p>
+<!-- @@@immediatePost -->
+<!-- $$$initialize[overload1]$$$initializeGridViewBase*GridModelDataBinding* -->
+<h3 class="fn" id="initialize"><a name="initialize"></a><code>[virtual] </code><span class="type">void</span> GridEditorRepository::<span class="name">initialize</span>(<span class="type"><a href="gridviewbase.html">GridViewBase</a></span> *<i>view</i>, <span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *<i>binding</i>)</h3>
+<!-- @@@initialize -->
+<!-- $$$isAutoGeneratedValue[overload1]$$$isAutoGeneratedValue -->
+<h3 class="fn" id="isAutoGeneratedValue"><a name="isAutoGeneratedValue"></a><span class="type">bool</span> GridEditorRepository::<span class="name">isAutoGeneratedValue</span>() const</h3>
+<!-- @@@isAutoGeneratedValue -->
+<!-- $$$isEditable[overload1]$$$isEditable -->
+<h3 class="fn" id="isEditable"><a name="isEditable"></a><span class="type">bool</span> GridEditorRepository::<span class="name">isEditable</span>() const</h3>
+<!-- @@@isEditable -->
+<!-- $$$isEnabled[overload1]$$$isEnabled -->
+<h3 class="fn" id="isEnabled"><a name="isEnabled"></a><span class="type">bool</span> GridEditorRepository::<span class="name">isEnabled</span>() const</h3>
+<!-- @@@isEnabled -->
+<!-- $$$isHintVisible[overload1]$$$isHintVisible -->
+<h3 class="fn" id="isHintVisible"><a name="isHintVisible"></a><span class="type">bool</span> GridEditorRepository::<span class="name">isHintVisible</span>() const</h3>
+<!-- @@@isHintVisible -->
+<!-- $$$isValidationEnabled[overload1]$$$isValidationEnabled -->
+<h3 class="fn" id="isValidationEnabled"><a name="isValidationEnabled"></a><span class="type">bool</span> GridEditorRepository::<span class="name">isValidationEnabled</span>() const</h3>
+<!-- @@@isValidationEnabled -->
+<!-- $$$removeDefaultValue[overload1]$$$removeDefaultValueQt::ItemDataRole -->
+<h3 class="fn" id="removeDefaultValue"><a name="removeDefaultValue"></a><span class="type">void</span> GridEditorRepository::<span class="name">removeDefaultValue</span>(<span class="type">Qt::ItemDataRole</span> <i>role</i>)</h3>
+<!-- @@@removeDefaultValue -->
+<!-- $$$setAlignment[overload1]$$$setAlignmentQt::Alignment -->
+<h3 class="fn" id="setAlignment"><a name="setAlignment"></a><span class="type">void</span> GridEditorRepository::<span class="name">setAlignment</span>(<span class="type">Qt::Alignment</span> <i>flag</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#alignment">alignment</a>().</p>
+<!-- @@@setAlignment -->
+<!-- $$$setAutoGeneratedValue[overload1]$$$setAutoGeneratedValuebool -->
+<h3 class="fn" id="setAutoGeneratedValue"><a name="setAutoGeneratedValue"></a><span class="type">void</span> GridEditorRepository::<span class="name">setAutoGeneratedValue</span>(<span class="type">bool</span> <i>autoGenerated</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#isAutoGeneratedValue">isAutoGeneratedValue</a>().</p>
+<!-- @@@setAutoGeneratedValue -->
+<!-- $$$setAutoSelect[overload1]$$$setAutoSelectbool -->
+<h3 class="fn" id="setAutoSelect"><a name="setAutoSelect"></a><span class="type">void</span> GridEditorRepository::<span class="name">setAutoSelect</span>(<span class="type">bool</span> <i>autoSelect</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#autoSelect">autoSelect</a>().</p>
+<!-- @@@setAutoSelect -->
+<!-- $$$setDefaultValue[overload1]$$$setDefaultValueconstQVariant&Qt::ItemDataRole -->
+<h3 class="fn" id="setDefaultValue"><a name="setDefaultValue"></a><span class="type">void</span> GridEditorRepository::<span class="name">setDefaultValue</span>(const <span class="type">QVariant</span> &amp;<i>value</i>, <span class="type">Qt::ItemDataRole</span> <i>role</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#defaultValue">defaultValue</a>().</p>
+<!-- @@@setDefaultValue -->
+<!-- $$$setEditable[overload1]$$$setEditablebool -->
+<h3 class="fn" id="setEditable"><a name="setEditable"></a><span class="type">void</span> GridEditorRepository::<span class="name">setEditable</span>(<span class="type">bool</span> <i>editable</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#isEditable">isEditable</a>().</p>
+<!-- @@@setEditable -->
+<!-- $$$setEditorActivationPolicy[overload1]$$$setEditorActivationPolicyconstGridEditorActivationPolicy& -->
+<h3 class="fn" id="setEditorActivationPolicy"><a name="setEditorActivationPolicy"></a><span class="type">void</span> GridEditorRepository::<span class="name">setEditorActivationPolicy</span>(const <span class="type">GridEditorActivationPolicy</span> &amp;<i>activationPolicy</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#editorActivationPolicy">editorActivationPolicy</a>().</p>
+<!-- @@@setEditorActivationPolicy -->
+<!-- $$$setEnabled[overload1]$$$setEnabledbool -->
+<h3 class="fn" id="setEnabled"><a name="setEnabled"></a><span class="type">void</span> GridEditorRepository::<span class="name">setEnabled</span>(<span class="type">bool</span> <i>enabled</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#isEnabled">isEnabled</a>().</p>
+<!-- @@@setEnabled -->
+<!-- $$$setHintVisible[overload1]$$$setHintVisiblebool -->
+<h3 class="fn" id="setHintVisible"><a name="setHintVisible"></a><span class="type">void</span> GridEditorRepository::<span class="name">setHintVisible</span>(<span class="type">bool</span> <i>visible</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#isHintVisible">isHintVisible</a>().</p>
+<!-- @@@setHintVisible -->
+<!-- $$$setIcon[overload1]$$$setIconconstQIcon& -->
+<h3 class="fn" id="setIcon"><a name="setIcon"></a><span class="type">void</span> GridEditorRepository::<span class="name">setIcon</span>(const <span class="type">QIcon</span> &amp;<i>icon</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#icon">icon</a>().</p>
+<!-- @@@setIcon -->
+<!-- $$$setIconApperance[overload1]$$$setIconApperanceIconApperance -->
+<h3 class="fn" id="setIconApperance"><a name="setIconApperance"></a><span class="type">void</span> GridEditorRepository::<span class="name">setIconApperance</span>(<span class="type">IconApperance</span> <i>apperance</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#iconApperance">iconApperance</a>().</p>
+<!-- @@@setIconApperance -->
+<!-- $$$setImmediatePost[overload1]$$$setImmediatePostbool -->
+<h3 class="fn" id="setImmediatePost"><a name="setImmediatePost"></a><span class="type">void</span> GridEditorRepository::<span class="name">setImmediatePost</span>(<span class="type">bool</span> <i>b</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#immediatePost">immediatePost</a>().</p>
+<!-- @@@setImmediatePost -->
+<!-- $$$setTransparentBackground[overload1]$$$setTransparentBackgroundbool -->
+<h3 class="fn" id="setTransparentBackground"><a name="setTransparentBackground"></a><span class="type">void</span> GridEditorRepository::<span class="name">setTransparentBackground</span>(<span class="type">bool</span> <i>transparent</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#transparentBackground">transparentBackground</a>().</p>
+<!-- @@@setTransparentBackground -->
+<!-- $$$setValidateOnEnter[overload1]$$$setValidateOnEnterbool -->
+<h3 class="fn" id="setValidateOnEnter"><a name="setValidateOnEnter"></a><span class="type">void</span> GridEditorRepository::<span class="name">setValidateOnEnter</span>(<span class="type">bool</span> <i>flag</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#validateOnEnter">validateOnEnter</a>().</p>
+<!-- @@@setValidateOnEnter -->
+<!-- $$$setValidationEnabled[overload1]$$$setValidationEnabledbool -->
+<h3 class="fn" id="setValidationEnabled"><a name="setValidationEnabled"></a><span class="type">void</span> GridEditorRepository::<span class="name">setValidationEnabled</span>(<span class="type">bool</span> <i>b</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#isValidationEnabled">isValidationEnabled</a>().</p>
+<!-- @@@setValidationEnabled -->
+<!-- $$$setValidator[overload1]$$$setValidatorQValidator* -->
+<h3 class="fn" id="setValidator"><a name="setValidator"></a><span class="type">void</span> GridEditorRepository::<span class="name">setValidator</span>(<span class="type">QValidator</span> *<i>validator</i>)</h3>
+<p><b>See also </b><a href="grideditorrepository.html#validator">validator</a>().</p>
+<!-- @@@setValidator -->
+<!-- $$$transparentBackground[overload1]$$$transparentBackground -->
+<h3 class="fn" id="transparentBackground"><a name="transparentBackground"></a><span class="type">bool</span> GridEditorRepository::<span class="name">transparentBackground</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setTransparentBackground">setTransparentBackground</a>().</p>
+<!-- @@@transparentBackground -->
+<!-- $$$validateOnEnter[overload1]$$$validateOnEnter -->
+<h3 class="fn" id="validateOnEnter"><a name="validateOnEnter"></a><span class="type">bool</span> GridEditorRepository::<span class="name">validateOnEnter</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setValidateOnEnter">setValidateOnEnter</a>().</p>
+<!-- @@@validateOnEnter -->
+<!-- $$$validator[overload1]$$$validator -->
+<h3 class="fn" id="validator"><a name="validator"></a><span class="type">QValidator</span> *GridEditorRepository::<span class="name">validator</span>() const</h3>
+<p><b>See also </b><a href="grideditorrepository.html#setValidator">setValidator</a>().</p>
+<!-- @@@validator -->
+<!-- $$$view[overload1]$$$view -->
+<h3 class="fn" id="view"><a name="view"></a><span class="type"><a href="gridviewbase.html">GridViewBase</a></span> *GridEditorRepository::<span class="name">view</span>() const</h3>
+<!-- @@@view -->
+</div>
+<div class="relnonmem">
+<h2>Related Non-Members</h2>
+<!-- $$$GridEditorActivationPolicyFlag$$$NoPolicy$$$ClickNoFocused$$$ClickFocused$$$Click$$$MousePressNoFocused$$$MousePressFocused$$$MousePress$$$DblClickNoFocused$$$DblClickFocused$$$DblClick$$$KeyboardFocus$$$KeyPress$$$Enter$$$KeyPress_F2$$$EditPress$$$EatingKeyEvents$$$EatingMouseEvents$$$SelectCurrentEvent$$$KeyPress_WithEating$$$AnyEvents -->
+<h3 class="flags" id="GridEditorActivationPolicyFlag-enum"><a name="GridEditorActivationPolicyFlag-enum"></a>enum <span class="name">GridEditorActivationPolicyFlag</span><br/>flags <span class="name">GridEditorActivationPolicy</span></h3>
+<p>Enumerator GridEditorActivationPolicyFlag describes the policy of activating the edit mode of the cell editor if the cell gets the focus. You can group the policy on your own using logical OR.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>NoPolicy</code></td><td class="topAlign tblval"><code>0x0000</code></td><td class="topAlign">Blank value. The editing mode may not be enabled. The cell can not be edited.</td></tr>
+<tr><td class="topAlign"><code>ClickNoFocused</code></td><td class="topAlign tblval"><code>0x0001</code></td><td class="topAlign">Edit mode of the cell editor is activated if you click on a cell that has no focus.</td></tr>
+<tr><td class="topAlign"><code>ClickFocused</code></td><td class="topAlign tblval"><code>0x0002</code></td><td class="topAlign">Edit mode of the cell editor is activated if you click on a cell that already has focus.</td></tr>
+<tr><td class="topAlign"><code>Click</code></td><td class="topAlign tblval"><code>ClickNoFocused | ClickFocused</code></td><td class="topAlign">Edit mode of the cell editor is activated if you click on a cell. This policy does not depend on whether the cell has focus or not. Editor always activated when was a click on a cell.</td></tr>
+<tr><td class="topAlign"><code>MousePressNoFocused</code></td><td class="topAlign tblval"><code>0x0004</code></td><td class="topAlign">Edit mode of the cell editor is activated if you press mouse on a cell that has no focus.</td></tr>
+<tr><td class="topAlign"><code>MousePressFocused</code></td><td class="topAlign tblval"><code>0x0008</code></td><td class="topAlign">Edit mode of the cell editor is activated if you press mouse on a cell that already has focus.</td></tr>
+<tr><td class="topAlign"><code>MousePress</code></td><td class="topAlign tblval"><code>MousePressNoFocused | MousePressFocused</code></td><td class="topAlign">Edit mode of the cell editor is activated if you press mouse on a cell. This policy does not depend on whether the cell has focus or not. Editor always activated when was a mouse press (mouse down) on a cell.</td></tr>
+<tr><td class="topAlign"><code>DblClickNoFocused</code></td><td class="topAlign tblval"><code>0x0010</code></td><td class="topAlign">Edit mode of the cell editor is activated if you double-click on a cell that has no focus.</td></tr>
+<tr><td class="topAlign"><code>DblClickFocused</code></td><td class="topAlign tblval"><code>0x0020</code></td><td class="topAlign">Edit mode of the cell editor is activated if you double-click on a cell that already has focus.</td></tr>
+<tr><td class="topAlign"><code>DblClick</code></td><td class="topAlign tblval"><code>DblClickNoFocused | DblClickFocused</code></td><td class="topAlign">Edit mode of the cell editor is activated if you double-click on a cell. This policy does not depend on whether the cell has focus or not. Editor always activated when was a double-click on a cell.</td></tr>
+<tr><td class="topAlign"><code>KeyboardFocus</code></td><td class="topAlign tblval"><code>0x0040</code></td><td class="topAlign">The cell becomes in the edit state if the focus was acquired by the keyboard (for instance by pressing the navigation buttons Up, Down, Left, Right etc).</td></tr>
+<tr><td class="topAlign"><code>Enter</code></td><td class="topAlign tblval"><code>0x0100</code></td><td class="topAlign">The cell becomes in the edit state if the Enter key was pressed while cell already has focus and is not in the edit state.</td></tr>
+<tr><td class="topAlign"><code>KeyPress</code></td><td class="topAlign tblval"><code>0x0080</code></td><td class="topAlign">The cell becomes in the edit state if the any key was pressed while cell has focus and is not in the edit state. You can filtering the value of the key by using the editorEditingStarting() signal.</td></tr>
+<tr><td class="topAlign"><code>KeyPress_WithEating</code></td><td class="topAlign tblval"><code>KeyPress | EatingKeyEvents</code></td><td class="topAlign">The cell becomes in the edit state if the any key was pressed while cell has focus and is not in the edit state. Unlike the KeyPress, KeyPress_WithEating eats first pressed symbol that caused the event. This first pressed symbol does not passed into the cell editor. You can filtering the value of the key by using the editorEditingStarting() signal.</td></tr>
+<tr><td class="topAlign"><code>SelectCurrentEvent</code></td><td class="topAlign tblval"><code>0x1000</code></td><td class="topAlign">grid should be start multi selection for this cell.</td></tr>
+<tr><td class="topAlign"><code>AnyEvents</code></td><td class="topAlign tblval"><code>Click | DblClick | MousePress | KeyPress | EditPress | KeyboardFocus</code></td><td class="topAlign">The cell switch to edit state until the cell has focus.</td></tr>
+</table></div>
+<p>The GridEditorActivationPolicy type is a typedef for <a href="">QFlags</a>&lt;GridEditorActivationPolicyFlag&gt;. It stores an OR combination of GridEditorActivationPolicyFlag values.</p>
+<!-- @@@GridEditorActivationPolicyFlag -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridGraphics.cpp -->
+  <title>GraphicControl Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GraphicControl</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GraphicControl Class</h1>
+<!-- $$$GraphicControl-brief -->
+<p><a href="graphiccontrol.html">GraphicControl</a> <a href="#details">More...</a></p>
+<!-- @@@GraphicControl -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GraphicControl&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="grid.html">Grid</a></p>
+</td></tr></table></div><ul>
+<li><a href="graphiccontrol-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#GraphicControl">GraphicControl</a></b>(QWidget *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dtor.GraphicControl">~GraphicControl</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#activeGP">activeGP</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridDragDropState </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dragDropState">dragDropState</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#focusedGP">focusedGP</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#geometryChanged">geometryChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridDragDropObject *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#getDragDropObject">getDragDropObject</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#hitTest">hitTest</a></b>(const QPoint &amp;<i>point</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#mouseOverUpdate">mouseOverUpdate</a></b>(const QPoint &amp;<i>pos</i>, bool <i>forcePressGP</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#overGP">overGP</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#pressedGP">pressedGP</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#setFocusGP">setFocusGP</a></b>(GraphicPrimitive *<i>gp</i>, Qt::FocusReason <i>reason</i> = Qt::OtherFocusReason)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#setPressedGP">setPressedGP</a></b>(GraphicPrimitive *<i>gp</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#updateLayout">updateLayout</a></b>()</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#contextMenuEvent">contextMenuEvent</a></b>(QContextMenuEvent *<i>event</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridNativeDragObject *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#createNativeDragDropObject">createNativeDragDropObject</a></b>(const QPoint &amp;<i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dragEnterEvent">dragEnterEvent</a></b>(<i>QDragEnterEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dragLeaveEvent">dragLeaveEvent</a></b>(<i>QDragLeaveEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dragMoveEvent">dragMoveEvent</a></b>(<i>QDragMoveEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#dropEvent">dropEvent</a></b>(<i>QDropEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Effects *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#effects">effects</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#enterEvent">enterEvent</a></b>(<i>QEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#event">event</a></b>(<i>QEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#focusInEvent">focusInEvent</a></b>(<i>QFocusEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#focusOutEvent">focusOutEvent</a></b>(<i>QFocusEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#hideEvent">hideEvent</a></b>(<i>QHideEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#isLocked">isLocked</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#keyPressEvent">keyPressEvent</a></b>(<i>QKeyEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#keyReleaseEvent">keyReleaseEvent</a></b>(<i>QKeyEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#leaveEvent">leaveEvent</a></b>(<i>QEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#mouseDoubleClickEvent">mouseDoubleClickEvent</a></b>(<i>QMouseEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#mouseMoveEvent">mouseMoveEvent</a></b>(<i>QMouseEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#mousePressEvent">mousePressEvent</a></b>(QMouseEvent *<i>event</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#mouseReleaseEvent">mouseReleaseEvent</a></b>(QMouseEvent *<i>event</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#moveDragDropObject">moveDragDropObject</a></b>(const QPoint &amp;<i>pos</i>, GridDragDropObject *<i>object</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#paintEvent">paintEvent</a></b>(<i>QPaintEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#resizeEvent">resizeEvent</a></b>(<i>QResizeEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GraphicPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#rootPrimitive">rootPrimitive</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#setActiveGP">setActiveGP</a></b>(GraphicPrimitive *<i>gp</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#setRoot">setRoot</a></b>(GraphicPrimitive *<i>root</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#stopDragDrop">stopDragDrop</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#wheelEvent">wheelEvent</a></b>(<i>QWheelEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#widgetFocusIn">widgetFocusIn</a></b>(QWidget *<i>widget</i>, QFocusEvent *<i>e</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="graphiccontrol.html#widgetFocusOut">widgetFocusOut</a></b>(QWidget *<i>widget</i>, QFocusEvent *<i>e</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GraphicControl-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="graphiccontrol.html">GraphicControl</a></p>
+</div>
+<!-- @@@GraphicControl -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GraphicControl[overload1]$$$GraphicControlQWidget* -->
+<h3 class="fn" id="GraphicControl"><a name="GraphicControl"></a>GraphicControl::<span class="name">GraphicControl</span>(<span class="type">QWidget</span> *<i>parent</i>)</h3>
+<p>Default constructs an instance of GraphicControl.</p><!-- @@@GraphicControl -->
+<!-- $$$~GraphicControl[overload1]$$$~GraphicControl -->
+<h3 class="fn" id="dtor.GraphicControl"><a name="dtor.GraphicControl"></a><code>[virtual] </code>GraphicControl::<span class="name">~GraphicControl</span>()</h3>
+<p>Destroys the instance of GraphicControl. The destructor is virtual.</p><!-- @@@~GraphicControl -->
+<!-- $$$activeGP[overload1]$$$activeGP -->
+<h3 class="fn" id="activeGP"><a name="activeGP"></a><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">activeGP</span>() const</h3>
+<p><b>See also </b><a href="graphiccontrol.html#setActiveGP">setActiveGP</a>().</p>
+<!-- @@@activeGP -->
+<!-- $$$contextMenuEvent[overload1]$$$contextMenuEventQContextMenuEvent* -->
+<h3 class="fn" id="contextMenuEvent"><a name="contextMenuEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">contextMenuEvent</span>(<span class="type">QContextMenuEvent</span> *<i>event</i>)</h3>
+<!-- @@@contextMenuEvent -->
+<!-- $$$createNativeDragDropObject[overload1]$$$createNativeDragDropObjectconstQPoint& -->
+<h3 class="fn" id="createNativeDragDropObject"><a name="createNativeDragDropObject"></a><code>[virtual protected] </code><span class="type">GridNativeDragObject</span> *GraphicControl::<span class="name">createNativeDragDropObject</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@createNativeDragDropObject -->
+<!-- $$$dragDropState[overload1]$$$dragDropState -->
+<h3 class="fn" id="dragDropState"><a name="dragDropState"></a><span class="type">GridDragDropState</span> GraphicControl::<span class="name">dragDropState</span>() const</h3>
+<!-- @@@dragDropState -->
+<!-- $$$dragEnterEvent[overload1]$$$dragEnterEventQDragEnterEvent* -->
+<h3 class="fn" id="dragEnterEvent"><a name="dragEnterEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">dragEnterEvent</span>(<i>QDragEnterEvent *</i>)</h3>
+<!-- @@@dragEnterEvent -->
+<!-- $$$dragLeaveEvent[overload1]$$$dragLeaveEventQDragLeaveEvent* -->
+<h3 class="fn" id="dragLeaveEvent"><a name="dragLeaveEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">dragLeaveEvent</span>(<i>QDragLeaveEvent *</i>)</h3>
+<!-- @@@dragLeaveEvent -->
+<!-- $$$dragMoveEvent[overload1]$$$dragMoveEventQDragMoveEvent* -->
+<h3 class="fn" id="dragMoveEvent"><a name="dragMoveEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">dragMoveEvent</span>(<i>QDragMoveEvent *</i>)</h3>
+<!-- @@@dragMoveEvent -->
+<!-- $$$dropEvent[overload1]$$$dropEventQDropEvent* -->
+<h3 class="fn" id="dropEvent"><a name="dropEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">dropEvent</span>(<i>QDropEvent *</i>)</h3>
+<!-- @@@dropEvent -->
+<!-- $$$effects[overload1]$$$effects -->
+<h3 class="fn" id="effects"><a name="effects"></a><code>[protected] </code><span class="type">Effects</span> *GraphicControl::<span class="name">effects</span>() const</h3>
+<!-- @@@effects -->
+<!-- $$$enterEvent[overload1]$$$enterEventQEvent* -->
+<h3 class="fn" id="enterEvent"><a name="enterEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">enterEvent</span>(<i>QEvent *</i>)</h3>
+<!-- @@@enterEvent -->
+<!-- $$$event[overload1]$$$eventQEvent* -->
+<h3 class="fn" id="event"><a name="event"></a><code>[virtual protected] </code><span class="type">bool</span> GraphicControl::<span class="name">event</span>(<i>QEvent *</i>)</h3>
+<!-- @@@event -->
+<!-- $$$focusInEvent[overload1]$$$focusInEventQFocusEvent* -->
+<h3 class="fn" id="focusInEvent"><a name="focusInEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">focusInEvent</span>(<i>QFocusEvent *</i>)</h3>
+<!-- @@@focusInEvent -->
+<!-- $$$focusOutEvent[overload1]$$$focusOutEventQFocusEvent* -->
+<h3 class="fn" id="focusOutEvent"><a name="focusOutEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">focusOutEvent</span>(<i>QFocusEvent *</i>)</h3>
+<!-- @@@focusOutEvent -->
+<!-- $$$focusedGP[overload1]$$$focusedGP -->
+<h3 class="fn" id="focusedGP"><a name="focusedGP"></a><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">focusedGP</span>() const</h3>
+<!-- @@@focusedGP -->
+<!-- $$$geometryChanged[overload1]$$$geometryChanged -->
+<h3 class="fn" id="geometryChanged"><a name="geometryChanged"></a><span class="type">void</span> GraphicControl::<span class="name">geometryChanged</span>()</h3>
+<!-- @@@geometryChanged -->
+<!-- $$$getDragDropObject[overload1]$$$getDragDropObject -->
+<h3 class="fn" id="getDragDropObject"><a name="getDragDropObject"></a><span class="type">GridDragDropObject</span> *GraphicControl::<span class="name">getDragDropObject</span>() const</h3>
+<!-- @@@getDragDropObject -->
+<!-- $$$hideEvent[overload1]$$$hideEventQHideEvent* -->
+<h3 class="fn" id="hideEvent"><a name="hideEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">hideEvent</span>(<i>QHideEvent *</i>)</h3>
+<!-- @@@hideEvent -->
+<!-- $$$hitTest[overload1]$$$hitTestconstQPoint& -->
+<h3 class="fn" id="hitTest"><a name="hitTest"></a><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">hitTest</span>(const <span class="type">QPoint</span> &amp;<i>point</i>)</h3>
+<!-- @@@hitTest -->
+<!-- $$$isLocked[overload1]$$$isLocked -->
+<h3 class="fn" id="isLocked"><a name="isLocked"></a><code>[virtual protected] </code><span class="type">bool</span> GraphicControl::<span class="name">isLocked</span>() const</h3>
+<!-- @@@isLocked -->
+<!-- $$$keyPressEvent[overload1]$$$keyPressEventQKeyEvent* -->
+<h3 class="fn" id="keyPressEvent"><a name="keyPressEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">keyPressEvent</span>(<i>QKeyEvent *</i>)</h3>
+<!-- @@@keyPressEvent -->
+<!-- $$$keyReleaseEvent[overload1]$$$keyReleaseEventQKeyEvent* -->
+<h3 class="fn" id="keyReleaseEvent"><a name="keyReleaseEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">keyReleaseEvent</span>(<i>QKeyEvent *</i>)</h3>
+<!-- @@@keyReleaseEvent -->
+<!-- $$$leaveEvent[overload1]$$$leaveEventQEvent* -->
+<h3 class="fn" id="leaveEvent"><a name="leaveEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">leaveEvent</span>(<i>QEvent *</i>)</h3>
+<!-- @@@leaveEvent -->
+<!-- $$$mouseDoubleClickEvent[overload1]$$$mouseDoubleClickEventQMouseEvent* -->
+<h3 class="fn" id="mouseDoubleClickEvent"><a name="mouseDoubleClickEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">mouseDoubleClickEvent</span>(<i>QMouseEvent *</i>)</h3>
+<!-- @@@mouseDoubleClickEvent -->
+<!-- $$$mouseMoveEvent[overload1]$$$mouseMoveEventQMouseEvent* -->
+<h3 class="fn" id="mouseMoveEvent"><a name="mouseMoveEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">mouseMoveEvent</span>(<i>QMouseEvent *</i>)</h3>
+<!-- @@@mouseMoveEvent -->
+<!-- $$$mouseOverUpdate[overload1]$$$mouseOverUpdateconstQPoint&bool -->
+<h3 class="fn" id="mouseOverUpdate"><a name="mouseOverUpdate"></a><span class="type">void</span> GraphicControl::<span class="name">mouseOverUpdate</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>, <span class="type">bool</span> <i>forcePressGP</i>)</h3>
+<!-- @@@mouseOverUpdate -->
+<!-- $$$mousePressEvent[overload1]$$$mousePressEventQMouseEvent* -->
+<h3 class="fn" id="mousePressEvent"><a name="mousePressEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">mousePressEvent</span>(<span class="type">QMouseEvent</span> *<i>event</i>)</h3>
+<!-- @@@mousePressEvent -->
+<!-- $$$mouseReleaseEvent[overload1]$$$mouseReleaseEventQMouseEvent* -->
+<h3 class="fn" id="mouseReleaseEvent"><a name="mouseReleaseEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">mouseReleaseEvent</span>(<span class="type">QMouseEvent</span> *<i>event</i>)</h3>
+<!-- @@@mouseReleaseEvent -->
+<!-- $$$moveDragDropObject[overload1]$$$moveDragDropObjectconstQPoint&GridDragDropObject* -->
+<h3 class="fn" id="moveDragDropObject"><a name="moveDragDropObject"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">moveDragDropObject</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>, <span class="type">GridDragDropObject</span> *<i>object</i>)</h3>
+<!-- @@@moveDragDropObject -->
+<!-- $$$overGP[overload1]$$$overGP -->
+<h3 class="fn" id="overGP"><a name="overGP"></a><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">overGP</span>() const</h3>
+<!-- @@@overGP -->
+<!-- $$$paintEvent[overload1]$$$paintEventQPaintEvent* -->
+<h3 class="fn" id="paintEvent"><a name="paintEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">paintEvent</span>(<i>QPaintEvent *</i>)</h3>
+<!-- @@@paintEvent -->
+<!-- $$$pressedGP[overload1]$$$pressedGP -->
+<h3 class="fn" id="pressedGP"><a name="pressedGP"></a><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">pressedGP</span>() const</h3>
+<p><b>See also </b><a href="graphiccontrol.html#setPressedGP">setPressedGP</a>().</p>
+<!-- @@@pressedGP -->
+<!-- $$$resizeEvent[overload1]$$$resizeEventQResizeEvent* -->
+<h3 class="fn" id="resizeEvent"><a name="resizeEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">resizeEvent</span>(<i>QResizeEvent *</i>)</h3>
+<!-- @@@resizeEvent -->
+<!-- $$$rootPrimitive[overload1]$$$rootPrimitive -->
+<h3 class="fn" id="rootPrimitive"><a name="rootPrimitive"></a><code>[protected] </code><span class="type">GraphicPrimitive</span> *GraphicControl::<span class="name">rootPrimitive</span>() const</h3>
+<!-- @@@rootPrimitive -->
+<!-- $$$setActiveGP[overload1]$$$setActiveGPGraphicPrimitive* -->
+<h3 class="fn" id="setActiveGP"><a name="setActiveGP"></a><code>[protected] </code><span class="type">void</span> GraphicControl::<span class="name">setActiveGP</span>(<span class="type">GraphicPrimitive</span> *<i>gp</i>)</h3>
+<p><b>See also </b><a href="graphiccontrol.html#activeGP">activeGP</a>().</p>
+<!-- @@@setActiveGP -->
+<!-- $$$setFocusGP[overload1]$$$setFocusGPGraphicPrimitive*Qt::FocusReason -->
+<h3 class="fn" id="setFocusGP"><a name="setFocusGP"></a><span class="type">void</span> GraphicControl::<span class="name">setFocusGP</span>(<span class="type">GraphicPrimitive</span> *<i>gp</i>, <span class="type">Qt::FocusReason</span> <i>reason</i> = Qt::OtherFocusReason)</h3>
+<!-- @@@setFocusGP -->
+<!-- $$$setPressedGP[overload1]$$$setPressedGPGraphicPrimitive* -->
+<h3 class="fn" id="setPressedGP"><a name="setPressedGP"></a><span class="type">void</span> GraphicControl::<span class="name">setPressedGP</span>(<span class="type">GraphicPrimitive</span> *<i>gp</i>)</h3>
+<p><b>See also </b><a href="graphiccontrol.html#pressedGP">pressedGP</a>().</p>
+<!-- @@@setPressedGP -->
+<!-- $$$setRoot[overload1]$$$setRootGraphicPrimitive* -->
+<h3 class="fn" id="setRoot"><a name="setRoot"></a><code>[protected] </code><span class="type">void</span> GraphicControl::<span class="name">setRoot</span>(<span class="type">GraphicPrimitive</span> *<i>root</i>)</h3>
+<!-- @@@setRoot -->
+<!-- $$$stopDragDrop[overload1]$$$stopDragDrop -->
+<h3 class="fn" id="stopDragDrop"><a name="stopDragDrop"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">stopDragDrop</span>()</h3>
+<!-- @@@stopDragDrop -->
+<!-- $$$updateLayout[overload1]$$$updateLayout -->
+<h3 class="fn" id="updateLayout"><a name="updateLayout"></a><span class="type">void</span> GraphicControl::<span class="name">updateLayout</span>()</h3>
+<!-- @@@updateLayout -->
+<!-- $$$wheelEvent[overload1]$$$wheelEventQWheelEvent* -->
+<h3 class="fn" id="wheelEvent"><a name="wheelEvent"></a><code>[virtual protected] </code><span class="type">void</span> GraphicControl::<span class="name">wheelEvent</span>(<i>QWheelEvent *</i>)</h3>
+<!-- @@@wheelEvent -->
+<!-- $$$widgetFocusIn[overload1]$$$widgetFocusInQWidget*QFocusEvent* -->
+<h3 class="fn" id="widgetFocusIn"><a name="widgetFocusIn"></a><code>[protected] </code><span class="type">void</span> GraphicControl::<span class="name">widgetFocusIn</span>(<span class="type">QWidget</span> *<i>widget</i>, <span class="type">QFocusEvent</span> *<i>e</i>)</h3>
+<!-- @@@widgetFocusIn -->
+<!-- $$$widgetFocusOut[overload1]$$$widgetFocusOutQWidget*QFocusEvent* -->
+<h3 class="fn" id="widgetFocusOut"><a name="widgetFocusOut"></a><code>[protected] </code><span class="type">void</span> GraphicControl::<span class="name">widgetFocusOut</span>(<span class="type">QWidget</span> *<i>widget</i>, <span class="type">QFocusEvent</span> *<i>e</i>)</h3>
+<!-- @@@widgetFocusOut -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

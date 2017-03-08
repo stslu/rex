@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridEditors.cpp -->
+  <title>EditorValidationEventArgs Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>EditorValidationEventArgs</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">EditorValidationEventArgs Class</h1>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;EditorValidationEventArgs&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> BaseEventArgs</td></tr></table></div><ul>
+<li><a href="editorvalidationeventargs-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#EditorValidationEventArgs">EditorValidationEventArgs</a></b>(GridEditor *<i>editor</i>, const QVariant &amp;<i>editingValue</i>, const QVariant &amp;<i>editValue</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#dataBinding">dataBinding</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QVariant &amp;</td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#editValue">editValue</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QVariant &amp;</td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#editingValue">editingValue</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp;</td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#errorHint">errorHint</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#isValueValid">isValueValid</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#modelIndex">modelIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#setEditingValue">setEditingValue</a></b>(const QVariant &amp;<i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#setErrorHint">setErrorHint</a></b>(const QString &amp;<i>hint</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="editorvalidationeventargs.html#setValueValid">setValueValid</a></b>(bool <i>valid</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">2 public functions inherited from <a href="baseeventargs.html#public-functions">BaseEventArgs</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$EditorValidationEventArgs-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+</div>
+<!-- @@@EditorValidationEventArgs -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$EditorValidationEventArgs[overload1]$$$EditorValidationEventArgsGridEditor*constQVariant&constQVariant& -->
+<h3 class="fn" id="EditorValidationEventArgs"><a name="EditorValidationEventArgs"></a>EditorValidationEventArgs::<span class="name">EditorValidationEventArgs</span>(<span class="type"><a href="grideditor.html">GridEditor</a></span> *<i>editor</i>, const <span class="type">QVariant</span> &amp;<i>editingValue</i>, const <span class="type">QVariant</span> &amp;<i>editValue</i>)</h3>
+<p>Default constructs an instance of EditorValidationEventArgs.</p><!-- @@@EditorValidationEventArgs -->
+<!-- $$$dataBinding[overload1]$$$dataBinding -->
+<h3 class="fn" id="dataBinding"><a name="dataBinding"></a><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *EditorValidationEventArgs::<span class="name">dataBinding</span>() const</h3>
+<!-- @@@dataBinding -->
+<!-- $$$editValue[overload1]$$$editValue -->
+<h3 class="fn" id="editValue"><a name="editValue"></a>const <span class="type">QVariant</span> &amp;EditorValidationEventArgs::<span class="name">editValue</span>() const</h3>
+<!-- @@@editValue -->
+<!-- $$$editingValue[overload1]$$$editingValue -->
+<h3 class="fn" id="editingValue"><a name="editingValue"></a>const <span class="type">QVariant</span> &amp;EditorValidationEventArgs::<span class="name">editingValue</span>() const</h3>
+<p><b>See also </b><a href="editorvalidationeventargs.html#setEditingValue">setEditingValue</a>().</p>
+<!-- @@@editingValue -->
+<!-- $$$errorHint[overload1]$$$errorHint -->
+<h3 class="fn" id="errorHint"><a name="errorHint"></a>const <span class="type">QString</span> &amp;EditorValidationEventArgs::<span class="name">errorHint</span>() const</h3>
+<p><b>See also </b><a href="editorvalidationeventargs.html#setErrorHint">setErrorHint</a>().</p>
+<!-- @@@errorHint -->
+<!-- $$$isValueValid[overload1]$$$isValueValid -->
+<h3 class="fn" id="isValueValid"><a name="isValueValid"></a><span class="type">bool</span> EditorValidationEventArgs::<span class="name">isValueValid</span>() const</h3>
+<!-- @@@isValueValid -->
+<!-- $$$modelIndex[overload1]$$$modelIndex -->
+<h3 class="fn" id="modelIndex"><a name="modelIndex"></a><span class="type">QModelIndex</span> EditorValidationEventArgs::<span class="name">modelIndex</span>() const</h3>
+<!-- @@@modelIndex -->
+<!-- $$$setEditingValue[overload1]$$$setEditingValueconstQVariant& -->
+<h3 class="fn" id="setEditingValue"><a name="setEditingValue"></a><span class="type">void</span> EditorValidationEventArgs::<span class="name">setEditingValue</span>(const <span class="type">QVariant</span> &amp;<i>value</i>)</h3>
+<p><b>See also </b><a href="editorvalidationeventargs.html#editingValue">editingValue</a>().</p>
+<!-- @@@setEditingValue -->
+<!-- $$$setErrorHint[overload1]$$$setErrorHintconstQString& -->
+<h3 class="fn" id="setErrorHint"><a name="setErrorHint"></a><span class="type">void</span> EditorValidationEventArgs::<span class="name">setErrorHint</span>(const <span class="type">QString</span> &amp;<i>hint</i>)</h3>
+<p><b>See also </b><a href="editorvalidationeventargs.html#errorHint">errorHint</a>().</p>
+<!-- @@@setErrorHint -->
+<!-- $$$setValueValid[overload1]$$$setValueValidbool -->
+<h3 class="fn" id="setValueValid"><a name="setValueValid"></a><span class="type">void</span> EditorValidationEventArgs::<span class="name">setValueValid</span>(<span class="type">bool</span> <i>valid</i>)</h3>
+<p><b>See also </b><a href="editorvalidationeventargs.html#isValueValid">isValueValid</a>().</p>
+<!-- @@@setValueValid -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

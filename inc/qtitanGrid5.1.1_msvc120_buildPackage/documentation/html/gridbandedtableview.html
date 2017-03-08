@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtnbandedtableview.qdoc -->
+  <title>GridBandedTableView Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridBandedTableView</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#reimplemented-public-functions">Reimplemented Public Functions</a></li>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#reimplemented-protected-functions">Reimplemented Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridBandedTableView Class</h1>
+<!-- $$$GridBandedTableView-brief -->
+<p><a href="gridbandedtableview.html">GridBandedTableView</a> class is a variant of the view for the table data with complicated hierarchy of headers. View contains the usual columns, which are attached to the columns of the Qt model (as in the table view) and special columns known as bands. View can have an unlimited number of the bands. To an ordinary column appeared on the screen in this form of view, it should be added to the band column. One band column can contain multiple other bands. However, ordinary columns are located only in bands which do not holds other band columns. This scheme allows structured the headers of the tabulated data in a complex hierarchy. <a href="#details">More...</a></p>
+<!-- @@@GridBandedTableView -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridBandedTableView&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="gridtableview.html">GridTableView</a></td></tr></table></div><ul>
+<li><a href="gridbandedtableview-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#GridBandedTableView">GridBandedTableView</a></b>(Grid *<i>grid</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#dtor.GridBandedTableView">~GridBandedTableView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableBand *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#addBand">addBand</a></b>(const QString &amp;<i>caption</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridBandedTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#addColumn">addColumn</a></b>(const QString &amp;<i>modelColumnName</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridBandedTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#addColumn-1">addColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#bandCount">bandCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#columnRowCount">columnRowCount</a></b>(GridTableBand *<i>band</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createBandRow">createBandRow</a></b>(GridTableBand *<i>band</i>, int <i>bandIndex</i>, ColumnMovePosition <i>position</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createColumnRow">createColumnRow</a></b>(int <i>row</i>, GridBandedTableColumn *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableBand *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getBand">getBand</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getBottomLevelBands">getBottomLevelBands</a></b>(GridTableBand *<i>band</i>, GridTableBands &amp;<i>bands</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridTableBand *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getTopLevelBand">getTopLevelBand</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridBandedTableViewOptions &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#options">options</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#removeBand">removeBand</a></b>(int <i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#removeBands">removeBands</a></b>()</td></tr>
+</table></div>
+<a name="reimplemented-public-functions"></a>
+<h2 id="reimplemented-public-functions">Reimplemented Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#addColumns">addColumns</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#bestFitForView">bestFitForView</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getNextColumn">getNextColumn</a></b>(const GridDataTableColumn *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getPrevColumn">getPrevColumn</a></b>(const GridDataTableColumn *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#hasVisibleParent">hasVisibleParent</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#initialize">initialize</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#navigateDown">navigateDown</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#navigateUp">navigateUp</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+</table></div>
+<ul>
+<li class="fn">9 public functions inherited from <a href="gridtableview.html#public-functions">GridTableView</a></li>
+<li class="fn">79 public functions inherited from <a href="gridviewbase.html#public-functions">GridViewBase</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2 id="static-public-members">Static Public Members</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> GridBandedTableView *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#create">create</a></b>(Grid *<i>grid</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">1 static public member inherited from <a href="gridtableview.html#static-public-members">GridTableView</a></li>
+</ul>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#addNestedBand">addNestedBand</a></b>(GridTableBand *<i>band</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const GridTableBands &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#bands">bands</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#checkVerSizing">checkVerSizing</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#ensureRowValid">ensureRowValid</a></b>(GridTableBand *<i>band</i>, int <i>row</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getBandIndex">getBandIndex</a></b>(const GridTableBand *<i>band</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#parentBandChanged">parentBandChanged</a></b>(GridTableBand *<i>band</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#parentBandChanged-1">parentBandChanged</a></b>(GridBandedTableColumn *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#printBandHeader">printBandHeader</a></b>(QPainter &amp;<i>painter</i>, int &amp;<i>pageLength</i>, const int <i>origPageLength</i>, GridTableBand *<i>band</i>, GridBandedTableColumn *&amp;<i>startColumn</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#removeNestedBand">removeNestedBand</a></b>(GridTableBand *<i>band</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#setColumnRowIndex">setColumnRowIndex</a></b>(GridBandedTableColumn *<i>column</i>, int <i>rowIndex</i>)</td></tr>
+</table></div>
+<a name="reimplemented-protected-functions"></a>
+<h2 id="reimplemented-protected-functions">Reimplemented Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#checkHorSizing">checkHorSizing</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#checkMove">checkMove</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#checkRemove">checkRemove</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#columnVisibleChanged">columnVisibleChanged</a></b>(GridColumnBase *<i>columnBase</i>, bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#columnWidthChanged">columnWidthChanged</a></b>(GridColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createColumn">createColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableHeaderGraphic *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createHeaderPanel">createHeaderPanel</a></b>(GraphicPrimitive *<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewPrimitiveBase *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createLayout">createLayout</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewOptions *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#createOptions">createOptions</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual ColumnFixedKind </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnFixedKind">getColumnFixedKind</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QFont </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnFont">getColumnFont</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnHeight">getColumnHeight</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnIndex">getColumnIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnLine">getColumnLine</a></b>(const GridColumnBase *<i>column</i>, GridColumns &amp;<i>retval</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QPen </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnPen">getColumnPen</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnRowIndex">getColumnRowIndex</a></b>(const GridDataTableColumn *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getColumnViewWidth">getColumnViewWidth</a></b>(const GridTableColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getFixedColumns">getFixedColumns</a></b>(GridTableColumnBase *&amp;<i>left</i>, GridTableColumnBase *&amp;<i>right</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getMaximumVisualIndex">getMaximumVisualIndex</a></b>(const GridTableColumnBase *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getNextResizeColumn">getNextResizeColumn</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridTableColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getPreviousResizeColumn">getPreviousResizeColumn</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#getVisualIndex">getVisualIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#hasGroupingIndent">hasGroupingIndent</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#isHorizontalResizable">isHorizontalResizable</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#isVerticalResizable">isVerticalResizable</a></b>(const GridTableColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#loadLayoutFromStream">loadLayoutFromStream</a></b>(QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#loadTableColumnLayout">loadTableColumnLayout</a></b>(GridDataTableColumn *<i>column</i>, QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#printHeader">printHeader</a></b>(QPainter &amp;<i>painter</i>, int &amp;<i>pageLength</i>, int &amp;<i>itemIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#saveLayoutToStream">saveLayoutToStream</a></b>(QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#saveTableColumnLayout">saveTableColumnLayout</a></b>(const GridDataTableColumn *<i>column</i>, QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#setColumnFixedKind">setColumnFixedKind</a></b>(GridTableColumnBase *<i>columnBase</i>, ColumnFixedKind <i>kind</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#setModelToController">setModelToController</a></b>(QAbstractItemModel *<i>model</i>, const QModelIndex &amp;<i>parent</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridbandedtableview.html#setVisualIndex">setVisualIndex</a></b>(const GridColumnBase *<i>tableColumn</i>, int <i>visualIndex</i>)</td></tr>
+</table></div>
+<ul>
+<li class="fn">21 protected functions inherited from <a href="gridtableview.html#protected-functions">GridTableView</a></li>
+<li class="fn">71 protected functions inherited from <a href="gridviewbase.html#protected-functions">GridViewBase</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">19 public slots inherited from <a href="gridviewbase.html#public-slots">GridViewBase</a></li>
+<li class="fn">42 signals inherited from <a href="gridviewbase.html#signals">GridViewBase</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$GridBandedTableView-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="gridbandedtableview.html">GridBandedTableView</a> class is a variant of the view for the table data with complicated hierarchy of headers. View contains the usual columns, which are attached to the columns of the Qt model (as in the table view) and special columns known as bands. View can have an unlimited number of the bands. To an ordinary column appeared on the screen in this form of view, it should be added to the band column. One band column can contain multiple other bands. However, ordinary columns are located only in bands which do not holds other band columns. This scheme allows structured the headers of the tabulated data in a complex hierarchy.</p>
+<p>Columns and bands can be dragged between the other bands and columns by changing their visual index and parent location. While dragging, view ensures that have not been violated the proportions of the columns and bands. An instance of the view is automatically created by grid once the type of view will be specifying - BandedTableView. So later to obtain the pointer to the view instance you must use the method of the grid Qtitan::Grid::view() with the <a href="gridbandedtableview.html">GridBandedTableView</a> as a template parameter. For example:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>Grid<span class="operator">*</span> grid <span class="operator">=</span> <span class="keyword">new</span> Qtitan<span class="operator">::</span>Grid();
+<span class="type">QSqlTableModel</span><span class="operator">*</span> model <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlTableModel</span>(<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>);
+grid<span class="operator">-</span><span class="operator">&gt;</span>setViewType(Qtitan<span class="operator">::</span>Grid<span class="operator">::</span>BandedTableView);
+Qtitan<span class="operator">::</span>GridBandedTableView<span class="operator">*</span> view <span class="operator">=</span> grid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>Qtitan<span class="operator">::</span>GridBandedTableView<span class="operator">&gt;</span>();
+view<span class="operator">-</span><span class="operator">&gt;</span>setModel(model);</pre>
+</div>
+<!-- @@@GridBandedTableView -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridBandedTableView[overload1]$$$GridBandedTableViewGrid* -->
+<h3 class="fn" id="GridBandedTableView"><a name="GridBandedTableView"></a>GridBandedTableView::<span class="name">GridBandedTableView</span>(<span class="type"><a href="grid.html">Grid</a></span> *<i>grid</i>)</h3>
+<p>Default constructs an instance of GridBandedTableView.</p><!-- @@@GridBandedTableView -->
+<!-- $$$~GridBandedTableView[overload1]$$$~GridBandedTableView -->
+<h3 class="fn" id="dtor.GridBandedTableView"><a name="dtor.GridBandedTableView"></a><code>[virtual] </code>GridBandedTableView::<span class="name">~GridBandedTableView</span>()</h3>
+<p>Destroys the instance of GridBandedTableView. The destructor is virtual.</p><!-- @@@~GridBandedTableView -->
+<!-- $$$addBand[overload1]$$$addBandconstQString& -->
+<h3 class="fn" id="addBand"><a name="addBand"></a><span class="type"><a href="gridtableband.html">GridTableBand</a></span> *GridBandedTableView::<span class="name">addBand</span>(const <span class="type">QString</span> &amp;<i>caption</i>)</h3>
+<!-- @@@addBand -->
+<!-- $$$addColumn[overload1]$$$addColumnconstQString&constQString& -->
+<h3 class="fn" id="addColumn"><a name="addColumn"></a><span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *GridBandedTableView::<span class="name">addColumn</span>(const <span class="type">QString</span> &amp;<i>modelColumnName</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$addColumn$$$addColumnintconstQString& -->
+<h3 class="fn" id="addColumn-1"><a name="addColumn-1"></a><span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *GridBandedTableView::<span class="name">addColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$addColumns[overload1]$$$addColumns -->
+<h3 class="fn" id="addColumns"><a name="addColumns"></a><code>[virtual] </code><span class="type">void</span> GridBandedTableView::<span class="name">addColumns</span>()</h3>
+<!-- @@@addColumns -->
+<!-- $$$addNestedBand[overload1]$$$addNestedBandGridTableBand* -->
+<h3 class="fn" id="addNestedBand"><a name="addNestedBand"></a><code>[protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">addNestedBand</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>)</h3>
+<!-- @@@addNestedBand -->
+<!-- $$$bandCount[overload1]$$$bandCount -->
+<h3 class="fn" id="bandCount"><a name="bandCount"></a><span class="type">int</span> GridBandedTableView::<span class="name">bandCount</span>() const</h3>
+<!-- @@@bandCount -->
+<!-- $$$bands[overload1]$$$bands -->
+<h3 class="fn" id="bands"><a name="bands"></a><code>[protected] </code>const <span class="type">GridTableBands</span> &amp;GridBandedTableView::<span class="name">bands</span>() const</h3>
+<!-- @@@bands -->
+<!-- $$$bestFitForView[overload1]$$$bestFitForView -->
+<h3 class="fn" id="bestFitForView"><a name="bestFitForView"></a><code>[virtual] </code><span class="type">void</span> GridBandedTableView::<span class="name">bestFitForView</span>()</h3>
+<!-- @@@bestFitForView -->
+<!-- $$$checkHorSizing[overload1]$$$checkHorSizingconstGridColumnBase* -->
+<h3 class="fn" id="checkHorSizing"><a name="checkHorSizing"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">checkHorSizing</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkHorSizing -->
+<!-- $$$checkMove[overload1]$$$checkMoveconstGridColumnBase* -->
+<h3 class="fn" id="checkMove"><a name="checkMove"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">checkMove</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkMove -->
+<!-- $$$checkRemove[overload1]$$$checkRemoveconstGridColumnBase* -->
+<h3 class="fn" id="checkRemove"><a name="checkRemove"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">checkRemove</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkRemove -->
+<!-- $$$checkVerSizing[overload1]$$$checkVerSizingconstGridColumnBase* -->
+<h3 class="fn" id="checkVerSizing"><a name="checkVerSizing"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">checkVerSizing</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkVerSizing -->
+<!-- $$$columnRowCount[overload1]$$$columnRowCountGridTableBand* -->
+<h3 class="fn" id="columnRowCount"><a name="columnRowCount"></a><span class="type">int</span> GridBandedTableView::<span class="name">columnRowCount</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>) const</h3>
+<!-- @@@columnRowCount -->
+<!-- $$$columnVisibleChanged[overload1]$$$columnVisibleChangedGridColumnBase*bool -->
+<h3 class="fn" id="columnVisibleChanged"><a name="columnVisibleChanged"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">columnVisibleChanged</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">bool</span> <i>visible</i>)</h3>
+<!-- @@@columnVisibleChanged -->
+<!-- $$$columnWidthChanged[overload1]$$$columnWidthChangedGridColumnBase* -->
+<h3 class="fn" id="columnWidthChanged"><a name="columnWidthChanged"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">columnWidthChanged</span>(<span class="type">GridColumnBase</span> *<i>column</i>)</h3>
+<!-- @@@columnWidthChanged -->
+<!-- $$$create[overload1]$$$createGrid* -->
+<h3 class="fn" id="create"><a name="create"></a><code>[static] </code><span class="type"><a href="gridbandedtableview.html#GridBandedTableView">GridBandedTableView</a></span> *GridBandedTableView::<span class="name">create</span>(<span class="type"><a href="grid.html">Grid</a></span> *<i>grid</i>)</h3>
+<!-- @@@create -->
+<!-- $$$createBandRow[overload1]$$$createBandRowGridTableBand*intColumnMovePosition -->
+<h3 class="fn" id="createBandRow"><a name="createBandRow"></a><span class="type">void</span> GridBandedTableView::<span class="name">createBandRow</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>, <span class="type">int</span> <i>bandIndex</i>, <span class="type">ColumnMovePosition</span> <i>position</i>)</h3>
+<!-- @@@createBandRow -->
+<!-- $$$createColumn[overload1]$$$createColumnintconstQString& -->
+<h3 class="fn" id="createColumn"><a name="createColumn"></a><code>[virtual protected] </code><span class="type">GridColumnBase</span> *GridBandedTableView::<span class="name">createColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i>)</h3>
+<!-- @@@createColumn -->
+<!-- $$$createColumnRow[overload1]$$$createColumnRowintGridBandedTableColumn* -->
+<h3 class="fn" id="createColumnRow"><a name="createColumnRow"></a><span class="type">void</span> GridBandedTableView::<span class="name">createColumnRow</span>(<span class="type">int</span> <i>row</i>, <span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *<i>column</i>)</h3>
+<!-- @@@createColumnRow -->
+<!-- $$$createHeaderPanel[overload1]$$$createHeaderPanelGraphicPrimitive* -->
+<h3 class="fn" id="createHeaderPanel"><a name="createHeaderPanel"></a><code>[virtual protected] </code><span class="type">GridTableHeaderGraphic</span> *GridBandedTableView::<span class="name">createHeaderPanel</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createHeaderPanel -->
+<!-- $$$createLayout[overload1]$$$createLayout -->
+<h3 class="fn" id="createLayout"><a name="createLayout"></a><code>[virtual protected] </code><span class="type">GridViewPrimitiveBase</span> *GridBandedTableView::<span class="name">createLayout</span>()</h3>
+<!-- @@@createLayout -->
+<!-- $$$createOptions[overload1]$$$createOptions -->
+<h3 class="fn" id="createOptions"><a name="createOptions"></a><code>[virtual protected] </code><span class="type"><a href="gridviewoptions.html">GridViewOptions</a></span> *GridBandedTableView::<span class="name">createOptions</span>()</h3>
+<!-- @@@createOptions -->
+<!-- $$$ensureRowValid[overload1]$$$ensureRowValidGridTableBand*int -->
+<h3 class="fn" id="ensureRowValid"><a name="ensureRowValid"></a><code>[protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">ensureRowValid</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>, <span class="type">int</span> <i>row</i>)</h3>
+<!-- @@@ensureRowValid -->
+<!-- $$$getBand[overload1]$$$getBandint -->
+<h3 class="fn" id="getBand"><a name="getBand"></a><span class="type"><a href="gridtableband.html">GridTableBand</a></span> *GridBandedTableView::<span class="name">getBand</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<!-- @@@getBand -->
+<!-- $$$getBandIndex[overload1]$$$getBandIndexconstGridTableBand* -->
+<h3 class="fn" id="getBandIndex"><a name="getBandIndex"></a><code>[protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getBandIndex</span>(const <span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>) const</h3>
+<!-- @@@getBandIndex -->
+<!-- $$$getBottomLevelBands[overload1]$$$getBottomLevelBandsGridTableBand*GridTableBands& -->
+<h3 class="fn" id="getBottomLevelBands"><a name="getBottomLevelBands"></a><span class="type">void</span> GridBandedTableView::<span class="name">getBottomLevelBands</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>, <span class="type">GridTableBands</span> &amp;<i>bands</i>) const</h3>
+<!-- @@@getBottomLevelBands -->
+<!-- $$$getColumnFixedKind[overload1]$$$getColumnFixedKindconstGridTableColumnBase* -->
+<h3 class="fn" id="getColumnFixedKind"><a name="getColumnFixedKind"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html#ColumnFixedKind-enum">ColumnFixedKind</a></span> GridBandedTableView::<span class="name">getColumnFixedKind</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnFixedKind -->
+<!-- $$$getColumnFont[overload1]$$$getColumnFontconstGridColumnBase* -->
+<h3 class="fn" id="getColumnFont"><a name="getColumnFont"></a><code>[virtual protected] </code><span class="type">QFont</span> GridBandedTableView::<span class="name">getColumnFont</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnFont -->
+<!-- $$$getColumnHeight[overload1]$$$getColumnHeightconstGridColumnBase* -->
+<h3 class="fn" id="getColumnHeight"><a name="getColumnHeight"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getColumnHeight</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnHeight -->
+<!-- $$$getColumnIndex[overload1]$$$getColumnIndexconstGridColumnBase* -->
+<h3 class="fn" id="getColumnIndex"><a name="getColumnIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getColumnIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnIndex -->
+<!-- $$$getColumnLine[overload1]$$$getColumnLineconstGridColumnBase*GridColumns& -->
+<h3 class="fn" id="getColumnLine"><a name="getColumnLine"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">getColumnLine</span>(const <span class="type">GridColumnBase</span> *<i>column</i>, <span class="type"><a href="gridviewbase.html#GridColumns-typedef">GridColumns</a></span> &amp;<i>retval</i>) const</h3>
+<!-- @@@getColumnLine -->
+<!-- $$$getColumnPen[overload1]$$$getColumnPenconstGridColumnBase* -->
+<h3 class="fn" id="getColumnPen"><a name="getColumnPen"></a><code>[virtual protected] </code><span class="type">QPen</span> GridBandedTableView::<span class="name">getColumnPen</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnPen -->
+<!-- $$$getColumnRowIndex[overload1]$$$getColumnRowIndexconstGridDataTableColumn* -->
+<h3 class="fn" id="getColumnRowIndex"><a name="getColumnRowIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getColumnRowIndex</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>) const</h3>
+<!-- @@@getColumnRowIndex -->
+<!-- $$$getColumnViewWidth[overload1]$$$getColumnViewWidthconstGridTableColumnBase* -->
+<h3 class="fn" id="getColumnViewWidth"><a name="getColumnViewWidth"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getColumnViewWidth</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>column</i>)</h3>
+<!-- @@@getColumnViewWidth -->
+<!-- $$$getFixedColumns[overload1]$$$getFixedColumnsGridTableColumnBase*&GridTableColumnBase*& -->
+<h3 class="fn" id="getFixedColumns"><a name="getFixedColumns"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">getFixedColumns</span>(<span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *&amp;<i>left</i>, <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *&amp;<i>right</i>) const</h3>
+<!-- @@@getFixedColumns -->
+<!-- $$$getMaximumVisualIndex[overload1]$$$getMaximumVisualIndexconstGridTableColumnBase* -->
+<h3 class="fn" id="getMaximumVisualIndex"><a name="getMaximumVisualIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getMaximumVisualIndex</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getMaximumVisualIndex -->
+<!-- $$$getNextColumn[overload1]$$$getNextColumnconstGridDataTableColumn* -->
+<h3 class="fn" id="getNextColumn"><a name="getNextColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridBandedTableView::<span class="name">getNextColumn</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getNextColumn -->
+<!-- $$$getNextResizeColumn[overload1]$$$getNextResizeColumnconstGridTableColumnBase* -->
+<h3 class="fn" id="getNextResizeColumn"><a name="getNextResizeColumn"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *GridBandedTableView::<span class="name">getNextResizeColumn</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getNextResizeColumn -->
+<!-- $$$getPrevColumn[overload1]$$$getPrevColumnconstGridDataTableColumn* -->
+<h3 class="fn" id="getPrevColumn"><a name="getPrevColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridBandedTableView::<span class="name">getPrevColumn</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getPrevColumn -->
+<!-- $$$getPreviousResizeColumn[overload1]$$$getPreviousResizeColumnconstGridTableColumnBase* -->
+<h3 class="fn" id="getPreviousResizeColumn"><a name="getPreviousResizeColumn"></a><code>[virtual protected] </code><span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *GridBandedTableView::<span class="name">getPreviousResizeColumn</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getPreviousResizeColumn -->
+<!-- $$$getTopLevelBand[overload1]$$$getTopLevelBandconstGridTableColumnBase* -->
+<h3 class="fn" id="getTopLevelBand"><a name="getTopLevelBand"></a><span class="type"><a href="gridtableband.html">GridTableBand</a></span> *GridBandedTableView::<span class="name">getTopLevelBand</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@getTopLevelBand -->
+<!-- $$$getVisualIndex[overload1]$$$getVisualIndexconstGridColumnBase* -->
+<h3 class="fn" id="getVisualIndex"><a name="getVisualIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">getVisualIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getVisualIndex -->
+<!-- $$$hasGroupingIndent[overload1]$$$hasGroupingIndentconstGridColumnBase* -->
+<h3 class="fn" id="hasGroupingIndent"><a name="hasGroupingIndent"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">hasGroupingIndent</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@hasGroupingIndent -->
+<!-- $$$hasVisibleParent[overload1]$$$hasVisibleParentconstGridColumnBase* -->
+<h3 class="fn" id="hasVisibleParent"><a name="hasVisibleParent"></a><code>[virtual] </code><span class="type">bool</span> GridBandedTableView::<span class="name">hasVisibleParent</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@hasVisibleParent -->
+<!-- $$$initialize[overload1]$$$initialize -->
+<h3 class="fn" id="initialize"><a name="initialize"></a><code>[virtual] </code><span class="type">void</span> GridBandedTableView::<span class="name">initialize</span>()</h3>
+<!-- @@@initialize -->
+<!-- $$$isHorizontalResizable[overload1]$$$isHorizontalResizableconstGridTableColumnBase* -->
+<h3 class="fn" id="isHorizontalResizable"><a name="isHorizontalResizable"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">isHorizontalResizable</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@isHorizontalResizable -->
+<!-- $$$isVerticalResizable[overload1]$$$isVerticalResizableconstGridTableColumnBase* -->
+<h3 class="fn" id="isVerticalResizable"><a name="isVerticalResizable"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">isVerticalResizable</span>(const <span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>) const</h3>
+<!-- @@@isVerticalResizable -->
+<!-- $$$loadLayoutFromStream[overload1]$$$loadLayoutFromStreamQXmlStreamReader* -->
+<h3 class="fn" id="loadLayoutFromStream"><a name="loadLayoutFromStream"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">loadLayoutFromStream</span>(<span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadLayoutFromStream -->
+<!-- $$$loadTableColumnLayout[overload1]$$$loadTableColumnLayoutGridDataTableColumn*QXmlStreamReader* -->
+<h3 class="fn" id="loadTableColumnLayout"><a name="loadTableColumnLayout"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">loadTableColumnLayout</span>(<span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadTableColumnLayout -->
+<!-- $$$navigateDown[overload1]$$$navigateDownQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateDown"><a name="navigateDown"></a><code>[virtual] </code><span class="type">void</span> GridBandedTableView::<span class="name">navigateDown</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateDown -->
+<!-- $$$navigateUp[overload1]$$$navigateUpQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateUp"><a name="navigateUp"></a><code>[virtual] </code><span class="type">void</span> GridBandedTableView::<span class="name">navigateUp</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateUp -->
+<!-- $$$options[overload1]$$$options -->
+<h3 class="fn" id="options"><a name="options"></a><span class="type"><a href="gridbandedtableviewoptions.html">GridBandedTableViewOptions</a></span> &amp;GridBandedTableView::<span class="name">options</span>() const</h3>
+<!-- @@@options -->
+<!-- $$$parentBandChanged[overload1]$$$parentBandChangedGridTableBand* -->
+<h3 class="fn" id="parentBandChanged"><a name="parentBandChanged"></a><code>[protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">parentBandChanged</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>)</h3>
+<!-- @@@parentBandChanged -->
+<!-- $$$parentBandChanged$$$parentBandChangedGridBandedTableColumn* -->
+<h3 class="fn" id="parentBandChanged-1"><a name="parentBandChanged-1"></a><code>[protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">parentBandChanged</span>(<span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *<i>column</i>)</h3>
+<!-- @@@parentBandChanged -->
+<!-- $$$printBandHeader[overload1]$$$printBandHeaderQPainter&int&constintGridTableBand*GridBandedTableColumn*& -->
+<h3 class="fn" id="printBandHeader"><a name="printBandHeader"></a><code>[protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">printBandHeader</span>(<span class="type">QPainter</span> &amp;<i>painter</i>, <span class="type">int</span> &amp;<i>pageLength</i>, const <span class="type">int</span> <i>origPageLength</i>, <span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>, <span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *&amp;<i>startColumn</i>)</h3>
+<!-- @@@printBandHeader -->
+<!-- $$$printHeader[overload1]$$$printHeaderQPainter&int&int& -->
+<h3 class="fn" id="printHeader"><a name="printHeader"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">printHeader</span>(<span class="type">QPainter</span> &amp;<i>painter</i>, <span class="type">int</span> &amp;<i>pageLength</i>, <span class="type">int</span> &amp;<i>itemIndex</i>)</h3>
+<!-- @@@printHeader -->
+<!-- $$$removeBand[overload1]$$$removeBandint -->
+<h3 class="fn" id="removeBand"><a name="removeBand"></a><span class="type">void</span> GridBandedTableView::<span class="name">removeBand</span>(<span class="type">int</span> <i>index</i>)</h3>
+<!-- @@@removeBand -->
+<!-- $$$removeBands[overload1]$$$removeBands -->
+<h3 class="fn" id="removeBands"><a name="removeBands"></a><span class="type">void</span> GridBandedTableView::<span class="name">removeBands</span>()</h3>
+<!-- @@@removeBands -->
+<!-- $$$removeNestedBand[overload1]$$$removeNestedBandGridTableBand* -->
+<h3 class="fn" id="removeNestedBand"><a name="removeNestedBand"></a><code>[protected] </code><span class="type">int</span> GridBandedTableView::<span class="name">removeNestedBand</span>(<span class="type"><a href="gridtableband.html">GridTableBand</a></span> *<i>band</i>)</h3>
+<!-- @@@removeNestedBand -->
+<!-- $$$saveLayoutToStream[overload1]$$$saveLayoutToStreamQXmlStreamWriter* -->
+<h3 class="fn" id="saveLayoutToStream"><a name="saveLayoutToStream"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">saveLayoutToStream</span>(<span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveLayoutToStream -->
+<!-- $$$saveTableColumnLayout[overload1]$$$saveTableColumnLayoutconstGridDataTableColumn*QXmlStreamWriter* -->
+<h3 class="fn" id="saveTableColumnLayout"><a name="saveTableColumnLayout"></a><code>[virtual protected] </code><span class="type">bool</span> GridBandedTableView::<span class="name">saveTableColumnLayout</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveTableColumnLayout -->
+<!-- $$$setColumnFixedKind[overload1]$$$setColumnFixedKindGridTableColumnBase*ColumnFixedKind -->
+<h3 class="fn" id="setColumnFixedKind"><a name="setColumnFixedKind"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">setColumnFixedKind</span>(<span class="type"><a href="gridtablecolumnbase.html">GridTableColumnBase</a></span> *<i>columnBase</i>, <span class="type"><a href="gridtablecolumnbase.html#ColumnFixedKind-enum">ColumnFixedKind</a></span> <i>kind</i>)</h3>
+<!-- @@@setColumnFixedKind -->
+<!-- $$$setColumnRowIndex[overload1]$$$setColumnRowIndexGridBandedTableColumn*int -->
+<h3 class="fn" id="setColumnRowIndex"><a name="setColumnRowIndex"></a><code>[protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">setColumnRowIndex</span>(<span class="type"><a href="gridbandedtablecolumn.html">GridBandedTableColumn</a></span> *<i>column</i>, <span class="type">int</span> <i>rowIndex</i>)</h3>
+<!-- @@@setColumnRowIndex -->
+<!-- $$$setModelToController[overload1]$$$setModelToControllerQAbstractItemModel*constQModelIndex& -->
+<h3 class="fn" id="setModelToController"><a name="setModelToController"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">setModelToController</span>(<span class="type">QAbstractItemModel</span> *<i>model</i>, const <span class="type">QModelIndex</span> &amp;<i>parent</i>)</h3>
+<!-- @@@setModelToController -->
+<!-- $$$setVisualIndex[overload1]$$$setVisualIndexconstGridColumnBase*int -->
+<h3 class="fn" id="setVisualIndex"><a name="setVisualIndex"></a><code>[virtual protected] </code><span class="type">void</span> GridBandedTableView::<span class="name">setVisualIndex</span>(const <span class="type">GridColumnBase</span> *<i>tableColumn</i>, <span class="type">int</span> <i>visualIndex</i>)</h3>
+<!-- @@@setVisualIndex -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

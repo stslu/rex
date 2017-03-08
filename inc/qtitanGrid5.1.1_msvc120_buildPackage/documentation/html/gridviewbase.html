@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- qtngirdtableview.qdoc -->
+  <title>GridViewBase Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridViewBase</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridViewBase Class</h1>
+<!-- $$$GridViewBase-brief -->
+<p>The <a href="gridviewbase.html">GridViewBase</a> class - base class of the view used in the grid. It contains a set of properties and methods for control the behavior of the view, which can display data from an abstract Qt model. <a href="gridviewbase.html">GridViewBase</a> class is the ancestor for all table view - <a href="gridtableview.html">GridTableView</a> and <a href="gridbandedtableview.html">GridBandedTableView</a>. <a href="#details">More...</a></p>
+<!-- @@@GridViewBase -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridViewBase&gt;</span>
+</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="gridcardview.html">GridCardView</a> and <a href="gridtableview.html">GridTableView</a></p>
+</td></tr></table></div><ul>
+<li><a href="gridviewbase-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> typedef </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#GridColumns-typedef">GridColumns</a></b></td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#GridViewBase">GridViewBase</a></b>(Grid *<i>grid</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#dtor.GridViewBase">~GridViewBase</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QHash&lt;GridActionType, QAction *&gt; &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#actions">actions</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridEditor *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#activeEditor">activeEditor</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#addColumn">addColumn</a></b>(const QString &amp;<i>modelColumnName</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#addColumn-1">addColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i> = QString())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#addColumns">addColumns</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#beginUpdate">beginUpdate</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#clearGrouping">clearGrouping</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#closeEditor">closeEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#closeNewRowEditor">closeNewRowEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#deselectAll">deselectAll</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#endUpdate">endUpdate</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridFilter *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#filter">filter</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusedColumnIndex">focusedColumnIndex</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusedRow">focusedRow</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusedRowIndex">focusedRowIndex</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumn">getColumn</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnByCaption">getColumnByCaption</a></b>(const QString &amp;<i>caption</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnByModelColumn">getColumnByModelColumn</a></b>(int <i>modelColumn</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnByModelColumnName">getColumnByModelColumnName</a></b>(const QString &amp;<i>modelColumnName</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnCount">getColumnCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QFont </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnFont">getColumnFont</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnHeight">getColumnHeight</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QPen </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnPen">getColumnPen</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getDataBinding">getDataBinding</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getFirstColumn">getFirstColumn</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getLastColumn">getLastColumn</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getNext">getNext</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getNextColumn">getNextColumn</a></b>(const GridDataTableColumn *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridDataTableColumn *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getPrevColumn">getPrevColumn</a></b>(const GridDataTableColumn *<i>anchor</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getPrevious">getPrevious</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getRow">getRow</a></b>(const QModelIndex &amp;<i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getRow-1">getRow</a></b>(int <i>rowIndex</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getRowCount">getRowCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> Grid *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#grid">grid</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupColumnByIndex">groupColumnByIndex</a></b>(int <i>groupIndex</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupColumnCount">groupColumnCount</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const GridColumns &amp;</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groups">groups</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hasVisibleParent">hasVisibleParent</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hideEditor">hideEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hideNewRowEditor">hideNewRowEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isColumnVisible">isColumnVisible</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isEditing">isEditing</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isModified">isModified</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isNewRowEditing">isNewRowEditing</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isRowShowing">isRowShowing</a></b>(GridRow *<i>row</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridViewPrimitiveBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#layout">layout</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QAbstractItemModel *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#model">model</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelController *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#modelController">modelController</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateBacktab">navigateBacktab</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateDown">navigateDown</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateLeft">navigateLeft</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigatePageDown">navigatePageDown</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigatePageUp">navigatePageUp</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateRight">navigateRight</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateTab">navigateTab</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#navigateUp">navigateUp</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridViewOptions *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#optionsref">optionsref</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#postEditor">postEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#print">print</a></b>(QPrinter *<i>printer</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#removeColumn">removeColumn</a></b>(int <i>index</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#removeColumns">removeColumns</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#removeRow">removeRow</a></b>(GridRow *<i>row</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#removeRows">removeRows</a></b>(GridRow *<i>row</i>, int <i>count</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#requestUpdateLayout">requestUpdateLayout</a></b>(bool <i>showZoomIndicator</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#scrollToIndex">scrollToIndex</a></b>(const QModelIndex &amp;<i>index</i>, bool <i>topPosition</i> = true)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#scrollToRow">scrollToRow</a></b>(GridRow *<i>row</i>, bool <i>firstPosition</i> = true)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectAll">selectAll</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectRange">selectRange</a></b>(int <i>firstRowIndex</i>, int <i>lastRowIndex</i>, int <i>firstColumnIndex</i>, int <i>lastColumnIndex</i>, const SelectionOperation &amp;<i>operation</i> = Qtitan::Select)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectRow">selectRow</a></b>(int <i>rowIndex</i>, const SelectionOperation &amp;<i>operation</i> = Qtitan::Select)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectRowRange">selectRowRange</a></b>(int <i>firstRowIndex</i>, int <i>lastRowIndex</i>, const SelectionOperation &amp;<i>operation</i> = Qtitan::Select)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridSelection *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selection">selection</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setCellFocus">setCellFocus</a></b>(int <i>rowIndex</i>, int <i>columnIndex</i>, Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier, const GridEditorActivationPolicyFlag &amp;<i>activationFlag</i> = NoPolicy)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setFocusedColumnIndex">setFocusedColumnIndex</a></b>(int <i>columnIndex</i>, Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier, GridEditorActivationPolicyFlag <i>flag</i> = NoPolicy)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setFocusedRowIndex">setFocusedRowIndex</a></b>(int <i>rowIndex</i>, Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier, GridEditorActivationPolicyFlag <i>flag</i> = NoPolicy)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setModel">setModel</a></b>(QAbstractItemModel *<i>model</i>, QModelIndex <i>parent</i> = QModelIndex())</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showEditor">showEditor</a></b>(GridEditorActivationPolicyFlag <i>policyFlag</i> = NoPolicy)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showNewRowEditor">showNewRowEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showSummaryContextMenu">showSummaryContextMenu</a></b>(const QPoint &amp;<i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#validateEditor">validateEditor</a></b>()</td></tr>
+</table></div>
+<a name="public-slots"></a>
+<h2 id="public-slots">Public Slots</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#bestFit">bestFit</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#collapseAll">collapseAll</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#executeFilterDialog">executeFilterDialog</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#expandAll">expandAll</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#findNext">findNext</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#findPrevious">findPrevious</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hideFieldChooser">hideFieldChooser</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hideFilterPanel">hideFilterPanel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hideFindPanel">hideFindPanel</a></b>(bool <i>cancel</i> = false)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isFieldChooserVisible">isFieldChooserVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isFindPanelVisible">isFindPanelVisible</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#printAreaRequested">printAreaRequested</a></b>(QPrinter *<i>printer</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#printPreview">printPreview</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showContextMenu">showContextMenu</a></b>(const QPoint &amp;<i>pos</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showFieldChooser">showFieldChooser</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showFilterPanel">showFilterPanel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showFindPanel">showFindPanel</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#zoomIn">zoomIn</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#zoomOut">zoomOut</a></b>()</td></tr>
+</table></div>
+<a name="signals"></a>
+<h2 id="signals">Signals</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#cellClicked">cellClicked</a></b>(CellClickEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#cellDblClicked">cellDblClicked</a></b>(CellClickEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#checkDragDrop">checkDragDrop</a></b>(DragDropArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnLinkActivated">columnLinkActivated</a></b>(const GridColumnBase *<i>column</i>, const QString &amp;<i>anchor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnsUpdated">columnsUpdated</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#contextMenu">contextMenu</a></b>(ContextMenuEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#dragDrop">dragDrop</a></b>(DragDropArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorCreated">editorCreated</a></b>(GridEditor *<i>editor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorDestroying">editorDestroying</a></b>(GridEditor *<i>editor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorEditModeChanged">editorEditModeChanged</a></b>(GridEditor *<i>editor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorLinkActivated">editorLinkActivated</a></b>(EditorLinkEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorModifying">editorModifying</a></b>(GridEditor *<i>editor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorRepositoryCreated">editorRepositoryCreated</a></b>(const GridDataTableColumn *<i>column</i>, GridEditorRepository *<i>repository</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorStarted">editorStarted</a></b>(EditorEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorStarting">editorStarting</a></b>(EditorEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorStoped">editorStoped</a></b>(EditorEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorStoping">editorStoping</a></b>(EditorEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorValidating">editorValidating</a></b>(EditorValidationEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#endDragDrop">endDragDrop</a></b>(DragArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#error">error</a></b>(ErrorEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#filterActivated">filterActivated</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#filterDeactivated">filterDeactivated</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusColumnChanged">focusColumnChanged</a></b>(int <i>oldColumnIndex</i>, int <i>columnIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusRowChanged">focusRowChanged</a></b>(int <i>oldRowIndex</i>, int <i>rowIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupCollapsed">groupCollapsed</a></b>(GridModelGroup *<i>group</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupCollapsing">groupCollapsing</a></b>(GridModelGroup *<i>group</i>, bool &amp;<i>allow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupExpanded">groupExpanded</a></b>(GridModelGroup *<i>group</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#groupExpanding">groupExpanding</a></b>(GridModelGroup *<i>group</i>, bool &amp;<i>allow</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#newRowEditorClicked">newRowEditorClicked</a></b>(NewRowEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#previewLinkActivated">previewLinkActivated</a></b>(const GridRow *<i>row</i>, const QString &amp;<i>anchor</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#relationConnecting">relationConnecting</a></b>(RelationEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#rowClicked">rowClicked</a></b>(RowClickEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#rowDblClicked">rowDblClicked</a></b>(RowClickEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#rowRemoving">rowRemoving</a></b>(RowRemovingEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectionChanged">selectionChanged</a></b>(GridSelection *<i>selection</i>, GridSelection *<i>oldSelection</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#startDragDrop">startDragDrop</a></b>(DragArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#startGrouping">startGrouping</a></b>(ColumnGroupArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#summaryCalculated">summaryCalculated</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#summaryFooterTextChanging">summaryFooterTextChanging</a></b>(SummaryTextEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#summaryGroupTextChanging">summaryGroupTextChanging</a></b>(SummaryGroupTextEventArgs *<i>args</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#zoomChanged">zoomChanged</a></b>(int <i>value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#zoomFactorChanged">zoomFactorChanged</a></b>(double <i>factor</i>)</td></tr>
+</table></div>
+<a name="protected-functions"></a>
+<h2 id="protected-functions">Protected Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#actualWidth">actualWidth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#applyChanges">applyChanges</a></b>(GridControllerChanges <i>controllerChanges</i>, GridViewStates <i>viewStates</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#bestFitForView">bestFitForView</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#buildColumnFilters">buildColumnFilters</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#cancelEditing">cancelEditing</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#changeGrouping">changeGrouping</a></b>(GridColumnBase *<i>columnBase</i>, int <i>groupIndex</i>, bool <i>caseSensitivity</i>, bool <i>localeAware</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#checkActivationEditorPolicy">checkActivationEditorPolicy</a></b>(GridEditorActivationPolicyFlag <i>policyFlag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#checkGrouping">checkGrouping</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#checkMove">checkMove</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#checkRemove">checkRemove</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnCreated">columnCreated</a></b>(GridColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnDestroying">columnDestroying</a></b>(GridColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnGroupIndex">columnGroupIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnVisibleChanged">columnVisibleChanged</a></b>(GridColumnBase *<i>columnBase</i>, bool <i>visible</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#columnWidthChanged">columnWidthChanged</a></b>(GridColumnBase *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#controllerChanged">controllerChanged</a></b>(GridControllerChanges <i>changes</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createActions">createActions</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridColumnBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createColumn">createColumn</a></b>(int <i>modelColumn</i>, const QString &amp;<i>caption</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridEditorRepository *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createEditorRepository">createEditorRepository</a></b>(const GridDataTableColumn *<i>column</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridFooterSummaryPrimitive *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createFooterSummaryPanel">createFooterSummaryPanel</a></b>(GraphicPrimitive *<i>parent</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewPrimitiveBase *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createLayout">createLayout</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridNativeDragObject *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createNativeDragDropObject">createNativeDragDropObject</a></b>(const QPoint &amp;<i>pos</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridViewOptions *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createOptions">createOptions</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridRowsPrimitiveAbstract *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createRowsGraphic">createRowsGraphic</a></b>(GraphicPrimitive *<i>parent</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QMenu *</td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#createSummaryContextMenu">createSummaryContextMenu</a></b>(QHash&lt;GridSummaryType, QAction *&gt; &amp;<i>summaryActions</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#destroyColumnFilters">destroyColumnFilters</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#destroyFilterDialog">destroyFilterDialog</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#doNavigateNextColumn">doNavigateNextColumn</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#doNavigateNextRow">doNavigateNextRow</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#doNavigatePrevColumn">doNavigatePrevColumn</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#doNavigatePrevRow">doNavigatePrevRow</a></b>(Qt::KeyboardModifiers <i>modifiers</i> = Qt::NoModifier)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorChanging">editorChanging</a></b>(const GridDataTableColumn *<i>column</i>, bool <i>reset</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#editorRepositoryChanged">editorRepositoryChanged</a></b>(GridEditorRepository *<i>repository</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#finalize">finalize</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusInEvent">focusInEvent</a></b>(<i>QFocusEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#focusOutEvent">focusOutEvent</a></b>(<i>QFocusEvent *</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnIndex">getColumnIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnLine">getColumnLine</a></b>(const GridColumnBase *<i>column</i>, GridColumns &amp;<i>retval</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnRowIndex">getColumnRowIndex</a></b>(const GridDataTableColumn *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnSortIndex">getColumnSortIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SortOrder </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getColumnSortOrder">getColumnSortOrder</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getRowGroupIndent">getRowGroupIndent</a></b>(GridRow *<i>gridRow</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual int </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#getVisualIndex">getVisualIndex</a></b>(const GridColumnBase *<i>columnBase</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#hasGroupingIndent">hasGroupingIndent</a></b>(const GridColumnBase *<i>column</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isLayoutLoading">isLayoutLoading</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#isUpdating">isUpdating</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#loadColumnBaseLayout">loadColumnBaseLayout</a></b>(GridColumnBase *<i>column</i>, QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#loadLayoutFromStream">loadLayoutFromStream</a></b>(QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#loadLayoutFromXML">loadLayoutFromXML</a></b>(QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#loadTableColumnLayout">loadTableColumnLayout</a></b>(GridDataTableColumn *<i>column</i>, QXmlStreamReader *<i>xmlreader</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#markColumnsChanged">markColumnsChanged</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#printHeader">printHeader</a></b>(QPainter &amp;<i>painter</i>, int &amp;<i>pageLength</i>, int &amp;<i>itemIndex</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#printPage">printPage</a></b>(GridRowsLayoutEngine *<i>rowsLayout</i>, const int <i>rowsHeight</i>, QPainter &amp;<i>painter</i>, QPrinter *<i>printer</i>, const bool <i>header</i>, const bool <i>footer</i>, QList&lt;PrinterColumnLayoutItem&gt; &amp;<i>items</i>, bool &amp;<i>isLastRowPrinted</i>, bool &amp;<i>isFooterPrinted</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#raiseError">raiseError</a></b>(const QString &amp;<i>error</i>, const QString &amp;<i>description</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#removeActions">removeActions</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#saveColumnBaseLayout">saveColumnBaseLayout</a></b>(const GridColumnBase *<i>column</i>, QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#saveLayoutToStream">saveLayoutToStream</a></b>(QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#saveLayoutToXML">saveLayoutToXML</a></b>(QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#saveTableColumnLayout">saveTableColumnLayout</a></b>(const GridDataTableColumn *<i>column</i>, QXmlStreamWriter *<i>xmlwriter</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectColumnRange">selectColumnRange</a></b>(GridRow *<i>firstRow</i>, GridRow *<i>lastRow</i>, const QList&lt;GridDataTableColumn *&gt; &amp;<i>columns</i>, const SelectionOperation &amp;<i>operation</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#selectCurrentRanges">selectCurrentRanges</a></b>(const SelectionRanges &amp;<i>ranges</i>, const SelectionOperation &amp;<i>operation</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setActionIcons">setActionIcons</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setColumnGroupIndex">setColumnGroupIndex</a></b>(GridColumnBase *<i>columnBase</i>, int <i>groupIndex</i>, bool <i>caseSensitivity</i>, bool <i>localeAware</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setColumnSortIndex">setColumnSortIndex</a></b>(const GridColumnBase *<i>columnBase</i>, int <i>sortIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setColumnSortOrder">setColumnSortOrder</a></b>(GridColumnBase *<i>columnBase</i>, SortOrder <i>order</i>, bool <i>caseSensitivity</i>, bool <i>localeAware</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#setVisualIndex">setVisualIndex</a></b>(const GridColumnBase *<i>tableColumn</i>, int <i>visualIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showColumnOnScreen">showColumnOnScreen</a></b>(int <i>oldColumnIndex</i>, int <i>columnIndex</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showEditorInternal">showEditorInternal</a></b>(GridEditorActivationPolicyFlag <i>policyFlag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#showRowOnScreen">showRowOnScreen</a></b>(int <i>oldRowIndex</i>, int <i>newRowIndex</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#textAlignmentChanged">textAlignmentChanged</a></b>(GridColumnBase *<i>columnBase</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="gridviewbase.html#updateSelection">updateSelection</a></b>(int <i>rowIndex</i>, int <i>columnIndex</i>, bool <i>focusChanged</i>, Qt::KeyboardModifiers <i>modifiers</i>, const GridEditorActivationPolicyFlag &amp;<i>activationFlag</i>)</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridViewBase-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="gridviewbase.html">GridViewBase</a> class - base class of the view used in the grid. It contains a set of properties and methods for control the behavior of the view, which can display data from an abstract Qt model. <a href="gridviewbase.html">GridViewBase</a> class is the ancestor for all table view - <a href="gridtableview.html">GridTableView</a> and <a href="gridbandedtableview.html">GridBandedTableView</a>.</p>
+</div>
+<!-- @@@GridViewBase -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$GridColumns -->
+<h3 class="fn" id="GridColumns-typedef"><a name="GridColumns-typedef"></a>typedef GridViewBase::<span class="name">GridColumns</span></h3>
+<!-- @@@GridColumns -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridViewBase[overload1]$$$GridViewBaseGrid* -->
+<h3 class="fn" id="GridViewBase"><a name="GridViewBase"></a>GridViewBase::<span class="name">GridViewBase</span>(<span class="type"><a href="grid.html">Grid</a></span> *<i>grid</i>)</h3>
+<p>Default constructs an instance of GridViewBase.</p><!-- @@@GridViewBase -->
+<!-- $$$~GridViewBase[overload1]$$$~GridViewBase -->
+<h3 class="fn" id="dtor.GridViewBase"><a name="dtor.GridViewBase"></a><code>[virtual] </code>GridViewBase::<span class="name">~GridViewBase</span>()</h3>
+<p>Destroys the instance of GridViewBase. The destructor is virtual.</p><!-- @@@~GridViewBase -->
+<!-- $$$actions[overload1]$$$actions -->
+<h3 class="fn" id="actions"><a name="actions"></a><span class="type">QHash</span>&lt;<span class="type">GridActionType</span>, <span class="type">QAction</span> *&gt; &amp;GridViewBase::<span class="name">actions</span>()</h3>
+<!-- @@@actions -->
+<!-- $$$activeEditor[overload1]$$$activeEditor -->
+<h3 class="fn" id="activeEditor"><a name="activeEditor"></a><span class="type"><a href="grideditor.html">GridEditor</a></span> *GridViewBase::<span class="name">activeEditor</span>() const</h3>
+<!-- @@@activeEditor -->
+<!-- $$$actualWidth[overload1]$$$actualWidth -->
+<h3 class="fn" id="actualWidth"><a name="actualWidth"></a><code>[protected] </code><span class="type">int</span> GridViewBase::<span class="name">actualWidth</span>() const</h3>
+<!-- @@@actualWidth -->
+<!-- $$$addColumn[overload1]$$$addColumnconstQString&constQString& -->
+<h3 class="fn" id="addColumn"><a name="addColumn"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">addColumn</span>(const <span class="type">QString</span> &amp;<i>modelColumnName</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$addColumn$$$addColumnintconstQString& -->
+<h3 class="fn" id="addColumn-1"><a name="addColumn-1"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">addColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i> = QString())</h3>
+<!-- @@@addColumn -->
+<!-- $$$addColumns[overload1]$$$addColumns -->
+<h3 class="fn" id="addColumns"><a name="addColumns"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">addColumns</span>()</h3>
+<!-- @@@addColumns -->
+<!-- $$$applyChanges[overload1]$$$applyChangesGridControllerChangesGridViewStates -->
+<h3 class="fn" id="applyChanges"><a name="applyChanges"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">applyChanges</span>(<span class="type">GridControllerChanges</span> <i>controllerChanges</i>, <span class="type">GridViewStates</span> <i>viewStates</i>)</h3>
+<!-- @@@applyChanges -->
+<!-- $$$beginUpdate[overload1]$$$beginUpdate -->
+<h3 class="fn" id="beginUpdate"><a name="beginUpdate"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">beginUpdate</span>()</h3>
+<!-- @@@beginUpdate -->
+<!-- $$$bestFit[overload1]$$$bestFit -->
+<h3 class="fn" id="bestFit"><a name="bestFit"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">bestFit</span>()</h3>
+<!-- @@@bestFit -->
+<!-- $$$bestFitForView[overload1]$$$bestFitForView -->
+<h3 class="fn" id="bestFitForView"><a name="bestFitForView"></a><code>[pure virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">bestFitForView</span>()</h3>
+<!-- @@@bestFitForView -->
+<!-- $$$buildColumnFilters[overload1]$$$buildColumnFilters -->
+<h3 class="fn" id="buildColumnFilters"><a name="buildColumnFilters"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">buildColumnFilters</span>()</h3>
+<!-- @@@buildColumnFilters -->
+<!-- $$$cancelEditing[overload1]$$$cancelEditing -->
+<h3 class="fn" id="cancelEditing"><a name="cancelEditing"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">cancelEditing</span>()</h3>
+<!-- @@@cancelEditing -->
+<!-- $$$cellClicked[overload1]$$$cellClickedCellClickEventArgs* -->
+<h3 class="fn" id="cellClicked"><a name="cellClicked"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">cellClicked</span>(<span class="type"><a href="cellclickeventargs.html">CellClickEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@cellClicked -->
+<!-- $$$cellDblClicked[overload1]$$$cellDblClickedCellClickEventArgs* -->
+<h3 class="fn" id="cellDblClicked"><a name="cellDblClicked"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">cellDblClicked</span>(<span class="type"><a href="cellclickeventargs.html">CellClickEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@cellDblClicked -->
+<!-- $$$changeGrouping[overload1]$$$changeGroupingGridColumnBase*intboolbool -->
+<h3 class="fn" id="changeGrouping"><a name="changeGrouping"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">changeGrouping</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">int</span> <i>groupIndex</i>, <span class="type">bool</span> <i>caseSensitivity</i>, <span class="type">bool</span> <i>localeAware</i>)</h3>
+<!-- @@@changeGrouping -->
+<!-- $$$checkActivationEditorPolicy[overload1]$$$checkActivationEditorPolicyGridEditorActivationPolicyFlag -->
+<h3 class="fn" id="checkActivationEditorPolicy"><a name="checkActivationEditorPolicy"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">checkActivationEditorPolicy</span>(<span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> <i>policyFlag</i>)</h3>
+<!-- @@@checkActivationEditorPolicy -->
+<!-- $$$checkDragDrop[overload1]$$$checkDragDropDragDropArgs* -->
+<h3 class="fn" id="checkDragDrop"><a name="checkDragDrop"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">checkDragDrop</span>(<span class="type"><a href="dragdropargs.html">DragDropArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@checkDragDrop -->
+<!-- $$$checkGrouping[overload1]$$$checkGroupingconstGridColumnBase* -->
+<h3 class="fn" id="checkGrouping"><a name="checkGrouping"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">checkGrouping</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkGrouping -->
+<!-- $$$checkMove[overload1]$$$checkMoveconstGridColumnBase* -->
+<h3 class="fn" id="checkMove"><a name="checkMove"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">checkMove</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkMove -->
+<!-- $$$checkRemove[overload1]$$$checkRemoveconstGridColumnBase* -->
+<h3 class="fn" id="checkRemove"><a name="checkRemove"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">checkRemove</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@checkRemove -->
+<!-- $$$clearGrouping[overload1]$$$clearGrouping -->
+<h3 class="fn" id="clearGrouping"><a name="clearGrouping"></a><span class="type">void</span> GridViewBase::<span class="name">clearGrouping</span>()</h3>
+<!-- @@@clearGrouping -->
+<!-- $$$closeEditor[overload1]$$$closeEditor -->
+<h3 class="fn" id="closeEditor"><a name="closeEditor"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">closeEditor</span>()</h3>
+<!-- @@@closeEditor -->
+<!-- $$$closeNewRowEditor[overload1]$$$closeNewRowEditor -->
+<h3 class="fn" id="closeNewRowEditor"><a name="closeNewRowEditor"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">closeNewRowEditor</span>()</h3>
+<!-- @@@closeNewRowEditor -->
+<!-- $$$collapseAll[overload1]$$$collapseAll -->
+<h3 class="fn" id="collapseAll"><a name="collapseAll"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">collapseAll</span>()</h3>
+<p>Collapses all the groups in the view.</p>
+<!-- @@@collapseAll -->
+<!-- $$$columnCreated[overload1]$$$columnCreatedGridColumnBase* -->
+<h3 class="fn" id="columnCreated"><a name="columnCreated"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">columnCreated</span>(<span class="type">GridColumnBase</span> *<i>column</i>)</h3>
+<!-- @@@columnCreated -->
+<!-- $$$columnDestroying[overload1]$$$columnDestroyingGridColumnBase* -->
+<h3 class="fn" id="columnDestroying"><a name="columnDestroying"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">columnDestroying</span>(<span class="type">GridColumnBase</span> *<i>column</i>)</h3>
+<!-- @@@columnDestroying -->
+<!-- $$$columnGroupIndex[overload1]$$$columnGroupIndexconstGridColumnBase* -->
+<h3 class="fn" id="columnGroupIndex"><a name="columnGroupIndex"></a><code>[protected] </code><span class="type">int</span> GridViewBase::<span class="name">columnGroupIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<p><b>See also </b><a href="gridviewbase.html#setColumnGroupIndex">setColumnGroupIndex</a>().</p>
+<!-- @@@columnGroupIndex -->
+<!-- $$$columnLinkActivated[overload1]$$$columnLinkActivatedconstGridColumnBase*constQString& -->
+<h3 class="fn" id="columnLinkActivated"><a name="columnLinkActivated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">columnLinkActivated</span>(const <span class="type">GridColumnBase</span> *<i>column</i>, const <span class="type">QString</span> &amp;<i>anchor</i>)</h3>
+<!-- @@@columnLinkActivated -->
+<!-- $$$columnVisibleChanged[overload1]$$$columnVisibleChangedGridColumnBase*bool -->
+<h3 class="fn" id="columnVisibleChanged"><a name="columnVisibleChanged"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">columnVisibleChanged</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">bool</span> <i>visible</i>)</h3>
+<!-- @@@columnVisibleChanged -->
+<!-- $$$columnWidthChanged[overload1]$$$columnWidthChangedGridColumnBase* -->
+<h3 class="fn" id="columnWidthChanged"><a name="columnWidthChanged"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">columnWidthChanged</span>(<span class="type">GridColumnBase</span> *<i>column</i>)</h3>
+<!-- @@@columnWidthChanged -->
+<!-- $$$columnsUpdated[overload1]$$$columnsUpdated -->
+<h3 class="fn" id="columnsUpdated"><a name="columnsUpdated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">columnsUpdated</span>()</h3>
+<!-- @@@columnsUpdated -->
+<!-- $$$contextMenu[overload1]$$$contextMenuContextMenuEventArgs* -->
+<h3 class="fn" id="contextMenu"><a name="contextMenu"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">contextMenu</span>(<span class="type"><a href="contextmenueventargs.html">ContextMenuEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@contextMenu -->
+<!-- $$$controllerChanged[overload1]$$$controllerChangedGridControllerChanges -->
+<h3 class="fn" id="controllerChanged"><a name="controllerChanged"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">controllerChanged</span>(<span class="type">GridControllerChanges</span> <i>changes</i>)</h3>
+<!-- @@@controllerChanged -->
+<!-- $$$createActions[overload1]$$$createActions -->
+<h3 class="fn" id="createActions"><a name="createActions"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">createActions</span>()</h3>
+<!-- @@@createActions -->
+<!-- $$$createColumn[overload1]$$$createColumnintconstQString& -->
+<h3 class="fn" id="createColumn"><a name="createColumn"></a><code>[pure virtual protected] </code><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">createColumn</span>(<span class="type">int</span> <i>modelColumn</i>, const <span class="type">QString</span> &amp;<i>caption</i>)</h3>
+<!-- @@@createColumn -->
+<!-- $$$createEditorRepository[overload1]$$$createEditorRepositoryconstGridDataTableColumn* -->
+<h3 class="fn" id="createEditorRepository"><a name="createEditorRepository"></a><code>[protected] </code><span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *GridViewBase::<span class="name">createEditorRepository</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>)</h3>
+<!-- @@@createEditorRepository -->
+<!-- $$$createFooterSummaryPanel[overload1]$$$createFooterSummaryPanelGraphicPrimitive* -->
+<h3 class="fn" id="createFooterSummaryPanel"><a name="createFooterSummaryPanel"></a><code>[pure virtual protected] </code><span class="type">GridFooterSummaryPrimitive</span> *GridViewBase::<span class="name">createFooterSummaryPanel</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createFooterSummaryPanel -->
+<!-- $$$createLayout[overload1]$$$createLayout -->
+<h3 class="fn" id="createLayout"><a name="createLayout"></a><code>[pure virtual protected] </code><span class="type">GridViewPrimitiveBase</span> *GridViewBase::<span class="name">createLayout</span>()</h3>
+<!-- @@@createLayout -->
+<!-- $$$createNativeDragDropObject[overload1]$$$createNativeDragDropObjectconstQPoint& -->
+<h3 class="fn" id="createNativeDragDropObject"><a name="createNativeDragDropObject"></a><code>[pure virtual protected] </code><span class="type">GridNativeDragObject</span> *GridViewBase::<span class="name">createNativeDragDropObject</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@createNativeDragDropObject -->
+<!-- $$$createOptions[overload1]$$$createOptions -->
+<h3 class="fn" id="createOptions"><a name="createOptions"></a><code>[pure virtual protected] </code><span class="type"><a href="gridviewoptions.html">GridViewOptions</a></span> *GridViewBase::<span class="name">createOptions</span>()</h3>
+<!-- @@@createOptions -->
+<!-- $$$createRowsGraphic[overload1]$$$createRowsGraphicGraphicPrimitive* -->
+<h3 class="fn" id="createRowsGraphic"><a name="createRowsGraphic"></a><code>[pure virtual protected] </code><span class="type">GridRowsPrimitiveAbstract</span> *GridViewBase::<span class="name">createRowsGraphic</span>(<span class="type">GraphicPrimitive</span> *<i>parent</i>)</h3>
+<!-- @@@createRowsGraphic -->
+<!-- $$$createSummaryContextMenu[overload1]$$$createSummaryContextMenuQHash<GridSummaryType,QAction*>& -->
+<h3 class="fn" id="createSummaryContextMenu"><a name="createSummaryContextMenu"></a><code>[protected] </code><span class="type">QMenu</span> *GridViewBase::<span class="name">createSummaryContextMenu</span>(<span class="type">QHash</span>&lt;<span class="type"><a href="gridsummary.html#GridSummaryType-enum">GridSummaryType</a></span>, <span class="type">QAction</span> *&gt; &amp;<i>summaryActions</i>) const</h3>
+<!-- @@@createSummaryContextMenu -->
+<!-- $$$deselectAll[overload1]$$$deselectAll -->
+<h3 class="fn" id="deselectAll"><a name="deselectAll"></a><span class="type">void</span> GridViewBase::<span class="name">deselectAll</span>()</h3>
+<p>Undo selection for all cells or rows in a view in a multi-select mode.</p>
+<p><b>See also </b><a href="gridviewbase.html#selection">selection</a>(), <a href="gridviewbase.html#selectAll">selectAll</a>(), <a href="gridviewbase.html#selectRange">selectRange</a>(), <a href="gridviewbase.html#selectRow">selectRow</a>(), and <a href="gridviewbase.html#selectRowRange">selectRowRange</a>().</p>
+<!-- @@@deselectAll -->
+<!-- $$$destroyColumnFilters[overload1]$$$destroyColumnFilters -->
+<h3 class="fn" id="destroyColumnFilters"><a name="destroyColumnFilters"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">destroyColumnFilters</span>()</h3>
+<!-- @@@destroyColumnFilters -->
+<!-- $$$destroyFilterDialog[overload1]$$$destroyFilterDialog -->
+<h3 class="fn" id="destroyFilterDialog"><a name="destroyFilterDialog"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">destroyFilterDialog</span>()</h3>
+<!-- @@@destroyFilterDialog -->
+<!-- $$$doNavigateNextColumn[overload1]$$$doNavigateNextColumnQt::KeyboardModifiers -->
+<h3 class="fn" id="doNavigateNextColumn"><a name="doNavigateNextColumn"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">doNavigateNextColumn</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@doNavigateNextColumn -->
+<!-- $$$doNavigateNextRow[overload1]$$$doNavigateNextRowQt::KeyboardModifiers -->
+<h3 class="fn" id="doNavigateNextRow"><a name="doNavigateNextRow"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">doNavigateNextRow</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@doNavigateNextRow -->
+<!-- $$$doNavigatePrevColumn[overload1]$$$doNavigatePrevColumnQt::KeyboardModifiers -->
+<h3 class="fn" id="doNavigatePrevColumn"><a name="doNavigatePrevColumn"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">doNavigatePrevColumn</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@doNavigatePrevColumn -->
+<!-- $$$doNavigatePrevRow[overload1]$$$doNavigatePrevRowQt::KeyboardModifiers -->
+<h3 class="fn" id="doNavigatePrevRow"><a name="doNavigatePrevRow"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">doNavigatePrevRow</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@doNavigatePrevRow -->
+<!-- $$$dragDrop[overload1]$$$dragDropDragDropArgs* -->
+<h3 class="fn" id="dragDrop"><a name="dragDrop"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">dragDrop</span>(<span class="type"><a href="dragdropargs.html">DragDropArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@dragDrop -->
+<!-- $$$editorChanging[overload1]$$$editorChangingconstGridDataTableColumn*bool -->
+<h3 class="fn" id="editorChanging"><a name="editorChanging"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">editorChanging</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type">bool</span> <i>reset</i>)</h3>
+<!-- @@@editorChanging -->
+<!-- $$$editorCreated[overload1]$$$editorCreatedGridEditor* -->
+<h3 class="fn" id="editorCreated"><a name="editorCreated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorCreated</span>(<span class="type"><a href="grideditor.html">GridEditor</a></span> *<i>editor</i>)</h3>
+<!-- @@@editorCreated -->
+<!-- $$$editorDestroying[overload1]$$$editorDestroyingGridEditor* -->
+<h3 class="fn" id="editorDestroying"><a name="editorDestroying"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorDestroying</span>(<span class="type"><a href="grideditor.html">GridEditor</a></span> *<i>editor</i>)</h3>
+<!-- @@@editorDestroying -->
+<!-- $$$editorEditModeChanged[overload1]$$$editorEditModeChangedGridEditor* -->
+<h3 class="fn" id="editorEditModeChanged"><a name="editorEditModeChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorEditModeChanged</span>(<span class="type"><a href="grideditor.html">GridEditor</a></span> *<i>editor</i>)</h3>
+<!-- @@@editorEditModeChanged -->
+<!-- $$$editorLinkActivated[overload1]$$$editorLinkActivatedEditorLinkEventArgs* -->
+<h3 class="fn" id="editorLinkActivated"><a name="editorLinkActivated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorLinkActivated</span>(<span class="type"><a href="editorlinkeventargs.html">EditorLinkEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorLinkActivated -->
+<!-- $$$editorModifying[overload1]$$$editorModifyingGridEditor* -->
+<h3 class="fn" id="editorModifying"><a name="editorModifying"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorModifying</span>(<span class="type"><a href="grideditor.html">GridEditor</a></span> *<i>editor</i>)</h3>
+<!-- @@@editorModifying -->
+<!-- $$$editorRepositoryChanged[overload1]$$$editorRepositoryChangedGridEditorRepository* -->
+<h3 class="fn" id="editorRepositoryChanged"><a name="editorRepositoryChanged"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">editorRepositoryChanged</span>(<span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *<i>repository</i>)</h3>
+<!-- @@@editorRepositoryChanged -->
+<!-- $$$editorRepositoryCreated[overload1]$$$editorRepositoryCreatedconstGridDataTableColumn*GridEditorRepository* -->
+<h3 class="fn" id="editorRepositoryCreated"><a name="editorRepositoryCreated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorRepositoryCreated</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type"><a href="grideditorrepository.html">GridEditorRepository</a></span> *<i>repository</i>)</h3>
+<!-- @@@editorRepositoryCreated -->
+<!-- $$$editorStarted[overload1]$$$editorStartedEditorEventArgs* -->
+<h3 class="fn" id="editorStarted"><a name="editorStarted"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorStarted</span>(<span class="type"><a href="editoreventargs.html">EditorEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorStarted -->
+<!-- $$$editorStarting[overload1]$$$editorStartingEditorEventArgs* -->
+<h3 class="fn" id="editorStarting"><a name="editorStarting"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorStarting</span>(<span class="type"><a href="editoreventargs.html">EditorEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorStarting -->
+<!-- $$$editorStoped[overload1]$$$editorStopedEditorEventArgs* -->
+<h3 class="fn" id="editorStoped"><a name="editorStoped"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorStoped</span>(<span class="type"><a href="editoreventargs.html">EditorEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorStoped -->
+<!-- $$$editorStoping[overload1]$$$editorStopingEditorEventArgs* -->
+<h3 class="fn" id="editorStoping"><a name="editorStoping"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorStoping</span>(<span class="type"><a href="editoreventargs.html">EditorEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorStoping -->
+<!-- $$$editorValidating[overload1]$$$editorValidatingEditorValidationEventArgs* -->
+<h3 class="fn" id="editorValidating"><a name="editorValidating"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">editorValidating</span>(<span class="type"><a href="editorvalidationeventargs.html">EditorValidationEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@editorValidating -->
+<!-- $$$endDragDrop[overload1]$$$endDragDropDragArgs* -->
+<h3 class="fn" id="endDragDrop"><a name="endDragDrop"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">endDragDrop</span>(<span class="type"><a href="dragargs.html">DragArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@endDragDrop -->
+<!-- $$$endUpdate[overload1]$$$endUpdate -->
+<h3 class="fn" id="endUpdate"><a name="endUpdate"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">endUpdate</span>()</h3>
+<!-- @@@endUpdate -->
+<!-- $$$error[overload1]$$$errorErrorEventArgs* -->
+<h3 class="fn" id="error"><a name="error"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">error</span>(<span class="type"><a href="erroreventargs.html">ErrorEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@error -->
+<!-- $$$executeFilterDialog[overload1]$$$executeFilterDialog -->
+<h3 class="fn" id="executeFilterDialog"><a name="executeFilterDialog"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">executeFilterDialog</span>()</h3>
+<!-- @@@executeFilterDialog -->
+<!-- $$$expandAll[overload1]$$$expandAll -->
+<h3 class="fn" id="expandAll"><a name="expandAll"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">expandAll</span>()</h3>
+<p>Expands all the groups in the view.</p>
+<!-- @@@expandAll -->
+<!-- $$$filter[overload1]$$$filter -->
+<h3 class="fn" id="filter"><a name="filter"></a><span class="type">GridFilter</span> *GridViewBase::<span class="name">filter</span>() const</h3>
+<!-- @@@filter -->
+<!-- $$$filterActivated[overload1]$$$filterActivated -->
+<h3 class="fn" id="filterActivated"><a name="filterActivated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">filterActivated</span>()</h3>
+<!-- @@@filterActivated -->
+<!-- $$$filterDeactivated[overload1]$$$filterDeactivated -->
+<h3 class="fn" id="filterDeactivated"><a name="filterDeactivated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">filterDeactivated</span>()</h3>
+<!-- @@@filterDeactivated -->
+<!-- $$$finalize[overload1]$$$finalize -->
+<h3 class="fn" id="finalize"><a name="finalize"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">finalize</span>()</h3>
+<!-- @@@finalize -->
+<!-- $$$findNext[overload1]$$$findNext -->
+<h3 class="fn" id="findNext"><a name="findNext"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">findNext</span>()</h3>
+<!-- @@@findNext -->
+<!-- $$$findPrevious[overload1]$$$findPrevious -->
+<h3 class="fn" id="findPrevious"><a name="findPrevious"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">findPrevious</span>()</h3>
+<!-- @@@findPrevious -->
+<!-- $$$focusColumnChanged[overload1]$$$focusColumnChangedintint -->
+<h3 class="fn" id="focusColumnChanged"><a name="focusColumnChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">focusColumnChanged</span>(<span class="type">int</span> <i>oldColumnIndex</i>, <span class="type">int</span> <i>columnIndex</i>)</h3>
+<!-- @@@focusColumnChanged -->
+<!-- $$$focusInEvent[overload1]$$$focusInEventQFocusEvent* -->
+<h3 class="fn" id="focusInEvent"><a name="focusInEvent"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">focusInEvent</span>(<i>QFocusEvent *</i>)</h3>
+<!-- @@@focusInEvent -->
+<!-- $$$focusOutEvent[overload1]$$$focusOutEventQFocusEvent* -->
+<h3 class="fn" id="focusOutEvent"><a name="focusOutEvent"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">focusOutEvent</span>(<i>QFocusEvent *</i>)</h3>
+<!-- @@@focusOutEvent -->
+<!-- $$$focusRowChanged[overload1]$$$focusRowChangedintint -->
+<h3 class="fn" id="focusRowChanged"><a name="focusRowChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">focusRowChanged</span>(<span class="type">int</span> <i>oldRowIndex</i>, <span class="type">int</span> <i>rowIndex</i>)</h3>
+<!-- @@@focusRowChanged -->
+<!-- $$$focusedColumnIndex[overload1]$$$focusedColumnIndex -->
+<h3 class="fn" id="focusedColumnIndex"><a name="focusedColumnIndex"></a><span class="type">int</span> GridViewBase::<span class="name">focusedColumnIndex</span>()</h3>
+<p>Returns the index of the column that has the focus at the moment.</p>
+<p><b>See also </b><a href="gridviewbase.html#setFocusedColumnIndex">setFocusedColumnIndex</a>() and <a href="gridviewbase.html#focusedRowIndex">focusedRowIndex</a>().</p>
+<!-- @@@focusedColumnIndex -->
+<!-- $$$focusedRow[overload1]$$$focusedRow -->
+<h3 class="fn" id="focusedRow"><a name="focusedRow"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridViewBase::<span class="name">focusedRow</span>()</h3>
+<p>Returns the row that has the focus at the moment.</p>
+<p><b>See also </b><a href="gridviewbase.html#focusedRowIndex">focusedRowIndex</a>().</p>
+<!-- @@@focusedRow -->
+<!-- $$$focusedRowIndex[overload1]$$$focusedRowIndex -->
+<h3 class="fn" id="focusedRowIndex"><a name="focusedRowIndex"></a><span class="type">int</span> GridViewBase::<span class="name">focusedRowIndex</span>()</h3>
+<p>Returns the index of the row that has the focus at the moment.</p>
+<p><b>See also </b><a href="gridviewbase.html#setFocusedRowIndex">setFocusedRowIndex</a>() and <a href="gridviewbase.html#focusedRow">focusedRow</a>().</p>
+<!-- @@@focusedRowIndex -->
+<!-- $$$getColumn[overload1]$$$getColumnint -->
+<h3 class="fn" id="getColumn"><a name="getColumn"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getColumn</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<!-- @@@getColumn -->
+<!-- $$$getColumnByCaption[overload1]$$$getColumnByCaptionconstQString& -->
+<h3 class="fn" id="getColumnByCaption"><a name="getColumnByCaption"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getColumnByCaption</span>(const <span class="type">QString</span> &amp;<i>caption</i>) const</h3>
+<!-- @@@getColumnByCaption -->
+<!-- $$$getColumnByModelColumn[overload1]$$$getColumnByModelColumnint -->
+<h3 class="fn" id="getColumnByModelColumn"><a name="getColumnByModelColumn"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getColumnByModelColumn</span>(<span class="type">int</span> <i>modelColumn</i>) const</h3>
+<!-- @@@getColumnByModelColumn -->
+<!-- $$$getColumnByModelColumnName[overload1]$$$getColumnByModelColumnNameconstQString& -->
+<h3 class="fn" id="getColumnByModelColumnName"><a name="getColumnByModelColumnName"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getColumnByModelColumnName</span>(const <span class="type">QString</span> &amp;<i>modelColumnName</i>) const</h3>
+<!-- @@@getColumnByModelColumnName -->
+<!-- $$$getColumnCount[overload1]$$$getColumnCount -->
+<h3 class="fn" id="getColumnCount"><a name="getColumnCount"></a><span class="type">int</span> GridViewBase::<span class="name">getColumnCount</span>() const</h3>
+<!-- @@@getColumnCount -->
+<!-- $$$getColumnFont[overload1]$$$getColumnFontconstGridColumnBase* -->
+<h3 class="fn" id="getColumnFont"><a name="getColumnFont"></a><code>[virtual] </code><span class="type">QFont</span> GridViewBase::<span class="name">getColumnFont</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnFont -->
+<!-- $$$getColumnHeight[overload1]$$$getColumnHeightconstGridColumnBase* -->
+<h3 class="fn" id="getColumnHeight"><a name="getColumnHeight"></a><code>[virtual] </code><span class="type">int</span> GridViewBase::<span class="name">getColumnHeight</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnHeight -->
+<!-- $$$getColumnIndex[overload1]$$$getColumnIndexconstGridColumnBase* -->
+<h3 class="fn" id="getColumnIndex"><a name="getColumnIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridViewBase::<span class="name">getColumnIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnIndex -->
+<!-- $$$getColumnLine[overload1]$$$getColumnLineconstGridColumnBase*GridColumns& -->
+<h3 class="fn" id="getColumnLine"><a name="getColumnLine"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">getColumnLine</span>(const <span class="type">GridColumnBase</span> *<i>column</i>, <span class="type"><a href="gridviewbase.html#GridColumns-typedef">GridColumns</a></span> &amp;<i>retval</i>) const</h3>
+<!-- @@@getColumnLine -->
+<!-- $$$getColumnPen[overload1]$$$getColumnPenconstGridColumnBase* -->
+<h3 class="fn" id="getColumnPen"><a name="getColumnPen"></a><code>[virtual] </code><span class="type">QPen</span> GridViewBase::<span class="name">getColumnPen</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getColumnPen -->
+<!-- $$$getColumnRowIndex[overload1]$$$getColumnRowIndexconstGridDataTableColumn* -->
+<h3 class="fn" id="getColumnRowIndex"><a name="getColumnRowIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridViewBase::<span class="name">getColumnRowIndex</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>) const</h3>
+<!-- @@@getColumnRowIndex -->
+<!-- $$$getColumnSortIndex[overload1]$$$getColumnSortIndexconstGridColumnBase* -->
+<h3 class="fn" id="getColumnSortIndex"><a name="getColumnSortIndex"></a><code>[protected] </code><span class="type">int</span> GridViewBase::<span class="name">getColumnSortIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnSortIndex -->
+<!-- $$$getColumnSortOrder[overload1]$$$getColumnSortOrderconstGridColumnBase* -->
+<h3 class="fn" id="getColumnSortOrder"><a name="getColumnSortOrder"></a><code>[protected] </code><span class="type">SortOrder</span> GridViewBase::<span class="name">getColumnSortOrder</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getColumnSortOrder -->
+<!-- $$$getDataBinding[overload1]$$$getDataBindingconstGridColumnBase* -->
+<h3 class="fn" id="getDataBinding"><a name="getDataBinding"></a><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *GridViewBase::<span class="name">getDataBinding</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getDataBinding -->
+<!-- $$$getFirstColumn[overload1]$$$getFirstColumn -->
+<h3 class="fn" id="getFirstColumn"><a name="getFirstColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridViewBase::<span class="name">getFirstColumn</span>() const</h3>
+<!-- @@@getFirstColumn -->
+<!-- $$$getLastColumn[overload1]$$$getLastColumn -->
+<h3 class="fn" id="getLastColumn"><a name="getLastColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridViewBase::<span class="name">getLastColumn</span>() const</h3>
+<!-- @@@getLastColumn -->
+<!-- $$$getNext[overload1]$$$getNextconstGridColumnBase* -->
+<h3 class="fn" id="getNext"><a name="getNext"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getNext</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getNext -->
+<!-- $$$getNextColumn[overload1]$$$getNextColumnconstGridDataTableColumn* -->
+<h3 class="fn" id="getNextColumn"><a name="getNextColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridViewBase::<span class="name">getNextColumn</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getNextColumn -->
+<!-- $$$getPrevColumn[overload1]$$$getPrevColumnconstGridDataTableColumn* -->
+<h3 class="fn" id="getPrevColumn"><a name="getPrevColumn"></a><code>[virtual] </code><span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *GridViewBase::<span class="name">getPrevColumn</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>anchor</i>) const</h3>
+<!-- @@@getPrevColumn -->
+<!-- $$$getPrevious[overload1]$$$getPreviousconstGridColumnBase* -->
+<h3 class="fn" id="getPrevious"><a name="getPrevious"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">getPrevious</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@getPrevious -->
+<!-- $$$getRow[overload1]$$$getRowconstQModelIndex& -->
+<h3 class="fn" id="getRow"><a name="getRow"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridViewBase::<span class="name">getRow</span>(const <span class="type">QModelIndex</span> &amp;<i>index</i>) const</h3>
+<!-- @@@getRow -->
+<!-- $$$getRow$$$getRowint -->
+<h3 class="fn" id="getRow-1"><a name="getRow-1"></a><span class="type"><a href="gridrow.html">GridRow</a></span> *GridViewBase::<span class="name">getRow</span>(<span class="type">int</span> <i>rowIndex</i>) const</h3>
+<!-- @@@getRow -->
+<!-- $$$getRowCount[overload1]$$$getRowCount -->
+<h3 class="fn" id="getRowCount"><a name="getRowCount"></a><span class="type">int</span> GridViewBase::<span class="name">getRowCount</span>() const</h3>
+<!-- @@@getRowCount -->
+<!-- $$$getRowGroupIndent[overload1]$$$getRowGroupIndentGridRow* -->
+<h3 class="fn" id="getRowGroupIndent"><a name="getRowGroupIndent"></a><code>[protected] </code><span class="type">int</span> GridViewBase::<span class="name">getRowGroupIndent</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>gridRow</i>) const</h3>
+<!-- @@@getRowGroupIndent -->
+<!-- $$$getVisualIndex[overload1]$$$getVisualIndexconstGridColumnBase* -->
+<h3 class="fn" id="getVisualIndex"><a name="getVisualIndex"></a><code>[virtual protected] </code><span class="type">int</span> GridViewBase::<span class="name">getVisualIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>) const</h3>
+<!-- @@@getVisualIndex -->
+<!-- $$$grid[overload1]$$$grid -->
+<h3 class="fn" id="grid"><a name="grid"></a><span class="type"><a href="grid.html">Grid</a></span> *GridViewBase::<span class="name">grid</span>() const</h3>
+<!-- @@@grid -->
+<!-- $$$groupCollapsed[overload1]$$$groupCollapsedGridModelGroup* -->
+<h3 class="fn" id="groupCollapsed"><a name="groupCollapsed"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">groupCollapsed</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>)</h3>
+<!-- @@@groupCollapsed -->
+<!-- $$$groupCollapsing[overload1]$$$groupCollapsingGridModelGroup*bool& -->
+<h3 class="fn" id="groupCollapsing"><a name="groupCollapsing"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">groupCollapsing</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>, <span class="type">bool</span> &amp;<i>allow</i>)</h3>
+<!-- @@@groupCollapsing -->
+<!-- $$$groupColumnByIndex[overload1]$$$groupColumnByIndexint -->
+<h3 class="fn" id="groupColumnByIndex"><a name="groupColumnByIndex"></a><span class="type">GridColumnBase</span> *GridViewBase::<span class="name">groupColumnByIndex</span>(<span class="type">int</span> <i>groupIndex</i>) const</h3>
+<!-- @@@groupColumnByIndex -->
+<!-- $$$groupColumnCount[overload1]$$$groupColumnCount -->
+<h3 class="fn" id="groupColumnCount"><a name="groupColumnCount"></a><span class="type">int</span> GridViewBase::<span class="name">groupColumnCount</span>() const</h3>
+<!-- @@@groupColumnCount -->
+<!-- $$$groupExpanded[overload1]$$$groupExpandedGridModelGroup* -->
+<h3 class="fn" id="groupExpanded"><a name="groupExpanded"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">groupExpanded</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>)</h3>
+<!-- @@@groupExpanded -->
+<!-- $$$groupExpanding[overload1]$$$groupExpandingGridModelGroup*bool& -->
+<h3 class="fn" id="groupExpanding"><a name="groupExpanding"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">groupExpanding</span>(<span class="type"><a href="gridmodelgroup.html">GridModelGroup</a></span> *<i>group</i>, <span class="type">bool</span> &amp;<i>allow</i>)</h3>
+<!-- @@@groupExpanding -->
+<!-- $$$groups[overload1]$$$groups -->
+<h3 class="fn" id="groups"><a name="groups"></a>const <span class="type"><a href="gridviewbase.html#GridColumns-typedef">GridColumns</a></span> &amp;GridViewBase::<span class="name">groups</span>() const</h3>
+<!-- @@@groups -->
+<!-- $$$hasGroupingIndent[overload1]$$$hasGroupingIndentconstGridColumnBase* -->
+<h3 class="fn" id="hasGroupingIndent"><a name="hasGroupingIndent"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">hasGroupingIndent</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@hasGroupingIndent -->
+<!-- $$$hasVisibleParent[overload1]$$$hasVisibleParentconstGridColumnBase* -->
+<h3 class="fn" id="hasVisibleParent"><a name="hasVisibleParent"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">hasVisibleParent</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@hasVisibleParent -->
+<!-- $$$hideEditor[overload1]$$$hideEditor -->
+<h3 class="fn" id="hideEditor"><a name="hideEditor"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">hideEditor</span>()</h3>
+<!-- @@@hideEditor -->
+<!-- $$$hideFieldChooser[overload1]$$$hideFieldChooser -->
+<h3 class="fn" id="hideFieldChooser"><a name="hideFieldChooser"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">hideFieldChooser</span>()</h3>
+<!-- @@@hideFieldChooser -->
+<!-- $$$hideFilterPanel[overload1]$$$hideFilterPanel -->
+<h3 class="fn" id="hideFilterPanel"><a name="hideFilterPanel"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">hideFilterPanel</span>()</h3>
+<!-- @@@hideFilterPanel -->
+<!-- $$$hideFindPanel[overload1]$$$hideFindPanelbool -->
+<h3 class="fn" id="hideFindPanel"><a name="hideFindPanel"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">hideFindPanel</span>(<span class="type">bool</span> <i>cancel</i> = false)</h3>
+<!-- @@@hideFindPanel -->
+<!-- $$$hideNewRowEditor[overload1]$$$hideNewRowEditor -->
+<h3 class="fn" id="hideNewRowEditor"><a name="hideNewRowEditor"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">hideNewRowEditor</span>()</h3>
+<!-- @@@hideNewRowEditor -->
+<!-- $$$isColumnVisible[overload1]$$$isColumnVisibleconstGridColumnBase* -->
+<h3 class="fn" id="isColumnVisible"><a name="isColumnVisible"></a><span class="type">bool</span> GridViewBase::<span class="name">isColumnVisible</span>(const <span class="type">GridColumnBase</span> *<i>column</i>) const</h3>
+<!-- @@@isColumnVisible -->
+<!-- $$$isEditing[overload1]$$$isEditing -->
+<h3 class="fn" id="isEditing"><a name="isEditing"></a><span class="type">bool</span> GridViewBase::<span class="name">isEditing</span>() const</h3>
+<!-- @@@isEditing -->
+<!-- $$$isFieldChooserVisible[overload1]$$$isFieldChooserVisible -->
+<h3 class="fn" id="isFieldChooserVisible"><a name="isFieldChooserVisible"></a><code>[slot] </code><span class="type">bool</span> GridViewBase::<span class="name">isFieldChooserVisible</span>() const</h3>
+<!-- @@@isFieldChooserVisible -->
+<!-- $$$isFindPanelVisible[overload1]$$$isFindPanelVisible -->
+<h3 class="fn" id="isFindPanelVisible"><a name="isFindPanelVisible"></a><code>[slot] </code><span class="type">bool</span> GridViewBase::<span class="name">isFindPanelVisible</span>() const</h3>
+<!-- @@@isFindPanelVisible -->
+<!-- $$$isLayoutLoading[overload1]$$$isLayoutLoading -->
+<h3 class="fn" id="isLayoutLoading"><a name="isLayoutLoading"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">isLayoutLoading</span>() const</h3>
+<!-- @@@isLayoutLoading -->
+<!-- $$$isModified[overload1]$$$isModified -->
+<h3 class="fn" id="isModified"><a name="isModified"></a><span class="type">bool</span> GridViewBase::<span class="name">isModified</span>() const</h3>
+<!-- @@@isModified -->
+<!-- $$$isNewRowEditing[overload1]$$$isNewRowEditing -->
+<h3 class="fn" id="isNewRowEditing"><a name="isNewRowEditing"></a><span class="type">bool</span> GridViewBase::<span class="name">isNewRowEditing</span>() const</h3>
+<!-- @@@isNewRowEditing -->
+<!-- $$$isRowShowing[overload1]$$$isRowShowingGridRow* -->
+<h3 class="fn" id="isRowShowing"><a name="isRowShowing"></a><span class="type">bool</span> GridViewBase::<span class="name">isRowShowing</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>) const</h3>
+<!-- @@@isRowShowing -->
+<!-- $$$isUpdating[overload1]$$$isUpdating -->
+<h3 class="fn" id="isUpdating"><a name="isUpdating"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">isUpdating</span>() const</h3>
+<!-- @@@isUpdating -->
+<!-- $$$layout[overload1]$$$layout -->
+<h3 class="fn" id="layout"><a name="layout"></a><span class="type">GridViewPrimitiveBase</span> *GridViewBase::<span class="name">layout</span>() const</h3>
+<!-- @@@layout -->
+<!-- $$$loadColumnBaseLayout[overload1]$$$loadColumnBaseLayoutGridColumnBase*QXmlStreamReader* -->
+<h3 class="fn" id="loadColumnBaseLayout"><a name="loadColumnBaseLayout"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">loadColumnBaseLayout</span>(<span class="type">GridColumnBase</span> *<i>column</i>, <span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadColumnBaseLayout -->
+<!-- $$$loadLayoutFromStream[overload1]$$$loadLayoutFromStreamQXmlStreamReader* -->
+<h3 class="fn" id="loadLayoutFromStream"><a name="loadLayoutFromStream"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">loadLayoutFromStream</span>(<span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadLayoutFromStream -->
+<!-- $$$loadLayoutFromXML[overload1]$$$loadLayoutFromXMLQXmlStreamReader* -->
+<h3 class="fn" id="loadLayoutFromXML"><a name="loadLayoutFromXML"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">loadLayoutFromXML</span>(<span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadLayoutFromXML -->
+<!-- $$$loadTableColumnLayout[overload1]$$$loadTableColumnLayoutGridDataTableColumn*QXmlStreamReader* -->
+<h3 class="fn" id="loadTableColumnLayout"><a name="loadTableColumnLayout"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">loadTableColumnLayout</span>(<span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type">QXmlStreamReader</span> *<i>xmlreader</i>)</h3>
+<!-- @@@loadTableColumnLayout -->
+<!-- $$$markColumnsChanged[overload1]$$$markColumnsChanged -->
+<h3 class="fn" id="markColumnsChanged"><a name="markColumnsChanged"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">markColumnsChanged</span>()</h3>
+<!-- @@@markColumnsChanged -->
+<!-- $$$model[overload1]$$$model -->
+<h3 class="fn" id="model"><a name="model"></a><span class="type">QAbstractItemModel</span> *GridViewBase::<span class="name">model</span>() const</h3>
+<p><b>See also </b><a href="gridviewbase.html#setModel">setModel</a>().</p>
+<!-- @@@model -->
+<!-- $$$modelController[overload1]$$$modelController -->
+<h3 class="fn" id="modelController"><a name="modelController"></a><span class="type"><a href="gridmodelcontroller.html">GridModelController</a></span> *GridViewBase::<span class="name">modelController</span>() const</h3>
+<!-- @@@modelController -->
+<!-- $$$navigateBacktab[overload1]$$$navigateBacktabQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateBacktab"><a name="navigateBacktab"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateBacktab</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateBacktab -->
+<!-- $$$navigateDown[overload1]$$$navigateDownQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateDown"><a name="navigateDown"></a><code>[pure virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateDown</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateDown -->
+<!-- $$$navigateLeft[overload1]$$$navigateLeftQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateLeft"><a name="navigateLeft"></a><code>[pure virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateLeft</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateLeft -->
+<!-- $$$navigatePageDown[overload1]$$$navigatePageDownQt::KeyboardModifiers -->
+<h3 class="fn" id="navigatePageDown"><a name="navigatePageDown"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigatePageDown</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigatePageDown -->
+<!-- $$$navigatePageUp[overload1]$$$navigatePageUpQt::KeyboardModifiers -->
+<h3 class="fn" id="navigatePageUp"><a name="navigatePageUp"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigatePageUp</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigatePageUp -->
+<!-- $$$navigateRight[overload1]$$$navigateRightQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateRight"><a name="navigateRight"></a><code>[pure virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateRight</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateRight -->
+<!-- $$$navigateTab[overload1]$$$navigateTabQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateTab"><a name="navigateTab"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateTab</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateTab -->
+<!-- $$$navigateUp[overload1]$$$navigateUpQt::KeyboardModifiers -->
+<h3 class="fn" id="navigateUp"><a name="navigateUp"></a><code>[pure virtual] </code><span class="type">void</span> GridViewBase::<span class="name">navigateUp</span>(<span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier)</h3>
+<!-- @@@navigateUp -->
+<!-- $$$newRowEditorClicked[overload1]$$$newRowEditorClickedNewRowEventArgs* -->
+<h3 class="fn" id="newRowEditorClicked"><a name="newRowEditorClicked"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">newRowEditorClicked</span>(<span class="type"><a href="newroweventargs.html">NewRowEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@newRowEditorClicked -->
+<!-- $$$optionsref[overload1]$$$optionsref -->
+<h3 class="fn" id="optionsref"><a name="optionsref"></a><span class="type"><a href="gridviewoptions.html">GridViewOptions</a></span> *GridViewBase::<span class="name">optionsref</span>() const</h3>
+<!-- @@@optionsref -->
+<!-- $$$postEditor[overload1]$$$postEditor -->
+<h3 class="fn" id="postEditor"><a name="postEditor"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">postEditor</span>()</h3>
+<!-- @@@postEditor -->
+<!-- $$$previewLinkActivated[overload1]$$$previewLinkActivatedconstGridRow*constQString& -->
+<h3 class="fn" id="previewLinkActivated"><a name="previewLinkActivated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">previewLinkActivated</span>(const <span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>, const <span class="type">QString</span> &amp;<i>anchor</i>)</h3>
+<!-- @@@previewLinkActivated -->
+<!-- $$$print[overload1]$$$printQPrinter* -->
+<h3 class="fn" id="print"><a name="print"></a><span class="type">void</span> GridViewBase::<span class="name">print</span>(<span class="type">QPrinter</span> *<i>printer</i>)</h3>
+<!-- @@@print -->
+<!-- $$$printAreaRequested[overload1]$$$printAreaRequestedQPrinter* -->
+<h3 class="fn" id="printAreaRequested"><a name="printAreaRequested"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">printAreaRequested</span>(<span class="type">QPrinter</span> *<i>printer</i>)</h3>
+<!-- @@@printAreaRequested -->
+<!-- $$$printHeader[overload1]$$$printHeaderQPainter&int&int& -->
+<h3 class="fn" id="printHeader"><a name="printHeader"></a><code>[pure virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">printHeader</span>(<span class="type">QPainter</span> &amp;<i>painter</i>, <span class="type">int</span> &amp;<i>pageLength</i>, <span class="type">int</span> &amp;<i>itemIndex</i>)</h3>
+<!-- @@@printHeader -->
+<!-- $$$printPage[overload1]$$$printPageGridRowsLayoutEngine*constintQPainter&QPrinter*constboolconstboolQList<PrinterColumnLayoutItem>&bool&bool& -->
+<h3 class="fn" id="printPage"><a name="printPage"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">printPage</span>(<span class="type">GridRowsLayoutEngine</span> *<i>rowsLayout</i>, const <span class="type">int</span> <i>rowsHeight</i>, <span class="type">QPainter</span> &amp;<i>painter</i>, <span class="type">QPrinter</span> *<i>printer</i>, const <span class="type">bool</span> <i>header</i>, const <span class="type">bool</span> <i>footer</i>, <span class="type">QList</span>&lt;<span class="type">PrinterColumnLayoutItem</span>&gt; &amp;<i>items</i>, <span class="type">bool</span> &amp;<i>isLastRowPrinted</i>, <span class="type">bool</span> &amp;<i>isFooterPrinted</i>)</h3>
+<!-- @@@printPage -->
+<!-- $$$printPreview[overload1]$$$printPreview -->
+<h3 class="fn" id="printPreview"><a name="printPreview"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">printPreview</span>()</h3>
+<!-- @@@printPreview -->
+<!-- $$$raiseError[overload1]$$$raiseErrorconstQString&constQString& -->
+<h3 class="fn" id="raiseError"><a name="raiseError"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">raiseError</span>(const <span class="type">QString</span> &amp;<i>error</i>, const <span class="type">QString</span> &amp;<i>description</i>)</h3>
+<!-- @@@raiseError -->
+<!-- $$$relationConnecting[overload1]$$$relationConnectingRelationEventArgs* -->
+<h3 class="fn" id="relationConnecting"><a name="relationConnecting"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">relationConnecting</span>(<span class="type"><a href="relationeventargs.html">RelationEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@relationConnecting -->
+<!-- $$$removeActions[overload1]$$$removeActions -->
+<h3 class="fn" id="removeActions"><a name="removeActions"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">removeActions</span>()</h3>
+<!-- @@@removeActions -->
+<!-- $$$removeColumn[overload1]$$$removeColumnint -->
+<h3 class="fn" id="removeColumn"><a name="removeColumn"></a><span class="type">bool</span> GridViewBase::<span class="name">removeColumn</span>(<span class="type">int</span> <i>index</i>)</h3>
+<!-- @@@removeColumn -->
+<!-- $$$removeColumns[overload1]$$$removeColumns -->
+<h3 class="fn" id="removeColumns"><a name="removeColumns"></a><span class="type">void</span> GridViewBase::<span class="name">removeColumns</span>()</h3>
+<!-- @@@removeColumns -->
+<!-- $$$removeRow[overload1]$$$removeRowGridRow* -->
+<h3 class="fn" id="removeRow"><a name="removeRow"></a><span class="type">bool</span> GridViewBase::<span class="name">removeRow</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>)</h3>
+<p>Removes the row from the view and model. Before row will be removing, the signal <a href="gridviewbase.html#rowRemoving">rowRemoving</a>() has raised. In the handler of the <a href="gridviewbase.html#rowRemoving">rowRemoving</a>() signal you may process some action before. For instance show agree message box or disable the row deletion by set the RowRemovingEventArgs::setHandled() to true of the <i>args</i>.</p>
+<p><b>See also </b><a href="rowremovingeventargs.html">RowRemovingEventArgs</a> and <a href="gridviewbase.html#rowRemoving">rowRemoving</a>().</p>
+<!-- @@@removeRow -->
+<!-- $$$removeRows[overload1]$$$removeRowsGridRow*int -->
+<h3 class="fn" id="removeRows"><a name="removeRows"></a><span class="type">bool</span> GridViewBase::<span class="name">removeRows</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>, <span class="type">int</span> <i>count</i>)</h3>
+<p>Removes <i>count</i> rows starting with the given <i>row</i> from the view and model. Before rows will be removing, the signal <a href="gridviewbase.html#rowRemoving">rowRemoving</a>() has raised. In the handler of the <a href="gridviewbase.html#rowRemoving">rowRemoving</a>() signal you may process some action before. For instance show agree message box or disable the rows deletion by set the RowRemovingEventArgs::setHandled() to true of the <i>args</i>. If the lastRow is NULL then the deletion will be continued till the last row in the view.</p>
+<p><b>See also </b><a href="rowremovingeventargs.html">RowRemovingEventArgs</a> and <a href="gridviewbase.html#rowRemoving">rowRemoving</a>().</p>
+<!-- @@@removeRows -->
+<!-- $$$requestUpdateLayout[overload1]$$$requestUpdateLayoutbool -->
+<h3 class="fn" id="requestUpdateLayout"><a name="requestUpdateLayout"></a><span class="type">void</span> GridViewBase::<span class="name">requestUpdateLayout</span>(<span class="type">bool</span> <i>showZoomIndicator</i> = false)</h3>
+<!-- @@@requestUpdateLayout -->
+<!-- $$$rowClicked[overload1]$$$rowClickedRowClickEventArgs* -->
+<h3 class="fn" id="rowClicked"><a name="rowClicked"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">rowClicked</span>(<span class="type"><a href="rowclickeventargs.html">RowClickEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@rowClicked -->
+<!-- $$$rowDblClicked[overload1]$$$rowDblClickedRowClickEventArgs* -->
+<h3 class="fn" id="rowDblClicked"><a name="rowDblClicked"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">rowDblClicked</span>(<span class="type"><a href="rowclickeventargs.html">RowClickEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@rowDblClicked -->
+<!-- $$$rowRemoving[overload1]$$$rowRemovingRowRemovingEventArgs* -->
+<h3 class="fn" id="rowRemoving"><a name="rowRemoving"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">rowRemoving</span>(<span class="type"><a href="rowremovingeventargs.html">RowRemovingEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@rowRemoving -->
+<!-- $$$saveColumnBaseLayout[overload1]$$$saveColumnBaseLayoutconstGridColumnBase*QXmlStreamWriter* -->
+<h3 class="fn" id="saveColumnBaseLayout"><a name="saveColumnBaseLayout"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">saveColumnBaseLayout</span>(const <span class="type">GridColumnBase</span> *<i>column</i>, <span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveColumnBaseLayout -->
+<!-- $$$saveLayoutToStream[overload1]$$$saveLayoutToStreamQXmlStreamWriter* -->
+<h3 class="fn" id="saveLayoutToStream"><a name="saveLayoutToStream"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">saveLayoutToStream</span>(<span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveLayoutToStream -->
+<!-- $$$saveLayoutToXML[overload1]$$$saveLayoutToXMLQXmlStreamWriter* -->
+<h3 class="fn" id="saveLayoutToXML"><a name="saveLayoutToXML"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">saveLayoutToXML</span>(<span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveLayoutToXML -->
+<!-- $$$saveTableColumnLayout[overload1]$$$saveTableColumnLayoutconstGridDataTableColumn*QXmlStreamWriter* -->
+<h3 class="fn" id="saveTableColumnLayout"><a name="saveTableColumnLayout"></a><code>[virtual protected] </code><span class="type">bool</span> GridViewBase::<span class="name">saveTableColumnLayout</span>(const <span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *<i>column</i>, <span class="type">QXmlStreamWriter</span> *<i>xmlwriter</i>)</h3>
+<!-- @@@saveTableColumnLayout -->
+<!-- $$$scrollToIndex[overload1]$$$scrollToIndexconstQModelIndex&bool -->
+<h3 class="fn" id="scrollToIndex"><a name="scrollToIndex"></a><span class="type">void</span> GridViewBase::<span class="name">scrollToIndex</span>(const <span class="type">QModelIndex</span> &amp;<i>index</i>, <span class="type">bool</span> <i>topPosition</i> = true)</h3>
+<!-- @@@scrollToIndex -->
+<!-- $$$scrollToRow[overload1]$$$scrollToRowGridRow*bool -->
+<h3 class="fn" id="scrollToRow"><a name="scrollToRow"></a><code>[virtual] </code><span class="type">void</span> GridViewBase::<span class="name">scrollToRow</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>row</i>, <span class="type">bool</span> <i>firstPosition</i> = true)</h3>
+<!-- @@@scrollToRow -->
+<!-- $$$selectAll[overload1]$$$selectAll -->
+<h3 class="fn" id="selectAll"><a name="selectAll"></a><span class="type">void</span> GridViewBase::<span class="name">selectAll</span>()</h3>
+<p>Select all cells or rows in a view in multi-select mode.</p>
+<p><b>See also </b><a href="gridviewbase.html#selection">selection</a>(), <a href="gridviewbase.html#deselectAll">deselectAll</a>(), <a href="gridviewbase.html#selectRange">selectRange</a>(), <a href="gridviewbase.html#selectRow">selectRow</a>(), and <a href="gridviewbase.html#selectRowRange">selectRowRange</a>().</p>
+<!-- @@@selectAll -->
+<!-- $$$selectColumnRange[overload1]$$$selectColumnRangeGridRow*GridRow*constQList<GridDataTableColumn*>&constSelectionOperation& -->
+<h3 class="fn" id="selectColumnRange"><a name="selectColumnRange"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">selectColumnRange</span>(<span class="type"><a href="gridrow.html">GridRow</a></span> *<i>firstRow</i>, <span class="type"><a href="gridrow.html">GridRow</a></span> *<i>lastRow</i>, const <span class="type">QList</span>&lt;<span class="type"><a href="griddatatablecolumn.html">GridDataTableColumn</a></span> *&gt; &amp;<i>columns</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i>)</h3>
+<!-- @@@selectColumnRange -->
+<!-- $$$selectCurrentRanges[overload1]$$$selectCurrentRangesconstSelectionRanges&constSelectionOperation& -->
+<h3 class="fn" id="selectCurrentRanges"><a name="selectCurrentRanges"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">selectCurrentRanges</span>(const <span class="type">SelectionRanges</span> &amp;<i>ranges</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i>)</h3>
+<!-- @@@selectCurrentRanges -->
+<!-- $$$selectRange[overload1]$$$selectRangeintintintintconstSelectionOperation& -->
+<h3 class="fn" id="selectRange"><a name="selectRange"></a><span class="type">void</span> GridViewBase::<span class="name">selectRange</span>(<span class="type">int</span> <i>firstRowIndex</i>, <span class="type">int</span> <i>lastRowIndex</i>, <span class="type">int</span> <i>firstColumnIndex</i>, <span class="type">int</span> <i>lastColumnIndex</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i> = Qtitan::Select)</h3>
+<!-- @@@selectRange -->
+<!-- $$$selectRow[overload1]$$$selectRowintconstSelectionOperation& -->
+<h3 class="fn" id="selectRow"><a name="selectRow"></a><span class="type">void</span> GridViewBase::<span class="name">selectRow</span>(<span class="type">int</span> <i>rowIndex</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i> = Qtitan::Select)</h3>
+<!-- @@@selectRow -->
+<!-- $$$selectRowRange[overload1]$$$selectRowRangeintintconstSelectionOperation& -->
+<h3 class="fn" id="selectRowRange"><a name="selectRowRange"></a><span class="type">void</span> GridViewBase::<span class="name">selectRowRange</span>(<span class="type">int</span> <i>firstRowIndex</i>, <span class="type">int</span> <i>lastRowIndex</i>, const <span class="type">SelectionOperation</span> &amp;<i>operation</i> = Qtitan::Select)</h3>
+<!-- @@@selectRowRange -->
+<!-- $$$selection[overload1]$$$selection -->
+<h3 class="fn" id="selection"><a name="selection"></a><span class="type"><a href="gridselection.html">GridSelection</a></span> *GridViewBase::<span class="name">selection</span>() const</h3>
+<p>Returns <a href="gridselection.html">GridSelection</a> object to iterate by all selected cells or rows.</p>
+<p><b>See also </b><a href="gridviewbase.html#selectAll">selectAll</a>(), <a href="gridviewbase.html#deselectAll">deselectAll</a>(), <a href="gridviewbase.html#selectRange">selectRange</a>(), <a href="gridviewbase.html#selectRow">selectRow</a>(), and <a href="gridviewbase.html#selectRowRange">selectRowRange</a>().</p>
+<!-- @@@selection -->
+<!-- $$$selectionChanged[overload1]$$$selectionChangedGridSelection*GridSelection* -->
+<h3 class="fn" id="selectionChanged"><a name="selectionChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">selectionChanged</span>(<span class="type"><a href="gridselection.html">GridSelection</a></span> *<i>selection</i>, <span class="type"><a href="gridselection.html">GridSelection</a></span> *<i>oldSelection</i>)</h3>
+<!-- @@@selectionChanged -->
+<!-- $$$setActionIcons[overload1]$$$setActionIcons -->
+<h3 class="fn" id="setActionIcons"><a name="setActionIcons"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">setActionIcons</span>()</h3>
+<!-- @@@setActionIcons -->
+<!-- $$$setCellFocus[overload1]$$$setCellFocusintintQt::KeyboardModifiersconstGridEditorActivationPolicyFlag& -->
+<h3 class="fn" id="setCellFocus"><a name="setCellFocus"></a><span class="type">bool</span> GridViewBase::<span class="name">setCellFocus</span>(<span class="type">int</span> <i>rowIndex</i>, <span class="type">int</span> <i>columnIndex</i>, <span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier, const <span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> &amp;<i>activationFlag</i> = NoPolicy)</h3>
+<!-- @@@setCellFocus -->
+<!-- $$$setColumnGroupIndex[overload1]$$$setColumnGroupIndexGridColumnBase*intboolbool -->
+<h3 class="fn" id="setColumnGroupIndex"><a name="setColumnGroupIndex"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">setColumnGroupIndex</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">int</span> <i>groupIndex</i>, <span class="type">bool</span> <i>caseSensitivity</i>, <span class="type">bool</span> <i>localeAware</i>)</h3>
+<p><b>See also </b><a href="gridviewbase.html#columnGroupIndex">columnGroupIndex</a>().</p>
+<!-- @@@setColumnGroupIndex -->
+<!-- $$$setColumnSortIndex[overload1]$$$setColumnSortIndexconstGridColumnBase*int -->
+<h3 class="fn" id="setColumnSortIndex"><a name="setColumnSortIndex"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">setColumnSortIndex</span>(const <span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">int</span> <i>sortIndex</i>)</h3>
+<!-- @@@setColumnSortIndex -->
+<!-- $$$setColumnSortOrder[overload1]$$$setColumnSortOrderGridColumnBase*SortOrderboolbool -->
+<h3 class="fn" id="setColumnSortOrder"><a name="setColumnSortOrder"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">setColumnSortOrder</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>, <span class="type">SortOrder</span> <i>order</i>, <span class="type">bool</span> <i>caseSensitivity</i>, <span class="type">bool</span> <i>localeAware</i>)</h3>
+<!-- @@@setColumnSortOrder -->
+<!-- $$$setFocusedColumnIndex[overload1]$$$setFocusedColumnIndexintQt::KeyboardModifiersGridEditorActivationPolicyFlag -->
+<h3 class="fn" id="setFocusedColumnIndex"><a name="setFocusedColumnIndex"></a><span class="type">bool</span> GridViewBase::<span class="name">setFocusedColumnIndex</span>(<span class="type">int</span> <i>columnIndex</i>, <span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier, <span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> <i>flag</i> = NoPolicy)</h3>
+<p><b>See also </b><a href="gridviewbase.html#focusedColumnIndex">focusedColumnIndex</a>().</p>
+<!-- @@@setFocusedColumnIndex -->
+<!-- $$$setFocusedRowIndex[overload1]$$$setFocusedRowIndexintQt::KeyboardModifiersGridEditorActivationPolicyFlag -->
+<h3 class="fn" id="setFocusedRowIndex"><a name="setFocusedRowIndex"></a><span class="type">bool</span> GridViewBase::<span class="name">setFocusedRowIndex</span>(<span class="type">int</span> <i>rowIndex</i>, <span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i> = Qt::NoModifier, <span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> <i>flag</i> = NoPolicy)</h3>
+<p><b>See also </b><a href="gridviewbase.html#focusedRowIndex">focusedRowIndex</a>().</p>
+<!-- @@@setFocusedRowIndex -->
+<!-- $$$setModel[overload1]$$$setModelQAbstractItemModel*QModelIndex -->
+<h3 class="fn" id="setModel"><a name="setModel"></a><span class="type">void</span> GridViewBase::<span class="name">setModel</span>(<span class="type">QAbstractItemModel</span> *<i>model</i>, <span class="type">QModelIndex</span> <i>parent</i> = QModelIndex())</h3>
+<p>Method is intended to connect model with the data to the view. The model should be derived from class QAbstractItemModel. Parameter <i>parent</i> used if the data is not at the first level of the model. <i>createColumns</i> parameter allows automatically create a columns in the view which will correspond to the structure of the model. If this parameter is false then the columns will not be created at all. Later they can be created manually in the required composition. To create a column please use <a href="gridviewbase.html#createColumn">createColumn</a>() function. Note that for banded view, automatic creation of columns works as well. Columns will be created and inserted into the first available band column. If there is no band column in the view it will be created first.</p>
+<p><b>See also </b><a href="gridviewbase.html#model">model</a>().</p>
+<!-- @@@setModel -->
+<!-- $$$setVisualIndex[overload1]$$$setVisualIndexconstGridColumnBase*int -->
+<h3 class="fn" id="setVisualIndex"><a name="setVisualIndex"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">setVisualIndex</span>(const <span class="type">GridColumnBase</span> *<i>tableColumn</i>, <span class="type">int</span> <i>visualIndex</i>)</h3>
+<!-- @@@setVisualIndex -->
+<!-- $$$showColumnOnScreen[overload1]$$$showColumnOnScreenintint -->
+<h3 class="fn" id="showColumnOnScreen"><a name="showColumnOnScreen"></a><code>[pure virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">showColumnOnScreen</span>(<span class="type">int</span> <i>oldColumnIndex</i>, <span class="type">int</span> <i>columnIndex</i>)</h3>
+<!-- @@@showColumnOnScreen -->
+<!-- $$$showContextMenu[overload1]$$$showContextMenuconstQPoint& -->
+<h3 class="fn" id="showContextMenu"><a name="showContextMenu"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">showContextMenu</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@showContextMenu -->
+<!-- $$$showEditor[overload1]$$$showEditorGridEditorActivationPolicyFlag -->
+<h3 class="fn" id="showEditor"><a name="showEditor"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">showEditor</span>(<span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> <i>policyFlag</i> = NoPolicy)</h3>
+<!-- @@@showEditor -->
+<!-- $$$showEditorInternal[overload1]$$$showEditorInternalGridEditorActivationPolicyFlag -->
+<h3 class="fn" id="showEditorInternal"><a name="showEditorInternal"></a><code>[protected] </code><span class="type">bool</span> GridViewBase::<span class="name">showEditorInternal</span>(<span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> <i>policyFlag</i>)</h3>
+<!-- @@@showEditorInternal -->
+<!-- $$$showFieldChooser[overload1]$$$showFieldChooser -->
+<h3 class="fn" id="showFieldChooser"><a name="showFieldChooser"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">showFieldChooser</span>()</h3>
+<!-- @@@showFieldChooser -->
+<!-- $$$showFilterPanel[overload1]$$$showFilterPanel -->
+<h3 class="fn" id="showFilterPanel"><a name="showFilterPanel"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">showFilterPanel</span>()</h3>
+<!-- @@@showFilterPanel -->
+<!-- $$$showFindPanel[overload1]$$$showFindPanel -->
+<h3 class="fn" id="showFindPanel"><a name="showFindPanel"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">showFindPanel</span>()</h3>
+<!-- @@@showFindPanel -->
+<!-- $$$showNewRowEditor[overload1]$$$showNewRowEditor -->
+<h3 class="fn" id="showNewRowEditor"><a name="showNewRowEditor"></a><code>[virtual] </code><span class="type">bool</span> GridViewBase::<span class="name">showNewRowEditor</span>()</h3>
+<!-- @@@showNewRowEditor -->
+<!-- $$$showRowOnScreen[overload1]$$$showRowOnScreenintint -->
+<h3 class="fn" id="showRowOnScreen"><a name="showRowOnScreen"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">showRowOnScreen</span>(<span class="type">int</span> <i>oldRowIndex</i>, <span class="type">int</span> <i>newRowIndex</i>)</h3>
+<!-- @@@showRowOnScreen -->
+<!-- $$$showSummaryContextMenu[overload1]$$$showSummaryContextMenuconstQPoint& -->
+<h3 class="fn" id="showSummaryContextMenu"><a name="showSummaryContextMenu"></a><span class="type">void</span> GridViewBase::<span class="name">showSummaryContextMenu</span>(const <span class="type">QPoint</span> &amp;<i>pos</i>)</h3>
+<!-- @@@showSummaryContextMenu -->
+<!-- $$$startDragDrop[overload1]$$$startDragDropDragArgs* -->
+<h3 class="fn" id="startDragDrop"><a name="startDragDrop"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">startDragDrop</span>(<span class="type"><a href="dragargs.html">DragArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@startDragDrop -->
+<!-- $$$startGrouping[overload1]$$$startGroupingColumnGroupArgs* -->
+<h3 class="fn" id="startGrouping"><a name="startGrouping"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">startGrouping</span>(<span class="type"><a href="columngroupargs.html">ColumnGroupArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@startGrouping -->
+<!-- $$$summaryCalculated[overload1]$$$summaryCalculated -->
+<h3 class="fn" id="summaryCalculated"><a name="summaryCalculated"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">summaryCalculated</span>()</h3>
+<!-- @@@summaryCalculated -->
+<!-- $$$summaryFooterTextChanging[overload1]$$$summaryFooterTextChangingSummaryTextEventArgs* -->
+<h3 class="fn" id="summaryFooterTextChanging"><a name="summaryFooterTextChanging"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">summaryFooterTextChanging</span>(<span class="type"><a href="summarytexteventargs.html">SummaryTextEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@summaryFooterTextChanging -->
+<!-- $$$summaryGroupTextChanging[overload1]$$$summaryGroupTextChangingSummaryGroupTextEventArgs* -->
+<h3 class="fn" id="summaryGroupTextChanging"><a name="summaryGroupTextChanging"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">summaryGroupTextChanging</span>(<span class="type"><a href="summarygrouptexteventargs.html">SummaryGroupTextEventArgs</a></span> *<i>args</i>)</h3>
+<!-- @@@summaryGroupTextChanging -->
+<!-- $$$textAlignmentChanged[overload1]$$$textAlignmentChangedGridColumnBase* -->
+<h3 class="fn" id="textAlignmentChanged"><a name="textAlignmentChanged"></a><code>[protected] </code><span class="type">void</span> GridViewBase::<span class="name">textAlignmentChanged</span>(<span class="type">GridColumnBase</span> *<i>columnBase</i>)</h3>
+<!-- @@@textAlignmentChanged -->
+<!-- $$$updateSelection[overload1]$$$updateSelectionintintboolQt::KeyboardModifiersconstGridEditorActivationPolicyFlag& -->
+<h3 class="fn" id="updateSelection"><a name="updateSelection"></a><code>[virtual protected] </code><span class="type">void</span> GridViewBase::<span class="name">updateSelection</span>(<span class="type">int</span> <i>rowIndex</i>, <span class="type">int</span> <i>columnIndex</i>, <span class="type">bool</span> <i>focusChanged</i>, <span class="type">Qt::KeyboardModifiers</span> <i>modifiers</i>, const <span class="type"><a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a></span> &amp;<i>activationFlag</i>)</h3>
+<!-- @@@updateSelection -->
+<!-- $$$validateEditor[overload1]$$$validateEditor -->
+<h3 class="fn" id="validateEditor"><a name="validateEditor"></a><span class="type">bool</span> GridViewBase::<span class="name">validateEditor</span>()</h3>
+<!-- @@@validateEditor -->
+<!-- $$$zoomChanged[overload1]$$$zoomChangedint -->
+<h3 class="fn" id="zoomChanged"><a name="zoomChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">zoomChanged</span>(<span class="type">int</span> <i>value</i>)</h3>
+<!-- @@@zoomChanged -->
+<!-- $$$zoomFactorChanged[overload1]$$$zoomFactorChangeddouble -->
+<h3 class="fn" id="zoomFactorChanged"><a name="zoomFactorChanged"></a><code>[signal] </code><span class="type">void</span> GridViewBase::<span class="name">zoomFactorChanged</span>(<span class="type">double</span> <i>factor</i>)</h3>
+<!-- @@@zoomFactorChanged -->
+<!-- $$$zoomIn[overload1]$$$zoomIn -->
+<h3 class="fn" id="zoomIn"><a name="zoomIn"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">zoomIn</span>()</h3>
+<!-- @@@zoomIn -->
+<!-- $$$zoomOut[overload1]$$$zoomOut -->
+<h3 class="fn" id="zoomOut"><a name="zoomOut"></a><code>[slot] </code><span class="type">void</span> GridViewBase::<span class="name">zoomOut</span>()</h3>
+<!-- @@@zoomOut -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

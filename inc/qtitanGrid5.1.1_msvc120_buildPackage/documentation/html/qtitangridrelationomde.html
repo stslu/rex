@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnRelationTopic.qdoc -->
+  <title>Relation mechanism in QtitanDataGrid | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>Relation mechanism in QtitanDataGrid</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#relation-mode">Relation mode</a></li>
+<li class="level2"><a href="#migration-from-qsqlrelationaltablemodel">Migration from QSqlRelationalTableModel</a></li>
+<li class="level1"><a href="#support-of-the-relation-mode-by-cell-editors">Support of the Relation mode by cell editors</a></li>
+<li class="level1"><a href="#masterdetails-mode">MasterDetails mode</a></li>
+<li class="level1"><a href="#support-of-the-masterdetails-mode-by-cell-editors">Support of the MasterDetails mode by cell editors</a></li>
+<li class="level1"><a href="#differences-between-relation-mode-and-masterdetails-mode">Differences between Relation mode and MasterDetails mode</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Relation mechanism in QtitanDataGrid</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangridrelationomde.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QtitanDataGrid supports relations between two associated models. The mechanism is independent from such SQL models as QSqlRelationalTableModel and can be used for any models inherited from QAbstractItemModel. This mechanism is configured separately for each grid column.</p>
+<p>The Relation mechanism supports two operating modes:</p>
+<ul>
+<li><a href="qtitangridrelationomde.html#relation-mode">Relation mode</a>. The mode that controls the relation between two models using a foreign key.</li>
+<li><a href="qtitangridrelationomde.html#masterdetails-mode">MasterDetails mode</a>. The mode that implies that each row of the master model has a subordinate model.</li>
+</ul>
+<a name="relation-mode"></a>
+<h2 id="relation-mode">Relation mode</h2>
+<p>This operating mode allows you to use a foreign key to represent data from an external model in the same way as if they were inside the master model. For instance, the mode makes it possible to configure the grid in such a way that the data for the Qt::DisplayRole role will be taken from the master model connected to the grid controller, while the icon data (Qt::DecorationRole role) will be loaded from the external model. As a rule, the master model only contains the foreign key that points to the location of data for other roles in the external model.</p>
+<p>The scheme below illustrates the mechanism structure:</p>
+<ul>
+<li>Master model - the model that is passed to the grid and is used for displaying data.</li>
+<li>Relation model - the external model the grid connects to for fetching additional data.</li>
+<li>ForeignKey Column - the column of the external model that is used for storing the foreign key.</li>
+<li>ForeignKey Role - the role of the model that is used for storing the foreign key in the external model.</li>
+<li>ForeignKey MasterRole - the role of the current model that is used for obtaining the key of the current cell.</li>
+<li>ForeignKey Value - the value of the access key for the external model. It is stored as a QVariant value in the master model with a role that can be redefined.</li>
+</ul>
+<p>The mechanism can be managed with the help of the <a href="gridmodeldatabinding.html">GridModelDataBinding</a> object accessible from grid columns. You can enable the Relation mode using the setRelationMode() method and by passing the necessary mode as a parameter.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Country&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationMode(GridModelDataBinding<span class="operator">::</span>Relation);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationModel(countriesModel);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setForeignKey(<span class="string">&quot;id&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRoleMapping(<span class="type">Qt</span><span class="operator">::</span>DisplayRole<span class="operator">,</span> <span class="string">&quot;Name&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRoleMapping(<span class="type">Qt</span><span class="operator">::</span>DecorationRole<span class="operator">,</span> <span class="string">&quot;Flag&quot;</span>);</pre>
+<p>The setRelationModel() function defines a relation with an external model. Calling setForeignKey(&quot;id&quot;) will define the &quot;id&quot; column of the external model as a storage of external keys. By default, Qt::DisplayRole is used as the role for obtaining values from the external model (&quot;id&quot; column). This value is used as the second paramter in the setForeignKey() function:</p>
+<pre class="cpp">setForeignKey(<span class="string">&quot;id&quot;</span><span class="operator">,</span> <span class="type">Qt</span><span class="operator">::</span>UserRole)</pre>
+<p>The third paramter of the setForeignKey() function defines the value of the role that will be used for obtaining the value of the external key from the master model of the current row. Qt::EditRole is the default value.</p>
+<pre class="cpp">setForeignKey(<span class="string">&quot;id&quot;</span><span class="operator">,</span> <span class="type">Qt</span><span class="operator">::</span>UserRole<span class="operator">,</span> <span class="type">Qt</span><span class="operator">::</span>DisplayRole)</pre>
+<p>The setRoleMapping(Qt::DisplayRole, &quot;Name&quot;) method defines the rule for obtaining the Qt::DisplayRole role from the master model. To get the Qt::DisplayRole value of the master model, the grid will use the value from the &quot;Name&quot; column of the foreign model (foreignModel). By default, the Qt::DisplayRole role is used for obtaining this value from the external model. It can be redefined by passing it as the third parameter to the setRoleMapping() function. Example:</p>
+<pre class="cpp">column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRoleMapping(<span class="type">Qt</span><span class="operator">::</span>DecorationRole<span class="operator">,</span> <span class="string">&quot;Flag&quot;</span><span class="operator">,</span> <span class="type">Qt</span><span class="operator">::</span>DecorationRole);</pre>
+<a name="migration-from-qsqlrelationaltablemodel"></a>
+<h3 >Migration from QSqlRelationalTableModel</h3>
+<p>Let's take a look at a Qt example.</p>
+<pre class="cpp"><span class="type">QSqlRelationalTableModel</span><span class="operator">*</span> model <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlRelationalTableModel</span>;
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+model<span class="operator">-</span><span class="operator">&gt;</span>setTable(<span class="string">&quot;employee&quot;</span>);
+model<span class="operator">-</span><span class="operator">&gt;</span>setRelation(<span class="number">2</span><span class="operator">,</span> <span class="type">QSqlRelation</span>(<span class="string">&quot;city&quot;</span><span class="operator">,</span> <span class="string">&quot;id&quot;</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>));
+model<span class="operator">-</span><span class="operator">&gt;</span>setRelation(<span class="number">3</span><span class="operator">,</span> <span class="type">QSqlRelation</span>(<span class="string">&quot;country&quot;</span><span class="operator">,</span> <span class="string">&quot;id&quot;</span><span class="operator">,</span> <span class="string">&quot;name&quot;</span>));
+<span class="type">QTableView</span> <span class="operator">*</span>view <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QTableView</span>;
+view<span class="operator">-</span><span class="operator">&gt;</span>setModel(model);</pre>
+<p>Let's see how this Qt example should be adapted for working with QtitanDataGrid.</p>
+<pre class="cpp"><span class="type">QSqlRelationalTableModel</span><span class="operator">*</span> model <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlRelationalTableModel</span>;
+model<span class="operator">-</span><span class="operator">&gt;</span>setTable(<span class="string">&quot;employee&quot;</span>);
+
+<span class="type">QSqlQueryModel</span><span class="operator">*</span> city <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlQueryModel</span>;
+city<span class="operator">-</span><span class="operator">&gt;</span>setTable(<span class="string">&quot;city&quot;</span>);
+
+<span class="type">QSqlQueryModel</span><span class="operator">*</span> country <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlQueryModel</span>;
+country<span class="operator">-</span><span class="operator">&gt;</span>setTable(<span class="string">&quot;country&quot;</span>);
+
+Qtitan<span class="operator">::</span>GridTableView<span class="operator">*</span> view <span class="operator">=</span> qtitangrid<span class="operator">-</span><span class="operator">&gt;</span>view<span class="operator">&lt;</span>Qtitan<span class="operator">::</span>GridTableView<span class="operator">&gt;</span>();
+view<span class="operator">-</span><span class="operator">&gt;</span>setModel(model);
+
+Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumn(<span class="number">2</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationMode(GridModelDataBinding<span class="operator">::</span>Relation);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationModel(city);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setForeignKey(<span class="string">&quot;id&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRoleMapping(<span class="type">Qt</span><span class="operator">::</span>DisplayRole<span class="operator">,</span> <span class="string">&quot;name&quot;</span>);
+
+
+column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumn(<span class="number">3</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationMode(GridModelDataBinding<span class="operator">::</span>Relation);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationModel(country);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setForeignKey(<span class="string">&quot;id&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRoleMapping(<span class="type">Qt</span><span class="operator">::</span>DisplayRole<span class="operator">,</span> <span class="string">&quot;name&quot;</span>);</pre>
+<p class="centerAlign"><img src="images/gridrelationdemo.png" alt="" /></p><a name="support-of-the-relation-mode-by-cell-editors"></a>
+<h2 id="support-of-the-relation-mode-by-cell-editors">Support of the Relation mode by cell editors</h2>
+<p>QtitanDataGrid has several editors supporting this mode.</p>
+<ul>
+<li>GridComboBoxEditor - the editor uses a ComboBox control for value selection.</li>
+<li>GridTableEditor - the editor uses an additional table (QtitanDataGrid) in in popup window for value selection.</li>
+</ul>
+<a name="masterdetails-mode"></a>
+<h2 id="masterdetails-mode">MasterDetails mode</h2>
+<p>This is a special mode that enables you to show additional tabular data in grid cells. Each grid cell is associated with an external data source represented by a model inherited from an abstract class. A model cell for which a table of details is generated must contain a foreign key besides a readable description. The value of the foreign key should be accessible through a configurable role. By default, Qt::EditRole is used. The external model should contain a column with foreign keys. The role for obtaining a key from the external model can be configured.</p>
+<p>The rows of the table of details are the rows from the external model for which the values of keys from the keys column match the value of the foreign key from the cell of the master model.</p>
+<p>Let's take a look at an example that demonstrates the process of configuring this mode:</p>
+<pre class="cpp"><span class="type">QSqlTableModel</span><span class="operator">*</span> actorsModel <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSqlTableModel</span>;
+Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Cast&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationMode(GridModelDataBinding<span class="operator">::</span>MasterDetailsRelation);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setRelationModel(actorsModel);
+column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>setForeignKey(<span class="string">&quot;film_id&quot;</span>);</pre>
+<p>The setRelationMode() and setModel() methods set the master details mode and define an external data source represented by a Qt model. The setForeignKey() method sets the settings of the foreign key that will be represented by the &quot;film_id&quot; column and the Qt::DisplayRole role of the external model. The value of the foreign key for which a table of details should be generated can be obtained with the help of the Qt::EditRole role of the current cell. If you need to use another role, it can be set by passing it as the third parameter of the setForeignKey() function.</p>
+<a name="support-of-the-masterdetails-mode-by-cell-editors"></a>
+<h2 id="support-of-the-masterdetails-mode-by-cell-editors">Support of the MasterDetails mode by cell editors</h2>
+<p>QtitanDataGrid comes with an editor (GridTableEditor) supporting this mode. To start using it, switch the column editor to GridTableEditor using the code below:</p>
+<pre class="cpp">column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Cast&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorType(Qtitan<span class="operator">::</span>TableEditorType);</pre>
+<p>The cell editor automatically detects the mode used and keeps working on its own.</p>
+<p class="centerAlign"><img src="images/gridmaterdetailsdemo.png" alt="" /></p><a name="differences-between-relation-mode-and-masterdetails-mode"></a>
+<h2 id="differences-between-relation-mode-and-masterdetails-mode">Differences between Relation mode and MasterDetails mode</h2>
+<p>Although both modes use the Foreign Key, they are fundamentally different in the following aspects:</p>
+<ol class="1" type="1"><li>There can be only one row in the external model for a specific value of the Foreign Key in the Relation mode. If there are several rows, the first random one will be used. MasterDetails mode supports an indefinite number of records with a set Foreign Key. Each record forms a row in the table of details.</li>
+<li>In the Relation mode, editing is carried out in the master model. Specifically, the Foreign Key is changed. In the MasterDetails mode, editing is performed on the side of the external model. It implies the modification of the cell content with the exception of the cells containing the Foreign Key. In the MasterDetails mode, the Foreign Key in the master and external models stays the same.</li>
+<li>The MasterDetails mod also implies the addition of new and removal of unnecessary rows in the external model. The Relation mode does not allow you to do that.</li>
+</ol>
+</div>
+<p><b>See also </b><a href="gridmodeldatabinding.html">GridModelDataBinding</a>.</p>
+<!-- @@@qtitangridrelationomde.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

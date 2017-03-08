@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnSummariesTopic.qdoc -->
+  <title>Summary - usage and customization | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>Summary - usage and customization</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#summary-overview">Summary Overview</a></li>
+<li class="level1"><a href="#configuring-a-summary-for-all-grid-rows">Configuring a summary for all grid rows</a></li>
+<li class="level1"><a href="#configuring-a-summary-for-a-group-of-rows">Configuring a summary for a group of rows</a></li>
+<li class="level1"><a href="#disabling-summaries">Disabling summaries</a></li>
+<li class="level1"><a href="#managing-summaries-using-an-user-interface">Managing summaries using an user interface</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">Summary - usage and customization</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangridsummary.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="summary-overview"></a>
+<h2 id="summary-overview">Summary Overview</h2>
+<p>The QtitanDataGrid is capable of showing column summaries. This mechanism allows you to automatically calculate column summaries for a group of rows or all rows at once. The summary calculation result for a group of rows is displayed on a special summary panel located under the group or on a footer panel for results calculated for all grid rows. Five summary calculation scenarios are available:</p>
+<ul>
+<li>Summary Min Finds the minimal value. Cannot be applied to grid columns containing values of the following types: QVariant::String, QVariant::List, QVariant::Map, QVariant::StringList, QVariant::Icon, QVariant::Image, QVariant::Pixmap, QVariant::Bitmap.</li>
+<li>Summary Max Finds the maximum value. Cannot be applied to grid columns containing values of the following types: QVariant::String, QVariant::List, QVariant::Map, QVariant::StringList, QVariant::Icon, QVariant::Image, QVariant::Pixmap, QVariant::Bitmap.</li>
+<li>Summary Count Finds the total number of items. Can be applied to columns with all kinds of values.</li>
+<li>Summary Avg Finds the average value. Cannot be applied to grid columns containing values of the following types: QVariant::DateTime, QVariant::Date, QVariant::Char, QVariant::String, QVariant::List, QVariant::Map, QVariant::StringList, QVariant::Icon, QVariant::Image, QVariant::Pixmap, QVariant::Bitmap.</li>
+<li>Summary Sum Finds the sum of all values. Cannot be applied to grid columns containing values of the following types: QVariant::DateTime, QVariant::Date, QVariant::Char, QVariant::String, QVariant::List, QVariant::Map, QVariant::StringList, QVariant::Icon, QVariant::Image, QVariant::Pixmap, QVariant::Bitmap.</li>
+</ul>
+<p class="centerAlign"><img src="images/gridsummaries.png" alt="" /></p><p>You can determine what summary types a specific column supports using the <a href="gridmodeldatabinding.html#supportedSummaryTypes">GridModelDataBinding::supportedSummaryTypes</a>() property.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumn(<span class="string">&quot;col&quot;</span>);
+SummaryTypes types <span class="operator">=</span> column<span class="operator">-</span><span class="operator">&gt;</span>dataBinding()<span class="operator">-</span><span class="operator">&gt;</span>supportedSummaryTypes();</pre>
+<a name="configuring-a-summary-for-all-grid-rows"></a>
+<h2 id="configuring-a-summary-for-all-grid-rows">Configuring a summary for all grid rows</h2>
+<p>Summaries for all grid rows are called footer summaries, as these summaries are located on the footer panel of the grid. They contain values calculated for all grid rows. Configuration of these summaries begins with making the footer panel visible. The panel visibility is controlled by the setFooterSummaryVisible() grid property.</p>
+<pre class="cpp">view<span class="operator">-</span><span class="operator">&gt;</span>options()<span class="operator">.</span>setFooterSummaryVisible(<span class="keyword">true</span>);</pre>
+<p>The summary type is set using the setFooterSummary() method of the grid column.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumn(<span class="string">&quot;col&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setFooterSummary(Qtitan<span class="operator">::</span>SummaryCount);</pre>
+<a name="configuring-a-summary-for-a-group-of-rows"></a>
+<h2 id="configuring-a-summary-for-a-group-of-rows">Configuring a summary for a group of rows</h2>
+<p>Summaries for a group of rows are called group summaries. They are shown on a special panel called Group Footer Panel. This panel can be found under the last row belonging to a group. The grid has a separate Group Footer Panel for each group of rows. The visibility of the footer panel is controlled by the setGroupSummaryVisible() grid property.</p>
+<pre class="cpp">view<span class="operator">-</span><span class="operator">&gt;</span>options()<span class="operator">.</span>setGroupSummaryVisible(<span class="keyword">true</span>);</pre>
+<p>The summary type is set using the setGroupSummary() method of the grid column object. The first parameter should be the name of the grid column that will take part in grouping. Example:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> dateColumn <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumn(<span class="string">&quot;date&quot;</span>);
+Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> nameColumn <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumn(<span class="string">&quot;name&quot;</span>);
+nameColumn<span class="operator">-</span><span class="operator">&gt;</span>setGroupSummary(dateColumn<span class="operator">,</span> Qtitan<span class="operator">::</span>SummaryCount);</pre>
+<p>Once this function is called, the grid displays a summary for the nameColumn column when grouping by dateColumn is completed. If you use Q_NULL as the first argument of the setGroupSummary() function, the summary will be shown regardless of the column used for grouping. Please note that this line of code:</p>
+<pre class="cpp">nameColumn<span class="operator">-</span><span class="operator">&gt;</span>setGroupSummary(<span class="number">0</span><span class="operator">,</span> Qtitan<span class="operator">::</span>SummaryCount);</pre>
+<p>and this one:</p>
+<pre class="cpp">nameColumn<span class="operator">-</span><span class="operator">&gt;</span>setDefaultGroupSummary(Qtitan<span class="operator">::</span>SummaryCount);</pre>
+<p>are identical.</p>
+<a name="disabling-summaries"></a>
+<h2 id="disabling-summaries">Disabling summaries</h2>
+<p>If you need to programmatically disable a column summary, you need to pass &quot;<a href="gridsummary.html#GridSummaryType-enum">SummaryNone</a>&quot; as the summary type value.</p>
+<pre class="cpp">column<span class="operator">-</span><span class="operator">&gt;</span>setDefaultGroupSummary(Qtitan<span class="operator">::</span>SummaryNone);</pre>
+<p>or</p>
+<pre class="cpp">column<span class="operator">-</span><span class="operator">&gt;</span>setFooterSummary(Qtitan<span class="operator">::</span>SummaryNone);</pre>
+<a name="managing-summaries-using-an-user-interface"></a>
+<h2 id="managing-summaries-using-an-user-interface">Managing summaries using an user interface</h2>
+<p>You can use a special interface to manage summaries. If you need to enable the footer menu, use the popup menu and specifically its Footer Panel section. To enable the group footer panel, use the same popup menu and its Group Footer Panel section. Right-clicking on the footer panel or group panel in the area intended for summary data will open an additional popup menu that will allow you to select the summary type. See the screenshot.</p>
+<p>For more information abour summaries, use the summaries demo file supplied with QtitanDataGrid.</p>
+</div>
+<!-- @@@qtitangridsummary.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

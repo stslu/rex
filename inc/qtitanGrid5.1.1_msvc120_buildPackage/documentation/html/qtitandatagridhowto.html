@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- howto.qdoc -->
+  <title>QtitanDataGrid Howto | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>QtitanDataGrid Howto</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QtitanDataGrid Howto</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitandatagridhowto.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>Below is a list of typical questions about <strong>QtitanDataGrid</strong> submitted by our clients. Please read them attentively prior to contacting us � there is a good chance your question has already been answered. If, however, you don�t find an answer to your question, please don�t hesitate to contact our customer support department � we�ll be glad to assist you.</p>
+<ol>
+<li><em>Why would I need QtitanDataGrid at all?</em><br />QtitanDataGrid is used for displaying tabular data in Nokia-Qt applications.</li>
+<li><em>Who are the primary users of Qtitan DataGrid?</em><br />QtitanDataGrid is intended for Qt developers creating applications with closed source codes.</li>
+<li><em>Is QtitanDataGrid a direct descendant of the standard QTableView component?</em><br />No. QtitanDataGrid is a descendant of QWidget and uses a virtualization-based architecture for processing tabular data.</li>
+<li><em>What data source does QtitanDataGrid use?</em><br />The component can work with any data source inheritable from QAbstractItemModel.</li>
+<li><em>QAbstractItemModel has a tree-like structure with parent-child relations in it. Will QtitanDataGrid allow me to show data on the nested levels of my models?</em><br />Yes, this is possible. To do that, just specify the index of the parent level when installing a model.</li>
+<li><em>Will QtitanDataGrid cache data from my model?</em><br />For improved performance, Qtitan DataGrid uses an integrated caching mechanism. It can be activated at any time, but it�s not enabled by default, since many models have their own caching mechanisms.</li>
+<li><em>Does QtitanDataGrid support sorting?</em><br />Absolutely. QtitanDataGrid supports sorting by one or several columns.</li>
+<li><em>Do I need to use QSortFilterProxyModel to make sure that sorting works correctly in QtitanDataGrid?</em><br />No, it�s not necessary. QtitanDataGrid has all the necessary mechanisms for correct sorting.</li>
+<li><em>How fast does QtitanDataGrid sort data? Is the sorting mechanism sensitive to the types of data being sorted?</em><br />QtitanDataGrid is very fast. The sorting mechanism is sensitive to the types of data, which means that sorting of integer values will be faster than sorting of a column of string values.</li>
+<li><em>What mechanism does QtitanDataGrid use for sorting?</em><br />QuickSort.</li>
+<li><em>Does QtitanDataGrid support grouping?</em><br />Sure. The component supports grouping by any number of columns.</li>
+<li><em>Can QtitanDataGrid generate summaries?</em><br />Of course. QtitanDataGrid generates column-specific and group summaries.</li>
+<li><em>Can I group columns into bands?</em><br />Yes. QtitanDataGrid has a special table type, Qtitan::BandedTableView, which allows you to do that.</li>
+<li><em>Can I make a column occupy more than one row?</em><br />Yes, you can.</li>
+<li><em>Can I make some columns fixed for horizontal scrolling?</em><br />Yes.</li>
+<li><em>Can QtitanDataGrid fit the height of table cells to the height of their content?</em><br />Absolutely. It even has a special mode for that - Row Auto Height.</li>
+<li><em>How are cells edited in QtitanDataGrid?</em><br />QtitanDataGrid has a set of easily-editable editors for different data types.</li>
+<li><em>I have my own editor based on QItemDelegate. Can I use it?</em><br />Yes, you can. But our concept implies that no additional coding of editors (delegates) is required. We will keep developing editors to an extent that will cover all possible combinations. However, we understand that there are cases when it�s absolutely necessary to use custom editor capabilities. That�s exactly why we added a support for the QItemDelegate and added own public API for editors to QtitanDataGrid.</li>
+<li><em>What cell editors are available at the moment?</em><br />
+<p>You can edit the following data types in cells:
+<ul>
+<li>String</li>
+<li>Integer</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>Time</li>
+<li>DateTime</li>
+<li>Images (can also be shown in a dropdown window)</li>
+<li>Text (can also be shown in a dropdown window)</li>
+<li>Standart Qt model (can be shown in ComboBox dropdown window and/or in DataGrid dropdown window)</li>
+<li>Table</li>
+</ul>
+</p>
+</li>
+<li><em>Will QtitanDataGrid look like an integral part of my application?</em><br />QtitanDataGrid uses the Qt styles system, so it will definitely look like a part of your app.</li>
+<li><em>Qt is a platform-independent framework. Does Qtitan use platform-independent code?</em><br />99% of Qtitan code is platform-independent. However, platform-specific code is sometimes used for performance optimization purposes.</li>
+<li><em>What platforms does Qtitan support?</em><br />At the moment, it�s Windows and Linux. Mac OS support is under way.</li>
+<li><em>I develop projects in Microsoft Visual Studio. Will I be able to build there using Qtitan?</em><br />Qtitan supports both MingW and Visual Studio without limitations.</li>
+</ol>
+    </div>
+<!-- @@@qtitandatagridhowto.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtitanDataGridEditorTutorial.qdoc -->
+  <title>QtitanDataGrid cell editor | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>QtitanDataGrid cell editor</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#overview">Overview</a></li>
+<li class="level1"><a href="#standard-cell-s-editors">Standard cell's editors</a></li>
+<li class="level1"><a href="#creating-a-custom-editor">Creating a custom editor</a></li>
+<li class="level1"><a href="#example-of-the-custom-editor">Example of the custom editor</a></li>
+<li class="level1"><a href="#use-of-the-delegates-from-the-regular-qt-table-qtableview">Use of the delegates from the regular Qt table - QTableView</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QtitanDataGrid cell editor</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitangrideditortutorial.html-description -->
+<div class="descr"> <a name="details"></a>
+<a name="overview"></a>
+<h2 id="overview">Overview</h2>
+<p>QtitanDataGrid provides an interface of the cell editor. If you realize it you get full access to the content management and behavior of the cell. You can control events from the mouse and keyboard, the fact of the start and the end editing of the cell content and etc. The cell editor is binded to the grid column and relevant for all cells in this column.</p>
+<a name="standard-cell-s-editors"></a>
+<h2 id="standard-cell-s-editors">Standard cell's editors</h2>
+<p>Using the cell editor interface, in the grid, implemented 13 the standard editors of cells that you can use at its discretion. Each editor designed to edit a particular type of value. There are editors for edit pictures, dates, times, string fields, text blobs, enums, tabulated values ​​and flags. To set the the standard editor for the grid column, there is a method Qtitan::GridTableColumn::setEditorType(). The method allows to specify concrete editor or to specify mode - automatic determination of type editor by the value which being edited. Value to determine type of editor is taken from the first row of the Qt model which the grid is connected to.</p>
+<p>Example of use:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Photo&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorType(Qtitan<span class="operator">::</span>PictureEditorType);</pre>
+<a name="creating-a-custom-editor"></a>
+<h2 id="creating-a-custom-editor">Creating a custom editor</h2>
+<p>To create a cell editor for editing an arbitrary value, it should be implemented 2 virtual abstract classes (interface). The first class is the editor of the cell - Qtitan::GridEditor. The second class is a repository of cell's editors - Qtitan::GridEditorRepository, which essentially is a factory of the Qtitan::GridEditor instances. After Qtitan::GridEditorRepository is implemented, it must be installed to the grid column for which cells implements an editor. After connecting, the repository will start creating instances of classes Qtitan::GridEditor for specific grid cell. For each cell will be created one editor regardless of whether the cell is in a state of editing or not. Editors will create as long as the cells visible on the screen at the moment. If the model has 1000 rows but at the moment grid shows 10 rows only then the grid will create 10 editors in the one column.</p>
+<p>Grid cell editor can be in two states - preview mode ​​and edit mode. When the editor has been created it is in the preview mode. In the preview mode to the editor transferred the value received from the Qt model (using Qt::DisplayRole role). Value is passed to the editor using the method - Qtitan::GridEditor::updateContext(). The editor should save the value and use it to displaying or rendering until Qtitan::GridEditor::updateContext() will not be called next time. Followed by Qtitan::GridEditor::updateContext(), grid will try to get the editor's widget (QWidget) which will be embeded into the grid cell. For these purposes the method - QWidget* Qtitan::GridEditor::getCellWidget() is invoked. The owner of a widget is the editor of the cell. For one editor requires to create only one widget for preview. If the method Qtitan::GridEditor::getCellWidget() returns NULL then the method Qtitan::GridEditor::paintEvent() will be used to render the cell in preview mode.</p>
+<p>To start editing a cell the grid carries the editor to the edit state mode. For this purpose the grid will invoke the method setEditMode(true). Following this method will be called method Qtitan::GridEditor::updateContext(), which will be given a value for editing. The value for editing is obtained from the model using Qt::EditRole role. After calling this method, the grid is trying to get a widget (QWidget) that will used to edit a cell. For this purpose will cause the function - Qtitan::GridEditor::getCellWidget(). The returned widget should be initialized edited value that was obtained earlier. The widget can not be the same (and should not the same) with the widget that was returned in preview mode. If the widget () returns NULL, the method Qtitan::GridEditor::paintEvent() will be used to render the edited value (like in preview mode). To obtain the actual edited value from the editor grid uses the getContextValue() function. Editor must itself make sure that the value which is edited in the widget has been synchronized with the value returned by the function::getContextValue(). Finally, this value will be placed into the Qt model with the Qt::EditRole role. To finish edit the value the grid invokes the method setEditMode(false). After that it is assumed that the editor is once again get back to preview mode.</p>
+<p>Widgets, which are returned by Qtitan::GridEditor::getCellWidget() fucntion for edit mode or preview mode, can be of any complexity. For example you can return the widget which is a successor of the QGraphicsScene. The mechanism of embedding these widgets into the grid based on using of the flag Qt::WA_DontShowOnScreen. Embedded widget is lives in the background (like virtual environment), and the grid translates to it all mouse, keyboard, activation events from the cell and synchronizes the focus. The QWidget::render() is used to rendering the widget onto the cell area. As a resul, such widget will become an integral part of the grid.</p>
+<p>If the function Qtitan::GridEditor::getCellWidget() returns NULL, the method Qtitan::GridEditor::paintEvent() will be used for rendering the grid cell. As parameters for this method passed QPainter and Qtitan::GridEditorStyleOption which contains a setting for the font, color and etc. The style settings formed on the basis of a common grid settings.</p>
+<a name="example-of-the-custom-editor"></a>
+<h2 id="example-of-the-custom-editor">Example of the custom editor</h2>
+<p>Let to demonstrate in practice how looks a simple QtitanDataGrid editor, which is in edit mode uses QSlider widget for editing integer values:</p>
+<pre class="cpp"><span class="preprocessor">#include &lt;QtitanGrid.h&gt;</span>
+
+<span class="keyword">class</span> GridSliderEditor: <span class="keyword">public</span> Qtitan<span class="operator">::</span>GridEditor
+{
+    Q_OBJECT
+<span class="keyword">public</span>:
+    GridSliderEditor()
+        : m_repository(Q_NULL)<span class="operator">,</span> m_site(Q_NULL)<span class="operator">,</span> m_editMode(<span class="keyword">false</span>)<span class="operator">,</span> m_slider(Q_NULL)<span class="operator">,</span> m_modified(<span class="keyword">false</span>)
+    {
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> initEditor(Qtitan<span class="operator">::</span>GridEditorRepository<span class="operator">*</span> rep<span class="operator">,</span> Qtitan<span class="operator">::</span>GridEditorSite<span class="operator">*</span> site)
+    {
+        m_repository <span class="operator">=</span> rep;
+        m_site <span class="operator">=</span> site;
+    }
+
+    <span class="keyword">virtual</span> GridEditorRepository<span class="operator">*</span> editorRepository() <span class="keyword">const</span>
+    {
+        <span class="keyword">return</span> m_repository;
+    }
+
+    <span class="keyword">virtual</span> GridEditorSite<span class="operator">*</span> site() <span class="keyword">const</span>
+    {
+        <span class="keyword">return</span> m_site;
+    }
+
+    <span class="keyword">virtual</span> bool isEditMode()
+    {
+        <span class="keyword">return</span> m_editMode;
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> setEditMode(bool mode)
+    {
+        m_editMode <span class="operator">=</span> mode;
+        <span class="keyword">if</span> (m_editMode)
+        {
+            m_slider <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QSlider</span>(m_site<span class="operator">-</span><span class="operator">&gt;</span>parent());
+            m_slider<span class="operator">-</span><span class="operator">&gt;</span>setOrientation(<span class="type">Qt</span><span class="operator">::</span>Horizontal);
+            <span class="keyword">if</span> (m_site<span class="operator">-</span><span class="operator">&gt;</span>parent() <span class="operator">=</span><span class="operator">=</span> Q_NULL)
+                m_slider<span class="operator">-</span><span class="operator">&gt;</span>setAttribute(<span class="type">Qt</span><span class="operator">::</span>WA_DontShowOnScreen);
+            connect(m_slider<span class="operator">,</span> SIGNAL(valueChanged(<span class="type">int</span>))<span class="operator">,</span> <span class="keyword">this</span><span class="operator">,</span> SLOT(valueChanged(<span class="type">int</span>)));
+            repositoryUpdated();
+        }
+        <span class="keyword">else</span>
+        {
+            <span class="keyword">delete</span> m_slider;
+            m_slider <span class="operator">=</span> Q_NULL;
+        }
+    }
+
+    <span class="keyword">virtual</span> <span class="type">QVariant</span> getContextValue()
+    {
+        <span class="keyword">return</span> m_value;
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> updateContext(<span class="keyword">const</span> <span class="type">QVariant</span><span class="operator">&amp;</span> value<span class="operator">,</span> bool modified <span class="operator">=</span> <span class="keyword">false</span>)
+    {
+        <span class="keyword">if</span> (m_editMode)
+            m_slider<span class="operator">-</span><span class="operator">&gt;</span>setValue(value<span class="operator">.</span>toInt());
+
+        m_value <span class="operator">=</span> value;
+        m_modified <span class="operator">=</span> modified;
+    }
+
+    <span class="keyword">virtual</span> bool isContextModified()
+    {
+        <span class="keyword">return</span> m_modified;
+    }
+
+    <span class="keyword">virtual</span> <span class="type">QWidget</span><span class="operator">*</span> getCellWidget()
+    {
+        <span class="keyword">return</span> m_editMode <span class="operator">?</span> m_slider : Q_NULL;
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> repositoryUpdated()
+    {
+        <span class="comment">//Apply repository's settings to the QSider.</span>
+        <span class="keyword">if</span> (m_slider <span class="operator">!</span><span class="operator">=</span> Q_NULL)
+        {
+            <span class="keyword">if</span> (m_slider<span class="operator">-</span><span class="operator">&gt;</span>testAttribute(<span class="type">Qt</span><span class="operator">::</span>WA_NoSystemBackground) <span class="operator">!</span><span class="operator">=</span> m_repository<span class="operator">-</span><span class="operator">&gt;</span>transparentBackground())
+                m_slider<span class="operator">-</span><span class="operator">&gt;</span>setAttribute(<span class="type">Qt</span><span class="operator">::</span>WA_NoSystemBackground<span class="operator">,</span> m_repository<span class="operator">-</span><span class="operator">&gt;</span>transparentBackground());
+
+            <span class="keyword">if</span> (m_slider<span class="operator">-</span><span class="operator">&gt;</span>isEnabled() <span class="operator">!</span><span class="operator">=</span> m_repository<span class="operator">-</span><span class="operator">&gt;</span>isEnabled())
+                m_slider<span class="operator">-</span><span class="operator">&gt;</span>setEnabled(m_repository<span class="operator">-</span><span class="operator">&gt;</span>isEnabled());
+        }
+    }
+
+    <span class="comment">//editor's events</span>
+    <span class="keyword">virtual</span> <span class="type">void</span> paintEvent(<span class="type">QPainter</span><span class="operator">&amp;</span> painter<span class="operator">,</span> <span class="keyword">const</span> GridEditorStyleOption<span class="operator">&amp;</span> option)
+    {
+        painter<span class="operator">.</span>drawText(option<span class="operator">.</span>rect<span class="operator">,</span> m_value<span class="operator">.</span>toString());
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mouseMoveEvent(<span class="keyword">const</span> <span class="type">QPoint</span><span class="operator">&amp;</span> pos)
+    {
+        Q_UNUSED(pos);
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mousePressEvent(<span class="keyword">const</span> <span class="type">QPoint</span><span class="operator">&amp;</span> pos)
+    {
+        Q_UNUSED(pos);
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mouseReleaseEvent(<span class="keyword">const</span> <span class="type">QPoint</span><span class="operator">&amp;</span> pos)
+    {
+        Q_UNUSED(pos);
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mouseDblClickEvent(<span class="keyword">const</span> <span class="type">QPoint</span><span class="operator">&amp;</span> pos)
+    {
+        Q_UNUSED(pos);
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mouseOverEvent(<span class="keyword">const</span> <span class="type">QPoint</span><span class="operator">&amp;</span> pos)
+    {
+        Q_UNUSED(pos);
+    }
+
+    <span class="keyword">virtual</span> <span class="type">void</span> mouseOutEvent()
+    {
+    }
+<span class="keyword">private</span>:
+    Qtitan<span class="operator">::</span>GridEditorRepository<span class="operator">*</span> m_repository;
+    Qtitan<span class="operator">::</span>GridEditorSite<span class="operator">*</span> m_site;
+    bool m_editMode;
+    <span class="type">QSlider</span><span class="operator">*</span> m_slider;
+    bool m_modified;
+    <span class="type">QVariant</span> m_value;
+<span class="keyword">private</span> <span class="keyword">slots</span>:
+    <span class="type">void</span> valueChanged(<span class="type">int</span> value)
+    {
+        m_modified <span class="operator">=</span> <span class="keyword">true</span>;
+        m_value <span class="operator">=</span> value;
+    }
+};
+
+<span class="keyword">class</span> GridSliderEditorRepository: <span class="keyword">public</span> Qtitan<span class="operator">::</span>GridEditorRepository
+{
+<span class="keyword">public</span>:
+    GridSliderEditorRepository()
+        : Qtitan<span class="operator">::</span>GridEditorRepository()
+    {
+        setDefaultValue(<span class="number">0</span>);
+    }
+
+    <span class="keyword">virtual</span> GridEditor<span class="operator">*</span> createEditor()
+    {
+        <span class="keyword">return</span> <span class="keyword">new</span> GridSliderEditor();
+    }
+};
+
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByCaption(<span class="string">&quot;Count&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorType(Qtitan<span class="operator">::</span>CustomEditType);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorRepository(<span class="keyword">new</span> GridSliderEditorRepository());</pre>
+<p>Once the sample is compiled and running you will see the following picture:</p>
+<p class="centerAlign"><img src="images/grideditorslider.png" alt="" /></p><p>Notice that the slider only appear if you turn on the editor to the editing state. To do this, move the focus to the cell and click on it or press Enter key. If necessary to have the cell has always been in a edit state while cell has focus, you must change the policy of the editor activation. For this purpose please use this function - <a href="grideditorrepository.html#setEditorActivationPolicy">GridEditorRepository::setEditorActivationPolicy</a>() with <a href="grideditorrepository.html#GridEditorActivationPolicyFlag-enum">GridEditorActivationPolicyFlag</a>.</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByCaption(<span class="string">&quot;Count&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository()<span class="operator">-</span><span class="operator">&gt;</span>setEditorActivationPolicy(Qtitan<span class="operator">::</span>Always);</pre>
+<p>If you need to have the edit state was enabled, even if the cell has no focus, use this method - Qtitan::GridEditorRepository::setAlwaysShowEditor().</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByCaption(<span class="string">&quot;Count&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository()<span class="operator">-</span><span class="operator">&gt;</span>setAlwaysShowEditor(<span class="keyword">true</span>);</pre>
+<p class="centerAlign"><img src="images/grideditorslider_alwaysshow.png" alt="" /></p><p>In this example, all the cells is in edit mode, but when a cell gets focus grid will not go to the editing state (the function <a href="gridviewbase.html#isEditing">GridTableView::isEditing</a>() will return false). So the grid has always been a in the editing state until the cell has the focus is needed to set a policy of activation - Qtitan::GridEditorRepository::setEditorActivationPolicy(). Here's how:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByCaption(<span class="string">&quot;Count&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository()<span class="operator">-</span><span class="operator">&gt;</span>setAlwaysShowEditor(<span class="keyword">true</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository()<span class="operator">-</span><span class="operator">&gt;</span>setEditorActivationPolicy(Qtitan<span class="operator">::</span>Always);</pre>
+<p class="centerAlign"><img src="images/grideditorslider_alwaysactive.png" alt="" /></p><a name="use-of-the-delegates-from-the-regular-qt-table-qtableview"></a>
+<h2 id="use-of-the-delegates-from-the-regular-qt-table-qtableview">Use of the delegates from the regular Qt table - QTableView</h2>
+<p>In the QtitanDataGrid is implemented a special cell editor that allows you to use already written a delegate from QTableView without losses. It enters in the list of predefined editors and may be enabled. To do this, set the corresponding class column property to the Qtitan::DelegateAdapterEditorType. Any special manipulation with QTableView-delegates for the proper operation is not required. The regular delegates interface is fully supported by QtitanDataGrid.</p>
+<p>Example of use:</p>
+<pre class="cpp">Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Rating&quot;</span>);
+column<span class="operator">-</span><span class="operator">&gt;</span>setEditorType(Qtitan<span class="operator">::</span>DelegateAdapterEditorType);
+GridDelegateAdapterEditorRepository<span class="operator">*</span> adapter <span class="operator">=</span> <span class="keyword">static_cast</span><span class="operator">&lt;</span>GridDelegateAdapterEditorRepository <span class="operator">*</span><span class="operator">&gt;</span>(column<span class="operator">-</span><span class="operator">&gt;</span>editorRepository());
+adapter<span class="operator">-</span><span class="operator">&gt;</span>setDelegate(<span class="keyword">new</span> StarDelegate);</pre>
+<p>In this example, the class StarDelegate is a QTableView delegate from the demo examples of Qt.</p>
+</div>
+<!-- @@@qtitangrideditortutorial.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridEditors.cpp -->
+  <title>GridEditorSite Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridEditorSite</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridEditorSite Class</h1>
+<!-- $$$GridEditorSite-brief -->
+<p>The <a href="grideditorsite.html">GridEditorSite</a> class-interface for access the grid cell internals. It may be necessary if you are coding a custom cell editor. For example, it's possible to get the dimensions of the cell, the index model - QModelIndex, show a tooltip near the cell and etc. <a href="#details">More...</a></p>
+<!-- @@@GridEditorSite -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridEditorSite&gt;</span>
+</td></tr></table></div><ul>
+<li><a href="grideditorsite-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridModelDataBinding *</td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#dataBinding">dataBinding</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual GridEditorStyleOption </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#editorOption">editorOption</a></b>() = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QRect </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#geometry">geometry</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#invalidate">invalidate</a></b>(bool <i>fullyViewUpdate</i> = false) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#linkActivated">linkActivated</a></b>(const QString &amp;<i>anchor</i>) = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QModelIndex </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#modelIndex">modelIndex</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#parent">parent</a></b>() const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#showHint">showHint</a></b>(const QString &amp;<i>text</i>) const = 0</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="grideditorsite.html#updateCursor">updateCursor</a></b>(const QCursor &amp;<i>cursor</i>) = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridEditorSite-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>The <a href="grideditorsite.html">GridEditorSite</a> class-interface for access the grid cell internals. It may be necessary if you are coding a custom cell editor. For example, it's possible to get the dimensions of the cell, the index model - QModelIndex, show a tooltip near the cell and etc.</p>
+</div>
+<!-- @@@GridEditorSite -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$dataBinding[overload1]$$$dataBinding -->
+<h3 class="fn" id="dataBinding"><a name="dataBinding"></a><code>[pure virtual] </code><span class="type"><a href="gridmodeldatabinding.html">GridModelDataBinding</a></span> *GridEditorSite::<span class="name">dataBinding</span>() const</h3>
+<!-- @@@dataBinding -->
+<!-- $$$editorOption[overload1]$$$editorOption -->
+<h3 class="fn" id="editorOption"><a name="editorOption"></a><code>[pure virtual] </code><span class="type">GridEditorStyleOption</span> GridEditorSite::<span class="name">editorOption</span>()</h3>
+<!-- @@@editorOption -->
+<!-- $$$geometry[overload1]$$$geometry -->
+<h3 class="fn" id="geometry"><a name="geometry"></a><code>[pure virtual] </code><span class="type">QRect</span> GridEditorSite::<span class="name">geometry</span>() const</h3>
+<!-- @@@geometry -->
+<!-- $$$invalidate[overload1]$$$invalidatebool -->
+<h3 class="fn" id="invalidate"><a name="invalidate"></a><code>[pure virtual] </code><span class="type">void</span> GridEditorSite::<span class="name">invalidate</span>(<span class="type">bool</span> <i>fullyViewUpdate</i> = false)</h3>
+<!-- @@@invalidate -->
+<!-- $$$linkActivated[overload1]$$$linkActivatedconstQString& -->
+<h3 class="fn" id="linkActivated"><a name="linkActivated"></a><code>[pure virtual] </code><span class="type">void</span> GridEditorSite::<span class="name">linkActivated</span>(const <span class="type">QString</span> &amp;<i>anchor</i>)</h3>
+<!-- @@@linkActivated -->
+<!-- $$$modelIndex[overload1]$$$modelIndex -->
+<h3 class="fn" id="modelIndex"><a name="modelIndex"></a><code>[pure virtual] </code><span class="type">QModelIndex</span> GridEditorSite::<span class="name">modelIndex</span>() const</h3>
+<!-- @@@modelIndex -->
+<!-- $$$parent[overload1]$$$parent -->
+<h3 class="fn" id="parent"><a name="parent"></a><code>[pure virtual] </code><span class="type">QWidget</span> *GridEditorSite::<span class="name">parent</span>() const</h3>
+<!-- @@@parent -->
+<!-- $$$showHint[overload1]$$$showHintconstQString& -->
+<h3 class="fn" id="showHint"><a name="showHint"></a><code>[pure virtual] </code><span class="type">void</span> GridEditorSite::<span class="name">showHint</span>(const <span class="type">QString</span> &amp;<i>text</i>) const</h3>
+<!-- @@@showHint -->
+<!-- $$$updateCursor[overload1]$$$updateCursorconstQCursor& -->
+<h3 class="fn" id="updateCursor"><a name="updateCursor"></a><code>[pure virtual] </code><span class="type">void</span> GridEditorSite::<span class="name">updateCursor</span>(const <span class="type">QCursor</span> &amp;<i>cursor</i>)</h3>
+<!-- @@@updateCursor -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

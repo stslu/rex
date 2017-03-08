@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridModelController.cpp -->
+  <title>GridRow Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridRow</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-types">Public Types</a></li>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridRow Class</h1>
+<!-- $$$GridRow-brief -->
+<p><a href="gridrow.html">GridRow</a> class introduce a row to display in a grid view. The row can be of two types - data row and a row that represents the group - group row. See <a href="gridrow.html#type">GridRow::type</a>() for more details. Number of rows does not always match the number of rows that are available in the Qt model. For example, if the filter has been imposed or grid has grouping then the number of grid rows will be different than Qt model rows. <a href="#details">More...</a></p>
+<!-- @@@GridRow -->
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridRow&gt;</span>
+</td></tr></table></div><ul>
+<li><a href="gridrow-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-types"></a>
+<h2 id="public-types">Public Types</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#FrozenPlace-enum">FrozenPlace</a></b> { FrozenNone, FrozenTop, FrozenBottom }</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> enum </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#RowType-enum">RowType</a></b> { DataRow, GroupRow }</td></tr>
+</table></div>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#GridRow">GridRow</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridCell </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#cell">cell</a></b>(int <i>index</i>) const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridModelController *</td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#controller">controller</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#depth">depth</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> FrozenPlace </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#frozenPlace">frozenPlace</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#groupColumn">groupColumn</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> GridRow *</td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#groupRow">groupRow</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#isExpanded">isExpanded</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#isFrozen">isFrozen</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#isPreviewExpanded">isPreviewExpanded</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#modelRowIndex">modelRowIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#rowIndex">rowIndex</a></b>() const</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#setExpanded">setExpanded</a></b>(bool <i>expanded</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#setFrozen">setFrozen</a></b>(bool <i>b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#setPreviewExpanded">setPreviewExpanded</a></b>(bool <i>expanded</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> RowType </td><td class="memItemRight bottomAlign"><b><a href="gridrow.html#type">type</a></b>() const</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridRow-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p><a href="gridrow.html">GridRow</a> class introduce a row to display in a grid view. The row can be of two types - data row and a row that represents the group - group row. See <a href="gridrow.html#type">GridRow::type</a>() for more details. Number of rows does not always match the number of rows that are available in the Qt model. For example, if the filter has been imposed or grid has grouping then the number of grid rows will be different than Qt model rows.</p>
+<p class="centerAlign"><img src="images/grid_rows_scheme.png" alt="" /></p></div>
+<!-- @@@GridRow -->
+<div class="types">
+<h2>Member Type Documentation</h2>
+<!-- $$$FrozenPlace$$$FrozenNone$$$FrozenTop$$$FrozenBottom -->
+<h3 class="fn" id="FrozenPlace-enum"><a name="FrozenPlace-enum"></a>enum GridRow::<span class="name">FrozenPlace</span></h3>
+<p>Enumirator FrozenPlace describes the place for frozen rows.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>GridRow::FrozenNone</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">Row does not frozen. It can be vertical scrolled. This value by default.</td></tr>
+<tr><td class="topAlign"><code>GridRow::FrozenTop</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">Row frozen at the top of the view and can't be vertical scrolled (always displayed on view).</td></tr>
+<tr><td class="topAlign"><code>GridRow::FrozenBottom</code></td><td class="topAlign tblval"><code>2</code></td><td class="topAlign">Row frozen at the bottom of the view and can't be vertical scrolled (always displayed on view).</td></tr>
+</table></div>
+<!-- @@@FrozenPlace -->
+<!-- $$$RowType$$$DataRow$$$GroupRow -->
+<h3 class="fn" id="RowType-enum"><a name="RowType-enum"></a>enum GridRow::<span class="name">RowType</span></h3>
+<p>Enumirator RowType describes the type of the grid row. At the moment there are two types of rows - Data row, related to the model data and Group row, related to the group of data rows after grouping.</p>
+<div class="table"><table class="valuelist"><tr valign="top" class="odd"><th class="tblConst">Constant</th><th class="tblval">Value</th><th class="tbldscr">Description</th></tr>
+<tr><td class="topAlign"><code>GridRow::DataRow</code></td><td class="topAlign tblval"><code>0</code></td><td class="topAlign">Data row</td></tr>
+<tr><td class="topAlign"><code>GridRow::GroupRow</code></td><td class="topAlign tblval"><code>1</code></td><td class="topAlign">Group row</td></tr>
+</table></div>
+<!-- @@@RowType -->
+</div>
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridRow[overload1]$$$GridRow -->
+<h3 class="fn" id="GridRow"><a name="GridRow"></a>GridRow::<span class="name">GridRow</span>()</h3>
+<p>Default constructs an instance of GridRow.</p><!-- @@@GridRow -->
+<!-- $$$cell[overload1]$$$cellint -->
+<h3 class="fn" id="cell"><a name="cell"></a><span class="type">GridCell</span> GridRow::<span class="name">cell</span>(<span class="type">int</span> <i>index</i>) const</h3>
+<p>Creates and returns GridCell structure for current row and cell <i>index</i>.</p>
+<!-- @@@cell -->
+<!-- $$$controller[overload1]$$$controller -->
+<h3 class="fn" id="controller"><a name="controller"></a><span class="type"><a href="gridmodelcontroller.html">GridModelController</a></span> *GridRow::<span class="name">controller</span>() const</h3>
+<p>Returns the controller owner for this row.</p>
+<!-- @@@controller -->
+<!-- $$$depth[overload1]$$$depth -->
+<h3 class="fn" id="depth"><a name="depth"></a><span class="type">int</span> GridRow::<span class="name">depth</span>() const</h3>
+<p>Returns depth for <a href="gridrow.html#RowType-enum">GroupRow</a>. For <a href="gridrow.html#RowType-enum">DataRow</a> this function does not has effect and always returns -1.</p>
+<!-- @@@depth -->
+<!-- $$$frozenPlace[overload1]$$$frozenPlace -->
+<h3 class="fn" id="frozenPlace"><a name="frozenPlace"></a><span class="type"><a href="gridrow.html#FrozenPlace-enum">FrozenPlace</a></span> GridRow::<span class="name">frozenPlace</span>() const</h3>
+<p>Returns the frozen place for the row.</p>
+<!-- @@@frozenPlace -->
+<!-- $$$groupColumn[overload1]$$$groupColumn -->
+<h3 class="fn" id="groupColumn"><a name="groupColumn"></a><span class="type">int</span> GridRow::<span class="name">groupColumn</span>() const</h3>
+<p>If the row is a <a href="gridrow.html#RowType-enum">GroupRow</a> returns model column index by which the group is formed. If row is a <a href="gridrow.html#RowType-enum">DataRow</a> the result is -1.</p>
+<!-- @@@groupColumn -->
+<!-- $$$groupRow[overload1]$$$groupRow -->
+<h3 class="fn" id="groupRow"><a name="groupRow"></a><span class="type"><a href="gridrow.html#GridRow">GridRow</a></span> *GridRow::<span class="name">groupRow</span>() const</h3>
+<!-- @@@groupRow -->
+<!-- $$$isExpanded[overload1]$$$isExpanded -->
+<h3 class="fn" id="isExpanded"><a name="isExpanded"></a><span class="type">bool</span> GridRow::<span class="name">isExpanded</span>() const</h3>
+<p>Returns expanded state for row if row is a <a href="gridrow.html#RowType-enum">GroupRow</a>. For <a href="gridrow.html#RowType-enum">DataRow</a> this function does not has effect and always returns true.</p>
+<!-- @@@isExpanded -->
+<!-- $$$isFrozen[overload1]$$$isFrozen -->
+<h3 class="fn" id="isFrozen"><a name="isFrozen"></a><span class="type">bool</span> GridRow::<span class="name">isFrozen</span>() const</h3>
+<p>Returns the frozen state for the row.</p>
+<!-- @@@isFrozen -->
+<!-- $$$isPreviewExpanded[overload1]$$$isPreviewExpanded -->
+<h3 class="fn" id="isPreviewExpanded"><a name="isPreviewExpanded"></a><span class="type">bool</span> GridRow::<span class="name">isPreviewExpanded</span>() const</h3>
+<!-- @@@isPreviewExpanded -->
+<!-- $$$modelRowIndex[overload1]$$$modelRowIndex -->
+<h3 class="fn" id="modelRowIndex"><a name="modelRowIndex"></a><span class="type">int</span> GridRow::<span class="name">modelRowIndex</span>() const</h3>
+<p>Returns row index related to the model. It should be used to contstruct QModelIndex.</p>
+<!-- @@@modelRowIndex -->
+<!-- $$$rowIndex[overload1]$$$rowIndex -->
+<h3 class="fn" id="rowIndex"><a name="rowIndex"></a><span class="type">int</span> GridRow::<span class="name">rowIndex</span>() const</h3>
+<p>Returns index number for row.</p>
+<!-- @@@rowIndex -->
+<!-- $$$setExpanded[overload1]$$$setExpandedbool -->
+<h3 class="fn" id="setExpanded"><a name="setExpanded"></a><span class="type">void</span> GridRow::<span class="name">setExpanded</span>(<span class="type">bool</span> <i>expanded</i>)</h3>
+<p>Expands or collapses the row if row is a <a href="gridrow.html#RowType-enum">GroupRow</a>. For <a href="gridrow.html#RowType-enum">DataRow</a> functions does nothing.</p>
+<p><b>See also </b><a href="gridrow.html#isExpanded">isExpanded</a>().</p>
+<!-- @@@setExpanded -->
+<!-- $$$setFrozen[overload1]$$$setFrozenbool -->
+<h3 class="fn" id="setFrozen"><a name="setFrozen"></a><span class="type">void</span> GridRow::<span class="name">setFrozen</span>(<span class="type">bool</span> <i>b</i>)</h3>
+<p>Sets the frozen state for the row. if the value is true then the row will be freeze at the <a href="gridmodelcontroller.html#frozenPlace">GridModelController::frozenPlace</a>() place. Please note, function does not has effect if <a href="gridrow.html#type">GridRow::type</a>() is not equal a <a href="gridrow.html#RowType-enum">GridRow::DataRow</a>.</p>
+<p><b>See also </b><a href="gridrow.html#isFrozen">isFrozen</a>().</p>
+<!-- @@@setFrozen -->
+<!-- $$$setPreviewExpanded[overload1]$$$setPreviewExpandedbool -->
+<h3 class="fn" id="setPreviewExpanded"><a name="setPreviewExpanded"></a><span class="type">void</span> GridRow::<span class="name">setPreviewExpanded</span>(<span class="type">bool</span> <i>expanded</i>)</h3>
+<p><b>See also </b><a href="gridrow.html#isPreviewExpanded">isPreviewExpanded</a>().</p>
+<!-- @@@setPreviewExpanded -->
+<!-- $$$type[overload1]$$$type -->
+<h3 class="fn" id="type"><a name="type"></a><span class="type"><a href="gridrow.html#RowType-enum">RowType</a></span> GridRow::<span class="name">type</span>() const</h3>
+<p>Returns the type of the row. It can be <a href="gridrow.html#RowType-enum">DataRow</a> or <a href="gridrow.html#RowType-enum">GroupRow</a>.</p>
+<!-- @@@type -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

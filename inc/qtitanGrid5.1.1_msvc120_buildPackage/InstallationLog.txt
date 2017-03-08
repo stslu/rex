@@ -1,0 +1,127 @@
+************************************* Invoked: jeu. déc. 1 07:35:29 2016
+Operations start: 147361
+Operations end: 16
+Resource count: 1
+Data block size: 36926310
+Magic marker: 302133811
+Magic cookie: 14007050384008702200
+Index size: 48
+End of data: 51330406
+Number of operations: 0
+Warning: libpng warning: iCCP: known incorrect sRGB profile (:0, )
+StartMenuPath: 	 "C:\\Users\\slusarek\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
+DesktopDir: 	 "C:\\Users\\slusarek\\Desktop"
+Operations sanity check succeeded.
+Unable to open translated license file. Using untranslated fallback.
+components list is empty in bool __thiscall QInstaller::PackageManagerCorePrivate::appendComponentsToUninstall(const class QList<class QInstaller::Component *> &)
+Tmp is on a different volume than the install folder. Tmp volume mount point: "C:\\" Free space available: "185.99 GiB" Install volume mount point: "D:\\" Free space available: "182.76 GiB"
+Installation space required: "101.46 MiB" Temporary space required: "0.00 bytes" Local repository size: "0.00 bytes"
+backup  operation: Mkdir
+\t- arguments: D:/download/dev/qt/libs/qtitandatagrid/win/QtitanDataGrid
+Done
+perform  operation: Mkdir
+\t- arguments: D:/download/dev/qt/libs/qtitandatagrid/win/QtitanDataGrid
+Done
+Install size: 7 components
+backup devmachines.qt operation: Extract
+\t- arguments: installer://devmachines.qt/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.qt operation: Extract
+\t- arguments: installer://devmachines.qt/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1content.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1content.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1include.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1include.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1src.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.public operation: Extract
+\t- arguments: installer://devmachines.public/5.1.1src.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1res.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1res.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1src.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1src.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1translations.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.private operation: Extract
+\t- arguments: installer://devmachines.private/5.1.1translations.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.docs operation: Extract
+\t- arguments: installer://devmachines.docs/5.1.1documentation.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.docs operation: Extract
+\t- arguments: installer://devmachines.docs/5.1.1documentation.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.misc operation: Extract
+\t- arguments: installer://devmachines.misc/5.1.1content.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.misc operation: Extract
+\t- arguments: installer://devmachines.misc/5.1.1content.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.misc operation: Extract
+\t- arguments: installer://devmachines.misc/5.1.1Licenses.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.misc operation: Extract
+\t- arguments: installer://devmachines.misc/5.1.1Licenses.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.misc operation: License
+\t- arguments: 
+Done
+perform devmachines.misc operation: License
+\t- arguments: 
+Done
+backup devmachines.designer operation: Extract
+\t- arguments: installer://devmachines.designer/5.1.1designer.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.designer operation: Extract
+\t- arguments: installer://devmachines.designer/5.1.1designer.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.demo operation: Extract
+\t- arguments: installer://devmachines.demo/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.demo operation: Extract
+\t- arguments: installer://devmachines.demo/5.1.1bin.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+backup devmachines.demo operation: Extract
+\t- arguments: installer://devmachines.demo/5.1.1demos.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+perform devmachines.demo operation: Extract
+\t- arguments: installer://devmachines.demo/5.1.1demos.7z, D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid
+Done
+create Error-Exception: "Un fichier de données au format binaire a été trouvé, mais en tant qu'installeur, je devrais être en mesure de lire les ressources binaires de mon propre binaire !"
+Operations start: 147361
+Operations end: 16
+Resource count: 1
+Data block size: 36926310
+Magic marker: 302133811
+Magic cookie: 14007050384008702200
+Index size: 48
+End of data: 51330406
+Writing uninstaller: "D:\\download\\dev\\qt\\libs\\qtitandatagrid\\win\\QtitanDataGrid/Uninstall.exe.new"
+Maintenance tool restart: false.
+SHOW FINISHED PAGE

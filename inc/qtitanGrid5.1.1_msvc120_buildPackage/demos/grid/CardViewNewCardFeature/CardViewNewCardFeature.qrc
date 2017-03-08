@@ -1,0 +1,21 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>res/new_user.png</file>
+    <file>res/photo1.png</file>
+    <file>res/photo2.png</file>
+    <file>res/photo3.png</file>
+    <file>res/photo4.png</file>
+    <file>res/photo5.png</file>
+    <file>res/photo6.png</file>
+    <file>res/photo7.png</file>
+    <file>res/photo8.png</file>
+    <file>res/photo9.png</file>
+    <file>res/photo10.png</file>
+    <file>res/photo11.png</file>
+    <file>res/photo12.png</file>
+    <file>res/photo13.png</file>
+    <file>res/photo14.png</file>
+    <file>res/photo15.png</file>
+</qresource>
+</RCC>
+

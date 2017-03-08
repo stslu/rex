@@ -1,0 +1,9 @@
+<RCC>
+	<qresource prefix="/">
+		<file alias="translations/grid/de_DE.qm">../../translations/grid/de_de.qm</file>
+		<file alias="translations/grid/fr_FR.qm">../../translations/grid/fr_fr.qm</file>
+		<file alias="translations/grid/ru_RU.qm">../../translations/grid/ru_ru.qm</file>
+		<file alias="translations/grid/pl_PL.qm">../../translations/grid/pl_pl.qm</file>
+		<file alias="translations/grid/it_IT.qm">../../translations/grid/it_it.qm</file>
+	</qresource>
+</RCC>

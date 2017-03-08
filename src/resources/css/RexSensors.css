@@ -1,0 +1,559 @@
+/* Common style */
+
+QScrollBar:vertical{
+    width: 17px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 transparent, stop:1 darkgray);
+}
+
+QScrollBar::handle:vertical{
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 darkred, stop:1 darkgray);
+    min-height: 10px;
+}
+
+QScrollBar::add-page:vertical {
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 darkblue, stop:1 darkgray);
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+QScrollBar::sub-page:vertical{
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 purple, stop:1 darkgray);
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+QScrollBar::add-line:vertical {
+    height: 12px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 purple, stop:1 darkgray);
+}
+
+QScrollBar::sub-line:vertical {
+    height: 12px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+    background-color: qlineargradient(spread:reflect x1:0, y1:0, x2:0.5, y2:0, stop:0 purple, stop:1 darkgray);
+}
+
+QScrollBar::up-arrow:vertical {
+    width: 8px;
+    height: 6px;
+    background-color: purple;
+}
+
+QScrollBar::down-arrow:vertical {
+    width: 8px;
+    height: 6px;
+    background-color: purple;
+}
+
+QScrollBar::up-arrow:vertical:pressed,
+QScrollBar::down-arrow:vertical:pressed {
+    width: 4px;
+    height: 4px;
+}
+
+/* RSMainWindow style */
+
+RSMainWindow
+{
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
+}
+
+RSMainWindow *
+{
+    color: white;
+    font-family: arial;
+    font-size: 12pt;
+    font-weight: normal;
+    color: white;
+}
+
+RSMainWindow QMessageBox
+{
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
+}
+
+RSMainWindow QMessageBox QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 10px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSMainWindow QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 2px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSMainWindow QPushButton:hover
+{
+    text-decoration: underline;
+}
+
+RSMainWindow QPushButton:pressed
+{
+    font-size: 10pt;
+}
+
+/* RSTimesManager style */
+
+RSTimesManager QWidget#m_border
+{
+    border: 1px solid teal;
+}
+
+RSTimesManager QWidget#m_title
+{
+    border-bottom: 1px solid teal;
+    color: orange;
+    background-color: teal;
+    padding: 10px;
+}
+
+RSTimesManager QWidget#m_body
+{
+    background-color: rgba(0, 0, 128, 50);
+}
+
+RSTimesManager QDateEdit
+{
+    border: 1px solid teal;
+    background-color: navy;
+    color: orange;
+}
+
+RSTimesManager QLabel
+{
+    border: none;
+    background-color: teal;
+    color: white;
+    min-width: 120px;
+    padding-left: 10px;
+}
+
+RSTimesManager QSpinBox
+{
+    border: 1px solid teal;
+    background-color: navy;
+    color: orange;
+}
+
+/* RSFiltersManager style */
+
+RSFiltersManager QWidget#m_border
+{
+    border: 1px solid teal;
+}
+
+RSFiltersManager QWidget#m_titleL
+{
+    background-color: teal;
+    padding: 10px;
+}
+
+RSFiltersManager QWidget#m_title
+{
+    color: orange;
+}
+
+RSFiltersManager QWidget#m_body
+{
+    background-color: rgba(0, 0, 128, 50);
+}
+
+RSFiltersManager QToolButton
+{
+    background-color: none;
+    border: none;
+    color: orange;
+    font-weight: normal;
+}
+
+RSFiltersManager QToolButton:hover
+{
+    /*border: 1px solid orange;*/
+}
+
+RSFiltersManager QLabel
+{
+    background-color: teal;
+    min-width: 200px;
+    padding-left: 10px;
+}
+
+RSFiltersManager QRadioButton
+{
+    background-color: navy;
+    border: 1px solid teal;
+    color: orange;
+}
+
+RSFiltersManager QComboBox
+{
+    background-color: navy;
+    border: 1px solid teal;
+    color: orange;
+}
+
+RSFiltersManager QAbstractItemView
+{
+    background-color: teal;
+    border: 1px solid teal;
+    color: white;
+    selection-background-color: navy;
+}
+
+/* RSOptionsManager style */
+
+RSOptionsManager QWidget#m_border
+{
+    border: 1px solid teal;
+}
+
+RSOptionsManager QWidget#m_title
+{
+    border-bottom: 1px solid teal;
+    color: orange;
+    background-color: teal;
+    padding: 10px;
+}
+
+RSOptionsManager QWidget#m_body
+{
+    background-color: rgba(0, 0, 128, 50);
+}
+
+RSOptionsManager QLabel
+{
+    border: none;
+    background-color: teal;
+    color: white;
+    min-width: 100px;
+    padding-left: 10px;
+}
+
+RSOptionsManager QSpinBox,
+RSOptionsManager QDoubleSpinBox
+{
+    border: 1px solid teal;
+    background-color: navy;
+    color: orange;
+}
+
+RSOptionsManager QWidget#m_border2,
+RSOptionsManager QWidget#m_border3,
+RSOptionsManager QWidget#m_border4
+{
+    border: 1px solid teal;
+}
+
+RSOptionsManager QWidget#m_body2,
+RSOptionsManager QWidget#m_body3,
+RSOptionsManager QWidget#m_body4
+{
+    border: 1px solid teal;
+    padding-left: 30px;
+    background-color: navy;
+
+}
+
+/* RSExportManager style */
+
+
+RSExportManager QWidget#m_border
+{
+    border: 1px solid teal;
+}
+
+RSExportManager QWidget#m_title
+{
+    border-bottom: 1px solid teal;
+    color: orange;
+    background-color: teal;
+    padding: 10px;
+}
+
+RSExportManager QWidget#m_body
+{
+    background-color: rgba(0, 0, 128, 50);
+}
+
+RSExportManager QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 2px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSExportManager QPushButton:hover
+{
+    text-decoration: underline;
+}
+
+RSExportManager QPushButton:pressed
+{
+    font-size: 10pt;
+}
+
+RSExportManager QPushButton:disabled
+{
+    color: gray;
+}
+
+/*RSExportManager QPushButton#m_loadButton
+{
+    color: gray;
+}*/
+
+/* RSMessageView style */
+
+RSMessageView
+{
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
+}
+
+RSMessageView *
+{
+    color: white;
+    font-family: arial;
+    font-size: 12pt;
+    font-weight: normal;
+    color: white;
+}
+
+RSMessageView QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 2px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSMessageView QPushButton:hover
+{
+    text-decoration: underline;
+}
+
+RSMessageView QPushButton:pressed
+{
+    font-size: 10pt;
+}
+
+RSMessageView QTextEdit
+{
+    background-color: black;
+    border: 1px solid white;
+    color: orange;
+    font-size: 10pt;
+}
+
+/* RSGraphView style */
+
+RSGraphView
+{
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
+}
+
+RSGraphView *
+{
+    color: white;
+    font-family: arial;
+    font-size: 12pt;
+    font-weight: normal;
+    color: white;
+}
+
+RSGraphView QTabWidget::pane
+{
+    background-color: none;
+    border: 2px solid cyan;
+}
+
+RSGraphView QTabWidget::tab-bar
+{
+    left: 25px;
+}
+
+RSGraphView QTabBar::tab
+{
+    background-color: none;
+    border-top: 2px solid cyan;
+    border-left: 2px solid cyan;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    min-width: 25ex;
+    padding: 5px;
+    font-weight: bold;
+    color: orange;
+}
+
+RSGraphView QTabBar::tab:last
+{
+    border-right: 2px solid cyan;
+}
+
+RSGraphView QTabBar::tab:hover
+{
+    color: gray;
+}
+
+RSGraphView QTabBar::tab:selected
+{
+    color: cyan;
+}
+
+RSGraphView QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 2px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSGraphView QPushButton:hover
+{
+    text-decoration: underline;
+}
+
+RSGraphView QPushButton:pressed
+{
+    font-size: 10pt;
+}
+
+RSGraphView QToolButton
+{
+    background-color: none;
+    border: none;
+    color: orange;
+    font-weight: normal;
+}
+
+RSGraphView QLabel
+{
+    border: none;
+    background-color: teal;
+    color: white;
+    min-width: 120px;
+    padding-left: 10px;
+}
+
+RSGraphView QSpinBox
+{
+    border: 1px solid teal;
+    background-color: rgba(0, 0, 255, 10);
+    color: orange;
+}
+
+RSGraphView QComboBox
+{
+    background-color: rgba(0, 0, 255, 10);
+    border: 1px solid teal;
+    color: orange;
+}
+
+RSGraphView QComboBox QAbstractItemView
+{
+    background-color: teal;
+    border: 1px solid teal;
+    color: white;
+    selection-background-color: navy;
+}
+
+/* RSDatabaseConfig style */
+
+RSDatabaseConfig
+{
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
+}
+
+RSDatabaseConfig *
+{
+    color: white;
+    font-family: arial;
+    font-size: 12pt;
+    font-weight: normal;
+    color: white;
+}
+
+RSDatabaseConfig QWidget#m_border
+{
+    border: 1px solid teal;
+}
+
+RSDatabaseConfig QWidget#m_title
+{
+    border-bottom: 1px solid teal;
+    color: orange;
+    background-color: teal;
+    padding: 10px;
+}
+
+RSDatabaseConfig QWidget#m_body
+{
+    background-color: rgba(0, 0, 128, 50);
+}
+
+RSDatabaseConfig QLabel
+{
+    background-color: teal;
+    min-width: 150px;
+    padding-left: 10px;
+}
+
+RSDatabaseConfig QPushButton
+{
+    background-color: none;
+    border: none;
+    padding: 2px;
+    color: orange;
+    font-weight: bold;
+}
+
+RSDatabaseConfig QPushButton:hover
+{
+    text-decoration: underline;
+}
+
+RSDatabaseConfig QPushButton:pressed
+{
+    font-size: 10pt;
+}
+
+RSDatabaseConfig QToolButton
+{
+    background-color: none;
+    border: none;
+    color: orange;
+    font-weight: normal;
+}
+
+RSDatabaseConfig QToolButton:hover
+{
+    border: 1px solid orange;
+}
+
+RSDatabaseConfig QLineEdit
+{
+    border: 1px solid teal;
+    background: rgba(0, 0, 128, 50);
+    color: orange;
+}
+
+RSDatabaseConfig QLineEdit:read-only
+{
+    color: gray;
+}

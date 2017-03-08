@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/css">
+        <file alias="RexSensors.css">resources/css/RexSensors.css</file>
+    </qresource>
+    <qresource prefix="/sql">
+        <file alias="RexSensorsG6.sql">resources/database/RexSensorsG6.sql</file>
+        <file alias="RexSensorsG7.sql">resources/database/RexSensorsG7.sql</file>
+    </qresource>
+    <qresource prefix="/ico">
+        <file alias="Rex.ico">resources/image/ico/Rex.ico</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file alias="Rex.png">resources/image/img/Rex.png</file>
+        <file>resources/image/img/excel.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>resources/image/img/excel.png</file>
+    </qresource>
+</RCC>

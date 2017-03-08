@@ -1,0 +1,29 @@
+DEFINES  += LIBXL_STATIC
+
+EXCEL_LIB_PREFIX = $$PWD/.. 
+
+INCLUDEPATH += $${EXCEL_LIB_PREFIX}/include/libxl
+
+unix {
+    CONFIG(debug, debug|release) {
+        LIBS += -L$${EXCEL_LIB_PREFIX}/lib -llibxld 
+    } else {
+        LIBS += -L$${EXCEL_LIB_PREFIX}/lib -llibxl
+    }
+}
+
+win32 {
+	contains(QMAKE_TARGET.arch, x86_64) : {
+		CONFIG(debug, debug|release) {
+			LIBS += -L$${EXCEL_LIB_PREFIX}/lib/msvc120_x64/debug -lgdi32 -lshell32 -llibxl
+		} else {
+			LIBS += -L$${EXCEL_LIB_PREFIX}/lib/msvc120_x64/release -lgdi32 -lshell32 -llibxl
+		}
+	} else {
+		CONFIG(debug, debug|release) {
+			LIBS += -L$${EXCEL_LIB_PREFIX}/lib/msvc120_x86/debug -llibxl -lgdi32 -lshell32
+		} else {
+			LIBS += -L$${EXCEL_LIB_PREFIX}/lib/msvc120_x86/release -llibxl -lgdi32 -lshell32
+		}
+	}
+}

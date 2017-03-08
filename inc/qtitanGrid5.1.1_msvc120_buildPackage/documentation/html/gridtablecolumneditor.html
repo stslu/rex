@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- QtnGridTableView.cpp -->
+  <title>GridTableColumnEditor Class | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>GridTableColumnEditor</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">GridTableColumnEditor Class</h1>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> <span class="preprocessor">#include &lt;GridTableColumnEditor&gt;</span>
+</td></tr></table></div><ul>
+<li><a href="gridtablecolumneditor-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2 id="public-functions">Public Functions</h2>
+<div class="table"><table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="gridtablecolumneditor.html#GridTableColumnEditor">GridTableColumnEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="gridtablecolumneditor.html#dtor.GridTableColumnEditor">~GridTableColumnEditor</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual QWidget *</td><td class="memItemRight bottomAlign"><b><a href="gridtablecolumneditor.html#createEditorWidget">createEditorWidget</a></b>(GridColumnBase *<i>column</i>) = 0</td></tr>
+</table></div>
+<a name="details"></a>
+<!-- $$$GridTableColumnEditor-description -->
+<div class="descr">
+<h2 id="details">Detailed Description</h2>
+<p>Class allows to add QWidget to the column header. It used as a factory for QWidget creation. Use snippet below to add QPushButton to the column header.</p>
+<pre class="cpp"><span class="keyword">class</span> GridCustomColumnEditor: <span class="keyword">public</span> Qtitan<span class="operator">::</span>GridTableColumnEditor
+{
+<span class="keyword">public</span>:
+    GridCustomColumnEditor()
+    {
+    }
+
+    <span class="keyword">virtual</span> <span class="type">QWidget</span><span class="operator">*</span> GridCustomColumnEditor<span class="operator">::</span>createEditorWidget(Qtitan<span class="operator">::</span>GridTableColumnBase<span class="operator">*</span> column)
+    {
+        <span class="type">QPushButton</span><span class="operator">*</span> button <span class="operator">=</span> <span class="keyword">new</span> <span class="type">QPushButton</span>();
+        button<span class="operator">-</span><span class="operator">&gt;</span>setText(<span class="string">&quot;text&quot;</span>);
+        <span class="keyword">return</span> button;
+    }
+};
+
+<span class="operator">.</span><span class="operator">.</span><span class="operator">.</span>
+
+<span class="type">void</span> initColumnEditor()
+{
+    Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Column&quot;</span>);
+    GridCustomColumnEditor<span class="operator">*</span> columnEditor <span class="operator">=</span> <span class="keyword">new</span> GridCustomColumnEditor();
+    column<span class="operator">-</span><span class="operator">&gt;</span>setColumnEditor(columnEditor);
+}
+
+<span class="type">void</span> freeColumnEditor()
+{
+    Qtitan<span class="operator">::</span>GridTableColumn<span class="operator">*</span> column <span class="operator">=</span> (Qtitan<span class="operator">::</span>GridTableColumn <span class="operator">*</span>)view<span class="operator">-</span><span class="operator">&gt;</span>getColumnByModelColumnName(<span class="string">&quot;Column&quot;</span>);
+    GridCustomColumnEditor<span class="operator">*</span> columnEditor <span class="operator">=</span> column<span class="operator">-</span><span class="operator">&gt;</span>columnEditor();
+    column<span class="operator">-</span><span class="operator">&gt;</span>setColumnEditor(<span class="number">0</span>);
+    <span class="keyword">delete</span> columnEditor;
+}</pre>
+</div>
+<!-- @@@GridTableColumnEditor -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$GridTableColumnEditor[overload1]$$$GridTableColumnEditor -->
+<h3 class="fn" id="GridTableColumnEditor"><a name="GridTableColumnEditor"></a>GridTableColumnEditor::<span class="name">GridTableColumnEditor</span>()</h3>
+<p>Contructor of <a href="gridtablecolumneditor.html">GridTableColumnEditor</a></p>
+<!-- @@@GridTableColumnEditor -->
+<!-- $$$~GridTableColumnEditor[overload1]$$$~GridTableColumnEditor -->
+<h3 class="fn" id="dtor.GridTableColumnEditor"><a name="dtor.GridTableColumnEditor"></a><code>[virtual] </code>GridTableColumnEditor::<span class="name">~GridTableColumnEditor</span>()</h3>
+<p>Destructor of <a href="gridtablecolumneditor.html">GridTableColumnEditor</a></p>
+<!-- @@@~GridTableColumnEditor -->
+<!-- $$$createEditorWidget[overload1]$$$createEditorWidgetGridColumnBase* -->
+<h3 class="fn" id="createEditorWidget"><a name="createEditorWidget"></a><code>[pure virtual] </code><span class="type">QWidget</span> *GridTableColumnEditor::<span class="name">createEditorWidget</span>(<span class="type">GridColumnBase</span> *<i>column</i>)</h3>
+<p>Create a widget that will be used in <i>column</i> header. You do not have to worry about deleting the widget. The owner of the widget to become a column header. The widget will be deleted when you remove a column or will be reset to null an column editor - column-&gt;setColumnEditor(0).</p>
+<!-- @@@createEditorWidget -->
+</div>
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- changelog.qdoc -->
+  <title>QtitanDataGrid Changelog | QtitanDataGrid 5.1</title>
+  <link rel="stylesheet" type="text/css" href="style/online.css" />
+</head>
+<body>
+<div class="header" id="qtdocheader"></div>
+    <div class="nav" id="qt13a-header">
+        <div class="qt13a-gradient">
+        <div class="qt13a-container qt13a-dynamicREMOVE" >
+                <div id="qt13a-register">
+                    <a href="http://www.devmachines.com">Home</a>
+                    <a href="http://www.devmachines.com/tech-support.html">Tech Support</a>
+                </div>
+                <div class="qt13a-sixCol">
+                    <div id="qt13a-logo">
+                        <a href="http://www.devmachines.com" class="qt13a-site-logo">
+                            <img src="images/dm_logo64x64.png" alt="Developer Machines"></img>
+                        </a>
+                    </div>
+                    <div id="qt13a-title_nav">
+                        <div id="qt13a-title">
+                                <p class="qt13a-title">QtitanDataGrid Documentation</p>
+                        </div>
+                            <div class="qt13a-nav">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Index</a>
+                                    </li>
+                                    <li>
+                                        <a href="classes.html">All Classes</a>
+                                    </li>
+                                    <li>
+                                        <a href="examples.html">Examples</a>
+                                    </li>
+                                </ul>
+                            </div>
+                    </div>
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="main">
+    <div class="main-rounded">
+        <div class="navigationbar">
+            <ul>
+<li>QtitanDataGrid Changelog</li>
+            </ul>
+        </div>
+<div class="content">
+    <div class="line">
+        <div class="content mainContent">
+<div class="sidebar"><div class="sidebar-content" id="sidebar-content"></div></div>
+<h1 class="title">QtitanDataGrid Changelog</h1>
+<span class="subtitle"></span>
+<!-- $$$qtitandatagridchangelog.html-description -->
+<div class="descr"> <a name="details"></a>
+<p>QtitanDataGrid changelog:</p>
+
+<p><strong>Version 5.1.1</strong></p>
+<p>
+Fixed: Grid crashes at the time when the sorting is processed and if the number of rows is equal to 0.<br/>
+Fixed: Filter dialog does not work if filter is already active.<br/>
+
+</p>
+
+<p><strong>Version 5.1.0</strong></p>
+<p>
+Added: Support for Qt5.7 environment.<br/>
+Added: New signals from the model controller for handling the progress of sorting, grouping, filtration and summaries calculation.<br/>
+Fixed: Wrong editor in the find dialog.<br/>
+Fixed: Grid crashes on text finding.<br/>
+</p>
+
+<p><strong>Version 5.0.0</strong></p>
+<p>
+Added: CardView layout with horizontal or vertical orientation.<br/>
+Added: Code refactoring.<br/>
+Fixed: PageUp/PageDown keys navigation improvement.<br/>
+</p>
+
+<p><strong>Version 4.5.0</strong></p>
+<p>
+Added: New hit info for row GridHitInfo::Row.<br/>
+Added: Method void GridViewOptions::setFocusFrameEnabled(bool enabled) that enables or disables frame around focused cell.<br/>
+Fixed: Issue with alignment of cell's widget that has focus.<br/>
+Fixed: Crash on modelReset() event.<br/>
+Fixed: Optimization of the grid after the data refreshing.<br/>
+Fixed: Last row is not shown if gridLines is Qtitan::LinesVertical.<br/>
+Fixed: Vertical scrolling is not working correctly is scroll type is ScrollByItem.<br/>
+</p>
+
+<p><strong>Version 4.4.0</strong></p>
+<p>
+Fixed: The text for all of the groups/subgroups summaries are lined up at the level of the deepest item.<br/>
+Fixed: deselectAll() on startup issue.<br/>
+Fixed: DblClick issue under Qt5.2.0.<br/>
+Added: ComboBoxEditor by default is used relative model row index as a foreign key.<br/>
+</p>
+
+<p><strong>Version 4.3.0</strong></p>
+<p>
+Fixed: ShortcutContext for all actions was changed to Qt::WidgetShortcut.<br/>
+Fixed: In relation mode the null value of master data source suspends an application.<br/>
+Fixed: Focus issue with MDI windows.<br/>
+Fixed: Crash on mouseOver event.<br/>
+Fixed: BandedTableView layout issue.<br/>
+Fixed: Zoom factor does not apply for the font of editor.<br/>
+Fixed: Compilling issue under Qt4.8.x.<br/>
+Fixed: ESC key does not work for some cases.<br/>
+Fixed: Find bar crashes the application.<br/>
+Fixed: MemoEditor crashes the application if text is too big.<br/>
+Fixed: Issue with autoselect feature. Text does not selected in the numerical editors if the value is 0.<br/>
+Added: Refactoring and optimization.<br/>
+Added: scrollToColumn() function.<br/>
+</p>
+<p><strong>Version 4.2.0</strong></p>
+<p>
+Fixed: Grid does not work properly in the MDI window.<br/>
+Fixed: Wrong color for text in the find panel.<br/>
+Fixed: Row with the focus is not fully displayed if the "add a new record row" is active.<br/>
+Fixed: Issue with summary calculation.<br/>
+Added: MDI application demo.<br/>
+Added: Case sensitive check box for find panel.<br/>
+Added: Closing the find bar is done by pressing "Shift + Enter" and the key "Enter" is used similarly with the key FindNext (F3).<br/>
+</p>
+
+<p><strong>Version 4.1.0</strong></p>
+<p>
+Fixed: min/max column settings conflict in banded view.<br/>
+Fixed: setSortEnabled does not work.<br/>
+Fixed: Grid crashes if it has a active filter and a new model is installed.<br/>
+Fixed: Change the existing filter expression does not refresh the grid.<br/>
+Fixed: Antialias for editors does not work.<br/>
+Fixed: Upon removing bands, it looks as though the GridTableBand is accessing deleted column.<br/>
+Added: SelectionRanges& ranges() function to GridSelection object as pablic.<br/>
+Added: New feature Find a Text in a grid's cells.<br/>
+</p>
+
+<p><strong>Version 4.0.2</strong></p>
+<p>
+Added: setFieldChooserEnabled method to hide field chooser button.<br/>
+Added: ScrollBar to the field chooser window.<br/>
+Fixed: Grid crashes if you click on select all button.<br/>
+Fixed: Grid crashes if grid has a filter + reset model call.<br/>
+Fixed: Wrong string constant ZoomIn.<br/>
+</p>
+
+<p><strong>Version 4.0.1</strong></p>
+<p>
+Fixed: Wrong scroll position on grid initialization.<br/>
+Fixed: Grid crashes when you try to reset the model.<br/>
+Fixed: Unexpected scrolling by changing the cell's focus.<br/>
+</p>
+
+<p><strong>Version 4.0.0</strong></p>
+<p>
+Added: Full source code refactoring for best quality and optimization.<br/>
+Added: Added horizontal layout, ability positioning and scrolling the rows horizontally on the view.<br/>
+Added: Preview row feature.<br/>
+Added: New layout for summaries on the group row.<br/>
+Added: Theme manager to specify brending color for main grid elements (window, popups, icons, text, drag-drop icon and etc.) by one line of code.<br/>
+Added: Scalable icons.<br/>
+Added: Best fit feature for columns and bands.<br/>
+Added: New design for popup filter, field chooser, footer and filter history popup.<br/>
+Added: Ability to specify color of text for summary cells.<br/>
+Added: New column button with menu to fix column at the left or at the right (for horizontal layout - at the top or at the bottom)  of the view.
+Menu can be turned off via grid's options.<br/>
+Added: Ability to use Qt-HTML in a column caption, preview row, memo editor - HtmlManipulation.exe demo example was added for demo these features.<br/>
+Added: Ability to specify font for the column separately.<br/>
+Added: Ability to use vertical orientation for the column text (and icon if used).<br/>
+Added: Translation files are updated automatically.<br/>
+Fixed: Most of bugs that were reported.<br/>
+</p>
+
+<p><strong>Version 3.6.2</strong></p>
+<p>
+Added: GridTableViewOptions::isGroupSummaryBorderVisible() - property allows to draw border on a summaries cell the same as for original cell.<br/>
+Added: Ported to Qt5.4 and msvs2013.<br/>
+Fixed: Remaking a drag-drop mechanism.<br/>
+Fixed: Rubber band of selection does not work properly.<br/>
+Fixed: Other registered issues were fixed.<br/>
+Fixed: Issue with context menu under cell editor.<br/>
+</p>
+
+<p><strong>Version 3.6.1</strong></p>
+<p>
+Fixed: Crash on view finalizing.<br/>
+Fixed: Unused variables.<br/>
+Fixed: Cell editor does not paint properly if cell has a left indent.<br/>
+Fixed: Wrong group summary place initialization.
+</p>
+
+<p><strong>Version 3.6.0</strong></p>
+<p>
+Added: Feature rows quick selection. Allows select several rows by checking box on a left side of the row.<br/>
+Added: Showing summary over group row. Allows show group summary on a group row directly instead of group footer.<br/>
+Added: Optimization of GridSelection structure.<br/>
+Fixed: Crash on model updating.<br/>
+Fixed: Focus does not change if click fast.<br/>
+Fixed: Many other bugs were fixed.<br/>
+</p>
+
+<p><strong>Version 3.5.0</strong></p>
+<p>
+Added: Added demo example to demonstrate custom filter feature.<br/>
+Added: New signal void GridViewBase::selectionChanged(GridSelection* selection, GridSelection* oldSelection).<br/>
+Added: GridSelectionIterator renamed to GridSelection.<br/>
+Fixed: Component does not compile under Qt4.x.<br/>
+Fixed: Tab key does not work as expected.<br/>
+Fixed: Optimize rendering of large tables.<br/>
+Fixed: KeyboardFocus Policy does not apply when the focus is moved by pressing Tab key.<br/>
+Fixed: Pressing the right button of mouse invokes sorting instead of context menu.<br/>
+Fixed: Crash when editing if the focus outside of the view.<br/>
+</p>
+
+<p><strong>Version 3.4.0</strong></p>
+<p>
+Added: autoCreateColumns property to the options.<br/>
+Added: Backtab key support.<br/>
+Added: Introduced a new installer.<br/>
+Fixed: AutoHeight mode does not apply after column has been removed.<br/>
+Fixed: AutoSelect mode does not work for Numeric, Time and DateTime cells.<br/>
+Fixed: Refactored MultiSelect mode. Now, Windows Explorer behaviour is used for selection (combinations with Shift, Control, Space, Mouse Press).<br/>
+Fixed: Issue with cell height in filter popup.<br/>
+Fixed: Another registered issues.<br/>
+</p>
+
+<p><strong>Version 3.3.2</strong></p>
+<p>
+Fixed: Grid crashes on finalizing. The list of available columns does not process properly.<br/>
+Fixed: Not all of lines are printed if groupHeader is showing.<br/>
+</p>
+
+<p><strong>Version 3.3.1</strong></p>
+<p>
+Fixed: Issue in delegate adapter editor.<br/>
+Fixed: Stackoverflow in focus change event.<br/>
+Fixed: Can not add a new row.<br/>
+Fixed: List of combo box editor flying around the screen.<br/>
+Fixed: DblClick on new row area crashes an application.<br/>
+</p>
+
+<p><strong>Version 3.3.0</strong></p>
+<p>
+Fixed: Crash if autoheight mode is enabled.<br/>
+Fixed: Cant group by column if data model has changed.<br/>
+Fixed: The filter dialog hiding on first start.<br/>
+Fixed: Layout for new row has not applied if window is going to maximize.<br/>
+Fixed: �ell activation �oes not work correctly.<br/>
+Fixed: Issues with focus row.<br/>
+Fixed: Crash if column visible set to false.<br/>
+Fixed: other known issues.<br/>
+Added: Added a new cell editor - ProgressEdit.<br/>
+Added: Added a progress editor demo example.<br/>
+Updated: Updated documentation pages.<br/>
+</p>
+
+<p><strong>Version 3.2.0</strong></p>
+<p>
+Added: Reworked mechanism for grid cell editing. Added signal void GridViewBase::editorValidating(EditorValidationEventArgs* args). Signal allows
+control a values validation, undo the input, set the message if the value entered is not valid and etc.<br/>
+Added: Changed behavior of the signal void editorModifying (GridEditor * editor). Now the signal is raised if the value has been changed and the value is valid.<br/>
+Added: Added new state for grid cell - modified and valid which is marked with a separate icon. State can be reached if set EditorValidationEventArgs::setValueValid(true) in editorValidating(...) signal.<br/>
+Added: Reworked the mechanism for activation of the cell editing. Introduced the changes to GridEditorActivationPolicyFlag enumerator.<br/>
+Added: fields KeyPress_F2, EatingKeyEvents, EatingMouseEvents. KeyPress_F2 - start cell editing by press F2. EatingKeyEvents, EatingMouseEvents - characteristics that are used together with other policies such as KeyPress or MousePress.
+They mean that after editing was started the event that triggered editing should be passed to the editor
+(for example, if a combination of flags KeyPress | EatingKeyEvents has been used, then pressing the numeric key "1" starts editing a cell and the key press event "1"
+will be transferred to the editor's QWidget).<br/>
+Added: In the filter dialog box added a compare operation field formore than or less than operation. It's used to search in numeric, time or date columns.<br/>
+Added: Added strategy for submit data to the model after the editing. Submitting can be carried out immediately after end of cell editing or after change the focus to other row. See for details void GridModelController::setEditStrategy(GridEditStrategy strategy);<br/>
+Added: Added the ability to freeze part of the grid rows at the top and/or bottom of the view. There is an option to add frozen rows programmatically or via the user interface.<br/>
+Added: Added the ability to hide wait cursor if grid's controller busy.<br/>
+Fixed: Bugs in GridDelegateAdapterEditor.<br/>
+Fixed: Does not work properly comparison for FilterLess, FilterLessEqual, FilterGreater, FilterGreaterEqual in the grid filter.<br/>
+Fixed: Bug in setting the focus to the cell editor if the focus leaves and then goes back to the grid's widget.<br/>
+Fixed: Crash when trying to hide a column that is in edit mode.<br/>
+Fixed: Crash under MacOSX in finalization.<br/>
+Fixed: Crash under MacOSX after printing the grid's content with grouping.<br/>
+Fixed: Fixed many other errors in various parts of the project that were reported.<br/>
+</p>
+
+<p><strong>Version 3.1.0</strong></p>
+<p>
+Added: Added startGrouping signal with ColumnGroupArgs argument.<br/>
+Fixed: Linker error If summaryFooterTextChanging or summaryGroupTextChanging were used.<br/>
+Fixed: Drag-drop columns from Field Chooser to group header does not work.<br/>
+Fixed: Stack overflow under MDI mode if grid's editor is being showed.<br/>
+</p>
+
+<p><strong>Version 3.0.0</strong></p>
+<p>
+Added: Support for Qt5.<br/>
+Added: Added property GridStringEditorRepository.isHLink. It allows to display the string cell as a hyperlink.<br/>
+Fixed: Incorrect behavior of the embedded to the cell buttons when running a "add new row" mode.<br/>
+Fixed: Crash after editing under MacOSX.<br/>
+Fixed: Perpetual update cycle in the mechanism of drawing effects (CPU usage issue).<br/>
+Fixed: Padding issue for text drawing in the cells.<br/>
+</p>
+
+<p><strong>Version 2.14</strong></p>
+<p>
+Fixed. Auto resize mode does not work properly.<br />
+Fixed. Numeric editor does not applied settings in edit mode.<br />
+Fixed. Crash application with grid if it resizing.<br />
+Fixed other reported bugs.<br />
+Moved to Qt4.8.4.<br/>
+Added Italian translation.<br/>
+</p>
+
+<p><strong>Version 2.13</strong></p>
+<p>
+Rollback multiselect feature from previous release.<br />
+Fixed. When one column has MemoEditorType and other columns are hidden then data is not displaying.<br />
+Fixed. Rubber bund does not work at all.<br />
+Fixed. Grid is drawing column's header with error if it's contains dot sign under WinXP.<br />
+</p>
+
+<p><strong>Version 2.12</strong></p>
+<p>
+Access to the original model index from delegate agapter.<br />
+Fixing focusing row if model has been changed in background.<br />
+Improved multi-select mode.<br />
+Small paint issue of the columns.<br />
+Minor bugs fixing.<br />
+Added Qt4.8.3 support.<br />
+</p>
+
+<p><strong>Version 2.11</strong></p>
+<p>
+</p>
+
+<p><strong>Version 2.10</strong></p>
+<p>
+Fixed rendering bug under Windows XP.<br />
+Fixed bug in multi-select mode.<br />
+Fixed print issue if row auto-height is enabled.<br />
+Refactoring code.<br />
+Other known bugs were fixed.<br />
+</p>
+
+<p><strong>Version 2.9</strong></p>
+<p>
+Added GridComboBoxEditorRepository::setComboBoxEditable() method.<br />
+Added GridTableColumn::buttonStateChanged(CellButtonEventArgs* args) signal to make cell's button disabled.<br />
+Added ability to specify text on the cell's button.<br />
+Extended GridHitInfo class. It is possible to get row, cell, model index end kind of element by mouse position (x,y).<br />
+Fixed: Add known bugs were fixed.<br />
+</p>
+
+<p><strong>Version 2.8</strong></p>
+<p>
+Fixed: Crash if use fetchMore() in select() method.<br />
+Fixed: Not the right color when hightlighting of the rows.<br />
+Fixed: Air is applying if Windows 7 Basic theme is set.<br />
+Fixed: Rendering QuckCustomiztionPopup does not match the style.<br />
+Fixed other bugs that were found in the course of the project 2.8.<br />
+Added DeleteRow action.<br />
+Added columnsQuickMenuVisible(), bandsQuickMenuVisible() properties.<br />
+Added method for rows removing and signal rowRemoving(RowRemovingEventArgs) which help to prevent rows removing.<br />
+Added Polish translation.<br />
+Added support for Qt 4.8.0 and Qt4.8.1.<br />
+</p>
+
+<p><strong>Version 2.7</strong></p>
+<p>
+Added French, German and Russian translations.<br />
+Added methods setMaxWidth() and setMinWidth() for the grid's columns. You can control constraints of the table column while resizing.<br />
+Added signal newRowEditorClicked(). It is allow to make custom action and block a standart procedure adding rows.<br />
+Refactored of several key internal mechanisms.<br />
+Fixed many minor bugs in various parts of the component so the grid become more stable.<br />
+Fixed known bugs in the design-time.<br />
+</p>
+
+<p><strong>Version 2.6</strong></p>
+<p>
+Fixed bug -crash when trying to add a row to an empty model.<br />
+Strings has been prepared for translation.<br />
+</p>
+
+<p><strong>Version 2.5</strong></p>
+<p>Added support for Windows Air technology for some grid's elements.<br />
+Added support for Printing System. You have the way to print grid's contents including header, columns, footer, summaries cells, grouping rows and other elements.<br />
+Added ability to create the custom button for the grid's cell without changing the cell's editor. Buttons can be static or has activated by mouse over event or by focus. <br />
+Of all grid's signals the first parameter sender was removed. Unfortunately this has led to a breach of backward compatibility.<br />
+The fuction that shows how to add arbitrary actions to the popup menu has been added to the demo examples.<br />
+Increased speed of rendering of the grid contents due to the mechanism for drawing cell's separate lines.<br />
+Fixed an error handling the role Qt::DecorationRole.<br />
+displayFormat() has no effect for the displaying of the Date/Time value in cell's display mode has been fixed.<br />
+The numeric editor applying for the grid cell by Qt::DisplayRole if the Qt::EditRole is not specified.<br />
+Fixed: Editors of the grid cells is not correctly display the size of the font for scaling.<br />
+Fixed: Columns layout does not work properly in banded View.<br />
+Fixed: At the first start automatic height is not used until the resize has been executed.<br />
+For auto height feature, if the cell has no value or value is empty, the grid shows the cell with zero height.<br />
+Fixed: Zooming is not working properly for columns that have a constant width.<br />
+Implemented a lot of small and large patches to increase stability and improve performance characteristics.<br />
+</p>
+<p><strong>Version 2.4</strong></p>
+<p>
+Switching to the MSVS2010.<br />
+Added an ability to zoom the contents of the grid by pressing Cntrl + , Cntrol -or from context menu.<br />
+Redesigned the signals about changes within the cell editor - creating, deleting, modifying.<br />
+Added the ability to control the context menu. Now it is possible to define an element in place where the context menu is showing.<br />
+Additionally added possibility to block the context menu showing and ability for changing items in the context menu.<br />
+Added two similar policies for activation the cell's editor by pressing any keys. One variant with the swallow the first character, the other with the transmission of the first character immediately to the editor.<br />
+Fixed many minor bugs in various parts of the grid.<br />
+</p>
+<p><strong>Version 2.3</strong></p>
+<p>
+Bugfix. Location of the Popup Filter window.<br />
+Bugfix. Crash while trying to start a drag-drop operation.<br />
+Bugfix. Recreating the columns after the model has been reset.<br />
+Bugfix. The field of the filter dialog is disable if the cell is in the disable state.<br />
+Bugfix. The properies groupsHeader, footerSummary, groupSummary are preserved by load-save layout mechanism.<br />
+</p>
+
+<p><strong>Version 2.2</strong></p>
+<p>
+Bugfix. Grid rows does not appear after maximizing the window.<br />
+Bugfix. The QTableView's' delegate can not get the value for the font and colors using the model.<br />
+Bugfix. Selecting the cells in multi-select mode is not working properly.<br />
+Bugfix. Improved algorithm for updating element's layout.<br />
+The Drag &amp; Drop mechanism has been implemented. Can be used in either target or source mode. <br />
+Drag &amp; Drop demo was added.<br />
+</p>
+
+<p><strong>Version 2.1</strong></p>
+<p>
+Bugfix. Grid rows does not appear after maximizing the window.<br />
+Bugfix. The QTableView's' delegate can not get the value for the font and colors using the model.<br />
+Bugfix. Selecting the cells in multi-select mode is not working properly.<br />
+Bugfix. Improved algorithm for updating element's layout.<br />
+Bugfix - Events from Qt-model is not properly handles by GridDataController.<br />
+Bugfix - Issue with QSortFilterProxyModel.<br />
+Expanded usage of the Office-2007/Ribbon styles functionality in the grid.<br />
+</p>
+<p><strong>Version 2.0</strong></p>
+<p>
+The filter support. Filter Panel. Filter customizing dialog. Filter popup window. Filtration history window.<br />
+Implemented more than strict separation of the grid fonts. You can separately set the font for the rows, groups, cells, header. <br />
+For Mac OS X used a special font for native tables in the header.<br />
+Ability to specify the vertical direction of the text column.<br />
+Added ignoreRowSpanForCells() property for the GridBandedView. Property allows you to manage cell's layout. <br />
+Property allows to make the height of the cell in one line while the column header spans multiple lines.<br />
+Reworked drawing the grid controls in the header panel.<br />
+Sorting, grouping, is now done by value of the relation column rather than by relation index.<br />
+Filtering by the relative column, not by index.<br />
+echoMode for the string editor is now used in display mode correctly.<br />
+Optimized alignment of the elements that makes the grid resizing more smoother.<br />
+Added ability to specify a double border around the cell.<br />
+Added ability to set the brush for the border around the cell.<br />
+Fixed many other small and large errors.<br />
+</p>
+
+<p><strong>Version 1.2</strong></p>
+<p>
+MacOS support was added.<br />
+</p>
+
+<p><strong>Version 1.1</strong></p>
+<p>
+Support Qt 4.7.0, 4.7.1 versions.<br />
+Support Microsoft Office style grouping. Demo application was added.<br />
+Refactoring relation modes (relation and master-details). Demo application was added.<br />
+Table cell editor supports relation and master-details mode.<br />
+Improved grid API.<br />
+Added ability to add default value to the grid cell while new row is constructed.<br />
+Added ability to save/load column's and band's layout to/from XML.<br />
+Added new icons for the editors of picture and multi-line text.<br />
+Added ability to specify the text to the editor of a new row.<br />
+Added ability to specify the text and brush to the group's panel.<br />
+New feature implemented, the cell focus follows the mouse.<br />
+QAction's exported from QWidget embeded into the grid column or into the grid cell was supported.<br />
+Documentation for features summary calculation, relation mode, load/save layout to XML, table view options, banded view options was added.<br />
+Fixed bug. Improved the reaction of the grid to scrolling. Increased the table rendering speed during scrolling.<br />
+Fixed bug. The autoheight and autowidth modes conflict.<br />
+Fixed bug. Lines between cells are not always rendered.<br />
+Fixed bug. Popup editor windows cannot be resized in Linux.<br />
+Fixed bug. The band width is reset when a column is dragged from one band to another.<br />
+Fixed bug. The focus is removed after sorting/grouping.<br />
+Fixed bug. When a new line is added, the added image is not shown.<br />
+Fixed bug. When grouping by column is active, adding a new line does not work correctly.<br />
+Fixed bug. When groups of lines are folded or unfolded, scrollbars are not positioned correctly.<br />
+Fixed bug. The text in the column header does not fit within the boundaries in Linux.<br />
+Fixed bug. Compilation and support for the 64-bit mode.<br />
+</p>
+
+<p><strong>Version 1.0</strong></p>
+<p>
+Initial release.<br />
+</p>
+
+    </div>
+<!-- @@@qtitandatagridchangelog.html -->
+        </div>
+       </div>
+   </div>
+   </div>
+</div>
+<div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2009-2015 Developer Machines<br><br>       Qt and their respective logos are trademarks of Digia Corporation 
+      in Finland and/or other countries worldwide.</p>
+    <p>
+      All other trademarks are property of their respective owners. <a title="Privacy Policy"
+        href="http://www.devmachines.com/company/privacy-policy.html">Privacy Policy</a></p>
+</div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17002018-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>
