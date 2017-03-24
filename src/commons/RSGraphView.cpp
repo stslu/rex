@@ -42,6 +42,8 @@ RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
   , m_nbSensorByBrandHisto("Brand",QStringList() << "Nb. sensors" , "Nb. sensors by brand")
   , m_nbSensorByExpHisto("Experimentation",QStringList() << "Nb. sensors" , "Nb. sensors by experimentation")
   , m_nbSensorByTechnoHisto("Technology",QStringList() << "Nb. sensors" , "Nb. sensors by technology")
+  , m_nbSensorByPhysicalMeasHisto("Phys. Meas.",QStringList() << "Nb. sensors" , "Nb. sensors by Physical Meas.")
+  , m_nbSensorByOutputSignalHisto("O. Signal",QStringList() << "Nb. sensors" , "Nb. sensors by O. Signal")
 
   , m_failuresByTechnoHisto("Technology",QStringList()  << "Nb. Failures"<< "Avg failures (days)"<< "MTBF" , "Avg. failures(days) by techno.")
   , m_failuresByOutputSignalHisto("O. Signal",QStringList()  << "NB Failures"<< "Avg failures (Days)"<< "MTBF" , "Avg. failures(days) by O. signal")
@@ -195,6 +197,18 @@ void RSGraphView::plotCharts()
     plotHistoGram(m_nbSensorByExpHisto.customPlot(),m_nbSensorByExpHisto.name(),
                   m_nbSensorByExpHisto.yLabel(),m_nbSensorByExpHisto.histoPlotArray());
 
+
+    initNbSensorHistoWidgetData(RexStatistics::physicalMeasColName(),m_nbSensorByPhysicalMeasHisto.histoPlotArray());
+    m_nbSensorByPhysicalMeasHisto.updateModel();
+    plotHistoGram(m_nbSensorByPhysicalMeasHisto.customPlot(),m_nbSensorByPhysicalMeasHisto.name(),
+                  m_nbSensorByPhysicalMeasHisto.yLabel(),m_nbSensorByPhysicalMeasHisto.histoPlotArray());
+
+
+    initNbSensorHistoWidgetData(RexStatistics::outputSignalColName(),m_nbSensorByOutputSignalHisto.histoPlotArray());
+    m_nbSensorByOutputSignalHisto.updateModel();
+    plotHistoGram(m_nbSensorByOutputSignalHisto.customPlot(),m_nbSensorByOutputSignalHisto.name(),
+                  m_nbSensorByOutputSignalHisto.yLabel(),m_nbSensorByOutputSignalHisto.histoPlotArray());
+
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
 }
 
@@ -221,7 +235,7 @@ void  RSGraphView::createDistributionsHistogramsPage()
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
     container->setLayout(new QGridLayout(container));
 
-    //TECHNOLOGY
+    //brand
     //--------------------------------------------------
     {
         QSplitter* splitter = new QSplitter(/*Parent killer*/container);
@@ -229,7 +243,7 @@ void  RSGraphView::createDistributionsHistogramsPage()
         mainSplitter->addWidget(splitter);
     };
 
-    //Output signal
+    //Technology
     //--------------------------------------------------
     {
         QSplitter* splitter = new QSplitter(/*Parent killer*/container);
@@ -237,11 +251,27 @@ void  RSGraphView::createDistributionsHistogramsPage()
         mainSplitter->addWidget(splitter);
     };
 
-    //Output signal
+    //Experimentation
     //--------------------------------------------------
     {
         QSplitter* splitter = new QSplitter(/*Parent killer*/container);
         splitter->addWidget(&m_nbSensorByExpHisto);
+        mainSplitter->addWidget(splitter);
+    };
+
+    //Physical Measurement
+    //--------------------------------------------------
+    {
+        QSplitter* splitter = new QSplitter(/*Parent killer*/container);
+        splitter->addWidget(&m_nbSensorByPhysicalMeasHisto);
+        mainSplitter->addWidget(splitter);
+    };
+
+    //Output signal
+    //--------------------------------------------------
+    {
+        QSplitter* splitter = new QSplitter(/*Parent killer*/container);
+        splitter->addWidget(&m_nbSensorByOutputSignalHisto);
         mainSplitter->addWidget(splitter);
     };
 

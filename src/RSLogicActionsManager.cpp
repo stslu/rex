@@ -238,7 +238,7 @@ void RSLogicActionsManager::slot_exportToExcel()
         RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by experimentation");
         const QStringList& fields = graphView->m_nbSensorByExpHisto.dataGrid()->getFields();
         const QList<QVariantList>& data = graphView->m_nbSensorByExpHisto.dataGrid()->getData();
-        exportExcel.addSheet(fields,data, "NB sensors by experimentation", "List of sensors by experimentation", start, end);
+        exportExcel.addSheet(fields,data, "NB sensors by experimentation", "Number of sensors by experimentation", start, end);
     }
 
     //--- -- List of sensors by Brand
@@ -262,10 +262,19 @@ void RSLogicActionsManager::slot_exportToExcel()
     //--- -- List of sensors by technology
     if(graphView)
     {
-        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by Brand");
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by technology");
         const QStringList& fields = graphView->m_sensorByTechnologyDataGrid->getFields();
         const QList<QVariantList>& data = graphView->m_sensorByTechnologyDataGrid->getData();
         exportExcel.addSheet(fields,data, "Sensors list by technology", "List of sensors by technology", start, end);
+    }
+
+    //--- -- Nb sensors by technology
+    if(graphView)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by technology");
+        const QStringList& fields = graphView->m_nbSensorByTechnoHisto.dataGrid()->getFields();
+        const QList<QVariantList>& data = graphView->m_nbSensorByTechnoHisto.dataGrid()->getData();
+        exportExcel.addSheet(fields,data, "NB sensors by technology", "Number of sensors by technology", start, end);
     }
 
     //--- -- Sensors list by output signal
@@ -274,16 +283,34 @@ void RSLogicActionsManager::slot_exportToExcel()
         RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by output signal");
         const QStringList& fields = graphView->m_sensorByOutputSignalDataGrid->getFields();
         const QList<QVariantList>& data = graphView->m_sensorByOutputSignalDataGrid->getData();
-        exportExcel.addSheet(fields,data, "Sensors listby output signal", "Sensors list by  output signal", start, end);
+        exportExcel.addSheet(fields,data, "Sensors list by output signal", "Sensors list by  output signal", start, end);
     }
 
-    //--- -- Sensors list by Physical measume signal
+    //--- -- Nb sensors by output signal
     if(graphView)
     {
-        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by Brand");
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by output signal");
+        const QStringList& fields = graphView->m_nbSensorByOutputSignalHisto.dataGrid()->getFields();
+        const QList<QVariantList>& data = graphView->m_nbSensorByOutputSignalHisto.dataGrid()->getData();
+        exportExcel.addSheet(fields,data, "NB sensors by output signal", "Number of sensors by output signal", start, end);
+    }
+
+    //--- -- Sensors list by Physical meas
+    if(graphView)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by physical measurement");
         const QStringList& fields = graphView->m_sensorByPhysicalMeasDataGrid->getFields();
         const QList<QVariantList>& data = graphView->m_sensorByPhysicalMeasDataGrid->getData();
-        exportExcel.addSheet(fields,data, "Sensors list by physical measurement", "List of sensors by  physical measuremen", start, end);
+        exportExcel.addSheet(fields,data, "Sensors list by phys meas", "List of sensors by physical measurement", start, end);
+    }
+
+    //--- -- Nb sensors by physical measurement
+    if(graphView)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Number of sensors by physical measurement");
+        const QStringList& fields = graphView->m_nbSensorByPhysicalMeasHisto.dataGrid()->getFields();
+        const QList<QVariantList>& data = graphView->m_nbSensorByPhysicalMeasHisto.dataGrid()->getData();
+        exportExcel.addSheet(fields,data, "NB sensors by phys meas", "Number of sensors by physical measurement", start, end);
     }
 
     //Fidelity by technology
@@ -337,7 +364,7 @@ void RSLogicActionsManager::slot_exportToExcel()
         RSLogger::instance()->info(Q_FUNC_INFO,"Fidelity by PhysicalMeasurement");
         const QStringList& fields = graphView->m_fidelityByPhysicalMeasHisto.getFields();
         const QList<QVariantList>& data = graphView->m_fidelityByPhysicalMeasHisto.getData();
-        exportExcel.addSheet(fields,data, "Fidelity by Phys Meas", "Fidelity by Physical measurement", start, end);
+        exportExcel.addSheet(fields,data, "Fidelity by phys meas", "Fidelity by Physical measurement", start, end);
     }
     //Noise by output signal
     if(graphView)
@@ -345,14 +372,14 @@ void RSLogicActionsManager::slot_exportToExcel()
         RSLogger::instance()->info(Q_FUNC_INFO,"Noise by PhysicalMeasurement");
         const QStringList& fields = graphView->m_noiseByOutputSignalHisto.getFields();
         const QList<QVariantList>& data = graphView->m_noiseByOutputSignalHisto.getData();
-        exportExcel.addSheet(fields,data, "Noise by Phys Meas", "Noise by Physical measurement", start, end);
+        exportExcel.addSheet(fields,data, "Noise by phys meas", "Noise by Physical measurement", start, end);
     }
     //Failures by output signal
     {
-        RSLogger::instance()->info(Q_FUNC_INFO,"Export Failures by PhysicalMeasurement");
+        RSLogger::instance()->info(Q_FUNC_INFO,"Export Failures by Physical Measurement");
         const QStringList& fields = graphView->m_failuresByOutputSignalHisto.getFields();
         const QList<QVariantList>& data = graphView->m_failuresByOutputSignalHisto.getData();
-        exportExcel.addSheet(fields,data, "Failures by Phys Meas", "Failures by Physical measurement", start, end);
+        exportExcel.addSheet(fields,data, "Failures by phys meas", "Failures by Physical measurement", start, end);
     }
 
     exportExcel.saveFile();

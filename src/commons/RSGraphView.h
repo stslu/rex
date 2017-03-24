@@ -302,6 +302,8 @@ private:
     HistoWidget m_nbSensorByBrandHisto;
     HistoWidget m_nbSensorByExpHisto;
     HistoWidget m_nbSensorByTechnoHisto;
+    HistoWidget m_nbSensorByPhysicalMeasHisto;
+    HistoWidget m_nbSensorByOutputSignalHisto;
 
     //DatagGrid. All data
     RexDataGrid* m_noiseFailsFidelityDataGrid;
