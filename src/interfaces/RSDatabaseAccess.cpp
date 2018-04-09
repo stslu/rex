@@ -152,30 +152,30 @@ void RSDatabaseAccess::addDatabasePort(const QString& databaseName, const QStrin
 }
 
 void RSDatabaseAccess::addDatabaseSql(const QString& databaseName)
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, "Start. add DB :  " + databaseName);
+{    
 
     QString m_databaseDriver = m_databaseDriverMap.value(databaseName);
     QString m_databaseFullName = m_databaseFullNameMap.value(databaseName);
-    QString m_databaseHostName = m_databaseHostNameMap.value(databaseName);
     QString m_databaseUserName = m_databaseUserNameMap.value(databaseName);
     QString m_databasePassword = m_databasePasswordMap.value(databaseName);
-    QString m_databasePort = m_databasePortMap.value(databaseName);
+    QString databasePort = m_databasePortMap.value(databaseName);
 
-    QSqlDatabase m_databaseSql = QSqlDatabase::addDatabase(m_databaseDriver, databaseName);
+    RSLogger::instance()->info(Q_FUNC_INFO, "Add Database Driver :  " + m_databaseDriver);
+
+    QSqlDatabase databaseSql = QSqlDatabase::addDatabase(m_databaseDriver, databaseName);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "setDatabaseName. :  " + m_databaseFullName);
-    m_databaseSql.setDatabaseName(m_databaseFullName);
+    databaseSql.setDatabaseName(m_databaseFullName);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "m_databaseUserName. :  " + m_databaseUserName);
-    m_databaseSql.setUserName(m_databaseUserName);
+    databaseSql.setUserName(m_databaseUserName);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "m_databasePassword. :  " + m_databasePassword);
-    m_databaseSql.setPassword(m_databasePassword);
+    databaseSql.setPassword(m_databasePassword);
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("m_databasePort. %1").arg(m_databasePort));
-    m_databaseSql.setPort(m_databasePort.toInt());
-    m_databaseSql.setConnectOptions( "ISC_DPB_LC_CTYPE=ISO8859_1" );
+    RSLogger::instance()->info(Q_FUNC_INFO, QString("databasePort. %1").arg(databasePort));
+    databaseSql.setPort(databasePort.toInt());
+    databaseSql.setConnectOptions( "ISC_DPB_LC_CTYPE=ISO8859_1" );
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
@@ -225,8 +225,15 @@ bool RSDatabaseAccess::open(const QString& databaseName)
     {
         m_open &= QSqlDatabase::drivers().contains(m_databaseDriver);
     }
-    if(!m_open)
-        RSMessageView::Instance()->showData(QString(tr("Driver not found : %1")).arg(m_databaseDriver));
+
+    if(m_open)
+    {
+        RSMessageView::Instance()->showData(QString(tr("Driver found : %1")).arg(m_databaseDriver));
+    }
+    else
+    {
+         RSMessageView::Instance()->showData(QString(tr("Driver NOT found : %1")).arg(m_databaseDriver));
+    }
 
     //Open the database
     if(m_open == true)
@@ -249,13 +256,19 @@ bool RSDatabaseAccess::open(const QString& databaseName)
         {
             m_open &= sqlDatabase.open();
         }
-        if(!m_open)
+
+        if(m_open)
+        {
+            RSMessageView::Instance()->showData(QString("Succeeded to open database: %1.\t %2").arg(databaseName).arg(dbFullName));
+
+        }
+        else
+        {
             RSMessageView::Instance()->showData(QString("Failed to open database: %1. \t%2 \n\t "
                                                         "Please, set a valid : database, user name, password. (Case sensitive)\n"
                                                         "%3")
                                                 .arg(databaseName).arg(dbFullName).arg(sqlDatabase.lastError().text()));
-        else
-            RSMessageView::Instance()->showData(QString("Succeeded to open database: %1.\t %2").arg(databaseName).arg(dbFullName));
+        }
     }
 
     return m_open;
@@ -367,27 +380,52 @@ void RSDatabaseAccess::close()
 
 
 
-QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apCode, const QString& order)
+QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order)
 {
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);    
     QString m_field = "AV_ACQUISITIONDT";
+    QString strQuery;
     bool m_exec = true;
 
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat = endDate.toString("MM-dd-yyyy");
 
-    QString strQuery = QString(
-                "select %1 as IDATA from ACQVALUE av "
-                "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                "and av.AP_CODE = /*AP_CODE*/ %5 "
-                "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
-                "and av.AV_STATUS = 0 "
-                "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
-                ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apCode);
+
+    if(mpType == MeasPointType::AcqPoint)
+    {
+        strQuery = QString(
+                   "select %1 as IDATA from ACQVALUE av "
+                   "where av.SI_CODE = /*:SI_CODE*/ 1 "
+                   "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
+                   "and av.AP_CODE = /*AP_CODE*/ %5 "
+                   "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
+                   "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                   "and av.AV_STATUS = 0 "
+                   "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
+                   ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+
+    }
+    else if(mpType == MeasPointType::Node)
+    {
+
+        strQuery = QString(
+                   "select %1 as IDATA from NODERESULT NR "
+                   "where NR.SI_CODE = /*:SI_CODE*/ 1 "
+                   "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
+                   "and NR.ND_CODE = /*ND_CODE*/ %5 "
+                   "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
+                   "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                   "and NR.NR_STATUS = 0 "
+                   "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
+                   ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+    }
+    else
+    {
+
+    }
+
 
 
     m_exec &= querySql.exec(strQuery);
@@ -435,7 +473,7 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
 }
 
 
-QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apCode, const QString& order)
+QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order)
 {
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
@@ -445,17 +483,41 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     bool m_exec = true;
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat = endDate.toString("MM-dd-yyyy");
+    QString strQuery;
 
-    QString strQuery = QString(
-                "select %1 as IDATA from ACQVALUE av "
-                "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                "and av.AP_CODE = /*AP_CODE*/ %5 "
-                "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
-                "and av.AV_STATUS = 0 "
-                "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
-                ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apCode);
+
+    if(mpType == MeasPointType::AcqPoint)
+    {
+        strQuery = QString(
+                    "select %1 as IDATA from ACQVALUE av "
+                    "where av.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and av.AP_CODE = /*AP_CODE*/ %5 "
+                    "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
+                    "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                    "and av.AV_STATUS = 0 "
+                    "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
+                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+    }
+    else if(mpType == MeasPointType::Node)
+    {
+        strQuery = QString(
+                    "select %1 as IDATA from NODERESULT NR "
+                    "where NR.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and NR.ND_CODE = /*ND_CODE*/ %5 "
+                    "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
+                    "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                    "and NR.NR_STATUS = 0 "
+                    "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
+                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+    }
+    else
+    {
+
+    }
+
+
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Try to execute query : \n" + strQuery);
     m_exec &= querySql.exec(strQuery);
@@ -487,7 +549,7 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     return dataList;
 }
 
-int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apCode)
+int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType)
 {
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
@@ -497,16 +559,38 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
     bool m_exec = true;
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat = endDate.toString("MM-dd-yyyy");
+    QString strQuery;
 
-    m_exec &= m_querySql.exec(QString(
-                                  "select %1 as IDATA from ACQVALUE av "
-                                  "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                                  "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                                  "and av.AP_CODE = /*AP_CODE*/ %4 "
-                                  "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                                  "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
-                                  "and av.AV_STATUS = 0"
-                                  ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(apCode));
+    if(mpType == MeasPointType::AcqPoint)
+    {
+        strQuery = QString(
+                    "select %1 as IDATA from ACQVALUE av "
+                    "where av.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and av.AP_CODE = /*AP_CODE*/ %4 "
+                    "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
+                    "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                    "and av.AV_STATUS = 0"
+                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
+    }
+    else if(mpType == MeasPointType::Node)
+    {
+        strQuery = QString(
+                    "select %1 as IDATA from NODERESULT NR "
+                    "where NR.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and NR.ND_CODE = /*ND_CODE*/ %4 "
+                    "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
+                    "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                    "and NR.NR_STATUS = 0"
+                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
+    }
+    else
+    {
+
+    }
+
+    m_exec &= m_querySql.exec(strQuery);
 
     if(m_exec == false){
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
@@ -529,16 +613,16 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
     return m_data;
 }
 
-QDateTime RSDatabaseAccess::getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order)
+QDateTime RSDatabaseAccess::getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order)
 {
     QDateTime dateTime;
 
-    execQueryForLimitDateTime(startDate, endDate,  apCode,order,dateTime);
+    execQueryForLimitDateTime(startDate, endDate,  apNdCode,mpType,order,dateTime);
 
     return dateTime;
 }
 
-void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order, QDateTime &dateTimeLimit)
+void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order, QDateTime &dateTimeLimit)
 {
     RSLogger::instance()->info(Q_FUNC_INFO,QString("Start"));
 
@@ -549,23 +633,45 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QString m_field = "AV_ACQUISITIONDT";
     int dbCode = 33813554;
     QString format = "dd.MM.yyyy";
+     QString strQuery;
 
     QString strStartDate = startDate.toString(format);
     QString strEndDate = endDate.toString(format);
-    RSLogger::instance()->info(Q_FUNC_INFO,QString("startDate = %1 endDate = %2 apCode = %3")
-                               .arg(strStartDate).arg(strEndDate).arg(apCode) );
+    RSLogger::instance()->info(Q_FUNC_INFO,QString("startDate = %1 endDate = %2 apNdCode = %3 MeasPointType = %4")
+                               .arg(strStartDate).arg(strEndDate).arg(apNdCode).arg(mpType) );
 
 
-    QString strQuery = QString(
-                "select %1 from ACQVALUE av "
-                "where av.SI_CODE = '1' "
-                "and av.DB_CODE =   '%2' "
-                "and av.AP_CODE = '%3' "
-                "and av.AV_ACQUISITIONDT >= '%4' "
-                "and av.AV_ACQUISITIONDT < '%5' "
-                "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 "
-                ).arg(m_field).arg(dbCode).arg(apCode).arg(strStartDate).arg(strEndDate).arg(order);
 
+    if(mpType == MeasPointType::AcqPoint)
+    {
+        strQuery = QString(
+                   "select %1 from ACQVALUE av "
+                   "where av.SI_CODE = '1' "
+                   "and av.DB_CODE =   '%2' "
+                   "and av.AP_CODE = '%3' "
+                   "and av.AV_ACQUISITIONDT >= '%4' "
+                   "and av.AV_ACQUISITIONDT < '%5' "
+                   "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 "
+                   ).arg(m_field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+    }
+    else if(mpType == MeasPointType::Node)
+    {
+        strQuery = QString(
+                   "select %1 from NODERESULT NR "
+                   "where NR.SI_CODE = '1' "
+                   "and NR.DB_CODE =   '%2' "
+                   "and NR.ND_CODE = '%3' "
+                   "and NR.NR_NODEDT >= '%4' "
+                   "and NR.NR_NODEDT < '%5' "
+                   "and NR.NR_STATUS = 0 order by NR_NODEDT %6 "
+                   ).arg(m_field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+    }
+    else
+    {
+        QString msg  = QString("Unknown .MeasPointType: %1").arg(static_cast<int>( mpType));
+        RSLogger::instance()->info(Q_FUNC_INFO,msg );
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",tr("Error %1 Database").arg(m_databaseName),msg);
+    }
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Try to prepare Query " );
     if(!querySql.prepare(strQuery))
@@ -612,13 +718,16 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
 
 }
 
-QDateTime RSDatabaseAccess::getAcquisitionRelativeLastTime(const QDate &startDate, const QDate &endDate, int apCode)
+QDateTime RSDatabaseAccess::getAcquisitionRelativeLastTime(const QDate &startDate, const QDate &endDate, int apNdCode,MeasPointType mpType)
 {
     RSLogger::instance()->info(Q_FUNC_INFO,QString("Start"));
 
     QDateTime dateTime;
 
-    execQueryForLimitDateTime(startDate, endDate,  apCode,"DESC",dateTime);
+    RSLogger::instance()->info(Q_FUNC_INFO,QString("startDate = %1 endDate = %2 apNdCode = %3 MeasPointType = %4")
+                               .arg(startDate.toString()).arg(endDate.toString()).arg(apNdCode).arg(mpType) );
+
+    execQueryForLimitDateTime(startDate, endDate,  apNdCode,mpType,"DESC",dateTime);
 
     RSLogger::instance()->info(Q_FUNC_INFO,QString("End \t dateTime = %1").arg(dateTime.toString()));
 
@@ -1263,7 +1372,7 @@ void RSDatabaseAccess::initExperienceBySensorMap()
 }
 
 
-void RSDatabaseAccess::setG6DatasetTable()
+void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 {
     RSLogger::instance()->info(Q_FUNC_INFO,"Start");
 
@@ -1287,9 +1396,19 @@ void RSDatabaseAccess::setG6DatasetTable()
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString  strQuery = QString(
-                "select distinct mp.MP_CODE, mp.MP_NAME, ap.AP_CODE, ap.AP_NAME, ast.AST_BRAND, "
-                " ast.AST_MODEL, ast.AST_TECHNOLOGY, "
-                " ast.AST_RANGE, ast.AST_THEORETICALACCURACY, ast.AST_UNIT,ast.AST_PHYSICALMEASUREMENT,ast.AST_OUTPUTSIGNAL   "
+                " select distinct "
+                " mp.MP_CODE, "
+                " mp.MP_NAME, "
+                " ap.AP_CODE, "
+                " ap.AP_NAME, "
+                " ast.AST_BRAND, "
+                " ast.AST_MODEL, "
+                " ast.AST_TECHNOLOGY, "
+                " ast.AST_RANGE, "
+                " ast.AST_THEORETICALACCURACY, "
+                " ast.AST_UNIT,"
+                " ast.AST_PHYSICALMEASUREMENT,"
+                " ast.AST_OUTPUTSIGNAL   "
                 " from MEASUREPOINT mp "
                 " left join ACQPOINT ap "
                 " on ap.SI_CODE = mp.SI_CODE "
@@ -1301,6 +1420,7 @@ void RSDatabaseAccess::setG6DatasetTable()
                 " where mp.SI_CODE = 1 "
                 " and mp.DB_CODE = 33813554 "
                 " and mp.MP_CODE is not null"
+                " and mp.AP_CODE is not null"
                 );
     m_exec &= m_querySql.exec(strQuery);
 
@@ -1309,7 +1429,7 @@ void RSDatabaseAccess::setG6DatasetTable()
     {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
                                                       tr("Error %1 Database").arg(m_databaseName),
-                                                      tr("%1 database cannot execute setG6DatasetTable().<br/>"
+                                                      tr("%1 database cannot execute setG6DatasetTable_acqPoints().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3 \n query : %4").arg(m_databaseName)
                                                       .arg(m_querySql.lastError().databaseText())
@@ -1405,7 +1525,7 @@ void RSDatabaseAccess::setG6DatasetTable()
     {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
                                                       tr("Error %1 Database").arg(m_databaseName),
-                                                      tr("setG6DatasetTable Failed to insert data in G6DATASET table ().<br/>"
+                                                      tr("setG6DatasetTable_acqPoints Failed to insert data in G6DATASET table ().<br/>"
                                                          "ErrorText : %1<br/>"
                                                          "ErrorType : %2")
                                                       .arg(m_querySql.lastError().databaseText())
@@ -1415,6 +1535,247 @@ void RSDatabaseAccess::setG6DatasetTable()
     }
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
 }
+
+void RSDatabaseAccess::setG6DatasetTable_nodes()
+{
+    RSLogger::instance()->info(Q_FUNC_INFO,"Start");
+
+    QString m_databaseName = "G6";
+    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+
+    if(!checkG6DatabaseStructure(m_databaseSql))
+    {
+        m_g6dbStructureIsOk = false;
+        return;
+    }
+
+    QSqlQuery m_querySql(m_databaseSql);
+    bool m_exec = true;
+
+    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+
+    bool m_queryRexOneOnly = true;
+
+
+    //! brief DB_CODE = 33813554 is to be transfered in a config file
+    QString  strQuery = QString(
+                " select distinct "
+                " mp.MP_CODE, "
+                " mp.MP_NAME, "
+                " MP.ND_CODE, "
+                " ND.ND_NAME, "
+                " ast.AST_BRAND, "
+                " ast.AST_MODEL, "
+                " ast.AST_TECHNOLOGY, "
+                " ast.AST_RANGE, "
+                " ast.AST_THEORETICALACCURACY, "
+                " ast.AST_UNIT,"
+                " ast.AST_PHYSICALMEASUREMENT,"
+                " ast.AST_OUTPUTSIGNAL   "
+                " from MEASUREPOINT mp "
+                " left join NODE ND "
+                " on MP.SI_CODE = ND.SI_CODE "
+                " and MP.DB_CODE = ND.DB_CODE "
+                " and MP.ND_CODE = ND.ND_CODE "
+                " left join ACQSENSORTYPE AST "
+                " on ND.SI_CODE = AST.SI_CODE "
+                " and ND.AST_CODE = AST.AST_CODE "
+                " where mp.SI_CODE = 1 "
+                " and mp.DB_CODE = 33813554 "
+                " and mp.MP_CODE is not null"
+                " and mp.ND_CODE is not null"
+                );
+    m_exec &= m_querySql.exec(strQuery);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Try to execute query:\n " + strQuery);
+    if(m_exec == false)
+    {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
+                                                      tr("Error %1 Database").arg(m_databaseName),
+                                                      tr("%1 database cannot execute setG6DatasetTable_nodes().<br/>"
+                                                         "ErrorText : %2<br/>"
+                                                         "ErrorType : %3 \n query : %4").arg(m_databaseName)
+                                                      .arg(m_querySql.lastError().databaseText())
+                                                      .arg(m_querySql.lastError().type()).arg(strQuery));
+        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail to execute query");
+        return;
+    }
+
+    int m_mpCodeNo = m_querySql.record().indexOf("MP_CODE");
+    int m_mpNameNo = m_querySql.record().indexOf("MP_NAME");
+    int m_apCodeNo = m_querySql.record().indexOf("ND_CODE");
+    int m_apNameNo = m_querySql.record().indexOf("ND_NAME");
+    int m_astBrandNo = m_querySql.record().indexOf("AST_BRAND");
+    int m_astModelNo = m_querySql.record().indexOf("AST_MODEL");
+    int m_astTechnologyNo = m_querySql.record().indexOf("AST_TECHNOLOGY");
+    int m_astRangeNo = m_querySql.record().indexOf("AST_RANGE");
+    int m_astTheoricalAccuracyNo = m_querySql.record().indexOf("AST_THEORETICALACCURACY");
+    int m_astUnitNo = m_querySql.record().indexOf("AST_UNIT");
+    int physicalMeasurementCol =  m_querySql.record().indexOf("AST_PHYSICALMEASUREMENT");
+    int outputSignalCol =  m_querySql.record().indexOf("AST_OUTPUTSIGNAL");
+
+
+    QString m_queryStringRex = "insert into G6DATASET ("
+                               "MP_CODE, "
+                               "MP_NAME, "
+                               "ND_CODE, "
+                               "ND_NAME, "
+                               "AST_BRAND, "
+                               "AST_MODEL, "
+                               "AST_TECHNOLOGY, "
+                               "AST_RANGE, "
+                               "AST_THEORICALACCURACY, "
+                               "AST_UNIT, "
+                               "AST_PHYSICALMEASUREMENT,"
+                               "AST_OUTPUTSIGNAL"
+                               ") values ";
+
+    while(m_querySql.next())
+    {
+        QString m_mpCodeData = m_querySql.value(m_mpCodeNo).toString();
+        QString m_mpNameData = m_querySql.value(m_mpNameNo).toString();
+        QString m_apCodeData = m_querySql.value(m_apCodeNo).toString();
+        QString m_apNameData = m_querySql.value(m_apNameNo).toString();
+        QString m_astBrandData = m_querySql.value(m_astBrandNo).toString();
+        QString m_astModelData = m_querySql.value(m_astModelNo).toString();
+        QString m_astTechnologyData = m_querySql.value(m_astTechnologyNo).toString();
+        QString m_astRangeData = m_querySql.value(m_astRangeNo).toString();
+        QString m_astTheoricalAccuracyData = m_querySql.value(m_astTheoricalAccuracyNo).toString();
+        QString m_astUnitData = m_querySql.value(m_astUnitNo).toString();
+        QString physicalMeasurement =  m_querySql.value(physicalMeasurementCol).toString();
+        QString outputSignal  =  m_querySql.value(outputSignalCol).toString();
+
+        if(m_queryRexOneOnly == true)
+        {
+            m_queryStringRex += QString("('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                    .arg(m_mpCodeData)
+                    .arg(m_mpNameData)
+                    .arg(m_apCodeData)
+                    .arg(m_apNameData)
+                    .arg(m_astBrandData)
+                    .arg(m_astModelData).
+                    arg(m_astTechnologyData)
+                    .arg(m_astRangeData)
+                    .arg(m_astTheoricalAccuracyData)
+                    .arg(m_astUnitData)
+                    .arg(physicalMeasurement)
+                    .arg(outputSignal);
+
+            m_queryRexOneOnly = false;
+        }
+        else
+        {
+            m_queryStringRex += QString(",('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                    .arg(m_mpCodeData)
+                    .arg(m_mpNameData)
+                    .arg(m_apCodeData)
+                    .arg(m_apNameData)
+                    .arg(m_astBrandData)
+                    .arg(m_astModelData)
+                    .arg(m_astTechnologyData)
+                    .arg(m_astRangeData)
+                    .arg(m_astTheoricalAccuracyData)
+                    .arg(m_astUnitData)
+                    .arg(physicalMeasurement)
+                    .arg(outputSignal);
+        }
+    }
+
+    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Fill REX Database");
+    if(m_exec == false)
+    {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
+                                                      tr("Error %1 Database").arg(m_databaseName),
+                                                      tr("setG6DatasetTable_acqPoints Failed to insert data in G6DATASET table ().<br/>"
+                                                         "ErrorText : %1<br/>"
+                                                         "ErrorType : %2")
+                                                      .arg(m_querySql.lastError().databaseText())
+                                                      .arg(m_querySql.lastError().type()));
+        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail m_querySqlRex : ");
+        return;
+    }
+    RSLogger::instance()->info(Q_FUNC_INFO,"End");
+}
+
+
+void RSDatabaseAccess::setG6DatasetTable_deadPoints()
+{
+    RSLogger::instance()->info(Q_FUNC_INFO,"Start");
+
+    QString m_databaseName = "G6";
+    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+
+    if(!checkG6DatabaseStructure(m_databaseSql))
+    {
+        m_g6dbStructureIsOk = false;
+        return;
+    }
+
+    QSqlQuery m_querySql(m_databaseSql);
+    bool m_exec = true;
+
+    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+
+
+    //! brief DB_CODE = 33813554 is to be transfered in a config file
+    QString  strQuery = QString(
+                " select distinct "
+                " MP.MP_CODE, "
+                " MP.MP_NAME, "
+                " from MEASUREPOINT MP "
+                " where MP.SI_CODE = 1 "
+                " AND MP.DB_CODE = 33813554  "
+                " AND MP.ND_CODE is  null "
+                " AND MP.AP_CODE is  null"
+                );
+    m_exec &= m_querySql.exec(strQuery);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Try to execute query:\n " + strQuery);
+    if(m_exec == false)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail to execute query");
+        return;
+    }
+
+    int m_mpCodeNo = m_querySql.record().indexOf("MP_CODE");
+    int m_mpNameNo = m_querySql.record().indexOf("MP_NAME");
+
+    QString m_queryStringRex = "insert into G6DATASET (MP_CODE, MP_NAME ) values ";
+
+    bool m_queryRexOneOnly = true;
+
+    while(m_querySql.next())
+    {
+        QString m_mpCodeData = m_querySql.value(m_mpCodeNo).toString();
+        QString m_mpNameData = m_querySql.value(m_mpNameNo).toString();
+
+        if(m_queryRexOneOnly == true)
+        {
+            m_queryStringRex += QString("('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
+            m_queryRexOneOnly = false;
+        }
+        else
+        {
+            m_queryStringRex += QString(",('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
+        }
+    }
+
+    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Fill REX Database");
+    if(m_exec == false)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail to add deadPoints : ");
+        return;
+    }
+    RSLogger::instance()->info(Q_FUNC_INFO,"End");
+}
+
+
 
 void RSDatabaseAccess::setG7DatasetTable()
 {
@@ -1763,6 +2124,8 @@ void RSDatabaseAccess::createDatasetTable()
                                      "MP_NAME VARCHAR(64), "
                                      "AP_CODE VARCHAR(64), "
                                      "AP_NAME VARCHAR(64), "
+                                     "ND_CODE VARCHAR(64), "
+                                     "ND_NAME VARCHAR(64), "
                                      "AST_BRAND VARCHAR(64), "
                                      "AST_MODEL VARCHAR(64), "
                                      "AST_TECHNOLOGY VARCHAR(64), "
@@ -1834,7 +2197,11 @@ void RSDatabaseAccess::setDatasetTable()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start.");
 
-    setG6DatasetTable();
+    setG6DatasetTable_acqPoints();
+
+    setG6DatasetTable_nodes();
+
+//    setG6DatasetTable_deadPoints();
 
     setG7DatasetTable();
 
@@ -1947,7 +2314,6 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
 
     bool m_exec = true;
 
-    //QString strQuery = QString("select  MP_NAME, MP_CODE,AP_CODE,AST_BRAND,AST_MODEL,AST_RANGE, AST_TECHNOLOGY, AST_THEORICALACCURACY, AST_UNIT, AST_OUTPUTSIGNAL from REXFILTER ");
     QString strQuery = QString("select  * from REXFILTER ");
     m_exec &= sqlQuery.exec(strQuery);
 
@@ -1966,7 +2332,8 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
     }
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
-    int colCode = sqlQuery.record().indexOf("AP_CODE");
+    int colApCode = sqlQuery.record().indexOf("AP_CODE");
+    int colNdCode = sqlQuery.record().indexOf("ND_CODE");
     int colName = sqlQuery.record().indexOf("MP_NAME");
     int colMpCode = sqlQuery.record().indexOf("MP_CODE");
 
@@ -1984,7 +2351,7 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
     while(sqlQuery.next())
     {
         SensorInfos info;
-        info.code = sqlQuery.value(colCode).value<int>();
+
         info.name = sqlQuery.value(colName).value<QString>();
         info.brand = sqlQuery.value(colBrand).value<QString>();
         info.model = sqlQuery.value(colModel).value<QString>();
@@ -1995,7 +2362,22 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
         info.unit = sqlQuery.value(colUnit).value<QString>();
         info.physicalMeas = sqlQuery.value(colPhysicalMeas).value<QString>();
         info.outputSignal = sqlQuery.value(colOutputSignal).value<QString>();
-        //RSLogger::instance()->info(Q_FUNC_INFO, info.toString());
+
+        if(!sqlQuery.value(colApCode).isNull())
+        {
+            info.measPointType =   MeasPointType::AcqPoint ;
+            info.code = sqlQuery.value(colApCode).value<int>()  ;
+        }
+        else if(!sqlQuery.value(colNdCode).isNull())
+        {
+            info.measPointType =   MeasPointType::Node ;
+            info.code = sqlQuery.value(colNdCode).value<int>()  ;
+        }
+        else
+        {
+            RSLogger::instance()->info(Q_FUNC_INFO, QString("%1  : AP_CODE and ND_CODE are missing!! ").arg(info.name));
+        }
+
         dataList.append(info);
     }
 
@@ -2050,19 +2432,74 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
     return dataList;
 }
 
+ QPair<int,MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QString& name) const
+{
+    QString m_databaseName = "REX";
+    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+    QSqlQuery m_querySql(m_databaseSql);
+    QPair<int,MeasPointType> data;
+    bool m_exec = true;
+
+    m_exec &= m_querySql.exec(QString(
+                                  "select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
+                                  "where RF.MP_NAME = '%1' "
+                                  "and RF.MP_NAME <> '' "
+                                  "and RF.MP_NAME is not null "
+                                  "limit 1"
+                                  ).arg(name));
+
+    if(m_exec == false){
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
+                                                      tr("Error %1 Database").arg(m_databaseName),
+                                                      tr("%1 database cannot execute getSensorNameCode().<br/>"
+                                                         "ErrorText : %2<br/>"
+                                                         "ErrorType : %3").arg(m_databaseName)
+                                                      .arg(m_querySql.lastError().databaseText())
+                                                      .arg(m_querySql.lastError().type()));
+        return QPair<int,MeasPointType>();
+    }
+
+    int apCodeNo = m_querySql.record().indexOf("AP_CODE");
+    int ndCodeNo = m_querySql.record().indexOf("ND_CODE");
+
+    QVariant apCode, ndCode;
+
+    while(m_querySql.next()){
+        apCode = m_querySql.value(apCodeNo).toString();
+        ndCode = m_querySql.value(ndCodeNo).toString();
+    }
+
+    if(apCode.isValid())
+    {
+        data.first = apCode.toInt();
+        data.second = MeasPointType::AcqPoint;
+    }
+    else  if(ndCode.isValid())
+    {
+        data.first = ndCode.toInt();
+        data.second = MeasPointType::Node;
+    }
+    else
+    {
+
+    }
+
+    return data;
+}
+
 int RSDatabaseAccess::getSensorNameCode(const QString& name)
 {
     QString m_databaseName = "REX";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery m_querySql(m_databaseSql);
-    int m_dataC;
+    int apOrNdCode;
     bool m_exec = true;
 
     m_exec &= m_querySql.exec(QString(
-                                  "select rf.AP_CODE IDATA from REXFILTER rf "
-                                  "where rf.MP_NAME = '%1' "
-                                  "and rf.MP_NAME <> '' "
-                                  "and rf.MP_NAME is not null "
+                                  "select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
+                                  "where RF.MP_NAME = '%1' "
+                                  "and RF.MP_NAME <> '' "
+                                  "and RF.MP_NAME is not null "
                                   "limit 1"
                                   ).arg(name));
 
@@ -2077,14 +2514,18 @@ int RSDatabaseAccess::getSensorNameCode(const QString& name)
         return 0;
     }
 
-    int m_dataNo = m_querySql.record().indexOf("IDATA");
+    int apCodeNo = m_querySql.record().indexOf("AP_CODE");
+    int ndCodeNo = m_querySql.record().indexOf("ND_CODE");
+
+    QVariant apCode, ndCode;
 
     while(m_querySql.next()){
-        QString m_data = m_querySql.value(m_dataNo).toString();
-        m_dataC = m_data.toInt();
+        apCode = m_querySql.value(apCodeNo).toString();
+        ndCode = m_querySql.value(ndCodeNo).toString();
     }
 
-    return m_dataC;
+    apOrNdCode = apCode.isValid() ? apCode.toInt() : ndCode.toInt();
+    return apOrNdCode;
 }
 
 QStringList RSDatabaseAccess::getBrandNameList()
@@ -2173,6 +2614,13 @@ bool RSDatabaseAccess::checkG6DatabaseStructure(QSqlDatabase& db)
                      << "AST_UNIT"
                      );
 
+    tablesMap.insert("ACQPOINT",QStringList()
+                     << "SI_CODE"
+                     << "DB_CODE"
+                     << "AP_CODE"
+                     << "AST_CODE"
+                     );
+
     tablesMap.insert("ACQVALUE",QStringList()
                      << "SI_CODE"
                      << "DB_CODE"
@@ -2191,6 +2639,24 @@ bool RSDatabaseAccess::checkG6DatabaseStructure(QSqlDatabase& db)
                      << "MPT_CODE"
                      << "MP_NAME"
                      << "AP_CODE"
+                     );
+
+
+    tablesMap.insert("NODE",QStringList()
+                     << "SI_CODE"
+                     << "DB_CODE"
+                     << "ND_CODE"
+                     << "AST_CODE"
+                     );
+
+    tablesMap.insert("NODERESULT",QStringList()
+                     << "SI_CODE"
+                     << "DB_CODE"
+                     << "ND_CODE"
+                     << "NR_NODEDT"
+                     << "NR_NODEDAY"
+                     << "NR_CALCVALUE"
+                     << "NR_STATUS"
                      );
 
     m_g6dbStructureIsOk = checkDatabaseStructure(db,tablesMap);

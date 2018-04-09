@@ -18,6 +18,7 @@
 #include "RSDataManager.h"
 #include "Signaler.h"
 
+
 class RSDatabaseAccess : public QObject
 {
 
@@ -50,12 +51,15 @@ public:
     virtual bool open(const QString& databaseName);
     virtual void close();
 
-    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apCode, const QString &order = "ASC");
-    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apCode, const QString& order = "ASC");
-    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apCode);
+    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
 
-    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order = "ASC");
-    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apCode);
+    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+
+    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
+
+    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+
+    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
 
     virtual QDateTime getStartDateTime() const;
 
@@ -98,6 +102,7 @@ public:
     QStringList getSensorNameList(const QString& field, const QString& Criteria);
 
     int getSensorNameCode(const QString& name);
+    QPair<int,MeasPointType> getSensorNameCodeAndType(const QString& name) const;
 
     /**
      * @brief getBrandNameList
@@ -190,7 +195,7 @@ private:
     QMap<int /*sensor code*/,QString /*Technology*/> m_technologyBySensorMap;
     QMap<int /*sensor code*/,QString /*Sensor name*/> m_sensorNameOfSensorCodeMap;
 
-    virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order, QDateTime &dateTimeLimit);
+    virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order, QDateTime &dateTimeLimit);
 
     virtual void exitRex();
 
@@ -207,9 +212,19 @@ private:
     virtual void saveDatabaseFullName(const QString& databaseName);
 
     /**
-     * @brief setG6DatasetTable : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     * @brief setG6DatasetTable_acqPoints : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
      */
-    void setG6DatasetTable();
+    void setG6DatasetTable_acqPoints();
+
+    /**
+     * @brief setG6DatasetTable_nodes : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     */
+    void setG6DatasetTable_nodes();
+
+    /**
+     * @brief setG6DatasetTable_deadPoints : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     */
+    void setG6DatasetTable_deadPoints();
 
     /**
      * @brief setG7DatasetTable : Create REX SQLITE Database from G7DATABASE (THE WHOLE DATAS)
