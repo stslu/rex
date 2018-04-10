@@ -77,12 +77,16 @@ font-weight: bold;
           </size>
          </property>
          <property name="autoFillBackground">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgb(220, 220, 220);
 border-color: rgb(199, 199, 199);
-color: rgb(0, 0, 0);</string>
+color: rgb(0, 0, 0);
+
+QProgressBar::chunk {
+     background-color: darkblue;
+ }</string>
          </property>
          <property name="maximum">
           <number>10000</number>
