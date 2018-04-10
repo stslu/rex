@@ -27,10 +27,10 @@ RSDatabaseConfig::~RSDatabaseConfig()
 void RSDatabaseConfig::createObjects()
 {
     ui->m_g6DatabaseEdit->setText(RSDataManager::Instance()->getData("G6DatabaseFile").toString());
-    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "lime"));
+    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
 
     ui->m_g7DatabaseEdit->setText(RSDataManager::Instance()->getData("G7DatabaseFile").toString());
-    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "lime"));
+    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
 }
 
 void RSDatabaseConfig::createConnections()

@@ -385,7 +385,7 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);    
-    QString m_field = "AV_ACQUISITIONDT";
+    QString field;
     QString strQuery;
     bool m_exec = true;
 
@@ -395,6 +395,7 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
 
     if(mpType == MeasPointType::AcqPoint)
     {
+        field = "AV_ACQUISITIONDT";
         strQuery = QString(
                    "select %1 as IDATA from ACQVALUE av "
                    "where av.SI_CODE = /*:SI_CODE*/ 1 "
@@ -404,12 +405,12 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
                    "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
                    "and av.AV_STATUS = 0 "
                    "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
-                   ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                   ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
 
     }
     else if(mpType == MeasPointType::Node)
     {
-
+        field = "NR_NODEDT";
         strQuery = QString(
                    "select %1 as IDATA from NODERESULT NR "
                    "where NR.SI_CODE = /*:SI_CODE*/ 1 "
@@ -419,7 +420,7 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
                    "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
                    "and NR.NR_STATUS = 0 "
                    "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
-                   ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                   ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
     }
     else
     {
@@ -479,7 +480,7 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);
     QList<double> dataList;
-    QString m_field = "AV_INGVALUE";
+    QString field ;
     bool m_exec = true;
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat = endDate.toString("MM-dd-yyyy");
@@ -488,6 +489,7 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
 
     if(mpType == MeasPointType::AcqPoint)
     {
+        field = "AV_INGVALUE";
         strQuery = QString(
                     "select %1 as IDATA from ACQVALUE av "
                     "where av.SI_CODE = /*:SI_CODE*/ 1 "
@@ -497,10 +499,11 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
                     "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
                     "and av.AV_STATUS = 0 "
                     "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
-                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
     }
     else if(mpType == MeasPointType::Node)
     {
+        field = "NR_CALCVALUE";
         strQuery = QString(
                     "select %1 as IDATA from NODERESULT NR "
                     "where NR.SI_CODE = /*:SI_CODE*/ 1 "
@@ -510,7 +513,7 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
                     "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
                     "and NR.NR_STATUS = 0 "
                     "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
-                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
     }
     else
     {
@@ -555,7 +558,7 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery m_querySql(m_databaseSql);
     int m_data = 0;
-    QString m_field = "count(*)";
+    QString field = "count(*)";
     bool m_exec = true;
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat = endDate.toString("MM-dd-yyyy");
@@ -571,7 +574,7 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                     "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
                     "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
                     "and av.AV_STATUS = 0"
-                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
     }
     else if(mpType == MeasPointType::Node)
     {
@@ -583,7 +586,7 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                     "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
                     "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
                     "and NR.NR_STATUS = 0"
-                    ).arg(m_field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(apNdCode);
     }
     else
     {
@@ -630,7 +633,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);
-    QString m_field = "AV_ACQUISITIONDT";
+    QString field;;
     int dbCode = 33813554;
     QString format = "dd.MM.yyyy";
      QString strQuery;
@@ -644,6 +647,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
 
     if(mpType == MeasPointType::AcqPoint)
     {
+        field = "AV_ACQUISITIONDT";
         strQuery = QString(
                    "select %1 from ACQVALUE av "
                    "where av.SI_CODE = '1' "
@@ -652,10 +656,11 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                    "and av.AV_ACQUISITIONDT >= '%4' "
                    "and av.AV_ACQUISITIONDT < '%5' "
                    "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 "
-                   ).arg(m_field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+                   ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
     }
     else if(mpType == MeasPointType::Node)
     {
+        field = "NR_NODEDT";
         strQuery = QString(
                    "select %1 from NODERESULT NR "
                    "where NR.SI_CODE = '1' "
@@ -664,7 +669,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                    "and NR.NR_NODEDT >= '%4' "
                    "and NR.NR_NODEDT < '%5' "
                    "and NR.NR_STATUS = 0 order by NR_NODEDT %6 "
-                   ).arg(m_field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+                   ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
     }
     else
     {
@@ -705,7 +710,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     }
     RSLogger::instance()->info(Q_FUNC_INFO,QString("Executed Query : \n %1").arg(querySql.executedQuery()));
 
-    int m_dataNo = querySql.record().indexOf(m_field);
+    int m_dataNo = querySql.record().indexOf(field);
 
 
     QDateTime minDateTime;
@@ -2440,13 +2445,15 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
     QPair<int,MeasPointType> data;
     bool m_exec = true;
 
-    m_exec &= m_querySql.exec(QString(
-                                  "select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
-                                  "where RF.MP_NAME = '%1' "
-                                  "and RF.MP_NAME <> '' "
-                                  "and RF.MP_NAME is not null "
-                                  "limit 1"
-                                  ).arg(name));
+    const QString strQuery = QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
+                "   where RF.MP_NAME = '%1' "
+                "   and RF.MP_NAME <> '' "
+                "   and RF.MP_NAME is not null "
+                "   limit 1"
+                ).arg(name);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Execute Query:\n" +  strQuery);
+    m_exec &= m_querySql.exec(strQuery);
 
     if(m_exec == false){
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
@@ -2469,12 +2476,12 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
         ndCode = m_querySql.value(ndCodeNo).toString();
     }
 
-    if(apCode.isValid())
+    if(!apCode.toString().trimmed().isEmpty())
     {
         data.first = apCode.toInt();
         data.second = MeasPointType::AcqPoint;
     }
-    else  if(ndCode.isValid())
+    else  if(!ndCode.toString().trimmed().isEmpty())
     {
         data.first = ndCode.toInt();
         data.second = MeasPointType::Node;

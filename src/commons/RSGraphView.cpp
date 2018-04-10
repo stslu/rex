@@ -468,10 +468,10 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
 
 void RSGraphView::createObjects()
 {
-    ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastbackward, "cyan"));
-    ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastforward, "cyan"));
-    ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepbackward));
-    ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepforward));
+    ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastbackward, "black"));
+    ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastforward, "black"));
+    ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepbackward, "black"));
+    ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepforward, "black"));
 
     //m_sensorsComboBox
     initDatagridPointers();
@@ -648,14 +648,19 @@ void RSGraphView::slotSensorNameIndexChanged(const QString& sensorName)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    m_sensorCode = m_databaseAccess->getSensorNameCode(sensorName);
+//    m_sensorCode = m_databaseAccess->getSensorNameCode(sensorName);
+
+    QPair<int,MeasPointType> pair = m_databaseAccess->getSensorNameCodeAndType(sensorName);
+    m_sensorCode = pair.first;
+    m_measPointType = pair.second;
 
     int index = ui->m_sensorNameEdit->currentIndex();
 
     RSDataManager::Instance()->setData("SensorName", sensorName);
-    RSDataManager::Instance()->setData("SensorNameCode", sensorName);
+    RSDataManager::Instance()->setData("SensorNameCode", m_sensorCode);
+    RSDataManager::Instance()->setData("measPointType", static_cast<int>( m_measPointType));
     RSDataManager::Instance()->setData("SensorNameIndex", index);
-    RSMessageView::Instance()->showData(QString("%1 \t AP_CODE: %2").arg(sensorName).arg(m_sensorCode));
+    RSMessageView::Instance()->showData(QString("%1 \t CODE: %2").arg(sensorName).arg(m_sensorCode));
 
     //Put the step to the lowest value
     ui->m_stepViewEdit->setValue(this->maxStep());
@@ -710,14 +715,14 @@ void RSGraphView::updateSensorsDatagrid(int index)
     ui->m_tabView->setCurrentWidget(ui->m_sensorsDatagridTab);
 }
 
-int RSGraphView::sensorCode()
+QPair<int,MeasPointType> RSGraphView::getSensorCodeTypePair() const
 {
     QString& sensorName = ui->m_sensorNameEdit->currentText();
+    QPair<int,MeasPointType>  pair = m_databaseAccess->getSensorNameCodeAndType(sensorName);
 
-    m_sensorCode = m_databaseAccess->getSensorNameCode(sensorName);
-
-    return m_sensorCode;
+    return pair;
 }
+
 
 void RSGraphView::clearGraphs()
 {

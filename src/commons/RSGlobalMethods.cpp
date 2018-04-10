@@ -391,15 +391,11 @@ QString RSGlobalMethods::rexNameAndVersion()
 
 bool RSGlobalMethods::quitConfirmation()
 {
-    QString m_title = QTranslator::tr("Quit Confirmation");
-    QString m_msgTitle = QTranslator::tr("<font style=\"color:lime; font-weight: bold;\">"
-                                         "%1").arg(m_title);
-    QString m_msg = QTranslator::tr("<font style=\"color:%1; font-weight: bold;\">"
-                                    "Are you sure you want to quit ?"
-                                    "</font>");
+    QString m_msgTitle = QTranslator::tr("Quit Confirmation");
+    QString m_msg = QTranslator::tr("Are you sure you want to quit ?");
 
     QMessageBox m_message;
-    m_message.setWindowTitle(m_title);
+    m_message.setWindowTitle(m_msgTitle);
     m_message.setIcon(QMessageBox::Information);
     m_message.setText(m_msgTitle);
     m_message.setInformativeText(m_msg);

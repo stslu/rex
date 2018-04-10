@@ -23,7 +23,7 @@ private:
 public:
     void setColor(const QVariant& color);
     void setActiveColor(const QVariant& color);
-    QIcon getIcon(fa faEnum, const QVariant &color = "orange");
+    QIcon getIcon(fa faEnum, const QVariant &color = "black");
 
 private:
     static RSPictoManager* m_instance;

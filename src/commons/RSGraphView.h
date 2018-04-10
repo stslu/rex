@@ -89,11 +89,12 @@ public:
         lineEdit = new QLineEdit(this);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMaximumSize(QSize(16777215, 22));
+        lineEdit->setReadOnly(true);
+        lineEdit->setStyleSheet("background-color: rgb(220, 220, 220); font-weight:bold");
 
         m_dataGrid = new RexDataGrid(false,this);
         m_dataGrid->setObjectName(QStringLiteral("m_dataTableView"));
         m_dataGrid->setMaximumSize(QSize(500, 16777215));
-
 
         QMetaObject::connectSlotsByName(this);
 
@@ -171,7 +172,7 @@ public:
     QStringList getCurSensorNamesList() const;
     QString currentExperimentationName() const;
     void clearGraphsAndSensorList();
-    int sensorCode() ;
+    QPair<int,MeasPointType> getSensorCodeTypePair() const;
     QString sensorName() const;
 
     IRexDataGrid* fidelityNoiseFailsDataGrid();
@@ -259,10 +260,12 @@ private:
     bool m_runFlag;
     bool m_sensorNameIndexOneOnly;
     int m_sensorCode;
+    MeasPointType m_measPointType;
     RSDatabaseAccess* m_databaseAccess;
 
     int m_stepViewMax;
     QMap<int,QString> m_sensorsCodeNameMap;
+    QMap<int,MeasPointType> m_sensorsTypeNameMap;
 
     QList<SensorInfos> m_sensorsDetailedInfo;
 

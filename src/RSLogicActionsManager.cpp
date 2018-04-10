@@ -401,7 +401,10 @@ RSFidelityAndNoise::FidelitySettings RSLogicActionsManager::initSettings()
     }
 
     if(m_graphView)
+    {
         settings.stepViewUi  = m_graphView->step();
+        settings.sensorName = m_graphView->sensorName();
+    }
 
     if(m_optionsMgrPtr)
     {
@@ -412,10 +415,16 @@ RSFidelityAndNoise::FidelitySettings RSLogicActionsManager::initSettings()
         settings.plotMinFidelity = m_optionsMgrPtr->isFidelityMinChecked();
         settings.plotMaxFidelity = m_optionsMgrPtr->isFidelityMaxChecked();
         settings.plotAvgFidelity = m_optionsMgrPtr->isFidelityAvgChecked();
-    }
+     }
 
     if(m_graphView)
-        settings.sensorCode = m_graphView->sensorCode();
+    {
+        QPair<int,MeasPointType> pair =  m_graphView->getSensorCodeTypePair();
+        settings.sensorCode = pair.first;
+        settings.measPointType = pair.second;
+    }
+
+    RSLogger::instance()->info(Q_FUNC_INFO,settings.toString());
 
     return settings;
 }
@@ -471,11 +480,11 @@ void RSLogicActionsManager::slot_computeAverage()
     RSLogger::instance()->info(Q_FUNC_INFO,"settings : " + m_settings.toString());
     RSDataComputation dataComputation (m_databaseAccess,m_settings,m_graphView);
 
-    int code = m_graphView->sensorCode();
+    const QPair<int,MeasPointType> codeTypePair = m_graphView->getSensorCodeTypePair();
     QString name  = m_graphView->sensorName();
     QMap<int,QString> sensorsCodeNameMap ;
 
-    sensorsCodeNameMap[code] = name;
+    sensorsCodeNameMap[codeTypePair.first] = name;
 
     QVector<RexStatistics> statsArray;
     const QList<SensorInfos>& map = m_graphView->sensorsDetailedInfo();
@@ -483,12 +492,12 @@ void RSLogicActionsManager::slot_computeAverage()
     if(map.isEmpty() )
         RSLogger::instance()->info(Q_FUNC_INFO,"No sensor found");
     else
-        RSLogger::instance()->info(Q_FUNC_INFO,QString("Loop on sensors. Try to find the code %1").arg(code));
+        RSLogger::instance()->info(Q_FUNC_INFO,QString("Loop on sensors. Try to find the code %1").arg(codeTypePair.first));
 
     //Look for the current sensor in the sensor list
     Q_FOREACH(const SensorInfos& sensorInfo,map)
     {
-        if(sensorInfo.code == code)
+        if(sensorInfo.code == codeTypePair.first)
         {
             RSLogger::instance()->info(Q_FUNC_INFO,QString("Run computations"));
             //Compute on all periods

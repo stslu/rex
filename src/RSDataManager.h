@@ -8,6 +8,13 @@
 #include <RSFiltersManager.h>
 #include <QVariantList>
 
+enum MeasPointType
+{
+    AcqPoint = 0,
+    Node ,
+    MeasPointTypeCount
+};
+
 
 class SensorInfos
 {
@@ -23,6 +30,7 @@ public:
     QString physicalMeas;
     QString theoricalAccuracy;
     QString unit;
+    MeasPointType measPointType;
 
     QString toString() const
     {
@@ -36,7 +44,7 @@ struct RexStatistics
     int sensorCode;
     int mpCode;
     QString sensorName;
-
+    MeasPointType measPointType;
     QString brand;
     QString model;
     QString technology;
@@ -61,6 +69,7 @@ struct RexStatistics
     static QString physicalMeasColName(){return "Phys. Meas.";}
     static QString measurementRangeColName(){return "Meas. range";}
     static QString sensorCodeColName(){return "Sensor code";}
+    static QString sensorMeasPointType(){return "Meas. Point Type";}
     static QString sensorNameColName(){return "Sensor name";}
     static QString mpCodeColName(){return "Meas. Pt code";}
     static QString mpNameColName(){return "Meas. Pt name";}
@@ -70,9 +79,9 @@ struct RexStatistics
 
     static QStringList fieldsList()
     {
-        RexStatistics stat;
         return  QStringList() << sensorNameColName()
                               << sensorCodeColName()
+//                              << sensorMeasPointType()
                               << mpCodeColName()
                               << fidelityColName()
                               << noiseColName()
@@ -92,6 +101,7 @@ struct RexStatistics
         QVariantList data;
         data.append(sensorName);
         data.append(sensorCode);
+//        data.append(static_cast<int>(measPointType));
         data.append(mpCode);
         data.append(fidelity);
         data.append(noise);
@@ -111,15 +121,17 @@ struct RexStatistics
     {
         return QString ("sensorName = %1\n "
                         "sensorCode = %2\n "
+//                        "measPointType = %10\n "
                         "brand = %3\n "
                         "model = %4\n "
                         "technology = %5\n "
                         "outputSignal = %6\n "
                         "fidelity = %7\n"
-                        " noise = %8\n "
+                        "noise = %8\n "
                         "avgFailSec = %9")
                 .arg(sensorName)
                 .arg(sensorCode)
+//                .arg(static_cast<int>(measPointType))
                 .arg(brand)
                 .arg(model)
                 .arg(technology)
@@ -148,6 +160,7 @@ public:
         QString technology;
         QString sensorName;
         QString brandName;
+
 
         QString toString()
         {
@@ -214,10 +227,9 @@ private:
     static RSDataManager *m_instance;
 
     QMap<QString, QVariant> m_dataMap;
-    //QMap<DataEnum, QVariant> m_dataEnumMap;
-    //RSFiltersManager* m_rsFiltersManagerAdrs;
 
     QMap<QString, double> m_fidelityByBrandMap;
+
     QMap<QString, double> m_noiseByBrandMap;
 
     QVector<NoiseFidelitySensorBrand> m_noiseFidelitySensorBrandArray;

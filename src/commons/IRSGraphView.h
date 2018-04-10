@@ -6,6 +6,8 @@
 class IRexDataGrid;
 class SensorInfos;
 
+enum MeasPointType;
+
 class IRSGraphView
 {
 public:
@@ -24,7 +26,7 @@ public:
 
     virtual QString currentExperimentationName() const = 0;
 
-    virtual int sensorCode()  = 0;
+    virtual QPair<int,MeasPointType> getSensorCodeTypePair() const = 0;
 
     virtual void clearGraphsAndSensorList() = 0;
 

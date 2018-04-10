@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>787</width>
-    <height>241</height>
+    <height>248</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -24,6 +24,13 @@
   </property>
   <property name="windowTitle">
    <string>Databases configuration</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
+color: black;
+font-weight: bold;
+}font: 9pt;</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

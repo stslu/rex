@@ -37,7 +37,7 @@ public:
 
         QString toString() const
         {
-            return QString("startDate = %1 endDate = %2 stepDate = %3 stepView = %4 degree= %5 sigma=%6 noiseFactor=%7 sensorCode=%8 measPointType=%9")
+            return QString("%10 startDate = %1 endDate = %2 stepDate = %3 stepView = %4 degree= %5 sigma=%6 noiseFactor=%7 sensorCode=%8 measPointType=%9")
                     .arg(startDateUi.toString())
                     .arg(endDateUi.toString())
                     .arg(stepDateUi)
@@ -46,7 +46,8 @@ public:
                     .arg(sigmaUi)
                     .arg(noiseFactorUi)
                     .arg(sensorCode).
-                     arg(measPointType) ;
+                     arg(measPointType)
+                    .arg(sensorName);
         }
 
         FidelitySettings():plotMinFidelity(true)

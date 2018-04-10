@@ -47,7 +47,7 @@ RSFiltersManager::~RSFiltersManager()
 void RSFiltersManager::createObjects()
 {
     ui->m_resetButton->setCursor(Qt::PointingHandCursor);
-    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::refresh, "orange"));
+    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::refresh, "black"));
 
     loadSettings(QString());
 
@@ -646,8 +646,5 @@ QStringList RSFiltersManager::getExperimentationsList() const
 
 void  RSFiltersManager::displayNbSensors(int nbSensors)
 {
-    if(nbSensors != 0)
-        ui->m_title->setText(QString(tr("Filters \t%1 sensors")).arg(nbSensors));
-    else
-        ui->m_title->setText(QString(tr("Filters \t No sensor for the current selection")));
+    ui->m_title->setText(QString(tr("%1 sensors for the current criterias ")).arg(nbSensors));
 }
