@@ -313,7 +313,7 @@ void RSFiltersManager::slotCurrentIndexChanged(const QString& text)
     if(m_checkFilter == false)
     {
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail.This filter don't contain data.");
-        ui->m_title->setText("Filters \t ---- NO SENSOR  for the current criterias ----");
+        displayNbSensors(0);
         emit Signaler::instance()->signal_clearGraphsAndSensorList();
         return;
     }
@@ -346,7 +346,7 @@ void  RSFiltersManager::initQueryAndRexFilterTable()
     if(m_checkFilter == false)
     {
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail.This filter don't contain data.");
-        ui->m_title->setText("Filters \t ---- NO SENSOR  for the current criterias ----");
+        displayNbSensors(0);
         emit Signaler::instance()->signal_clearGraphsAndSensorList();
         return;
     }
