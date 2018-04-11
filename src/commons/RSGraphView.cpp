@@ -64,6 +64,9 @@ RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
 {
     ui->setupUi(this);
 
+    if(ui->measTypeIndicator)
+        ui->measTypeIndicator->setVisible(false);
+
     position();
 
     createObjects();
@@ -662,6 +665,8 @@ void RSGraphView::slotSensorNameIndexChanged(const QString& sensorName)
     RSDataManager::Instance()->setData("SensorNameIndex", index);
     RSMessageView::Instance()->showData(QString("%1 \t CODE: %2").arg(sensorName).arg(m_sensorCode));
 
+    displayMeasPointTypeIndicator();
+
     //Put the step to the lowest value
     ui->m_stepViewEdit->setValue(this->maxStep());
 
@@ -1020,7 +1025,22 @@ QVariant RSGraphView::loadSensorName()
     ui->m_sensorNameEdit->setCurrentIndex(index);
     ui->m_sensorNameEdit->blockSignals(false);
 
+    displayMeasPointTypeIndicator();
+
     return RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+}
+
+void RSGraphView::displayMeasPointTypeIndicator()
+{
+    if(m_measPointType == MeasPointType::Node)
+    {
+        ui->measTypeIndicator->setVisible(true);
+    }
+    else
+    {
+        ui->measTypeIndicator->setVisible(false);
+    }
+
 }
 
 void RSGraphView::saveSensorName()const
@@ -1509,7 +1529,6 @@ void RSGraphView::initSensorsListDatagrid()
 
     //Set the dataGrid
     m_sensorByBrandDataGrid->setDataModelMatrix( BrandMap.keys(),getDataMaxtrixFromQMap(BrandMap));
-
     m_sensorByTechnologyDataGrid->setDataModelMatrix( TechnoMap.keys(),getDataMaxtrixFromQMap(TechnoMap));
     m_sensorByOutputSignalDataGrid->setDataModelMatrix( OutputSignalMap.keys(),getDataMaxtrixFromQMap(OutputSignalMap));
     m_sensorByPhysicalMeasDataGrid->setDataModelMatrix( PhysicalMeasMap.keys(),getDataMaxtrixFromQMap(PhysicalMeasMap));

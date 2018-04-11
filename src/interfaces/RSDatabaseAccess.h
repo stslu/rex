@@ -108,25 +108,32 @@ public:
      * @brief getBrandNameList
      * @return :return all the brands in the table
      */
-    QStringList getBrandNameList();
+    QStringList getBrandNameList() const;
+    QStringList getFilteredBrandNameList() const;
 
-    QStringList getFilterBrandNameList();
+    QStringList getModelNameList() const;
+    QStringList getFilteredModelNameList() const;
 
-    QStringList getModelNameList();
+    QStringList getTechnologyNameList() const;
+    QStringList getFilteredTechnologyNameList() const;
 
-    QStringList getTechnologyNameList();
+    QStringList getPhysicalMeasurementNameList() const ;
+    QStringList getFilteredPhysicalMeasurementNameList() const ;
 
-    QStringList getPhysicalMeasurementNameList();
+    QStringList getOutputSignalNameList() const ;
+    QStringList getFilteredOutputSignalNameList()const ;
 
-    QStringList getOutputSignalNameList();
+    QStringList getMeasurementRangeNameList() const;
+    QStringList getFilteredMeasurementRangeNameList() const;
 
-    QStringList getMeasurementRangeNameList();
+    QStringList getTheoricalAccuracyNameList() const;
+    QStringList getFilteredTheoricalAccuracyNameList() const;
 
-    QStringList getTheoricalAccuracyNameList();
+    QStringList getUnitNameList()const;
+    QStringList getFilteredUnitNameList() const;
 
-    QStringList getUnitNameList();
-
-    QStringList getExperimentationNameList();
+    QStringList getExperimentationNameList()const;
+    QStringList getFilteredExperimentationNameList()const;
 
 
 protected:
@@ -135,12 +142,16 @@ protected:
 
     QVariant loadG6DatabaseFile();
     QVariant loadG7DatabaseFile();
+    void saveG7UserName() ;
+    void saveG6UserName() ;
+
+    QVariant loadDeadEntitiesOption();
+    QVariant loadNodesWithNoAst();
+    void saveDeadEntitiesOption() const;
+    void saveNodesWithNoSensorOption() const;
 
     void saveG6DatabaseFile() ;
     void saveG7DatabaseFile() ;
-
-    void saveG7UserName() ;
-    void saveG6UserName() ;
 
     void saveG7Password() ;
     void saveG6Password() ;
@@ -194,6 +205,9 @@ private:
 
     QMap<int /*sensor code*/,QString /*Technology*/> m_technologyBySensorMap;
     QMap<int /*sensor code*/,QString /*Sensor name*/> m_sensorNameOfSensorCodeMap;
+
+    bool m_loadNodesWithNoAst;
+    bool m_loadDeadEntities;
 
     virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order, QDateTime &dateTimeLimit);
 
@@ -250,7 +264,7 @@ private:
      * @param field
      * @return the no duplicated values in the column as a QStringList
      */
-    QStringList getDataColumn(const QString& table, const QString& field);
+    QStringList getDataColumn(const QString& table, const QString& field) const;
 
 
     bool checkG7DatabaseStructure(QSqlDatabase& db) ;

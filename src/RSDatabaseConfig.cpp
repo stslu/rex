@@ -4,6 +4,7 @@
 #include "RSDataManager.h"
 #include <QFileDialog>
 #include <RSLogger.h>
+#include "RSGlobalMethods.h"
 
 RSDatabaseConfig::RSDatabaseConfig(QWidget *parent) :
     QDialog(parent),
@@ -15,6 +16,7 @@ RSDatabaseConfig::RSDatabaseConfig(QWidget *parent) :
     ui->m_g7PasswordEdit->setEchoMode(QLineEdit::Password);
 
     createObjects();
+
     createConnections();
 }
 
@@ -24,20 +26,61 @@ RSDatabaseConfig::~RSDatabaseConfig()
     delete ui;
 }
 
-void RSDatabaseConfig::createObjects()
-{
-    ui->m_g6DatabaseEdit->setText(RSDataManager::Instance()->getData("G6DatabaseFile").toString());
-    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
-
-    ui->m_g7DatabaseEdit->setText(RSDataManager::Instance()->getData("G7DatabaseFile").toString());
-    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
-}
-
 void RSDatabaseConfig::createConnections()
 {
     connect(ui->m_g6DatabaseButton, SIGNAL(clicked()), this, SLOT(slotG6DatabaseButtonClicked()));
     connect(ui->m_g7DatabaseButton, SIGNAL(clicked()), this, SLOT(slotG7DatabaseButtonClicked()));
 }
+
+
+void RSDatabaseConfig::createObjects()
+{
+
+    //!G6 database
+    ui->m_g6DatabaseEdit->setText(RSDataManager::Instance()->getData("G6DatabaseFile").toString());
+    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
+
+    //!G7 database
+    ui->m_g7DatabaseEdit->setText(RSDataManager::Instance()->getData("G7DatabaseFile").toString());
+    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
+
+    //!Load loadNodesWithNoAst
+    if(RSDataManager::Instance()->getData("loadNodesWithNoAst").toBool())
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO, "loadNodesWithNoAst = TRUE ");
+        ui->loadNodeWithNoAstYes->setChecked(true);
+    }
+    else
+    {
+         RSLogger::instance()->info(Q_FUNC_INFO, "loadNodesWithNoAst = FALSE ");
+        ui->loadNodeWithNoAstYes->setChecked(false);
+    }
+
+    //!Load LoadDeadEntities
+    if(RSDataManager::Instance()->getData("LoadDeadEntities").toBool())
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO, "LoadDeadEntities = TRUE ");
+        ui->loadDeadEntitiesYes->setChecked(true);
+    }
+    else
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO, "LoadDeadEntities = FALSE ");
+        ui->loadDeadEntitiesYes->setChecked(false);
+    }
+
+}
+
+bool RSDatabaseConfig::loadDeadEntities() const
+{
+
+    return ui->loadDeadEntitiesYes->isChecked();
+}
+
+bool RSDatabaseConfig::loadNodesWithNoAst() const
+{
+    return ui->loadNodeWithNoAstYes->isChecked();
+}
+
 
 QString RSDatabaseConfig::getG6DatabaseFile() const
 {
@@ -113,6 +156,35 @@ void RSDatabaseConfig::setG6Login(const QString& path,const QString& userName,co
     ui->m_g6DatabaseEdit->setText(path);
     ui->m_g6PasswordEdit->setText(pwd);
     ui->m_g6UserNameEdit->setText(userName);
+}
+
+void RSDatabaseConfig::setLoadDeadEntitiesOption(bool checked)
+{
+
+    if(checked)
+    {
+        ui->loadDeadEntitiesYes->setChecked(true);
+        ui->loadDeadEntitiesNo->setChecked(false);
+    }
+    else
+    {
+        ui->loadDeadEntitiesYes->setChecked(false);
+        ui->loadDeadEntitiesNo->setChecked(true);
+    }
+}
+
+void RSDatabaseConfig::setLoadNodeswithNoAstOption(bool checked)
+{
+    if(checked)
+    {
+        ui->loadNodeWithNoAstYes->setChecked(true);
+        ui->loadNodeWithNoAstNo->setChecked(false);
+    }
+    else
+    {
+        ui->loadNodeWithNoAstYes->setChecked(false);
+        ui->loadNodeWithNoAstNo->setChecked(true);
+    }
 }
 
 QString RSDatabaseConfig::getG6UserName() const

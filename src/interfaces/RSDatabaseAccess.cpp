@@ -25,14 +25,16 @@ RSDatabaseAccess::RSDatabaseAccess(QObject *parent) : QObject(parent)
   , m_g7dbStructureIsOk(true)
   , m_g6dbStructureIsOk(true)
   /*, m_g6UserName("COSMOSUSER")
-                                        , m_g6Password("cosmosus")
-                                        , m_g7UserName("SYSDBA")
-                                        , m_g7Password("masterkey")*/
+                                              , m_g6Password("cosmosus")
+                                              , m_g7UserName("SYSDBA")
+                                              , m_g7Password("masterkey")*/
   , m_g6Driver("QFIREBIRD")
   , m_g7Driver("QFIREBIRD")
   , m_g7Port("3050")
   , m_g6Port("3050")
   , m_experienceBySensorMap(0)
+  , m_loadNodesWithNoAst(false)
+  , m_loadDeadEntities(true)
 {
     createObjects();
 
@@ -77,6 +79,17 @@ void RSDatabaseAccess::createObjects()
     m_g6DatabaseFile = loadG6DatabaseFile().value<QString>();
 
     m_g7DatabaseFile = loadG7DatabaseFile().value<QString>();
+
+    {
+        QVariant data = loadDeadEntitiesOption();
+        m_loadDeadEntities = data.isValid() ?  data.toBool() : false;
+    }
+
+
+    {
+        QVariant data = loadNodesWithNoAst();
+        m_loadNodesWithNoAst = data.isValid() ?  data.toBool() : false;
+    }
 
     m_rexDatabaseFile = REX::DEFAULT_REX_APP_DB_FILE;
 
@@ -232,7 +245,7 @@ bool RSDatabaseAccess::open(const QString& databaseName)
     }
     else
     {
-         RSMessageView::Instance()->showData(QString(tr("Driver NOT found : %1")).arg(m_databaseDriver));
+        RSMessageView::Instance()->showData(QString(tr("Driver NOT found : %1")).arg(m_databaseDriver));
     }
 
     //Open the database
@@ -384,7 +397,7 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
 {
     QString m_databaseName = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery querySql(m_databaseSql);    
+    QSqlQuery querySql(m_databaseSql);
     QString field;
     QString strQuery;
     bool m_exec = true;
@@ -397,30 +410,30 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     {
         field = "AV_ACQUISITIONDT";
         strQuery = QString(
-                   "select %1 as IDATA from ACQVALUE av "
-                   "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                   "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                   "and av.AP_CODE = /*AP_CODE*/ %5 "
-                   "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                   "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
-                   "and av.AV_STATUS = 0 "
-                   "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
-                   ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                    "select %1 as IDATA from ACQVALUE av "
+                    "where av.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and av.AP_CODE = /*AP_CODE*/ %5 "
+                    "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
+                    "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                    "and av.AV_STATUS = 0 "
+                    "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4"
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
 
     }
     else if(mpType == MeasPointType::Node)
     {
         field = "NR_NODEDT";
         strQuery = QString(
-                   "select %1 as IDATA from NODERESULT NR "
-                   "where NR.SI_CODE = /*:SI_CODE*/ 1 "
-                   "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
-                   "and NR.ND_CODE = /*ND_CODE*/ %5 "
-                   "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
-                   "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
-                   "and NR.NR_STATUS = 0 "
-                   "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
-                   ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
+                    "select %1 as IDATA from NODERESULT NR "
+                    "where NR.SI_CODE = /*:SI_CODE*/ 1 "
+                    "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
+                    "and NR.ND_CODE = /*ND_CODE*/ %5 "
+                    "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
+                    "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                    "and NR.NR_STATUS = 0 "
+                    "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4"
+                    ).arg(field).arg(m_startFormat).arg(m_endFormat).arg(order).arg(apNdCode);
     }
     else
     {
@@ -636,7 +649,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QString field;;
     int dbCode = 33813554;
     QString format = "dd.MM.yyyy";
-     QString strQuery;
+    QString strQuery;
 
     QString strStartDate = startDate.toString(format);
     QString strEndDate = endDate.toString(format);
@@ -649,27 +662,27 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     {
         field = "AV_ACQUISITIONDT";
         strQuery = QString(
-                   "select %1 from ACQVALUE av "
-                   "where av.SI_CODE = '1' "
-                   "and av.DB_CODE =   '%2' "
-                   "and av.AP_CODE = '%3' "
-                   "and av.AV_ACQUISITIONDT >= '%4' "
-                   "and av.AV_ACQUISITIONDT < '%5' "
-                   "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 "
-                   ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+                    "select %1 from ACQVALUE av "
+                    "where av.SI_CODE = '1' "
+                    "and av.DB_CODE =   '%2' "
+                    "and av.AP_CODE = '%3' "
+                    "and av.AV_ACQUISITIONDT >= '%4' "
+                    "and av.AV_ACQUISITIONDT < '%5' "
+                    "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 "
+                    ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
     }
     else if(mpType == MeasPointType::Node)
     {
         field = "NR_NODEDT";
         strQuery = QString(
-                   "select %1 from NODERESULT NR "
-                   "where NR.SI_CODE = '1' "
-                   "and NR.DB_CODE =   '%2' "
-                   "and NR.ND_CODE = '%3' "
-                   "and NR.NR_NODEDT >= '%4' "
-                   "and NR.NR_NODEDT < '%5' "
-                   "and NR.NR_STATUS = 0 order by NR_NODEDT %6 "
-                   ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
+                    "select %1 from NODERESULT NR "
+                    "where NR.SI_CODE = '1' "
+                    "and NR.DB_CODE =   '%2' "
+                    "and NR.ND_CODE = '%3' "
+                    "and NR.NR_NODEDT >= '%4' "
+                    "and NR.NR_NODEDT < '%5' "
+                    "and NR.NR_STATUS = 0 order by NR_NODEDT %6 "
+                    ).arg(field).arg(dbCode).arg(apNdCode).arg(strStartDate).arg(strEndDate).arg(order);
     }
     else
     {
@@ -751,14 +764,21 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
     RSDataManager::Instance()->setData("RexDatabase.G7Database", loadG7DatabaseFile());
 
     m_g7DatabaseFile = loadG7DatabaseFile().toString();
+
     m_g7Port = loadG7Port().toString();
+
     m_g7UserName = loadG7UserName().toString();
+
     m_g7Password = loadG7Password().toString();
 
     m_g6DatabaseFile = loadG6DatabaseFile().toString();
+
     m_g6Port = loadG6Port().toString();
+
     m_g6UserName = loadG6UserName().toString();
+
     m_g6Password = loadG6Password().toString();
+
     RSLogger::instance()->info(Q_FUNC_INFO,   "End");
 }
 
@@ -776,6 +796,8 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
     saveG7Port();
     saveG7UserName();
     saveG7Password();
+    saveDeadEntitiesOption() ;
+    saveNodesWithNoSensorOption() ;
     RSLogger::instance()->info(Q_FUNC_INFO,   "End");
 }
 
@@ -806,6 +828,45 @@ QVariant RSDatabaseAccess::loadG7DatabaseFile()
     return data;
 }
 
+QVariant RSDatabaseAccess::loadDeadEntitiesOption()
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.LoadDeadEntities";
+    QVariant m_default = "";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    RSLogger::instance()->info(Q_FUNC_INFO,"LoadDeadEntities = "  + data.toBool());
+    return data;
+}
+
+QVariant RSDatabaseAccess::loadNodesWithNoAst()
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.loadNodesWithNoAst";
+    QVariant m_default = "";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    RSLogger::instance()->info(Q_FUNC_INFO,"loadNodesWithNoAst = "  + data.toBool());
+    return data;
+}
+void RSDatabaseAccess::saveDeadEntitiesOption() const
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.LoadDeadEntities";
+    QVariant data = QVariant(m_loadDeadEntities);
+    RSLogger::instance()->info(Q_FUNC_INFO,"Save G7 Path = "  + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+}
+
+void RSDatabaseAccess::saveNodesWithNoSensorOption() const
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.loadNodesWithNoAst";
+   QVariant data = QVariant(m_loadNodesWithNoAst);
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"Save G7 Path = "  + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+}
 
 void RSDatabaseAccess::saveG6DatabaseFile()
 {
@@ -827,6 +888,9 @@ void RSDatabaseAccess::saveG7DatabaseFile()
     RSLogger::instance()->info(Q_FUNC_INFO,"Save G7 Path = "  + data.value<QString>());
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
 }
+
+
+
 
 
 bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, const QDate& end, int evtCode, QList<quint64>& failuresList) const
@@ -1134,6 +1198,9 @@ void RSDatabaseAccess::showDatabaseConfig()
     m_databaseConfig.data()->setG7Login(m_g7DatabaseFile,m_g7UserName,m_g7Password);
     m_databaseConfig.data()->adjustSize();
 
+    m_databaseConfig.data()->setLoadDeadEntitiesOption(m_loadDeadEntities);
+    m_databaseConfig.data()->setLoadNodeswithNoAstOption(m_loadNodesWithNoAst);
+
     if(m_databaseConfig->exec() == QDialog::Accepted)
     {
         QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
@@ -1146,6 +1213,9 @@ void RSDatabaseAccess::showDatabaseConfig()
 
         m_g6Password = m_databaseConfig->getG6Pwd();
         m_g7Password = m_databaseConfig->getG7Pwd();
+
+        m_loadDeadEntities = m_databaseConfig.data()->loadDeadEntities();
+        m_loadNodesWithNoAst = m_databaseConfig.data()->loadNodesWithNoAst();
 
         QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
     }
@@ -1588,9 +1658,17 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
                 " and ND.AST_CODE = AST.AST_CODE "
                 " where mp.SI_CODE = 1 "
                 " and mp.DB_CODE = 33813554 "
-                " and mp.MP_CODE is not null"
-                " and mp.ND_CODE is not null"
+                " and mp.MP_CODE is NOT NULL"
+                " and mp.ND_CODE is NOT NULL"
+                " and mp.AP_CODE is NULL"
                 );
+
+    //! Case where we want to skip nodes without any sensor type
+    if(m_loadNodesWithNoAst == false)
+    {
+        strQuery.append(" AND ND.AST_CODE IS NOT NULL ");
+    }
+
     m_exec &= m_querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Try to execute query:\n " + strQuery);
@@ -1725,23 +1803,29 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
     QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
     QSqlQuery m_querySqlRex(m_databaseSqlRex);
 
+    bool m_queryRexOneOnly = true;
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
-    QString  strQuery = QString(
-                " select distinct "
-                " MP.MP_CODE, "
-                " MP.MP_NAME, "
-                " from MEASUREPOINT MP "
-                " where MP.SI_CODE = 1 "
-                " AND MP.DB_CODE = 33813554  "
-                " AND MP.ND_CODE is  null "
-                " AND MP.AP_CODE is  null"
+    QString  strQuery = QString( " SELECT distinct  MP.MP_CODE, MP.MP_NAME FROM MEASUREPOINT MP "
+                                 " where MP.SI_CODE = 1  "
+                                 " and MP.DB_CODE = 33813554  "
+                                 " and MP.AP_CODE  IS null "
+                                 " and mp.ND_CODE  IS null"
                 );
+
+
     m_exec &= m_querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Try to execute query:\n " + strQuery);
     if(m_exec == false)
     {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
+                                                      tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(m_databaseName),
+                                                      tr("%1 Failed to execute ().<br/> ErrorText : %2<br/> ErrorType : %3 \n Query : %4")
+                                                      .arg(m_databaseName)
+                                                      .arg(m_querySql.lastError().databaseText())
+                                                      .arg(m_querySql.lastError().type())
+                                                      .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail to execute query");
         return;
     }
@@ -1749,9 +1833,7 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
     int m_mpCodeNo = m_querySql.record().indexOf("MP_CODE");
     int m_mpNameNo = m_querySql.record().indexOf("MP_NAME");
 
-    QString m_queryStringRex = "insert into G6DATASET (MP_CODE, MP_NAME ) values ";
-
-    bool m_queryRexOneOnly = true;
+    QString m_queryStringRex = "insert into G6DATASET (MP_CODE, MP_NAME ) VALUES ";
 
     while(m_querySql.next())
     {
@@ -1760,7 +1842,8 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
 
         if(m_queryRexOneOnly == true)
         {
-            m_queryStringRex += QString("('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
+            m_queryStringRex += QString("('%1', '%2')") .arg(m_mpCodeData).arg(m_mpNameData);
+
             m_queryRexOneOnly = false;
         }
         else
@@ -1774,7 +1857,14 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
     RSLogger::instance()->info(Q_FUNC_INFO,"Fill REX Database");
     if(m_exec == false)
     {
-        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail to add deadPoints : ");
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red",
+                                                      tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(m_databaseName),
+                                                      tr("%1 Failed to execute ().<br/> ErrorText : %2<br/> ErrorType : %3 \n Query : %4")
+                                                      .arg(m_databaseName)
+                                                      .arg(m_querySql.lastError().databaseText())
+                                                      .arg(m_querySql.lastError().type())
+                                                      .arg(strQuery));
+        RSLogger::instance()->info(Q_FUNC_INFO,"End. Fail m_querySqlRex : ");
         return;
     }
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
@@ -2054,7 +2144,7 @@ void RSDatabaseAccess::setRexFilterTable(QString& strQuery)
     RSLogger::instance()->info(Q_FUNC_INFO,"End. Query Succeeded..");
 }
 
-QStringList RSDatabaseAccess::getDataColumn(const QString& table, const QString& field)
+QStringList RSDatabaseAccess::getDataColumn(const QString& table, const QString& field) const
 {
     RSLogger::instance()->info(Q_FUNC_INFO,"Start");
 
@@ -2206,7 +2296,8 @@ void RSDatabaseAccess::setDatasetTable()
 
     setG6DatasetTable_nodes();
 
-//    setG6DatasetTable_deadPoints();
+    if(m_loadDeadEntities)
+        setG6DatasetTable_deadPoints();
 
     setG7DatasetTable();
 
@@ -2437,7 +2528,7 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
     return dataList;
 }
 
- QPair<int,MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QString& name) const
+QPair<int,MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QString& name) const
 {
     QString m_databaseName = "REX";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
@@ -2446,11 +2537,11 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
     bool m_exec = true;
 
     const QString strQuery = QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
-                "   where RF.MP_NAME = '%1' "
-                "   and RF.MP_NAME <> '' "
-                "   and RF.MP_NAME is not null "
-                "   limit 1"
-                ).arg(name);
+                                     "   where RF.MP_NAME = '%1' "
+                                     "   and RF.MP_NAME <> '' "
+                                     "   and RF.MP_NAME is not null "
+                                     "   limit 1"
+                                     ).arg(name);
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Execute Query:\n" +  strQuery);
     m_exec &= m_querySql.exec(strQuery);
@@ -2535,54 +2626,90 @@ int RSDatabaseAccess::getSensorNameCode(const QString& name)
     return apOrNdCode;
 }
 
-QStringList RSDatabaseAccess::getBrandNameList()
+QStringList RSDatabaseAccess::getBrandNameList() const
 {
     return getDataColumn("G6DATASET", "AST_BRAND");
 }
 
-QStringList RSDatabaseAccess::getFilterBrandNameList()
+QStringList RSDatabaseAccess::getFilteredBrandNameList() const
 {
     return getDataColumn("REXFILTER", "AST_BRAND");
 }
 
-QStringList RSDatabaseAccess::getModelNameList()
+QStringList RSDatabaseAccess::getModelNameList() const
 {
     return getDataColumn("G6DATASET", "AST_MODEL");
 }
 
-QStringList RSDatabaseAccess::getTechnologyNameList()
+QStringList RSDatabaseAccess::getFilteredModelNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_MODEL");
+}
+
+QStringList RSDatabaseAccess::getTechnologyNameList() const
 {
     return getDataColumn("G6DATASET", "AST_TECHNOLOGY");
 }
+QStringList RSDatabaseAccess::getFilteredTechnologyNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_TECHNOLOGY");
+}
 
-QStringList RSDatabaseAccess::getPhysicalMeasurementNameList()
+
+QStringList RSDatabaseAccess::getPhysicalMeasurementNameList() const
 {
     return getDataColumn("G6DATASET", "AST_PHYSICALMEASUREMENT ");
 }
+QStringList RSDatabaseAccess::getFilteredPhysicalMeasurementNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_PHYSICALMEASUREMENT ");
+}
 
-QStringList RSDatabaseAccess::getOutputSignalNameList()
+QStringList RSDatabaseAccess::getOutputSignalNameList() const
 {
     return getDataColumn("G6DATASET", "AST_OUTPUTSIGNAL");
 }
+QStringList RSDatabaseAccess::getFilteredOutputSignalNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_OUTPUTSIGNAL");
+}
 
-QStringList RSDatabaseAccess::getMeasurementRangeNameList()
+
+QStringList RSDatabaseAccess::getMeasurementRangeNameList() const
 {
     return getDataColumn("G6DATASET", "AST_RANGE");
 }
+QStringList RSDatabaseAccess::getFilteredMeasurementRangeNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_RANGE");
+}
 
-QStringList RSDatabaseAccess::getTheoricalAccuracyNameList()
+QStringList RSDatabaseAccess::getTheoricalAccuracyNameList() const
 {
     return getDataColumn("G6DATASET", "AST_THEORICALACCURACY");
 }
+QStringList RSDatabaseAccess::getFilteredTheoricalAccuracyNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_THEORICALACCURACY");
+}
 
-QStringList RSDatabaseAccess::getUnitNameList()
+QStringList RSDatabaseAccess::getUnitNameList() const
 {
     return getDataColumn("G6DATASET", "AST_UNIT");
 }
+QStringList RSDatabaseAccess::getFilteredUnitNameList() const
+{
+    return getDataColumn("REXFILTER", "AST_UNIT");
+}
 
-QStringList RSDatabaseAccess::getExperimentationNameList()
+
+QStringList RSDatabaseAccess::getExperimentationNameList() const
 {
     return getDataColumn("G7DATASET", "TAG_NAME");
+}
+QStringList RSDatabaseAccess::getFilteredExperimentationNameList()const
+{
+    return getDataColumn("REXFILTER", "TAG_NAME");
 }
 
 bool RSDatabaseAccess::checkG7DatabaseStructure(QSqlDatabase& db)

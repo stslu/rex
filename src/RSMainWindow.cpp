@@ -273,11 +273,12 @@ void RSMainWindow::slotInitializeSystem()
     RSLogger::instance()->info(Q_FUNC_INFO, "setDatasetTable");
     RSDatabaseAccess::Instance()->setDatasetTable();
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "setFilterFields");
-    m_filtersManager->setFilterFields();
+    RSLogger::instance()->info(Q_FUNC_INFO, "setFilterFields");   
 
     RSLogger::instance()->info(Q_FUNC_INFO, "setSensorNameList");
     m_graphView->setSensorNameList();
+
+    m_filtersManager->setFilterFields();
 
     emit Signaler::instance()->signal_readyToStart();
 

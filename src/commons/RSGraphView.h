@@ -328,6 +328,8 @@ private:
 
     friend void RSLogicActionsManager::slot_exportToExcel();
 
+    void displayMeasPointTypeIndicator();
+
 };
 
 #endif // RSGRAPHVIEW_H

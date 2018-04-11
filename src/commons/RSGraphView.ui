@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>204</height>
+    <height>206</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,7 +67,7 @@ font-weight: bold;
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,0,0,0">
        <item row="2" column="0" colspan="4">
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,1">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0,1">
          <property name="spacing">
           <number>10</number>
          </property>
@@ -85,6 +85,34 @@ font-weight: bold;
              <width>200</width>
              <height>0</height>
             </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QToolButton" name="measTypeIndicator">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>26</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>26</width>
+             <height>26</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QToolButton {    border-radius: 12px;background-color: darkgray}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="shortcut">
+            <string notr="true"/>
            </property>
           </widget>
          </item>
