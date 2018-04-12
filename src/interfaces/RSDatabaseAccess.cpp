@@ -25,9 +25,9 @@ RSDatabaseAccess::RSDatabaseAccess(QObject *parent) : QObject(parent)
   , m_g7dbStructureIsOk(true)
   , m_g6dbStructureIsOk(true)
   /*, m_g6UserName("COSMOSUSER")
-                                                , m_g6Password("cosmosus")
-                                                , m_g7UserName("SYSDBA")
-                                                , m_g7Password("masterkey")*/
+                                                  , m_g6Password("cosmosus")
+                                                  , m_g7UserName("SYSDBA")
+                                                  , m_g7Password("masterkey")*/
   , m_g6Driver("QFIREBIRD")
   , m_g7Driver("QFIREBIRD")
   , m_g7Port("3050")
@@ -2883,4 +2883,15 @@ bool RSDatabaseAccess::checkDatabaseStructure(QSqlDatabase& db,const  QMap<QStri
     }
 
     return true;
+}
+
+
+bool  RSDatabaseAccess::deadEntitiesLoaded() const
+{
+    return m_loadDeadEntities;
+}
+
+bool  RSDatabaseAccess::nodesWithNoAstLoaded()const
+{
+    return m_loadNodesWithNoAst;
 }

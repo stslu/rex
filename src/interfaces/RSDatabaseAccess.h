@@ -136,6 +136,10 @@ public:
     QStringList getFilteredExperimentationNameList()const;
 
 
+    bool deadEntitiesLoaded() const;
+    bool nodesWithNoAstLoaded()const;
+
+
 protected:
     bool m_g7dbStructureIsOk;
     bool m_g6dbStructureIsOk;

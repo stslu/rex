@@ -42,7 +42,8 @@ void RSExportToExcel::addSheet(const QStringList& fields
                                , const QString& sheetName
                                , const QString& pageTitle
                                , const QDate& start
-                               , const QDate& end)
+                               , const QDate& end
+                               , QString& info)
 {
     RSLogger::instance()->info(Q_FUNC_INFO,"start. Sheet = " + sheetName);
     if(!m_book)
@@ -78,7 +79,7 @@ void RSExportToExcel::addSheet(const QStringList& fields
     createFormat();
 
     //--- -- Get data then Add the datasheet Experimentation in the xls book
-    createDataSheet(sheetName, pageTitle,fields,data,start,end);
+    createDataSheet(sheetName, pageTitle,fields,data,start,end,info);
 
     //Remove the first line
 
@@ -103,7 +104,7 @@ bool RSExportToExcel::saveFile()
     return saved;
 }
 
-void RSExportToExcel::createDataSheet(const QString& sheetName,const QString&  title,const QStringList& fieldsList, const QList<QVariantList>& data, const QDate& start, const QDate& end)
+void RSExportToExcel::createDataSheet(const QString& sheetName,const QString&  title,const QStringList& fieldsList, const QList<QVariantList>& data, const QDate& start, const QDate& end, QString& info)
 {
     RSLogger::instance()->info(Q_FUNC_INFO,QString("Start . Sheet = " + sheetName + " Title = " + title));
 
@@ -111,21 +112,26 @@ void RSExportToExcel::createDataSheet(const QString& sheetName,const QString&  t
 
     QString format = "yyyy/MM/dd";
     QString m_titleLabel = QString("%3 : From %1 To %2").arg(start.toString(format)).arg(end.toString(format)).arg(title);
-    //Create the title on a merged celles
+
+    //! Create the title on a merged cells
     int row = 2;
     int firstCol = 2;
     createDataLineGroup(sheet, row, firstCol, 15, m_titleLabel, m_sheetTitleFormat);
+    createDataLineGroup(sheet, row + 1, firstCol, 15, m_titleLabel);
+
+    //! Any information ?
+    sheet->writeStr(row +1,firstCol + 0,info.toStdString().c_str());
 
     //Write the parameters
-    sheet->writeStr(row +1,firstCol + 0,QString(tr("Trend: ") + QString::number(m_trend)).toStdString().c_str());//The amount of sensors
-    sheet->writeStr(row +1,firstCol + 2,QString(tr("Sigma: ")+ QString::number(m_sigma)).toStdString().c_str());//The amount of sensors
-    sheet->writeStr(row +1,firstCol + 4,QString(tr("Noise factor: ")+ QString::number(m_trend)).toStdString().c_str());//The amount of sensors
-    sheet->writeStr(row +1,firstCol + 8,QString(tr("step(days): ")+ QString::number(m_stepsDay)).toStdString().c_str());//The amount of sensors
-    sheet->writeStr(row +1,firstCol + 10,QString(tr("Nb. steps: ")+ QString::number(m_nbSteps)).toStdString().c_str());//The amount of sensors
+    sheet->writeStr(row +3,firstCol + 0,QString(tr("Trend: ") + QString::number(m_trend)).toStdString().c_str());//The amount of sensors
+    sheet->writeStr(row +3,firstCol + 2,QString(tr("Sigma: ")+ QString::number(m_sigma)).toStdString().c_str());//The amount of sensors
+    sheet->writeStr(row +3,firstCol + 4,QString(tr("Noise factor: ")+ QString::number(m_trend)).toStdString().c_str());//The amount of sensors
+    sheet->writeStr(row +3,firstCol + 8,QString(tr("step(days): ")+ QString::number(m_stepsDay)).toStdString().c_str());//The amount of sensors
+    sheet->writeStr(row +3,firstCol + 10,QString(tr("Nb. steps: ")+ QString::number(m_nbSteps)).toStdString().c_str());//The amount of sensors
 
 
     //Create the title on a merged celles
-    int firstRow = row + 4;
+    int firstRow = row + 7;
 
     //Fill the Titles
     int line = firstRow;
