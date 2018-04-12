@@ -472,7 +472,7 @@ font:  8pt
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_13">
            <item>
-            <widget class="QGroupBox" name="groupBox">
+            <widget class="QGroupBox" name="groupBoxNodes">
              <property name="font">
               <font>
                <weight>75</weight>
@@ -555,7 +555,7 @@ border-radius:12px</string>
             </spacer>
            </item>
            <item>
-            <widget class="QGroupBox" name="groupBox_2">
+            <widget class="QGroupBox" name="groupBoxEntities">
              <property name="font">
               <font>
                <weight>75</weight>
@@ -618,12 +618,6 @@ border-radius:12px</string>
           </layout>
          </item>
         </layout>
-        <zorder>m_cancelButton</zorder>
-        <zorder>groupBox</zorder>
-        <zorder>groupBox_2</zorder>
-        <zorder>horizontalSpacer</zorder>
-        <zorder>horizontalSpacer_4</zorder>
-        <zorder>horizontalSpacer_5</zorder>
         <zorder>groupBox_3</zorder>
         <zorder>groupBox_4</zorder>
        </widget>

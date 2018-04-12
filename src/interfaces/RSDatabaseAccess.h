@@ -145,6 +145,9 @@ protected:
     void saveG7UserName() ;
     void saveG6UserName() ;
 
+    QVariant loadDisplayOptions();
+    void saveDisplayOptions() const;
+
     QVariant loadDeadEntitiesOption();
     QVariant loadNodesWithNoAst();
     void saveDeadEntitiesOption() const;
@@ -208,6 +211,7 @@ private:
 
     bool m_loadNodesWithNoAst;
     bool m_loadDeadEntities;
+    bool m_displayOptions;
 
     virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order, QDateTime &dateTimeLimit);
 

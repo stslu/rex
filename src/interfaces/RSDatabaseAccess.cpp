@@ -25,9 +25,9 @@ RSDatabaseAccess::RSDatabaseAccess(QObject *parent) : QObject(parent)
   , m_g7dbStructureIsOk(true)
   , m_g6dbStructureIsOk(true)
   /*, m_g6UserName("COSMOSUSER")
-                                              , m_g6Password("cosmosus")
-                                              , m_g7UserName("SYSDBA")
-                                              , m_g7Password("masterkey")*/
+                                                , m_g6Password("cosmosus")
+                                                , m_g7UserName("SYSDBA")
+                                                , m_g7Password("masterkey")*/
   , m_g6Driver("QFIREBIRD")
   , m_g7Driver("QFIREBIRD")
   , m_g7Port("3050")
@@ -36,6 +36,9 @@ RSDatabaseAccess::RSDatabaseAccess(QObject *parent) : QObject(parent)
   , m_loadNodesWithNoAst(false)
   , m_loadDeadEntities(true)
 {
+
+    loadSettings(QString());
+
     createObjects();
 
 }
@@ -93,7 +96,6 @@ void RSDatabaseAccess::createObjects()
 
     m_rexDatabaseFile = REX::DEFAULT_REX_APP_DB_FILE;
 
-    loadSettings(QString());
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
 }
 
@@ -326,6 +328,9 @@ bool RSDatabaseAccess::open()
 
             m_databaseConfig.data()->setG6Login(m_g6DatabaseFile,m_g6UserName,m_g6Password);
             m_databaseConfig.data()->setG7Login(m_g7DatabaseFile,m_g7UserName,m_g7Password);
+            m_databaseConfig.data()->setLoadDeadEntitiesOption(m_loadDeadEntities);
+            m_databaseConfig.data()->setLoadNodeswithNoAstOption(m_loadNodesWithNoAst);
+            m_databaseConfig.data()->setEnabledOptions(m_displayOptions);
 
             int m_result = m_databaseConfig->exec();
 
@@ -759,6 +764,8 @@ QDateTime RSDatabaseAccess::getStartDateTime() const
 
 void RSDatabaseAccess::loadSettings(const QString& fileName)
 { 
+    Q_UNUSED(fileName)
+
     RSLogger::instance()->info(Q_FUNC_INFO,   "Start");
     RSDataManager::Instance()->setData("RexDatabase.G6Database", loadG6DatabaseFile());
     RSDataManager::Instance()->setData("RexDatabase.G7Database", loadG7DatabaseFile());
@@ -779,6 +786,12 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
 
     m_g6Password = loadG6Password().toString();
 
+    m_displayOptions = loadDisplayOptions().toBool();
+
+    m_loadNodesWithNoAst = loadNodesWithNoAst().toBool();
+
+    m_loadDeadEntities = loadDeadEntitiesOption().toBool();
+
     RSLogger::instance()->info(Q_FUNC_INFO,   "End");
 }
 
@@ -798,6 +811,10 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
     saveG7Password();
     saveDeadEntitiesOption() ;
     saveNodesWithNoSensorOption() ;
+
+    //!We do not save for the moment. Use the file
+    saveDisplayOptions();
+
     RSLogger::instance()->info(Q_FUNC_INFO,   "End");
 }
 
@@ -828,14 +845,40 @@ QVariant RSDatabaseAccess::loadG7DatabaseFile()
     return data;
 }
 
+
+
+QVariant RSDatabaseAccess::loadDisplayOptions()
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.DisplayOptions";
+    QVariant m_default = QVariant(false);
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    RSLogger::instance()->info(Q_FUNC_INFO,"DisplayOptions = "  + data.toString());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveDisplayOptions() const
+{
+    QString m_id = "RexDatabase";
+    QString m_key = "RexDatabase.DisplayOptions";
+
+    //!For to FALSE at the closing
+    QVariant data = QVariant(false);//QVariant(m_displayOptions);
+    RSLogger::instance()->info(Q_FUNC_INFO,"Save DisplayOptions = "  + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+}
+
 QVariant RSDatabaseAccess::loadDeadEntitiesOption()
 {
     QString m_id = "RexDatabase";
     QString m_key = "RexDatabase.LoadDeadEntities";
-    QVariant m_default = "";
+    QVariant m_default = QVariant(true);
 
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-    RSLogger::instance()->info(Q_FUNC_INFO,"LoadDeadEntities = "  + data.toBool());
+    RSLogger::instance()->info(Q_FUNC_INFO,"LoadDeadEntities = "  + data.toString());
+
     return data;
 }
 
@@ -843,10 +886,11 @@ QVariant RSDatabaseAccess::loadNodesWithNoAst()
 {
     QString m_id = "RexDatabase";
     QString m_key = "RexDatabase.loadNodesWithNoAst";
-    QVariant m_default = "";
+    QVariant m_default = QVariant(false);
 
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-    RSLogger::instance()->info(Q_FUNC_INFO,"loadNodesWithNoAst = "  + data.toBool());
+    RSLogger::instance()->info(Q_FUNC_INFO,"loadNodesWithNoAst = "  + data.toString());
+
     return data;
 }
 void RSDatabaseAccess::saveDeadEntitiesOption() const
@@ -862,7 +906,7 @@ void RSDatabaseAccess::saveNodesWithNoSensorOption() const
 {
     QString m_id = "RexDatabase";
     QString m_key = "RexDatabase.loadNodesWithNoAst";
-   QVariant data = QVariant(m_loadNodesWithNoAst);
+    QVariant data = QVariant(m_loadNodesWithNoAst);
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Save G7 Path = "  + data.value<QString>());
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
@@ -1197,9 +1241,9 @@ void RSDatabaseAccess::showDatabaseConfig()
     m_databaseConfig.data()->setG6Login(m_g6DatabaseFile,m_g6UserName,m_g6Password);
     m_databaseConfig.data()->setG7Login(m_g7DatabaseFile,m_g7UserName,m_g7Password);
     m_databaseConfig.data()->adjustSize();
-
     m_databaseConfig.data()->setLoadDeadEntitiesOption(m_loadDeadEntities);
     m_databaseConfig.data()->setLoadNodeswithNoAstOption(m_loadNodesWithNoAst);
+    m_databaseConfig.data()->setEnabledOptions(m_displayOptions);
 
     if(m_databaseConfig->exec() == QDialog::Accepted)
     {
@@ -1811,7 +1855,7 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
                                  " and MP.DB_CODE = 33813554  "
                                  " and MP.AP_CODE  IS null "
                                  " and mp.ND_CODE  IS null"
-                );
+                                 );
 
 
     m_exec &= m_querySql.exec(strQuery);

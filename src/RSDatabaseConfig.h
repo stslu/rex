@@ -25,6 +25,8 @@ public:
     void setLoadDeadEntitiesOption(bool);
     void setLoadNodeswithNoAstOption(bool);
 
+    void setEnabledOptions(bool);
+
 private:
     void createObjects();
     void createConnections();

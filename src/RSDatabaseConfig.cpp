@@ -52,7 +52,7 @@ void RSDatabaseConfig::createObjects()
     }
     else
     {
-         RSLogger::instance()->info(Q_FUNC_INFO, "loadNodesWithNoAst = FALSE ");
+        RSLogger::instance()->info(Q_FUNC_INFO, "loadNodesWithNoAst = FALSE ");
         ui->loadNodeWithNoAstYes->setChecked(false);
     }
 
@@ -158,10 +158,10 @@ void RSDatabaseConfig::setG6Login(const QString& path,const QString& userName,co
     ui->m_g6UserNameEdit->setText(userName);
 }
 
-void RSDatabaseConfig::setLoadDeadEntitiesOption(bool checked)
+void RSDatabaseConfig::setLoadDeadEntitiesOption(bool setChecked)
 {
-
-    if(checked)
+    RSLogger::instance()->info(Q_FUNC_INFO,"loadDeadEntities = " +  QVariant(setChecked).toString());
+    if(setChecked)
     {
         ui->loadDeadEntitiesYes->setChecked(true);
         ui->loadDeadEntitiesNo->setChecked(false);
@@ -173,9 +173,10 @@ void RSDatabaseConfig::setLoadDeadEntitiesOption(bool checked)
     }
 }
 
-void RSDatabaseConfig::setLoadNodeswithNoAstOption(bool checked)
+void RSDatabaseConfig::setLoadNodeswithNoAstOption(bool setChecked)
 {
-    if(checked)
+    RSLogger::instance()->info(Q_FUNC_INFO,"loadNodeWithNoAst = " + QVariant(setChecked).toString());
+    if(setChecked)
     {
         ui->loadNodeWithNoAstYes->setChecked(true);
         ui->loadNodeWithNoAstNo->setChecked(false);
@@ -185,6 +186,13 @@ void RSDatabaseConfig::setLoadNodeswithNoAstOption(bool checked)
         ui->loadNodeWithNoAstYes->setChecked(false);
         ui->loadNodeWithNoAstNo->setChecked(true);
     }
+}
+
+void RSDatabaseConfig::setEnabledOptions(bool setEnabled)
+{
+    RSLogger::instance()->info(Q_FUNC_INFO,"setEnabled  = "  + QVariant(setEnabled).toString());
+    ui->groupBoxNodes->setEnabled(setEnabled);
+    ui->groupBoxEntities->setEnabled(setEnabled);
 }
 
 QString RSDatabaseConfig::getG6UserName() const
