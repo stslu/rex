@@ -27,7 +27,6 @@ INCLUDEPATH += $$PWD ../QCustomPlot
 
 SOURCES += main.cpp \
     RSExportToExcel.cpp \
-    RSExportToPdf.cpp \
     RSDatabaseConfig.cpp \
     RSDataManager.cpp \
     QCustomPlot.cpp \
@@ -40,7 +39,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     RSExportToExcel.h \
-    RSExportToPdf.h \
     RSDatabaseConfig.h \
     RSDataManager.h \
     QCustomPlot.h \
