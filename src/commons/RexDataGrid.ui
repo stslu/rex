@@ -86,6 +86,7 @@ color: rgb(0, 0, 0);
 
 QProgressBar::chunk {
      background-color: darkblue;
+color: lightGreen
  }</string>
          </property>
          <property name="maximum">

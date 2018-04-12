@@ -37,17 +37,12 @@ void  RSLogicActionsManager::connectSignals()
 
     Signaler* signaler = Signaler::instance();
 
-    connect(signaler,SIGNAL(signal_updateRex()),this, SLOT(slot_updateRex()));
-
     connect(signaler,SIGNAL(signal_runReportsCalculations()),this, SLOT(slot_runReportsCalculations()));
-
 
     connect(signaler,SIGNAL(signal_readyToStart()),this, SLOT(slot_readyToStart()));
 
     if(! connect(signaler,SIGNAL(signal_quit()),this, SLOT(slot_quit())))
         RSLogger::instance()->info(Q_FUNC_INFO,"Fail to connect  signal_quit");
-
-    connect(signaler,SIGNAL(signal_plotDeviationCurves()), this, SLOT(slot_plotCurves()));
 
     connect(signaler,SIGNAL(signal_plotCurves()),  this, SLOT(slot_plotCurves()));
 
@@ -113,11 +108,6 @@ void RSLogicActionsManager::slot_readyToStart()
     m_graphView->displayTab(0);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
-}
-
-void RSLogicActionsManager::slot_updateRex()
-{
-
 }
 
 void RSLogicActionsManager::slot_quit()

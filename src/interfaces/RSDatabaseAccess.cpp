@@ -19,15 +19,12 @@ const QString   DEFAULT_REX_APP_DB_FILE =  "./RexSensors.dat";
 
 } // REX_NAMESPACE
 
+//! Database test : G6 and G7. user = SYSDBA, pwd = masterkey
 RSDatabaseAccess* RSDatabaseAccess::m_instance = 0;
 
 RSDatabaseAccess::RSDatabaseAccess(QObject *parent) : QObject(parent)
   , m_g7dbStructureIsOk(true)
   , m_g6dbStructureIsOk(true)
-  /*, m_g6UserName("COSMOSUSER")
-                                                  , m_g6Password("cosmosus")
-                                                  , m_g7UserName("SYSDBA")
-                                                  , m_g7Password("masterkey")*/
   , m_g6Driver("QFIREBIRD")
   , m_g7Driver("QFIREBIRD")
   , m_g7Port("3050")
@@ -865,7 +862,7 @@ void RSDatabaseAccess::saveDisplayOptions() const
     QString m_key = "RexDatabase.DisplayOptions";
 
     //!For to FALSE at the closing
-    QVariant data = QVariant(false);//QVariant(m_displayOptions);
+    QVariant data = QVariant(m_displayOptions);
     RSLogger::instance()->info(Q_FUNC_INFO,"Save DisplayOptions = "  + data.value<QString>());
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
 }

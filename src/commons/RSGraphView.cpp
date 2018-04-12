@@ -586,13 +586,6 @@ void RSGraphView::slotTrendRunButtonClicked()
     emit Signaler::instance()->signal_plotCurves();
 }
 
-void RSGraphView::slot_deviationRunButtonClicked()
-{
-    RSLogger::instance()->info(Q_FUNC_INFO," emit signal Plots curves");
-
-    emit Signaler::instance()->signal_plotDeviationCurves();
-}
-
 void RSGraphView::slotTrendClearButtonClicked()
 {
     RSLogger::instance()->info(Q_FUNC_INFO," clearGraphs");

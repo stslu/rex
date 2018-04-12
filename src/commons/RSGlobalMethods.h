@@ -17,7 +17,7 @@ namespace REX
 
 //[RexSensors]
 const QString  strPathBase = "data";
-const QString   DEFAULT_REX_VERSION = "0.0.8";
+const QString   DEFAULT_REX_VERSION = "0.1.0";
 const QString   DEFAULT_REX_NAME = "RexSensor";
 const QString   DEFAULT_REX_CONFIG_FILE = "RexSensors.ini";
 const QString   DEFAULT_REX_APP_DB_FILE =  "RexSensors.dat";

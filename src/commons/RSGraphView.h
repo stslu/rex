@@ -201,7 +201,6 @@ public:
 protected slots:
     void slotTrendRunButtonClicked();
     void slotTrendClearButtonClicked();
-    void slot_deviationRunButtonClicked();
 
     void slotStepMinButtonClicked();
     void slotStepMaxButtonClicked();
