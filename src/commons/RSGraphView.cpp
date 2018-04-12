@@ -65,7 +65,11 @@ RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
     ui->setupUi(this);
 
     if(ui->measTypeIndicator)
+    {
         ui->measTypeIndicator->setVisible(false);
+        QPixmap pixmap = RSPictoManager::Instance()->getIcon(fa::calculator, "black").pixmap(ui->measTypeIndicator->size());
+        ui->measTypeIndicator->setPixmap(pixmap);
+    }
 
     position();
 

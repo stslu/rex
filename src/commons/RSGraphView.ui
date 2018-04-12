@@ -89,10 +89,7 @@ font-weight: bold;
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="measTypeIndicator">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
+          <widget class="QLabel" name="measTypeIndicator">
            <property name="minimumSize">
             <size>
              <width>26</width>
@@ -105,14 +102,8 @@ font-weight: bold;
              <height>26</height>
             </size>
            </property>
-           <property name="styleSheet">
-            <string notr="true">QToolButton {    border-radius: 12px;background-color: darkgray}</string>
-           </property>
            <property name="text">
             <string/>
-           </property>
-           <property name="shortcut">
-            <string notr="true"/>
            </property>
           </widget>
          </item>
