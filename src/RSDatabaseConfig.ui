@@ -496,7 +496,7 @@ border-radius:12px</string>
                  <string notr="true">font: 75 8pt</string>
                 </property>
                 <property name="text">
-                 <string>Load Nodes entities with NO sensor type </string>
+                 <string>Load Nodes  with NO sensor type </string>
                 </property>
                 <property name="textFormat">
                  <enum>Qt::AutoText</enum>
