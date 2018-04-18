@@ -853,7 +853,8 @@ QVariant RSDatabaseAccess::loadDisplayOptions()
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
     RSLogger::instance()->info(Q_FUNC_INFO,"DisplayOptions = "  + data.toString());
 
-    return data;
+//    return data;
+    return QVariant(true);
 }
 
 void RSDatabaseAccess::saveDisplayOptions() const
