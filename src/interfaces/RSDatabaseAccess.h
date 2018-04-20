@@ -18,6 +18,7 @@
 #include "RSDataManager.h"
 #include "Signaler.h"
 
+
 class RSDatabaseAccess : public QObject
 {
 
@@ -50,12 +51,15 @@ public:
     virtual bool open(const QString& databaseName);
     virtual void close();
 
-    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apCode, const QString &order = "ASC");
-    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apCode, const QString& order = "ASC");
-    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apCode);
+    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
 
-    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order = "ASC");
-    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apCode);
+    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+
+    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
+
+    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+
+    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
 
     virtual QDateTime getStartDateTime() const;
 
@@ -98,30 +102,42 @@ public:
     QStringList getSensorNameList(const QString& field, const QString& Criteria);
 
     int getSensorNameCode(const QString& name);
+    QPair<int,MeasPointType> getSensorNameCodeAndType(const QString& name) const;
 
     /**
      * @brief getBrandNameList
      * @return :return all the brands in the table
      */
-    QStringList getBrandNameList();
+    QStringList getBrandNameList() const;
+    QStringList getFilteredBrandNameList() const;
 
-    QStringList getFilterBrandNameList();
+    QStringList getModelNameList() const;
+    QStringList getFilteredModelNameList() const;
 
-    QStringList getModelNameList();
+    QStringList getTechnologyNameList() const;
+    QStringList getFilteredTechnologyNameList() const;
 
-    QStringList getTechnologyNameList();
+    QStringList getPhysicalMeasurementNameList() const ;
+    QStringList getFilteredPhysicalMeasurementNameList() const ;
 
-    QStringList getPhysicalMeasurementNameList();
+    QStringList getOutputSignalNameList() const ;
+    QStringList getFilteredOutputSignalNameList()const ;
 
-    QStringList getOutputSignalNameList();
+    QStringList getMeasurementRangeNameList() const;
+    QStringList getFilteredMeasurementRangeNameList() const;
 
-    QStringList getMeasurementRangeNameList();
+    QStringList getTheoricalAccuracyNameList() const;
+    QStringList getFilteredTheoricalAccuracyNameList() const;
 
-    QStringList getTheoricalAccuracyNameList();
+    QStringList getUnitNameList()const;
+    QStringList getFilteredUnitNameList() const;
 
-    QStringList getUnitNameList();
+    QStringList getExperimentationNameList()const;
+    QStringList getFilteredExperimentationNameList()const;
 
-    QStringList getExperimentationNameList();
+
+    bool deadEntitiesLoaded() const;
+    bool nodesWithNoAstLoaded()const;
 
 
 protected:
@@ -130,12 +146,19 @@ protected:
 
     QVariant loadG6DatabaseFile();
     QVariant loadG7DatabaseFile();
+    void saveG7UserName() ;
+    void saveG6UserName() ;
+
+    QVariant loadDisplayOptions();
+    void saveDisplayOptions() const;
+
+    QVariant loadDeadEntitiesOption();
+    QVariant loadNodesWithNoAst();
+    void saveDeadEntitiesOption() const;
+    void saveNodesWithNoSensorOption() const;
 
     void saveG6DatabaseFile() ;
     void saveG7DatabaseFile() ;
-
-    void saveG7UserName() ;
-    void saveG6UserName() ;
 
     void saveG7Password() ;
     void saveG6Password() ;
@@ -190,7 +213,11 @@ private:
     QMap<int /*sensor code*/,QString /*Technology*/> m_technologyBySensorMap;
     QMap<int /*sensor code*/,QString /*Sensor name*/> m_sensorNameOfSensorCodeMap;
 
-    virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apCode, const QString& order, QDateTime &dateTimeLimit);
+    bool m_loadNodesWithNoAst;
+    bool m_loadDeadEntities;
+    bool m_displayOptions;
+
+    virtual void execQueryForLimitDateTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order, QDateTime &dateTimeLimit);
 
     virtual void exitRex();
 
@@ -207,9 +234,19 @@ private:
     virtual void saveDatabaseFullName(const QString& databaseName);
 
     /**
-     * @brief setG6DatasetTable : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     * @brief setG6DatasetTable_acqPoints : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
      */
-    void setG6DatasetTable();
+    void setG6DatasetTable_acqPoints();
+
+    /**
+     * @brief setG6DatasetTable_nodes : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     */
+    void setG6DatasetTable_nodes();
+
+    /**
+     * @brief setG6DatasetTable_deadPoints : Create REX SQLITE Database from G6DATABASE (THE WHOLE DATAS)
+     */
+    void setG6DatasetTable_deadPoints();
 
     /**
      * @brief setG7DatasetTable : Create REX SQLITE Database from G7DATABASE (THE WHOLE DATAS)
@@ -235,7 +272,7 @@ private:
      * @param field
      * @return the no duplicated values in the column as a QStringList
      */
-    QStringList getDataColumn(const QString& table, const QString& field);
+    QStringList getDataColumn(const QString& table, const QString& field) const;
 
 
     bool checkG7DatabaseStructure(QSqlDatabase& db) ;

@@ -47,7 +47,12 @@ RSFiltersManager::~RSFiltersManager()
 void RSFiltersManager::createObjects()
 {
     ui->m_resetButton->setCursor(Qt::PointingHandCursor);
-    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::refresh, "orange"));
+    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::refresh, "black"));
+
+    ui->setDynamicFilter->setIcon(RSPictoManager::Instance()->getIcon(fa::bolt, "black"));
+    ui->setDynamicFilter->setCursor(Qt::PointingHandCursor);
+    ui->setDynamicFilter->setCheckable(true);
+    ui->setDynamicFilter->setChecked(true);
 
     loadSettings(QString());
 
@@ -67,30 +72,36 @@ void RSFiltersManager::createObjects()
 void RSFiltersManager::createConnections()
 {
     connect(ui->m_resetButton, SIGNAL(clicked()), this, SLOT(slotResetButtonClicked()));
+    connect(ui->setDynamicFilter, SIGNAL(clicked(bool)), this, SLOT(onSetDynamicFilterClicked()));
 }
+
+ void RSFiltersManager::onSetDynamicFilterClicked()
+ {
+     updateFiltersCount();
+ }
 
 void RSFiltersManager::setData(QComboBox* comboBox, QString label, int lastIndex)
 {
-    m_labelMap.insert(comboBox, label);
-
-    m_lastIndexMap.insert(label, lastIndex);
-
-    //RSDataManager::Instance()->setData(label, comboBox->currentText());
-
+    m_comboTextMap.insert(comboBox, label);
 }
 
 
-void RSFiltersManager::setFilterFieldData()
+void RSFiltersManager::setFilterFieldAllData()
 {
-
-    blockSignals(true);
+    //! block signals and clear
+    foreach (QComboBox *comboBox, m_comboTextMap.keys())
+    {
+        comboBox->blockSignals(true);
+        comboBox->clear();
+        comboBox->addItem(RexFiltersDefaultSettings::DEFAULT_FILTER_FIELD_DATA);
+    }
 
     ui->m_brandEdit->addItems(RSDatabaseAccess::Instance()->getBrandNameList());
 
     ui->m_modelEdit->addItems(RSDatabaseAccess::Instance()->getModelNameList());
 
-    ui->m_technologyEdit->addItems(RSDatabaseAccess::Instance()->getTechnologyNameList())
-            ;
+    ui->m_technologyEdit->addItems(RSDatabaseAccess::Instance()->getTechnologyNameList());
+
     ui->m_physicalMeasurementEdit->addItems(RSDatabaseAccess::Instance()->getPhysicalMeasurementNameList());
 
     ui->m_outputSignalEdit->addItems(RSDatabaseAccess::Instance()->getOutputSignalNameList());
@@ -103,22 +114,96 @@ void RSFiltersManager::setFilterFieldData()
 
     ui->m_experimentationEdit->addItems(RSDatabaseAccess::Instance()->getExperimentationNameList());
 
-    blockSignals(false);
+    //! enable signals and set ALL
+    foreach (QComboBox *comboBox, m_comboTextMap.keys())
+    {
+        comboBox->setCurrentIndex(0);
+        comboBox->blockSignals(false);
+    }
 
+    updateFiltersCount();
+}
+
+void RSFiltersManager::updateFiltersCount()
+{
+    ui->nbBrand->setText(QString("(%1)").arg(ui->m_brandEdit->count() - 1));
+    ui->nbModel->setText(QString("(%1)").arg(ui->m_modelEdit->count() - 1));
+    ui->nbTechno->setText(QString("(%1)").arg(ui->m_technologyEdit->count() - 1));
+    ui->nbPhysicalMeas->setText(QString("(%1)").arg(ui->m_physicalMeasurementEdit->count() - 1));
+    ui->nbOutputSignal->setText(QString("(%1)").arg(ui->m_outputSignalEdit->count() - 1));
+    ui->nbMeasRange->setText(QString("(%1)").arg(ui->m_measurementRangeEdit->count() - 1));
+    ui->nbTheoricalAccuracy->setText(QString("(%1)").arg(ui->m_theoricalAccuracyEdit->count() - 1));
+    ui->nbUnit->setText(QString("(%1)").arg(ui->m_unitEdit->count() - 1));
+    ui->nbExperimentations->setText(QString("(%1)").arg(ui->m_experimentationEdit->count() - 1));
+}
+
+
+void RSFiltersManager::setFiltersFieldsFromRexFilter(QComboBox* activeCombo)
+{
+
+    //! block signals and clear
+   const QString strAll = RexFiltersDefaultSettings::DEFAULT_FILTER_FIELD_DATA;
+    foreach (QComboBox *combo, m_comboTextMap.keys())
+    {
+        if((combo != activeCombo) || (activeCombo->currentText() == strAll))
+        {
+            combo->blockSignals(true);
+            combo->clear();
+            combo->addItem(strAll);
+        }
+    }
+
+    if((activeCombo != ui->m_brandEdit) ||(activeCombo->currentText() == strAll) )
+        ui->m_brandEdit->addItems(RSDatabaseAccess::Instance()->getFilteredBrandNameList());
+
+    if((activeCombo != ui->m_modelEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_modelEdit->addItems(RSDatabaseAccess::Instance()->getFilteredModelNameList());
+
+    if((activeCombo != ui->m_technologyEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_technologyEdit->addItems(RSDatabaseAccess::Instance()->getFilteredTechnologyNameList());
+
+    if((activeCombo != ui->m_physicalMeasurementEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_physicalMeasurementEdit->addItems(RSDatabaseAccess::Instance()->getFilteredPhysicalMeasurementNameList());
+
+    if((activeCombo != ui->m_outputSignalEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_outputSignalEdit->addItems(RSDatabaseAccess::Instance()->getFilteredOutputSignalNameList());
+
+    if((activeCombo != ui->m_measurementRangeEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_measurementRangeEdit->addItems(RSDatabaseAccess::Instance()->getFilteredMeasurementRangeNameList());
+
+    if((activeCombo != ui->m_theoricalAccuracyEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_theoricalAccuracyEdit->addItems(RSDatabaseAccess::Instance()->getFilteredTheoricalAccuracyNameList());
+
+    if((activeCombo != ui->m_unitEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_unitEdit->addItems(RSDatabaseAccess::Instance()->getFilteredUnitNameList());
+
+    if((activeCombo != ui->m_experimentationEdit) ||(activeCombo->currentText() == strAll))
+        ui->m_experimentationEdit->addItems(RSDatabaseAccess::Instance()->getFilteredExperimentationNameList());
+
+    //!Display the last values
+    Q_FOREACH(QComboBox* combo,m_comboTextMap.keys())
+    {
+        if((combo != activeCombo)  ||(activeCombo->currentText() == strAll))
+        {
+            combo->setCurrentText(m_comboTextMap.value(combo));
+            combo->blockSignals(false);
+        }
+    }
+
+    updateFiltersCount();
 }
 
 void RSFiltersManager::connectFilters()
 {
-    foreach (QComboBox *comboBox, m_labelMap.keys())
+    foreach (QComboBox *comboBox, m_comboTextMap.keys())
     {
-        connect(comboBox, SIGNAL(currentIndexChanged(QString)), this,
-                SLOT(slotCurrentIndexChanged(QString)));
+        connect(comboBox, SIGNAL(currentIndexChanged(QString)), this,SLOT(slotCurrentIndexChanged(QString)), Qt::UniqueConnection);
     }
 }
 
 void RSFiltersManager::blockFiltersSignals(bool block)
 {
-    foreach (QComboBox *comboBox, m_labelMap.keys())
+    foreach (QComboBox *comboBox, m_comboTextMap.keys())
         comboBox->blockSignals(block);
 }
 
@@ -142,7 +227,7 @@ void RSFiltersManager::setFilterFields()
     }
 
     //Build a listcof values for each filter
-    setFilterFieldData();
+    setFilterFieldAllData();
 
     connectFilters();
 
@@ -208,44 +293,38 @@ void RSFiltersManager::slotCurrentIndexChanged(const QString& text)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    //--- --Get the current combo address
-    QComboBox* comboBox = qobject_cast<QComboBox*>(sender());
+    //! --- --Get the current combo address
+    QComboBox* activeCombo = qobject_cast<QComboBox*>(sender());
+    if(!activeCombo)
+        return;
+    //! Memorize the last text
+    m_comboTextMap[activeCombo] = text;
 
-    //--- --Update the dataManager
-    RSLogger::instance()->info(Q_FUNC_INFO, "Update the dataManage");
-
-    QString m_label = m_labelMap.value(comboBox);
-    //QString m_format = m_label.remove(" ");
-    //int m_currentIndex = comboBox->currentIndex();
-
-    //--- --update the field value of this filter in the map
+    //! --- --update the field value of this filter in the map
     RSLogger::instance()->info(Q_FUNC_INFO, "update the field value of this filter in the map");
-    //RSDataManager::Instance()->setData(m_format, text);
-    // RSDataManager::Instance()->setData(m_format + "Index", m_currentIndex);
-
-    //--- --Build the current filterQuery, and store the query in RSDataManager
-    //RSLogger::instance()->info(Q_FUNC_INFO, "initFiltersQuery");
 
     QString filterQuery =  initFiltersQuery();
 
-    //Update the REXFILTER Table, from REXDATASET
-    RSLogger::instance()->info(Q_FUNC_INFO, "Update the REXFILTER  with query : \n" + filterQuery);
+    //! Update the REXFILTER Table, from REXDATASET
+    RSLogger::instance()->info(Q_FUNC_INFO, "Update the REXFILTER  : \n" + filterQuery);
     bool m_checkFilter = RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(filterQuery);
 
-    //If this selection doens contain datas, back to the prvious
+    //! If this selection doens contain datas, back to the prvious
     if(m_checkFilter == false)
     {
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail.This filter don't contain data.");
-        ui->m_title->setText("Filters \t ---- NO SENSOR  for the current criterias ----");
+        displayNbSensors(0);
         emit Signaler::instance()->signal_clearGraphsAndSensorList();
         return;
     }
-    ui->m_title->setText("Filters");
-
-    //Memorize the last index
-    m_lastIndexMap[m_label] = comboBox->currentIndex();
 
     RSLogger::instance()->info(Q_FUNC_INFO, "emit signal_rsFilterIndexChanged");
+
+    //!Reset the filters in dynamic mode
+    if(isDynamic())
+    {
+        setFiltersFieldsFromRexFilter(activeCombo);
+    }
 
     emit Signaler::instance()->signal_rsFilterIndexChanged();
 
@@ -267,7 +346,7 @@ void  RSFiltersManager::initQueryAndRexFilterTable()
     if(m_checkFilter == false)
     {
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail.This filter don't contain data.");
-        ui->m_title->setText("Filters \t ---- NO SENSOR  for the current criterias ----");
+        displayNbSensors(0);
         emit Signaler::instance()->signal_clearGraphsAndSensorList();
         return;
     }
@@ -282,34 +361,13 @@ void  RSFiltersManager::initQueryAndRexFilterTable()
 
 void RSFiltersManager::slotResetButtonClicked()
 {
-    blockFiltersSignals(true);
-
-    foreach (QComboBox *comboBox, m_labelMap.keys())
-    {
-        int m_currentIndex = 0;
-        comboBox->setCurrentIndex(m_currentIndex);
-
-        //QString m_currentText = comboBox->currentText();
-
-        QString m_format = m_labelMap.value(comboBox);
-
-        //RSDataManager::Instance()->setData(m_format, m_currentText);
-
-        //RSDataManager::Instance()->setData(m_format + "Index", m_currentIndex);
-
-        m_lastIndexMap.insert(m_format, m_currentIndex);
-
-        //updateDataManager(comboBox);
-    }
-
-    blockFiltersSignals(false);
+    setFilterFieldAllData();
 
     QString strQuery =   initFiltersQuery();
 
     RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(strQuery);
 
     emit Signaler::instance()->signal_rsFilterIndexChanged();
-
 }
 
 
@@ -358,6 +416,8 @@ void RSFiltersManager::loadSettings(const QString& fileName)
     loadUnit();
 
     loadExperimentation();
+
+    loadDynamicOption();
 }
 
 void RSFiltersManager::saveSettings(const QString& fileName) const
@@ -397,7 +457,21 @@ QVariant RSFiltersManager::loadBrand()
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Brand = " + data.value<QString>());
 
-    return RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    return data;
+}
+
+QVariant RSFiltersManager::loadDynamicOption()
+{
+    QString m_id = "RSFiltersManager";
+    QString m_key = "RSFilRSFiltersManager.DynamicFilter";
+    QVariant m_default = RexFiltersDefaultSettings::DEFAULT_FILTER_FIELD_INDEX;
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default).value<QString>();
+    ui->setDynamicFilter->setChecked(data.toBool());
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"DynamicFilter = " + data.toBool());
+
+    return data;
 }
 
 
@@ -526,6 +600,19 @@ void RSFiltersManager::saveBrand() const
 }
 
 //[RSFiltersManager]
+void RSFiltersManager::saveDynamicOption() const
+{
+    QString m_id = "RSFiltersManager";
+    QString m_key = "RSFilRSFiltersManager.DynamicFilter";
+    QVariant data = ui->setDynamicFilter->isChecked();
+
+    RSLogger::instance()->info(Q_FUNC_INFO,"DynamicFilter = " + data.value<QString>());
+
+    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+}
+
+
+//[RSFiltersManager]
 void RSFiltersManager::saveModel()const
 {
     QString m_id = "RSFiltersManager";
@@ -646,8 +733,13 @@ QStringList RSFiltersManager::getExperimentationsList() const
 
 void  RSFiltersManager::displayNbSensors(int nbSensors)
 {
-    if(nbSensors != 0)
-        ui->m_title->setText(QString(tr("Filters \t%1 sensors")).arg(nbSensors));
+    ui->m_title->setText(QString(tr("%1 sensors for the current criterias ")).arg(nbSensors));
+}
+
+bool RSFiltersManager::isDynamic() const
+{
+    if(ui->setDynamicFilter)
+        return ui->setDynamicFilter->isChecked();
     else
-        ui->m_title->setText(QString(tr("Filters \t No sensor for the current selection")));
+        return false;
 }

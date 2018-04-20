@@ -15,7 +15,7 @@ RSFidelityAndNoise::RSFidelityAndNoise(RSDatabaseAccess* db) : m_databaseAccess(
 
 void  RSFidelityAndNoise::computeFidelityAndNoiseFactor( const RSFidelityAndNoise::FidelitySettings& settings, bool showMsg)
 {
-    RSLogger::instance()->info(Q_FUNC_INFO,"Start");
+    RSLogger::instance()->info(Q_FUNC_INFO,"Start : " + settings.toString());
 
     RSFidelityComputation* fidelityComputationInstance =  new RSFidelityComputation();
     //Get the parameters
@@ -26,6 +26,7 @@ void  RSFidelityAndNoise::computeFidelityAndNoiseFactor( const RSFidelityAndNois
     int sigma ;
     double noiseFactor ;
     int sensorCode ;
+    MeasPointType mpType;
 
     // if(m_settings)
     RSFidelityAndNoise::FidelitySettings mySettings = settings;
@@ -36,13 +37,14 @@ void  RSFidelityAndNoise::computeFidelityAndNoiseFactor( const RSFidelityAndNois
     sigma = settings.sigmaUi;
     noiseFactor = settings.noiseFactorUi;
     sensorCode = settings.sensorCode;
+    mpType = settings.measPointType;
 
     //--- --Get the m_stepViewMax
     int stepViewMax;
     {
-        QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime( startDate, endDate, sensorCode).date();
+        QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime( startDate, endDate, sensorCode,mpType).date();
 
-        QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(startDate, endDate, sensorCode).date();
+        QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(startDate, endDate, sensorCode,mpType).date();
 
         stepViewMax = RSGlobalMethods::Instance()->getStepNumber( startRelativeDate, endRelativeDate, stepDate);
     }
@@ -63,9 +65,9 @@ void  RSFidelityAndNoise::computeFidelityAndNoiseFactor( const RSFidelityAndNois
         QDate stepEndDate = RSGlobalMethods::Instance()->getUpperBoundDateOfInterval(startDate, endDate, stepDate, step);
 
         //--- --In this interval, we look for the min dateTime of acquisition. startRelativeDate = min of the sensor
-        QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, sensorCode).date();
+        QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, sensorCode,mpType).date();
         //--- --In this interval, we look for the Max dateTime of acquisition. endRelativeDate = MaxDate of the sensor
-        QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate, sensorCode).date();
+        QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate, sensorCode,mpType).date();
 
         //--- --skip If the sensor has no data in this step
         if(startRelativeDate.isNull() || endRelativeDate.isNull() || startRelativeDate >= endRelativeDate)
@@ -79,13 +81,13 @@ void  RSFidelityAndNoise::computeFidelityAndNoiseFactor( const RSFidelityAndNois
 
         {
             //Build the relative time for each point  in the interval. the x-axis
-            QList<double> m_timeListR = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, sensorCode);
+            QList<double> m_timeListR = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, sensorCode,mpType);
 
             //Build the standard deviation of each point in the list
             QList<double> m_timeList = RSGlobalMethods::Instance()->getStdList(m_timeListR, qPow(10.0, 10.0));
 
             //Get the valus (y axis) for each point . the y-axis
-            QList<double> m_valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, sensorCode);
+            QList<double> m_valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, sensorCode,mpType);
 
             //Compute the fidelity
             fidelityComputationInstance->initialize(m_timeList, m_valueList, degree, sigma, noiseFactor);
@@ -167,7 +169,7 @@ QPair<double,double> RSFidelityAndNoise::computeFidelityNoiseStep(const RSFideli
 {
     QPair<double,double> fidelityNoisePair;
 
-    RSLogger::instance()->info(Q_FUNC_INFO ,QString("Start. SensorCode = %1").arg(settings.sensorCode));
+    RSLogger::instance()->info(Q_FUNC_INFO ,QString("Start. SensorCode = %1 measPointType = %2").arg(settings.sensorCode).arg(settings.measPointType));
 
     RSFidelityComputation fidelityComputation ;
 
@@ -179,10 +181,10 @@ QPair<double,double> RSFidelityAndNoise::computeFidelityNoiseStep(const RSFideli
     RSLogger::instance()->info(Q_FUNC_INFO,QString("startDateInterval = %1 endDateInterval = %2").arg(stepStartDate.toString()).arg(stepEndDate.toString()));
 
     //The min date for data in this interval (the fisrt data)
-    QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, settings.sensorCode).date();
+    QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, settings.sensorCode, settings.measPointType).date();
 
     //The max date for data in this interval (The last data)
-    QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate,  settings.sensorCode).date();
+    QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate,  settings.sensorCode,settings.measPointType).date();
     RSLogger::instance()->info(Q_FUNC_INFO,QString("minDateInInterval = %1 maxDateInInterval = %2").arg(startRelativeDate.toString()).arg(endRelativeDate.toString()));
 
     //Exit if no data, or if data dateTime = last data dateTime
@@ -198,7 +200,7 @@ QPair<double,double> RSFidelityAndNoise::computeFidelityNoiseStep(const RSFideli
     }
 
     //-- The x-axis vector. It's the elapsed time for each point in interval since startRelativeDate
-    QList<double> relativeTimeArray = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, settings.sensorCode);//init m_startDateTime
+    QList<double> relativeTimeArray = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, settings.sensorCode,settings.measPointType);//init m_startDateTime
 
     //-- Divide the relativeTimeArray by the  factor qPow(10.0, 10.0)
     QList<double> timeArray = RSGlobalMethods::Instance()->getStdList(relativeTimeArray, qPow(10.0, 10.0));
@@ -208,7 +210,7 @@ QPair<double,double> RSFidelityAndNoise::computeFidelityNoiseStep(const RSFideli
     RSLogger::instance()->info(Q_FUNC_INFO, "startDateTime = " + startDateTime.toString());
 
     //-- Get the values associated to each point in the interval
-    QList<double> valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, settings.sensorCode);
+    QList<double> valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, settings.sensorCode ,settings.measPointType);
 
     //----------------------------------------------------------------------------
     //--- -- Compute the fidelity and noise

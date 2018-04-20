@@ -38,6 +38,9 @@ public:
 
     void displayNbSensors(int);
 
+     bool isDynamic() const ;
+
+
 
 protected slots:
     void slotCurrentIndexChanged(const QString& text);
@@ -47,10 +50,8 @@ protected slots:
      */
     void slotResetButtonClicked();
 
-    /**
-     * @brief emitFilterValueChanged : this signal is emitted when a combo index is changed
-     */
-    //void emitFilterValueChanged();
+
+    void onSetDynamicFilterClicked();
 
 protected:
     void blockFiltersSignals(bool);
@@ -64,6 +65,7 @@ protected:
     QVariant loadTheoricalAccuracy();
     QVariant loadUnit();
     QVariant loadExperimentation();
+    QVariant loadDynamicOption();
 
     //[RSFiltersManager]
     void saveBrand() const;
@@ -75,6 +77,7 @@ protected:
     void saveTheoricalAccuracy() const;
     void saveUnit() const;
     void saveExperimentation() const;
+    void saveDynamicOption() const;
 
     void setFilterValue(QComboBox*,const QString& value);
     void createObjects();
@@ -95,9 +98,14 @@ protected:
 
 
     /**
-      * @brief setFilterFieldData : fill comboBox with a QStringList items (database values)
+      * @brief setFilterFieldAllData : fill comboBox with a QStringList items (database values)
       */
-    void setFilterFieldData();
+    void setFilterFieldAllData();
+
+    /**
+      * @brief setFiltersFieldsFromRexFilter : fill comboBox with a QStringList items (filtered values)
+      */
+    void setFiltersFieldsFromRexFilter(QComboBox* activeComboBox);
 
     //void setFilterFieldIndex();
 
@@ -109,8 +117,8 @@ protected:
 private:
     Ui::RSFiltersManager *ui;
 
-    QMap<QComboBox*, QString> m_labelMap;
-    QMap<QString, int> m_lastIndexMap;
+    QMap<QComboBox*, QString> m_comboTextMap;
+    QHash<QComboBox*, QStringList> m_comboOriginalList;
 
     QMap<FiltersEnum,QPair<QString,QString>> m_filterNameValuePairMap;
 
@@ -118,7 +126,8 @@ private:
 
     FiltersEnum getFilterEnum(const QComboBox*) const ;
 
-    //RSDatabaseAccess* m_databaseAccess;
+    void updateFiltersCount();
+
 };
 
 

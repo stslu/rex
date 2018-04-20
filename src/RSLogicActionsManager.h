@@ -36,8 +36,6 @@ signals:
 public slots:
     void slot_exportToExcel();
 protected slots:
-    void slot_updateRex();
-
 
     void slot_plotCurves();
 

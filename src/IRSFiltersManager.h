@@ -11,6 +11,7 @@ public:
     virtual void  initQueryAndRexFilterTable() = 0;
     virtual QStringList getExperimentationsList() const = 0;
     virtual void displayNbSensors(int) = 0;
+    virtual bool isDynamic() const = 0;
 
     virtual ~IRSFiltersManager(){}
 };

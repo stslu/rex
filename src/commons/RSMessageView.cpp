@@ -7,6 +7,7 @@
 #include <QSize>
 #include <QDesktopWidget>
 #include "RSLogger.h"
+#include <QDebug>
 
 RSMessageView* RSMessageView::m_instance = 0;
 
@@ -102,6 +103,8 @@ void RSMessageView::showData(const QString& data)
 void RSMessageView::showData(const QString& data, const QString& name)
 {
     showData(tr("%1 : %2").arg(name).arg(data));
+
+    qDebug() << tr("%1 : %2").arg(name).arg(data);
 }
 
 void RSMessageView::showData(int data, const QString& name)

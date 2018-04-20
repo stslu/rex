@@ -97,8 +97,10 @@ void RSMainWindow::setupUi()
         m_optionsManager = new RSOptionsManager(this);
 
     if(!m_messageView)
-        m_messageView = RSMessageView::Instance();
-    m_messageView->setWindowTitle(RSGlobalMethods::Instance()->rexNameAndVersion());
+    {
+        m_messageView = RSMessageView::Instance(this);
+        m_messageView->setWindowTitle(RSGlobalMethods::Instance()->rexNameAndVersion());
+    }
 
     if(!m_graphView)
     {
@@ -121,6 +123,7 @@ void RSMainWindow::setupUi()
     //Add widgets in splitters
     QSplitter* mainSplitter = new QSplitter(this);
     QSplitter* leftSplitter = new QSplitter(this);
+    leftSplitter->setStyleSheet("handle {border-color: dark;border-width: 2px;}");
 
     leftSplitter->setOrientation(Qt::Vertical);
 
@@ -130,14 +133,6 @@ void RSMainWindow::setupUi()
     m_messageView->setVisible(true);
     leftSplitter->addWidget(m_messageView);
     leftSplitter->setFrameStyle(QFrame::StyledPanel);
-
-    leftSplitter->setStyleSheet("handle:horizontal {background: qlineargradient(x1:0, y1:0, x2:1, y2:1,stop:0 #eee, stop:1 #ccc);"
-                                "border: 1px solid #777;"
-                                "width: 13px;"
-                                "margin-top: 2px;"
-                                "margin-bottom: 2px;"
-                                "border-radius: 8px;"
-                                "}");
 
     leftSplitter->setStretchFactor(1, 1);
     mainSplitter->setOrientation(Qt::Horizontal);
@@ -195,11 +190,9 @@ void RSMainWindow::createConnections()
 int RSMainWindow::quitConfirmation()
 { 
     QString m_title = tr("Quit Confirmation");
-    QString m_msgTitle = tr("<font style=\"color:lime; font-weight: bold;\">"
+    QString m_msgTitle = tr("<font style=\"color:black; font-weight: bold;\">"
                             "%1").arg(m_title);
-    QString m_msg = tr("<font style=\"color:%1; font-weight: bold;\">"
-                       "Are you sure you want to quit ?"
-                       "</font>");
+    QString m_msg = tr("Are you sure you want to quit ?");
 
     QMessageBox m_message(this);
     m_message.setWindowTitle(m_title);
@@ -280,11 +273,12 @@ void RSMainWindow::slotInitializeSystem()
     RSLogger::instance()->info(Q_FUNC_INFO, "setDatasetTable");
     RSDatabaseAccess::Instance()->setDatasetTable();
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "setFilterFields");
-    m_filtersManager->setFilterFields();
+    RSLogger::instance()->info(Q_FUNC_INFO, "setFilterFields");   
 
     RSLogger::instance()->info(Q_FUNC_INFO, "setSensorNameList");
     m_graphView->setSensorNameList();
+
+    m_filtersManager->setFilterFields();
 
     emit Signaler::instance()->signal_readyToStart();
 

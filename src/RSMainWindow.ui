@@ -17,6 +17,13 @@
    <iconset resource="RSDesktop.qrc">
     <normaloff>:/img/Rex.png</normaloff>:/img/Rex.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
+color: black;
+font-weight: bold;
+}</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="0">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>

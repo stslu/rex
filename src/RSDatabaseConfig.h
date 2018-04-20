@@ -22,6 +22,11 @@ public:
     void setG7Login(const QString& path,const QString& userName,const QString& pwd );
     void setG6Login(const QString& path,const QString& userName,const QString& pwd );
 
+    void setLoadDeadEntitiesOption(bool);
+    void setLoadNodeswithNoAstOption(bool);
+
+    void setEnabledOptions(bool);
+
 private:
     void createObjects();
     void createConnections();
@@ -35,6 +40,9 @@ public:
 
     QString getG6Pwd() const;
     QString getG7Pwd() const;
+
+    bool loadDeadEntities() const;
+    bool loadNodesWithNoAst() const;
 
 public slots:
     void slotG6DatabaseButtonClicked();

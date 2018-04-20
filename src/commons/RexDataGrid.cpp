@@ -38,6 +38,7 @@ RexDataGrid::RexDataGrid(bool displayBand,QWidget *parent): QWidget(parent)
     d->ui.setupUi(this);
 
     d->graphView = d->ui.dataGrid;
+    d->ui.progressBar->setStyleSheet("QProgressBar::chunk {background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0,stop: 0 #78d,stop: 0.4999 #46a,stop: 0.5 #45a,stop: 1 lightblue );}");
 
     QVBoxLayout* gridLayout = new QVBoxLayout();
     d->graphView->setLayout(gridLayout);

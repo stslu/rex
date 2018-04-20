@@ -97,122 +97,32 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QFrame" name="m_body">
+       <widget class="QGroupBox" name="m_body">
         <property name="maximumSize">
          <size>
           <width>600</width>
           <height>16777215</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {  font-weight: bold; font-size:10pt}
+QSpinBox {  font-size: 9pt;}
+QPushButton {  font-size: 9pt;}
+QLabel {  font-size: 9pt;}</string>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+        <property name="title">
+         <string>Calculations Options</string>
         </property>
-        <layout class="QGridLayout" name="gridLayout_5" rowstretch="0,0">
-         <property name="leftMargin">
-          <number>10</number>
-         </property>
-         <property name="topMargin">
-          <number>10</number>
-         </property>
-         <property name="rightMargin">
-          <number>10</number>
-         </property>
-         <property name="bottomMargin">
-          <number>10</number>
-         </property>
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <item row="0" column="0">
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
-           <property name="spacing">
-            <number>10</number>
-           </property>
            <item>
-            <widget class="QFrame" name="m_border2">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0,1">
-              <property name="leftMargin">
-               <number>10</number>
-              </property>
-              <property name="topMargin">
-               <number>10</number>
-              </property>
-              <property name="rightMargin">
-               <number>10</number>
-              </property>
-              <property name="bottomMargin">
-               <number>10</number>
-              </property>
-              <property name="spacing">
-               <number>10</number>
-              </property>
-              <item row="1" column="0">
-               <widget class="QFrame" name="m_body2">
-                <property name="frameShape">
-                 <enum>QFrame::StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                 <enum>QFrame::Raised</enum>
-                </property>
-                <layout class="QGridLayout" name="gridLayout">
-                 <property name="leftMargin">
-                  <number>10</number>
-                 </property>
-                 <property name="topMargin">
-                  <number>10</number>
-                 </property>
-                 <property name="rightMargin">
-                  <number>10</number>
-                 </property>
-                 <property name="bottomMargin">
-                  <number>10</number>
-                 </property>
-                 <property name="spacing">
-                  <number>10</number>
-                 </property>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="m_fidelityMaxCheckEdit">
-                   <property name="text">
-                    <string>Max</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QCheckBox" name="m_fidelityAvgCheckEdit">
-                   <property name="text">
-                    <string>Average</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QCheckBox" name="m_fidelityMinCheckEdit">
-                   <property name="text">
-                    <string>Min</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-              <item row="0" column="0">
+            <widget class="QGroupBox" name="m_border2">
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
                <widget class="QCheckBox" name="m_fidelityCheckEdit">
                 <property name="minimumSize">
                  <size>
@@ -234,30 +144,50 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+              <item>
+               <widget class="QGroupBox" name="m_body2">
+                <property name="flat">
+                 <bool>true</bool>
                 </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </spacer>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QCheckBox" name="m_fidelityMinCheckEdit">
+                   <property name="text">
+                    <string>Min</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="m_fidelityMaxCheckEdit">
+                   <property name="text">
+                    <string>Max</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QCheckBox" name="m_fidelityAvgCheckEdit">
+                   <property name="text">
+                    <string>Average</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
               </item>
              </layout>
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="m_border4">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
+            <widget class="QGroupBox" name="m_border4">
              <layout class="QGridLayout" name="gridLayout_14" rowstretch="0,0,0">
               <property name="leftMargin">
                <number>10</number>
@@ -301,8 +231,21 @@
                   <height>18</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
-                 <string>Calculate :</string>
+                 <string>Calculate now:</string>
+                </property>
+                <property name="scaledContents">
+                 <bool>true</bool>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -408,13 +351,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QFrame" name="m_border3">
-             <property name="frameShape">
-              <enum>QFrame::StyledPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Raised</enum>
-             </property>
+            <widget class="QGroupBox" name="m_border3">
              <layout class="QGridLayout" name="gridLayout_3" rowstretch="0,0,0">
               <property name="leftMargin">
                <number>10</number>
@@ -445,8 +382,15 @@
                   <height>18</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>9</pointsize>
+                  <weight>75</weight>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
-                 <string>Export to:</string>
+                 <string>Export data to:</string>
                 </property>
                </widget>
               </item>
@@ -523,7 +467,7 @@
            </item>
           </layout>
          </item>
-         <item row="1" column="0">
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">

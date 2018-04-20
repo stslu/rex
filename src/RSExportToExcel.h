@@ -16,14 +16,14 @@ public:
     ~RSExportToExcel();
 
     void exportData();
-    void addSheet(const QStringList& fields,const QList<QVariantList>& data, const QString& sheetName, const QString& pageTitle, const QDate& start, const QDate& end);
+    void addSheet(const QStringList& fields,const QList<QVariantList>& data, const QString& sheetName, const QString& pageTitle, const QDate& start, const QDate& end, QString& info = QString());
     bool saveFile();
     void setParameters(int trend, double sigma, double noiseFactor);
 
 protected:
     void createDataSheets();
 
-    void createDataSheet(const QString& sheetName,const QString&  pageTitle,const QStringList& fields, const QList<QVariantList>& data, const QDate& start, const QDate& end);
+    void createDataSheet(const QString& sheetName,const QString&  pageTitle,const QStringList& fields, const QList<QVariantList>& data, const QDate& start, const QDate& end, QString& info = QString());
 
     int getRow(const QString& sheetName);
 

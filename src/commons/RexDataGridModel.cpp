@@ -208,7 +208,7 @@ QVariant DataGridModel::data(const QModelIndex &index, int role) const
         if(d->fieldsName.at(column).toLower() == "fidelity" || d->fieldsName.at(column).toLower() == "noise" )
             return QString::number( rowList.at(column).toDouble(), 'f', 8 );
         else
-            return rowList.at(column);
+            return rowList.at(column).toString();
     }
 
     if(role == Qt::BackgroundColorRole )

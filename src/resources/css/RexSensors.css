@@ -1,6 +1,12 @@
 /* Common style */
 
-QScrollBar:vertical{
+QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
+color: black;
+font-weight: bold;
+}
+
+/*QScrollBar:vertical{
     width: 17px;
     margin-top: 14px;
     margin-bottom: 14px;
@@ -54,16 +60,16 @@ QScrollBar::up-arrow:vertical:pressed,
 QScrollBar::down-arrow:vertical:pressed {
     width: 4px;
     height: 4px;
-}
+}*/
 
 /* RSMainWindow style */
 
-RSMainWindow
+/*RSMainWindow
 {
-    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
-}
+    background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 gray, stop:1 gray);
+}*/
 
-RSMainWindow *
+/*RSMainWindow *
 {
     color: white;
     font-family: arial;
@@ -75,9 +81,9 @@ RSMainWindow *
 RSMainWindow QMessageBox
 {
     background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
-}
+}*/
 
-RSMainWindow QMessageBox QPushButton
+/*RSMainWindow QMessageBox QPushButton
 {
     background-color: none;
     border: none;
@@ -103,11 +109,11 @@ RSMainWindow QPushButton:hover
 RSMainWindow QPushButton:pressed
 {
     font-size: 10pt;
-}
+}*/
 
 /* RSTimesManager style */
 
-RSTimesManager QWidget#m_border
+/*RSTimesManager QWidget#m_border
 {
     border: 1px solid teal;
 }
@@ -146,11 +152,11 @@ RSTimesManager QSpinBox
     border: 1px solid teal;
     background-color: navy;
     color: orange;
-}
+}*/
 
 /* RSFiltersManager style */
 
-RSFiltersManager QWidget#m_border
+/*RSFiltersManager QWidget#m_border
 {
     border: 1px solid teal;
 }
@@ -184,7 +190,7 @@ RSFiltersManager QToolButton:hover
     /*border: 1px solid orange;*/
 }
 
-RSFiltersManager QLabel
+/*RSFiltersManager QLabel
 {
     background-color: teal;
     min-width: 200px;
@@ -211,11 +217,11 @@ RSFiltersManager QAbstractItemView
     border: 1px solid teal;
     color: white;
     selection-background-color: navy;
-}
+}*/
 
 /* RSOptionsManager style */
 
-RSOptionsManager QWidget#m_border
+/*RSOptionsManager QWidget#m_border
 {
     border: 1px solid teal;
 }
@@ -226,9 +232,9 @@ RSOptionsManager QWidget#m_title
     color: orange;
     background-color: teal;
     padding: 10px;
-}
+}*/
 
-RSOptionsManager QWidget#m_body
+/*RSOptionsManager QWidget#m_body
 {
     background-color: rgba(0, 0, 128, 50);
 }
@@ -265,12 +271,12 @@ RSOptionsManager QWidget#m_body4
     padding-left: 30px;
     background-color: navy;
 
-}
+}*/
 
 /* RSExportManager style */
 
 
-RSExportManager QWidget#m_border
+/*RSExportManager QWidget#m_border
 {
     border: 1px solid teal;
 }
@@ -295,9 +301,9 @@ RSExportManager QPushButton
     padding: 2px;
     color: orange;
     font-weight: bold;
-}
+}*/
 
-RSExportManager QPushButton:hover
+/*RSExportManager QPushButton:hover
 {
     text-decoration: underline;
 }
@@ -305,12 +311,12 @@ RSExportManager QPushButton:hover
 RSExportManager QPushButton:pressed
 {
     font-size: 10pt;
-}
+}*/
 
-RSExportManager QPushButton:disabled
+/*RSExportManager QPushButton:disabled
 {
     color: gray;
-}
+}*/
 
 /*RSExportManager QPushButton#m_loadButton
 {
@@ -319,12 +325,12 @@ RSExportManager QPushButton:disabled
 
 /* RSMessageView style */
 
-RSMessageView
+/*RSMessageView
 {
     background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
-}
+}*/
 
-RSMessageView *
+/*RSMessageView *
 {
     color: white;
     font-family: arial;
@@ -345,9 +351,9 @@ RSMessageView QPushButton
 RSMessageView QPushButton:hover
 {
     text-decoration: underline;
-}
+}*/
 
-RSMessageView QPushButton:pressed
+/*RSMessageView QPushButton:pressed
 {
     font-size: 10pt;
 }
@@ -358,16 +364,16 @@ RSMessageView QTextEdit
     border: 1px solid white;
     color: orange;
     font-size: 10pt;
-}
+}*/
 
 /* RSGraphView style */
 
-RSGraphView
+/*RSGraphView
 {
     background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
-}
+}*/
 
-RSGraphView *
+/*RSGraphView *
 {
     color: white;
     font-family: arial;
@@ -380,9 +386,9 @@ RSGraphView QTabWidget::pane
 {
     background-color: none;
     border: 2px solid cyan;
-}
+}*/
 
-RSGraphView QTabWidget::tab-bar
+/*RSGraphView QTabWidget::tab-bar
 {
     left: 25px;
 }
@@ -398,98 +404,98 @@ RSGraphView QTabBar::tab
     padding: 5px;
     font-weight: bold;
     color: orange;
-}
+}*/
 
-RSGraphView QTabBar::tab:last
+/*RSGraphView QTabBar::tab:last
 {
     border-right: 2px solid cyan;
-}
+}*/
 
-RSGraphView QTabBar::tab:hover
+/*RSGraphView QTabBar::tab:hover
 {
     color: gray;
-}
+}*/
 
-RSGraphView QTabBar::tab:selected
+/*RSGraphView QTabBar::tab:selected
 {
     color: cyan;
-}
+}*/
 
-RSGraphView QPushButton
+/*RSGraphView QPushButton
 {
     background-color: none;
     border: none;
     padding: 2px;
     color: orange;
     font-weight: bold;
-}
+}*/
 
-RSGraphView QPushButton:hover
+/*RSGraphView QPushButton:hover
 {
     text-decoration: underline;
-}
+}*/
 
-RSGraphView QPushButton:pressed
+/*RSGraphView QPushButton:pressed
 {
     font-size: 10pt;
-}
+}*/
 
-RSGraphView QToolButton
+/*RSGraphView QToolButton
 {
     background-color: none;
     border: none;
     color: orange;
     font-weight: normal;
-}
+}*/
 
-RSGraphView QLabel
+/*RSGraphView QLabel
 {
     border: none;
     background-color: teal;
     color: white;
     min-width: 120px;
     padding-left: 10px;
-}
+}*/
 
-RSGraphView QSpinBox
+/*RSGraphView QSpinBox
 {
     border: 1px solid teal;
     background-color: rgba(0, 0, 255, 10);
     color: orange;
-}
+}*/
 
-RSGraphView QComboBox
+/*RSGraphView QComboBox
 {
     background-color: rgba(0, 0, 255, 10);
     border: 1px solid teal;
     color: orange;
-}
+}*/
 
-RSGraphView QComboBox QAbstractItemView
+/*RSGraphView QComboBox QAbstractItemView
 {
     background-color: teal;
     border: 1px solid teal;
     color: white;
     selection-background-color: navy;
-}
+}*/
 
 /* RSDatabaseConfig style */
 
-RSDatabaseConfig
+/*RSDatabaseConfig
 {
     background-color: qlineargradient(spread:pad x1:0, y1:0, x2:0, y2:1, stop:0 darkblue, stop:1 gray);
-}
+}*/
 
-RSDatabaseConfig *
+/*RSDatabaseConfig *
 {
     color: white;
     font-family: arial;
     font-size: 12pt;
     font-weight: normal;
     color: white;
-}
+}*/
 
-RSDatabaseConfig QWidget#m_border
+/*RSDatabaseConfig QWidget#m_border
 {
     border: 1px solid teal;
 }
@@ -500,40 +506,40 @@ RSDatabaseConfig QWidget#m_title
     color: orange;
     background-color: teal;
     padding: 10px;
-}
+}*/
 
-RSDatabaseConfig QWidget#m_body
+/*RSDatabaseConfig QWidget#m_body
 {
     background-color: rgba(0, 0, 128, 50);
-}
+}*/
 
-RSDatabaseConfig QLabel
+/*RSDatabaseConfig QLabel
 {
     background-color: teal;
     min-width: 150px;
     padding-left: 10px;
-}
+}*/
 
-RSDatabaseConfig QPushButton
+/*RSDatabaseConfig QPushButton
 {
     background-color: none;
     border: none;
     padding: 2px;
     color: orange;
     font-weight: bold;
-}
+}*/
 
-RSDatabaseConfig QPushButton:hover
+/*RSDatabaseConfig QPushButton:hover
 {
     text-decoration: underline;
-}
+}*/
 
-RSDatabaseConfig QPushButton:pressed
+/*RSDatabaseConfig QPushButton:pressed
 {
     font-size: 10pt;
-}
+}*/
 
-RSDatabaseConfig QToolButton
+/*RSDatabaseConfig QToolButton
 {
     background-color: none;
     border: none;
@@ -541,19 +547,26 @@ RSDatabaseConfig QToolButton
     font-weight: normal;
 }
 
-RSDatabaseConfig QToolButton:hover
+/*RSDatabaseConfig QToolButton:hover
 {
     border: 1px solid orange;
-}
+}*/
 
-RSDatabaseConfig QLineEdit
+/*RSDatabaseConfig QLineEdit
 {
     border: 1px solid teal;
     background: rgba(0, 0, 128, 50);
     color: orange;
-}
+}*/
 
 RSDatabaseConfig QLineEdit:read-only
 {
     color: gray;
 }
+
+
+
+/*QSplitter::handle:horizontal
+{
+border: 1px solid #777; margin-top: 2px;    margin-bottom: 2px; border-radius: 4px;
+}*/

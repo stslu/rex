@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>285</width>
-    <height>324</height>
+    <height>344</height>
    </rect>
   </property>
   <property name="maximumSize">
@@ -59,6 +59,468 @@
       <property name="spacing">
        <number>0</number>
       </property>
+      <item row="1" column="0">
+       <widget class="QGroupBox" name="m_body">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>500</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QGroupBox {  font-weight: bold; font-size:10pt}
+QPushButton {  font-size: 9pt;}
+QLabel {  font-size: 9pt;}
+
+
+QPushButton{
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
+color: black;
+font-weight: bold;
+}</string>
+        </property>
+        <property name="title">
+         <string>Sensors Filters</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="brandLabel">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Brand</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbBrand">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1">
+          <widget class="QComboBox" name="m_brandEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <item>
+            <widget class="QLabel" name="modelLabel">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Model</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbModel">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="m_modelEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="technoLabel">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Technology</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbTechno">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="2" column="1">
+          <widget class="QComboBox" name="m_technologyEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <item>
+            <widget class="QLabel" name="physicalMeasLabel">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>140</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Physical Meas.</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbPhysicalMeas">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="m_physicalMeasurementEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QLabel" name="outputSignalLabel">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Output Signal</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbOutputSignal">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="4" column="1">
+          <widget class="QComboBox" name="m_outputSignalEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Measurement Range</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbMeasRange">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="5" column="1">
+          <widget class="QComboBox" name="m_measurementRangeEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="6" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_13">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Theorical Accuracy</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbTheoricalAccuracy">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="6" column="1">
+          <widget class="QComboBox" name="m_theoricalAccuracyEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QLabel" name="label_15">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Unit</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbUnit">
+             <property name="maximumSize">
+              <size>
+               <width>40</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="7" column="1">
+          <widget class="QComboBox" name="m_unitEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="8" column="0">
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_16">
+             <property name="minimumSize">
+              <size>
+               <width>140</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>110</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Experimentation</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="nbExperimentations">
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="8" column="1">
+          <widget class="QComboBox" name="m_experimentationEdit">
+           <item>
+            <property name="text">
+             <string>All</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+        <zorder>m_brandEdit</zorder>
+        <zorder>modelLabel</zorder>
+        <zorder>m_modelEdit</zorder>
+        <zorder>technoLabel</zorder>
+        <zorder>m_technologyEdit</zorder>
+        <zorder>physicalMeasLabel</zorder>
+        <zorder>m_physicalMeasurementEdit</zorder>
+        <zorder>outputSignalLabel</zorder>
+        <zorder>m_outputSignalEdit</zorder>
+        <zorder>label_8</zorder>
+        <zorder>m_measurementRangeEdit</zorder>
+        <zorder>label_13</zorder>
+        <zorder>m_theoricalAccuracyEdit</zorder>
+        <zorder>label_15</zorder>
+        <zorder>m_unitEdit</zorder>
+        <zorder>label_16</zorder>
+        <zorder>m_experimentationEdit</zorder>
+        <zorder>brandLabel</zorder>
+        <zorder>nbBrand</zorder>
+        <zorder>nbModel</zorder>
+        <zorder>nbTechno</zorder>
+        <zorder>nbPhysicalMeas</zorder>
+        <zorder>nbOutputSignal</zorder>
+        <zorder>nbMeasRange</zorder>
+        <zorder>nbTheoricalAccuracy</zorder>
+        <zorder>nbUnit</zorder>
+        <zorder>nbExperimentations</zorder>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QFrame" name="m_titleL">
         <property name="maximumSize">
@@ -67,29 +529,17 @@
           <height>60</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(230, 230, 230);</string>
+        </property>
         <property name="frameShape">
          <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
           <widget class="QLabel" name="m_title">
            <property name="minimumSize">
             <size>
@@ -105,21 +555,32 @@
            </property>
            <property name="font">
             <font>
+             <pointsize>9</pointsize>
              <weight>75</weight>
+             <italic>true</italic>
              <bold>true</bold>
             </font>
            </property>
            <property name="text">
-            <string>Filters</string>
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
+         <item>
           <widget class="QToolButton" name="m_resetButton">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>30</width>
-             <height>25</height>
+             <height>30</height>
             </size>
            </property>
            <property name="text">
@@ -127,299 +588,27 @@
            </property>
           </widget>
          </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QFrame" name="m_body">
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>500</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <property name="leftMargin">
-          <number>10</number>
-         </property>
-         <property name="topMargin">
-          <number>10</number>
-         </property>
-         <property name="rightMargin">
-          <number>10</number>
-         </property>
-         <property name="bottomMargin">
-          <number>10</number>
-         </property>
-         <property name="spacing">
-          <number>10</number>
-         </property>
-         <item row="0" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
+         <item>
+          <widget class="QToolButton" name="setDynamicFilter">
+           <property name="minimumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
            </property>
-           <item>
-            <widget class="QLabel" name="label_6">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Brand</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_brandEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="2" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
+           <property name="maximumSize">
+            <size>
+             <width>30</width>
+             <height>30</height>
+            </size>
            </property>
-           <item>
-            <widget class="QLabel" name="label_11">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Technology</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_technologyEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="1" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_17" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
+           <property name="styleSheet">
+            <string notr="true"/>
            </property>
-           <item>
-            <widget class="QLabel" name="label_10">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Model</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_modelEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="8" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
+           <property name="text">
+            <string>...</string>
            </property>
-           <item>
-            <widget class="QLabel" name="label_16">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Experimentation</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_experimentationEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="3" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_19" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_12">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Physical Measurement</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_physicalMeasurementEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="4" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_7">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Output Signal</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_outputSignalEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="5" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_8">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Measurement Range</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_measurementRangeEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="6" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_13">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Theorical Accuracy</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_theoricalAccuracyEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item row="7" column="0">
-          <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="0,1">
-           <property name="spacing">
-            <number>10</number>
-           </property>
-           <item>
-            <widget class="QLabel" name="label_15">
-             <property name="minimumSize">
-              <size>
-               <width>110</width>
-               <height>0</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Unit</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="m_unitEdit">
-             <item>
-              <property name="text">
-               <string>All</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
+          </widget>
          </item>
         </layout>
        </widget>

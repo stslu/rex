@@ -92,7 +92,8 @@ void  RSDataComputation::runFidelityNoiseAndMtbfCalculations(const QList<SensorI
         //--- --Display message
         {
             QString dateTime = QDateTime::currentDateTime().toString("yyyy_MM_dd, hh:mm:ss");
-            QString msg = QString(tr("Step %1/%2 .Brand= %3 Sensor= %4 \t %5")).arg(progress).arg(maxProgress).arg(stat.brand).arg(stat.sensorName).arg(dateTime);
+            QString msg = QString(tr("Step %1/%2 .Brand= %3 Sensor= %4 \t %5")).
+                    arg(progress).arg(maxProgress).arg(stat.brand).arg(stat.sensorName).arg(dateTime);
             RSLogger::instance()->info(Q_FUNC_INFO,msg);
             RSMessageView::Instance()->showData(msg);
         }
@@ -204,10 +205,10 @@ QPair<double,double> RSDataComputation::computeFidelityNoiseStepAndInitGraphView
     RSLogger::instance()->info(Q_FUNC_INFO,QString("startDateInterval = %1 endDateInterval = %2").arg(stepStartDate.toString()).arg(stepEndDate.toString()));
 
     //The min date for data in this interval (the fisrt data)
-    QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, settings.sensorCode).date();
+    QDate startRelativeDate = m_databaseAccess->getAcquisitionRelativeFirstTime(stepStartDate, stepEndDate, settings.sensorCode,settings.measPointType).date();
 
     //The max date for data in this interval (The last data)
-    QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate,  settings.sensorCode).date();
+    QDate endRelativeDate = m_databaseAccess->getAcquisitionRelativeLastTime(stepStartDate, stepEndDate,  settings.sensorCode,settings.measPointType).date();
     RSLogger::instance()->info(Q_FUNC_INFO,QString("minDateInInterval = %1 maxDateInInterval = %2").arg(startRelativeDate.toString()).arg(endRelativeDate.toString()));
 
     //Exit if no data, or if data dateTime = last data dateTime
@@ -225,7 +226,7 @@ QPair<double,double> RSDataComputation::computeFidelityNoiseStepAndInitGraphView
 
     //-- The x-axis vector. It's the elapsed time for each point in interval since startRelativeDate
     RSLogger::instance()->info(Q_FUNC_INFO, "Build relativeTimeArray");
-    QList<double> relativeTimeArray = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, settings.sensorCode);//init m_startDateTime
+    QList<double> relativeTimeArray = m_databaseAccess->getAcquisitionTimeList(startRelativeDate, endRelativeDate, settings.sensorCode,settings.measPointType);//init m_startDateTime
 
     //-- Divide the relativeTimeArray by the  factor qPow(10.0, 10.0)
     RSLogger::instance()->info(Q_FUNC_INFO, "Build timeArray");
@@ -237,7 +238,7 @@ QPair<double,double> RSDataComputation::computeFidelityNoiseStepAndInitGraphView
 
     //-- Get the values associated to each point in the interval
     RSLogger::instance()->info(Q_FUNC_INFO, "Build valueList");
-    QList<double> valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, settings.sensorCode);
+    QList<double> valueList = m_databaseAccess->getAcquisitionValueList(startRelativeDate, endRelativeDate, settings.sensorCode,settings.measPointType);
 
     //----------------------------------------------------------------------------
     //--- -- Compute the fidelity and noise
@@ -261,7 +262,7 @@ QPair<double,double> RSDataComputation::computeFidelityNoiseStepAndInitGraphView
     RSLogger::instance()->info(Q_FUNC_INFO, QString("fidelityStep = %1 : noiseStep = %2").arg(fidelityStep).arg(noiseStep));
     if(showMsg)
     {
-        int dataRelativeSize = m_databaseAccess->getAcquisitionValueSize(startRelativeDate, endRelativeDate, settings.sensorCode);
+        int dataRelativeSize = m_databaseAccess->getAcquisitionValueSize(startRelativeDate, endRelativeDate, settings.sensorCode,settings.measPointType);
         RSLogger::instance()->info(Q_FUNC_INFO,"init RSMessageView. showData");
         RSMessageView::Instance()->showData(settings.stepViewUi, "stepView");
         RSMessageView::Instance()->showData(stepStartDate, "stepStartDate", "MM-dd-yyyy");
