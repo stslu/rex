@@ -719,7 +719,8 @@ void RSGraphView::updateSensorsDatagrid(int index)
 
 QPair<int,MeasPointType> RSGraphView::getSensorCodeTypePair() const
 {
-    QString& sensorName = ui->m_sensorNameEdit->currentText();
+//    QString& sensorName = ui->m_sensorNameEdit->currentText();
+    QString sensorName = ui->m_sensorNameEdit->currentText();
     QPair<int,MeasPointType>  pair = m_databaseAccess->getSensorNameCodeAndType(sensorName);
 
     return pair;

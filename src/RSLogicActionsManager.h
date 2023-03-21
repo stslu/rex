@@ -2,8 +2,9 @@
 #define RSLOGICACTIONSMANAGER_H
 
 #include <QObject>
-#include <Signaler.h>
+#include <QMutex>
 #include <QMap>
+#include <Signaler.h>
 #include  "IRSTimesManager.h"
 #include "IRSOptionsManager.h"
 #include <IRSGraphView.h>

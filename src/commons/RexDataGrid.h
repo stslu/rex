@@ -1,7 +1,7 @@
 #ifndef RexDataGrid_H
 #define RexDataGrid_H
 
-#include <QtitanGrid.h>
+#include <QtitanGrid>
 #include <QWidget>
 #include "IRexDataGrid.h"
 #include "ui_RexDataGrid.h"

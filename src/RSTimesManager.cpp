@@ -206,7 +206,8 @@ QVariant RSTimesManager::loadStartDate()
         QString m_key = "RSTimesManager.StartDate";
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_START_DATE;
         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-        setDateEditValue(ui->m_startDateEdit, data.value<QDate>());
+        QDate dateValue = data.value<QDate>();
+        setDateEditValue(ui->m_startDateEdit, dateValue);
         RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  data.value<QDate>().toString());
         return data;
     }
@@ -225,7 +226,8 @@ QVariant RSTimesManager::loadEndDate()
         QString m_key = "RSTimesManager.EndDate";
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_END_DATE;
         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-        setDateEditValue(ui->m_endDateEdit, data.value<QDate>());
+        QDate dateValue = data.value<QDate>();
+        setDateEditValue(ui->m_endDateEdit, dateValue);
         RSLogger::instance()->info(Q_FUNC_INFO, "EndDate:  " +  data.value<QDate>().toString());
         return data;
     }

@@ -191,7 +191,9 @@ void RSLogicActionsManager::slot_exportToExcel()
     m_settings = initSettings();
 
     //--- -- Be sure the REXFILTER table is ready
-    if(!RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(QString()))
+//    if(!RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(QString()))
+    QString temp;
+    if(!RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(temp))
     {
         RSLogger::instance()->info(Q_FUNC_INFO,"End.\t Failed to update REXFILTER ");
         return ;
@@ -575,7 +577,8 @@ void  RSLogicActionsManager::slot_runReportsCalculations()
 
     //--- -- Be sure the REXFILTER table is ready
     RSMessageView::Instance()->showData(QString("\t - update REXFILTER table in local database"));
-    bool m_checkFilter = RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(QString());
+    QString temp;
+    bool m_checkFilter = RSDatabaseAccess::Instance()->checkFilterQueryAndBuildRexFilterTable(temp);
     if(!m_checkFilter)
     {
         RSLogger::instance()->info(Q_FUNC_INFO,"End.\t Failed to update REXFILTER ");

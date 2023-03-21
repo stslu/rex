@@ -45,7 +45,7 @@ void RSPictoManager::setActiveColor(const QVariant &color)
     m_awesomePicto->setDefaultOption("color-active", color);
 }
 
-QIcon RSPictoManager::getIcon(fa faEnum, const QVariant &color)
+QIcon RSPictoManager::getIcon(fa::icon faEnum, const QVariant &color)
 {
    setColor(color);
    return m_awesomePicto->icon(faEnum);

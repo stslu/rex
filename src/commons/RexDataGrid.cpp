@@ -25,8 +25,7 @@ struct RexDataGridData
 
 };
 
-RexDataGrid::RexDataGrid(bool displayBand,QWidget *parent): QWidget(parent)
-  ,d(new RexDataGridData())
+RexDataGrid::RexDataGrid(bool displayBand,QWidget *parent): QWidget(parent) ,d(new RexDataGridData())
 {
     RSLogger::instance()->info(Q_FUNC_INFO,"Start");
 
@@ -102,7 +101,7 @@ void RexDataGrid::slotTitanGridRowClicked(RowClickEventArgs* args)
         return;
     }
 
-    int rowModelIndex = args->row()->modelRowIndex();
+    int rowModelIndex = args->row().modelRowIndex();
     QModelIndex idx =  d->dataGridModel->index(rowModelIndex, 0);
     if(!idx.isValid())
     {
@@ -122,7 +121,7 @@ Qtitan::GridTableView* RexDataGrid::view()const
     return view;
 }
 
-bool RexDataGrid::setQTitanModel( Qtitan::Grid* pGrid,DataGridModel* model)
+bool RexDataGrid::setQTitanModel(Qtitan::Grid *pGrid, DataGridModel* model)
 {
     RSLogger::instance()->info(Q_FUNC_INFO,"Start");
 
@@ -203,7 +202,7 @@ bool RexDataGrid::setTableViewModel( QTableView* pGrid, DataGridModel* model)
     return true;
 }
 
-Qtitan::Grid* RexDataGrid::initQtitanDataGrid(QWidget* parent)
+Qtitan::Grid *RexDataGrid::initQtitanDataGrid(QWidget* parent)
 {   
     RSLogger::instance()->info(Q_FUNC_INFO,"Start");
     if(!parent)
@@ -234,9 +233,9 @@ void RexDataGrid::selectMultiCellSelection(bool val)
     if(view)
     {
         if(val)
-            view->options().setSelectionPolicy(Qtitan::SelectMultiCell);
+            view->options().setSelectionPolicy(GridViewOptions::MultiCellSelection);
         else
-            view->options().setSelectionPolicy(Qtitan::SelectMultiRow);
+            view->options().setSelectionPolicy(GridViewOptions::MultiRowSelection);
         view->modelController()->clearSelect();
         this->update();
     }

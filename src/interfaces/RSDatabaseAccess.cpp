@@ -2130,7 +2130,8 @@ void RSDatabaseAccess::setRexDatasetTable()
         return;
     }
 
-    setRexFilterTable(QString());
+    QString temp;
+    setRexFilterTable(temp);
 
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
 }

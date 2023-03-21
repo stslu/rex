@@ -4,32 +4,25 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql printsupport
+QT       += core gui sql printsupport widgets
 
-CONFIG +=  excel_lib.prf qtitangrid
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+CONFIG +=  libxl qtitangrid qcustomplot gsl qtawesome
 
 TARGET = RexSensors
 TEMPLATE = app
 DESTDIR = bin
 
-INCLUDEPATH += commons\
-            $$PWD ..\GSL\gsl\include\
-            $$PWD ..\GSL\gsl\include\gsl\
-            $$PWD ..\GSL\gsl\lib
+#INCLUDEPATH += commons\
+#            $$PWD ..\GSL\gsl\include\
+#            $$PWD ..\GSL\gsl\include\gsl\
+#            $$PWD ..\GSL\gsl\lib
 
-LIBS += -L$$PWD ..\GSL\gsl\lib\gsl.lib
-LIBS += -L$$PWD ..\GSL\gsl\lib\cblas.lib
 
-#The custom plot
-INCLUDEPATH += $$PWD ../QCustomPlot
 
 SOURCES += main.cpp \
     RSExportToExcel.cpp \
     RSDatabaseConfig.cpp \
     RSDataManager.cpp \
-    QCustomPlot.cpp \
     RSLogicActionsManager.cpp \
     RSMainWindow.cpp \
     RSFiltersManager.cpp \
@@ -41,7 +34,6 @@ HEADERS  += \
     RSExportToExcel.h \
     RSDatabaseConfig.h \
     RSDataManager.h \
-    QCustomPlot.h \
     RSLogicActionsManager.h \
     Signaler.h \
     RSMainWindow.h \
@@ -69,7 +61,7 @@ RESOURCES += \
 include(commons\RSCommonResources.pri)
 include(computations\RSDataComputations.pri)
 include(interfaces\RSInterfaceResources.pri)
-include(..\QtAwesome\QtAwesome\QtAwesome.pri)
+#include(..\QtAwesome\QtAwesome\QtAwesome.pri)
 
 DISTFILES += \
     resources/image/img/excel.png

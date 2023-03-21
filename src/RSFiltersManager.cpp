@@ -400,23 +400,14 @@ FiltersEnum RSFiltersManager::getFilterEnum(const QComboBox* comboBox) const
 void RSFiltersManager::loadSettings(const QString& fileName)
 {
     loadBrand();
-
     loadModel();
-
     loadTechnology();
-
     loadPhysicalMeasure();
-
     loadOutputSignal();
-
     loadMeasureRange();
-
     loadTheoricalAccuracy();
-
     loadUnit();
-
     loadExperimentation();
-
     loadDynamicOption();
 }
 
@@ -449,7 +440,7 @@ void RSFiltersManager::setFilterValue(QComboBox* combo, const QString& value)
 QVariant RSFiltersManager::loadBrand()
 {
     QString m_id = "RSFiltersManager";
-    QString m_key = "RSFilRSFiltersManager.Brand";
+    QString m_key = "RSFiltersManager.Brand";
     QVariant m_default = RexFiltersDefaultSettings::DEFAULT_FILTER_FIELD_INDEX;
 
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default).value<QString>();
@@ -463,7 +454,7 @@ QVariant RSFiltersManager::loadBrand()
 QVariant RSFiltersManager::loadDynamicOption()
 {
     QString m_id = "RSFiltersManager";
-    QString m_key = "RSFilRSFiltersManager.DynamicFilter";
+    QString m_key = "RSFiltersManager.DynamicFilter";
     QVariant m_default = RexFiltersDefaultSettings::DEFAULT_FILTER_FIELD_INDEX;
 
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default).value<QString>();
@@ -591,7 +582,7 @@ QVariant RSFiltersManager::loadExperimentation()
 void RSFiltersManager::saveBrand() const
 {
     QString m_id = "RSFiltersManager";
-    QString m_key = "RSFilRSFiltersManager.Brand";
+    QString m_key = "RSFiltersManager.Brand";
     QVariant data = ui->m_brandEdit->currentText();
 
     RSLogger::instance()->info(Q_FUNC_INFO,"Brand = " + data.value<QString>());
@@ -603,7 +594,7 @@ void RSFiltersManager::saveBrand() const
 void RSFiltersManager::saveDynamicOption() const
 {
     QString m_id = "RSFiltersManager";
-    QString m_key = "RSFilRSFiltersManager.DynamicFilter";
+    QString m_key = "RSFiltersManager.DynamicFilter";
     QVariant data = ui->setDynamicFilter->isChecked();
 
     RSLogger::instance()->info(Q_FUNC_INFO,"DynamicFilter = " + data.value<QString>());
