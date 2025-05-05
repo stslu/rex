@@ -16,6 +16,8 @@
 #include <RSLogger.h>
 #include <QSplitter>
 
+#include <QDebug>
+
 RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), ui(new Ui::RSMainWindow),IRSMainWindow(),
     m_timesManager(0),
     m_filtersManager(0),
@@ -251,6 +253,7 @@ void RSMainWindow::keyPressEvent(QKeyEvent *event)
 
 void RSMainWindow::slotInitializeSystem()
 {
+    return;
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
     //--- --Open the database

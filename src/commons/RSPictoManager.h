@@ -2,8 +2,8 @@
 #define RSPICTOMANAGER_H
 
 #include <QObject>
-#include <QtAwesome.h>
 #include <QIcon>
+#include <QtAwesome>
 
 class RSPictoManager : public QObject
 {

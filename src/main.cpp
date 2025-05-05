@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    RSStylesManager::Instance(qApp);
+//    RSStylesManager::Instance(qApp);
 
     RSMainWindow *m_mainWindow = new RSMainWindow;
 
