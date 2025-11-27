@@ -35,11 +35,20 @@ RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), ui(new Ui::RSMain
 
     setupUi();
 
-    this->adjustSize();
-    this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
-    this->setWindowState(Qt::WindowMaximized);
+    // this->adjustSize();
+    // this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
+    QScreen *screen = this->screen();
+    if (!screen)
+        screen = QGuiApplication::primaryScreen();  // fallback au cas où
 
-    QTimer::singleShot(200, this, SLOT(slotInitializeSystem()));
+    if (screen) {
+        const QRect screenRect = screen->geometry();  // ou availableGeometry() si tu veux ignorer la barre des tâches
+        this->move(screenRect.center() - this->rect().center());
+    }
+
+    // slotInitializeSystem();
+    qDebug().noquote() << "--->singleShot slotInitializeSystem";
+    QTimer::singleShot(1000, this, &RSMainWindow::slotInitializeSystem);
 
 }
 
@@ -151,16 +160,26 @@ void RSMainWindow::setupUi()
 
 void RSMainWindow::position()
 {
-    QSize m_desktopSize = QApplication::desktop()->size();
     adjustSize();
-    QSize m_screenSize = size();
+    const QSize windowSize = size();
 
-    int m_x = (m_desktopSize.width() - m_screenSize.width()) / 2;
-    int m_y = (m_desktopSize.height() - m_screenSize.height()) / 2;
-    int m_w = m_screenSize.width();
-    int m_h = m_screenSize.height();
+    // Écran associé à cette fenêtre si possible
+    QScreen* screen = this->screen();
+    if (!screen)
+        screen = QGuiApplication::primaryScreen(); // fallback
 
-    setGeometry(m_x, m_y, m_w, m_h);
+    if (!screen) {
+        // Très improbable : pas d'écran → on fait simple
+        setGeometry(0, 0, windowSize.width(), windowSize.height());
+        return;
+    }
+
+    const QRect avail = screen->availableGeometry();
+
+    const int x = avail.x() + (avail.width()  - windowSize.width())  / 2;
+    const int y = avail.y() + (avail.height() - windowSize.height()) / 2;
+
+    setGeometry(x, y, windowSize.width(), windowSize.height());
 }
 
 void RSMainWindow::createObjects()
@@ -253,7 +272,7 @@ void RSMainWindow::keyPressEvent(QKeyEvent *event)
 
 void RSMainWindow::slotInitializeSystem()
 {
-    return;
+    // return;
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
     //--- --Open the database

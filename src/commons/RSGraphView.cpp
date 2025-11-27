@@ -6,7 +6,7 @@
 #include "RSMessageView.h"
 #include "RSDatabaseAccess.h"
 #include <QApplication>
-#include <QDesktopWidget>
+// #include <QDesktopWidget>
 #include <RSLogger.h>
 
 #include <Signaler.h>
@@ -67,7 +67,7 @@ RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
     if(ui->measTypeIndicator)
     {
         ui->measTypeIndicator->setVisible(false);
-        QPixmap pixmap = RSPictoManager::Instance()->getIcon(fa::calculator, "black").pixmap(ui->measTypeIndicator->size());
+        QPixmap pixmap = RSPictoManager::Instance()->getIcon(fa::fa_calculator, "black").pixmap(ui->measTypeIndicator->size());
         ui->measTypeIndicator->setPixmap(pixmap);
     }
 
@@ -221,15 +221,28 @@ void RSGraphView::plotCharts()
 
 void RSGraphView::position()
 {
-    QSize m_desktopSize = QApplication::desktop()->size();
-    QSize m_screenSize = QSize(600, 600);
+    const QSize windowSize(600, 600);
 
-    int m_x = m_desktopSize.width() - m_screenSize.width() - 20;
-    int m_y = m_desktopSize.height() - m_screenSize.height() - 400;
-    int m_w = m_screenSize.width();
-    int m_h = m_screenSize.height();
+    // Écran associé au widget si possible
+    QScreen* screen = this->screen();
+    if (!screen)
+        screen = QGuiApplication::primaryScreen(); // fallback
 
-    setGeometry(m_x, m_y, m_w, m_h);
+    if (!screen) {
+        // Cas de secours : pas d'écran disponible
+        setGeometry(0, 0, windowSize.width(), windowSize.height());
+        show();
+        return;
+    }
+
+    const QRect avail = screen->availableGeometry();
+
+    const int x = avail.x() + avail.width()  - windowSize.width()  - 20;
+    const int y = avail.y() + avail.height() - windowSize.height() - 400;
+    const int w = windowSize.width();
+    const int h = windowSize.height();
+
+    setGeometry(x, y, w, h);
     show();
 }
 
@@ -475,10 +488,10 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
 
 void RSGraphView::createObjects()
 {
-    ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastbackward, "black"));
-    ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fastforward, "black"));
-    ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepbackward, "black"));
-    ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::stepforward, "black"));
+    ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_backward, "black"));
+    ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_forward, "black"));
+    ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_backward, "black"));
+    ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_forward, "black"));
 
     //m_sensorsComboBox
     initDatagridPointers();

@@ -1,4 +1,8 @@
 #include <QtMath>
+
+#include <algorithm>   // std::sort
+#include <functional>  // std::less (optionnel)
+
 #include <RSlogger.h>
 #include "RSFidelityComputation.h"
 #include "RSGlobalMethods.h"
@@ -211,7 +215,11 @@ QList<double> RSFidelityComputation::getDeviation() const
         m_deviation.push_back(m_di);
     }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     qSort(m_deviation.begin(), m_deviation.end(), qLess<double>());
+#else
+    std::sort(m_deviation.begin(), m_deviation.end(), std::less<double>());
+#endif
 
     return m_deviation;
 }

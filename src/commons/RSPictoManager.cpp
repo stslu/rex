@@ -1,6 +1,8 @@
 #include "RSPictoManager.h"
 #include <QApplication>
 
+using fa::QtAwesome;
+
 RSPictoManager* RSPictoManager::m_instance = 0;
 
 RSPictoManager::RSPictoManager(QObject *parent) : QObject(parent)
@@ -45,8 +47,9 @@ void RSPictoManager::setActiveColor(const QVariant &color)
     m_awesomePicto->setDefaultOption("color-active", color);
 }
 
-QIcon RSPictoManager::getIcon(fa::icon faEnum, const QVariant &color)
+QIcon RSPictoManager::getIcon(fa::fa_common_icons faEnum, const QVariant &color)
 {
    setColor(color);
-   return m_awesomePicto->icon(faEnum);
+
+   return m_awesomePicto->icon(fa::fa_solid, faEnum);
 }

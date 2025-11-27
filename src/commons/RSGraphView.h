@@ -5,6 +5,9 @@
 #include <QBoxLayout>
 #include <QCustomPlot.h>
 #include <QPushButton>
+#include <QtnGridTableView.h>
+
+
 #include "RSGlobalMethods.h"
 #include "IRSGraphView.h"
 #include "RexDataGrid.h"
@@ -108,7 +111,12 @@ public:
         m_dataGrid->ui().progressBar->setVisible(false);
         m_dataGrid->ui().m_runReportsCalculations->setVisible(false);
 
-        m_dataGrid->view()->options().setColumnAutoWidth(true);
+        // m_dataGrid->view()->options().setColumnAutoWidth(true);
+        Qtitan::GridTableView* view = m_dataGrid->grid()->view<Qtitan::GridTableView>();
+        if (view)
+        {
+            view->tableOptions().setColumnAutoWidth(true);
+        }
 
         verticalLayout = new QVBoxLayout(this);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));

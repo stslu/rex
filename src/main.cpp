@@ -9,14 +9,9 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+    RSMainWindow m_mainWindow;
 
-//    RSStylesManager::Instance(qApp);
-
-    RSMainWindow *m_mainWindow = new RSMainWindow;
-
-    m_mainWindow->show();
-
-
+    m_mainWindow.showMaximized();
 
     return app.exec();
 }

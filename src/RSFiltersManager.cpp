@@ -47,9 +47,9 @@ RSFiltersManager::~RSFiltersManager()
 void RSFiltersManager::createObjects()
 {
     ui->m_resetButton->setCursor(Qt::PointingHandCursor);
-    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::refresh, "black"));
+    ui->m_resetButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_refresh, "black"));
 
-    ui->setDynamicFilter->setIcon(RSPictoManager::Instance()->getIcon(fa::bolt, "black"));
+    ui->setDynamicFilter->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_bolt, "black"));
     ui->setDynamicFilter->setCursor(Qt::PointingHandCursor);
     ui->setDynamicFilter->setCheckable(true);
     ui->setDynamicFilter->setChecked(true);

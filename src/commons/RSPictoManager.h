@@ -3,7 +3,9 @@
 
 #include <QObject>
 #include <QIcon>
-#include <QtAwesome>
+#include <QtAwesome.h>
+
+using fa::QtAwesome;
 
 class RSPictoManager : public QObject
 {
@@ -23,7 +25,7 @@ private:
 public:
     void setColor(const QVariant& color);
     void setActiveColor(const QVariant& color);
-    QIcon getIcon(fa::icon faEnum, const QVariant &color = "black");
+    QIcon getIcon(fa::fa_common_icons faEnum, const QVariant &color = "black");
 
 private:
     static RSPictoManager* m_instance;

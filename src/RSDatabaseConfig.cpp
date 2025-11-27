@@ -38,11 +38,11 @@ void RSDatabaseConfig::createObjects()
 
     //!G6 database
     ui->m_g6DatabaseEdit->setText(RSDataManager::Instance()->getData("G6DatabaseFile").toString());
-    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
+    ui->m_g6DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_file, "black"));
 
     //!G7 database
     ui->m_g7DatabaseEdit->setText(RSDataManager::Instance()->getData("G7DatabaseFile").toString());
-    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::file, "black"));
+    ui->m_g7DatabaseButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_file, "black"));
 
     //!Load loadNodesWithNoAst
     if(RSDataManager::Instance()->getData("loadNodesWithNoAst").toBool())

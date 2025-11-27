@@ -5,7 +5,11 @@
 
 #include <QApplication>
 #include <QSize>
-#include <QDesktopWidget>
+#include <QGuiApplication>
+#include <QScreen>
+
+
+
 #include "RSLogger.h"
 #include <QDebug>
 
@@ -22,7 +26,14 @@ RSMessageView::RSMessageView(QWidget *parent) : QWidget(parent), ui(new Ui::RSMe
     createConnections();
 
     //this->adjustSize();
-    this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
+    QScreen *screen = this->screen(); // fonctionne en Qt 5.15 et Qt 6.10
+    if (!screen)
+        screen = QGuiApplication::primaryScreen();  // fallback au cas où
+
+    if (screen) {
+        const QRect screenRect = screen->geometry();  // ou availableGeometry() si tu veux ignorer la barre des tâches
+        this->move(screenRect.center() - this->rect().center());
+    }
 
     ui->m_runButton->setVisible(false);
 }
@@ -52,17 +63,31 @@ void RSMessageView::deleteInstance()
     }
 }
 
-void RSMessageView::position()
+void RSMessageView::position() // Compatible Qt 5.15/6.10
 {
-    QSize m_desktopSize = QApplication::desktop()->size();
-    QSize m_screenSize = QSize(600, 300);
+    const QSize screenSize(600, 300);
 
-    int m_x = m_desktopSize.width() - m_screenSize.width() - 20;
-    int m_y = m_desktopSize.height() - m_screenSize.height() - 50;
-    int m_w = m_screenSize.width();
-    int m_h = m_screenSize.height();
+    // Écran associé au widget si possible
+    QScreen* screen = this->screen();
+    if (!screen)
+        screen = QGuiApplication::primaryScreen();   // fallback
 
-    setGeometry(m_x, m_y, m_w, m_h);
+    if (!screen) {
+        // Cas très improbable : pas d'écran → on fait au plus simple
+        setGeometry(0, 0, screenSize.width(), screenSize.height());
+        show();
+        return;
+    }
+
+    // Zone disponible (sans barre des tâches / dock)
+    const QRect avail = screen->availableGeometry();
+
+    const int x = avail.x() + avail.width()  - screenSize.width()  - 20;
+    const int y = avail.y() + avail.height() - screenSize.height() - 50;
+    const int w = screenSize.width();
+    const int h = screenSize.height();
+
+    setGeometry(x, y, w, h);
     show();
 }
 

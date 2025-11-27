@@ -101,12 +101,12 @@ void RexDataGrid::slotTitanGridRowClicked(RowClickEventArgs* args)
         return;
     }
 
-    int rowModelIndex = args->row().modelRowIndex();
-    QModelIndex idx =  d->dataGridModel->index(rowModelIndex, 0);
-    if(!idx.isValid())
-    {
+    // int rowModelIndex = args->row().modelRowIndex();
+    // QModelIndex idx =  d->dataGridModel->index(rowModelIndex, 0);
+
+    QModelIndex idx = args->row().modelIndex(0); // QTitanDatagrid 9.0
+    if (!idx.isValid())
         return;
-    }
 
     d->selectedRowIndex = idx;
     emit currentRowChanged(idx);
@@ -149,9 +149,18 @@ bool RexDataGrid::setQTitanModel(Qtitan::Grid *pGrid, DataGridModel* model)
 
     RSLogger::instance()->info(Q_FUNC_INFO,"set options");
     view->options().setGridLines((Qtitan::LinesBoth));
-    view->options().setShowFocusDecoration(true);
+
+    // view->options().setShowFocusDecoration(true); // ancien
+    Qtitan::GridViewOptions& opt = view->options(); // Qtitandatagrid 9
+    opt.setFocusFrameEnabled(true);      // affiche le cadre de focus
+    opt.setKeepFocusedRow(true);         // (optionnel) garde la ligne focus après refresh
+    pGrid->setStyleSheet("Qtitan--Grid:focus { outline: 3px dotted blue; }");
+
     view->options().setZoomEnabled(true);
-    view->options().setColumnAutoWidth(true);
+    // view->options().setColumnAutoWidth(true);
+    view->tableOptions().setColumnAutoWidth(true);
+
+
 
     if(d->displayBand)
         view->options().setGroupsHeader(true);

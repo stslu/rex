@@ -47,8 +47,11 @@ void  RSDataComputation::runFidelityNoiseAndMtbfCalculations(const QList<SensorI
     bool showFidelityMsg = false;
 
     m_settings = settings;
-    QDateTime minDate (m_settings.startDateUi) ;
-    QDateTime maxDate (m_settings.endDateUi) ;
+    // QDateTime minDate(m_settings.startDateUi) ;
+    // QDateTime maxDate(m_settings.endDateUi) ;
+    QDateTime minDate(m_settings.startDateUi, QTime(0, 0, 0)); // Qt 6.10
+    QDateTime maxDate(m_settings.endDateUi,   QTime(0, 0, 0));
+
     quint64 gapMsec = minDate.msecsTo(maxDate);
     QString msg = QString("minDate = %1\t maxDate : %2 gapMsec = %3 \n settings: %4")
             .arg(minDate.toString())

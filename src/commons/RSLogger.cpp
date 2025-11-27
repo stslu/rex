@@ -3,6 +3,9 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QDir>
+
+#include <QStringConverter>
+
 #include "RSGlobalMethods.h"
 
 #define FORMAT  "yyyy_MM_dd hh_mm_ss"
@@ -58,7 +61,15 @@ void RSLogger::info(const QString& function,const QString& msg, int logLevel)
 
     QTextStream out(&m_file);
     QString strLine (QDateTime::currentDateTime().toString(FORMAT) + " " + function.mid(0, function.indexOf("(")) + "\t => " + msg + "\n");
+
+    // out.setCodec("UTF-8"); // Qt 5
+    // out.setEncoding(QStringConverter::Utf8); // Qt 6
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     out.setCodec("UTF-8");
+#else
+    out.setEncoding(QStringConverter::Utf8);
+#endif
+
     if (m_file.isOpen())
         out << strLine;
     out.flush();

@@ -211,7 +211,7 @@ QVariant DataGridModel::data(const QModelIndex &index, int role) const
             return rowList.at(column).toString();
     }
 
-    if(role == Qt::BackgroundColorRole )
+    if(role == Qt::BackgroundRole )
     {
         QColor color;
         if( index.row() %2 == 0 )
