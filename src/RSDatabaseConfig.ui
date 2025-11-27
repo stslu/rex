@@ -40,22 +40,14 @@ font:  8pt
    <item>
     <widget class="QFrame" name="m_border">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="0">
        <widget class="QLabel" name="m_title">
-        <property name="font">
-         <font>
-          <pointsize>10</pointsize>
-          <weight>9</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
         <property name="styleSheet">
          <string notr="true">font: 75 10pt</string>
         </property>
@@ -63,17 +55,17 @@ font:  8pt
          <string>Database Configuration</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignCenter</set>
+         <set>Qt::AlignmentFlag::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
        <widget class="QFrame" name="m_body">
         <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+         <enum>QFrame::Shape::StyledPanel</enum>
         </property>
         <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+         <enum>QFrame::Shadow::Raised</enum>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
@@ -111,6 +103,11 @@ font:  8pt
                <height>20</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
              <property name="text">
               <string>QIBASE</string>
              </property>
@@ -125,7 +122,6 @@ font:  8pt
           <widget class="QGroupBox" name="groupBox_4">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -193,10 +189,10 @@ font:  8pt
               <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeType">
-                 <enum>QSizePolicy::Minimum</enum>
+                 <enum>QSizePolicy::Policy::Minimum</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -226,7 +222,7 @@ font:  8pt
                    <string>User:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -268,7 +264,7 @@ font:  8pt
                    <string>Password:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -299,7 +295,6 @@ font:  8pt
           <widget class="QGroupBox" name="groupBox_3">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -367,10 +362,10 @@ font:  8pt
               <item>
                <spacer name="horizontalSpacer_3">
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="sizeType">
-                 <enum>QSizePolicy::Minimum</enum>
+                 <enum>QSizePolicy::Policy::Minimum</enum>
                 </property>
                 <property name="sizeHint" stdset="0">
                  <size>
@@ -400,7 +395,7 @@ font:  8pt
                    <string>User:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -442,7 +437,7 @@ font:  8pt
                    <string>Password:</string>
                   </property>
                   <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                   <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
                 </item>
@@ -475,7 +470,6 @@ font:  8pt
             <widget class="QGroupBox" name="groupBoxNodes">
              <property name="font">
               <font>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -499,13 +493,13 @@ border-radius:12px</string>
                  <string>Load Nodes  with NO sensor type </string>
                 </property>
                 <property name="textFormat">
-                 <enum>Qt::AutoText</enum>
+                 <enum>Qt::TextFormat::AutoText</enum>
                 </property>
                 <property name="scaledContents">
                  <bool>true</bool>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
                 </property>
                </widget>
               </item>
@@ -541,10 +535,10 @@ border-radius:12px</string>
            <item>
             <spacer name="horizontalSpacer_4">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Policy::Fixed</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -558,7 +552,6 @@ border-radius:12px</string>
             <widget class="QGroupBox" name="groupBoxEntities">
              <property name="font">
               <font>
-               <weight>75</weight>
                <bold>true</bold>
               </font>
              </property>
@@ -570,7 +563,7 @@ border-radius:12px</string>
               <string/>
              </property>
              <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
              </property>
              <property name="flat">
               <bool>false</bool>
@@ -630,7 +623,7 @@ border-radius:12px</string>
      <item>
       <spacer name="horizontalSpacer_7">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -670,7 +663,7 @@ border-radius:12px</string>
      <item>
       <spacer name="horizontalSpacer_6">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -720,7 +713,7 @@ border-radius:12px</string>
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

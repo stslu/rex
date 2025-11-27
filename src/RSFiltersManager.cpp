@@ -71,8 +71,8 @@ void RSFiltersManager::createObjects()
 
 void RSFiltersManager::createConnections()
 {
-    connect(ui->m_resetButton, SIGNAL(clicked()), this, SLOT(slotResetButtonClicked()));
-    connect(ui->setDynamicFilter, SIGNAL(clicked(bool)), this, SLOT(onSetDynamicFilterClicked()));
+    connect(ui->m_resetButton,  &QToolButton::clicked, this, &RSFiltersManager::slotResetButtonClicked);
+    connect(ui->setDynamicFilter, &QToolButton::clicked, this, &RSFiltersManager::onSetDynamicFilterClicked);
 }
 
  void RSFiltersManager::onSetDynamicFilterClicked()
