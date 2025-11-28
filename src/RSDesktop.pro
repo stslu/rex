@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     RSFiltersManager.cpp \
     RSOptionsManager.cpp \
     Signaler.cpp \
-    RSTimesManager.cpp
+    RSTimesManager.cpp \
+    commons/RSMessageView.cpp
 
 HEADERS  += \
     RSExportToExcel.h \
@@ -38,6 +39,7 @@ HEADERS  += \
     Signaler.h \
     RSMainWindow.h \
     IRSMainwindow.h \
+    commons/RSMessageView.h \
     irsexportmanager.h \
     IRSFiltersManager.h \
     RSFiltersManager.h \
@@ -52,7 +54,8 @@ FORMS += \
     RSFiltersManager.ui \
     RSOptionsManager.ui \
     RSDatabaseConfig.ui \
-    RSOptionsManagerWidget.ui
+    RSOptionsManagerWidget.ui \
+    commons/RSMessageView.ui
 
 
 RESOURCES += \

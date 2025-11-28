@@ -3,7 +3,6 @@ INCLUDEPATH += \
 
 SOURCES += \
     $$PWD/RSDatabaseCreate.cpp \
-    $$PWD/RSMessageView.cpp \
     $$PWD/RSGraphView.cpp \
     $$PWD/RSGlobalMethods.cpp \
     $$PWD/RSStylesManager.cpp \
@@ -14,7 +13,6 @@ SOURCES += \
 
 HEADERS += \
     $$PWD/RSDatabaseCreate.h \
-    $$PWD/RSMessageView.h \
     $$PWD/RSGraphView.h \
     $$PWD/RSGlobalMethods.h \
     $$PWD/RSStylesManager.h \
@@ -27,7 +25,6 @@ HEADERS += \
     $$PWD/IRSMessageView.h
 
 FORMS += \
-    $$PWD/RSMessageView.ui \
     $$PWD/RSGraphView.ui \
     $$PWD/RexDataGrid.ui \
     $$PWD/HistoWidget.ui

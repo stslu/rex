@@ -299,7 +299,7 @@ void  RSGraphView::createDistributionsHistogramsPage()
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     mainSplitter->setHandleWidth(1);
 
     mainSplitter->setHandleWidth(1);
@@ -349,7 +349,7 @@ void RSGraphView::createFailuresHistogramsPage()
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     mainSplitter->setHandleWidth(1);
 
     mainSplitter->setHandleWidth(1);
@@ -392,7 +392,7 @@ void  RSGraphView::createNoisesHistogramsPage()
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     mainSplitter->setHandleWidth(1);
 
     mainSplitter->setHandleWidth(1);
@@ -435,7 +435,7 @@ void RSGraphView::createFidelitiesHistogramsPage()
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     mainSplitter->setHandleWidth(1);
 
     mainSplitter->setHandleWidth(1);
@@ -477,7 +477,7 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     mainSplitter->setHandleWidth(1);
     container->setLayout(new QGridLayout(container));
     container->layout()->addWidget(mainSplitter);
@@ -512,7 +512,7 @@ void RSGraphView::createObjects()
     m_plotMap.insert("Trend", ui->m_trendPlot);
     m_plotMap.insert("Deviation", ui->m_deviationPlot);
     ui->m_tabView->setCurrentWidget(ui->m_trendTab);
-    ui->m_tabView->setStyleSheet("font: 11pt Arial Narrow;");
+    // ui->m_tabView->setStyleSheet("font: 11pt Arial Narrow;");
 
     m_lastOneOnly = true;
     m_runFlag = false;

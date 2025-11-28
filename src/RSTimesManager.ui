@@ -43,11 +43,8 @@
    </property>
    <item row="0" column="0">
     <widget class="QFrame" name="m_border">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Sunken</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <property name="leftMargin">
@@ -114,7 +111,7 @@ QDateEdit {
               <string>Start Date</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+              <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -144,7 +141,7 @@ QDateEdit {
               <string>End Date</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -171,7 +168,7 @@ QDateEdit {
               <string>Step Duration</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignJustify|Qt::AlignVCenter</set>
+              <set>Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -195,7 +192,7 @@ QDateEdit {
               <string>Step Max</string>
              </property>
              <property name="alignment">
-              <set>Qt::AlignCenter</set>
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>

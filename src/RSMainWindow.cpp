@@ -134,7 +134,7 @@ void RSMainWindow::setupUi()
     //Add widgets in splitters
     QSplitter* mainSplitter = new QSplitter(this);
     QSplitter* leftSplitter = new QSplitter(this);
-    leftSplitter->setStyleSheet("handle {border-color: dark;border-width: 2px;}");
+    // leftSplitter->setStyleSheet("handle {border-color: dark;border-width: 2px;}");
 
     leftSplitter->setOrientation(Qt::Vertical);
 
@@ -143,7 +143,7 @@ void RSMainWindow::setupUi()
     leftSplitter->addWidget(m_optionsManager);
     m_messageView->setVisible(true);
     leftSplitter->addWidget(m_messageView);
-    leftSplitter->setFrameStyle(QFrame::StyledPanel);
+    // leftSplitter->setFrameStyle(QFrame::StyledPanel);
 
     leftSplitter->setStretchFactor(1, 1);
     mainSplitter->setOrientation(Qt::Horizontal);
@@ -152,7 +152,7 @@ void RSMainWindow::setupUi()
     mainSplitter->setOpaqueResize( false );
     mainSplitter->setChildrenCollapsible( true );
     mainSplitter->setWindowState(Qt::WindowMaximized);
-    mainSplitter->setFrameStyle(QFrame::StyledPanel);
+    // mainSplitter->setFrameStyle(QFrame::StyledPanel);
     this->layout()->addWidget(mainSplitter);
     mainSplitter->setHandleWidth(1);
 }

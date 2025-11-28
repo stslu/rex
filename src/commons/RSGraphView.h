@@ -93,7 +93,7 @@ public:
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setMaximumSize(QSize(16777215, 22));
         lineEdit->setReadOnly(true);
-        lineEdit->setStyleSheet("background-color: rgb(220, 220, 220); font-weight:bold");
+        // lineEdit->setStyleSheet("background-color: rgb(220, 220, 220); font-weight:bold");
 
         m_dataGrid = new RexDataGrid(false,this);
         m_dataGrid->setObjectName(QStringLiteral("m_dataTableView"));

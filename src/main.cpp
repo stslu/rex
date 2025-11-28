@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "RSMainWindow.h"
-#include "RSStylesManager.h"
+// #include "RSStylesManager.h"
 #include "RSSettingsManager.h"
 #include "RSLogger.h"
 #include "RSDatabaseAccess.h"

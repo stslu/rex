@@ -40,7 +40,7 @@ RSMessageView::RSMessageView(QWidget *parent) : QWidget(parent), ui(new Ui::RSMe
 
 RSMessageView::~RSMessageView()
 {
-     RSLogger::instance()->info(Q_FUNC_INFO, "End the module");
+    RSLogger::instance()->info(Q_FUNC_INFO, "End the module");
     delete ui;
 }
 

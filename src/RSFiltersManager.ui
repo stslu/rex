@@ -38,10 +38,10 @@
    <item row="0" column="0">
     <widget class="QFrame" name="m_border">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2" rowstretch="0,0">
       <property name="leftMargin">
@@ -492,33 +492,6 @@ font-weight: bold;
           </widget>
          </item>
         </layout>
-        <zorder>m_brandEdit</zorder>
-        <zorder>modelLabel</zorder>
-        <zorder>m_modelEdit</zorder>
-        <zorder>technoLabel</zorder>
-        <zorder>m_technologyEdit</zorder>
-        <zorder>physicalMeasLabel</zorder>
-        <zorder>m_physicalMeasurementEdit</zorder>
-        <zorder>outputSignalLabel</zorder>
-        <zorder>m_outputSignalEdit</zorder>
-        <zorder>label_8</zorder>
-        <zorder>m_measurementRangeEdit</zorder>
-        <zorder>label_13</zorder>
-        <zorder>m_theoricalAccuracyEdit</zorder>
-        <zorder>label_15</zorder>
-        <zorder>m_unitEdit</zorder>
-        <zorder>label_16</zorder>
-        <zorder>m_experimentationEdit</zorder>
-        <zorder>brandLabel</zorder>
-        <zorder>nbBrand</zorder>
-        <zorder>nbModel</zorder>
-        <zorder>nbTechno</zorder>
-        <zorder>nbPhysicalMeas</zorder>
-        <zorder>nbOutputSignal</zorder>
-        <zorder>nbMeasRange</zorder>
-        <zorder>nbTheoricalAccuracy</zorder>
-        <zorder>nbUnit</zorder>
-        <zorder>nbExperimentations</zorder>
        </widget>
       </item>
       <item row="0" column="0">
@@ -528,15 +501,6 @@ font-weight: bold;
           <width>16777215</width>
           <height>60</height>
          </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(230, 230, 230);</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
@@ -556,7 +520,6 @@ font-weight: bold;
            <property name="font">
             <font>
              <pointsize>9</pointsize>
-             <weight>75</weight>
              <italic>true</italic>
              <bold>true</bold>
             </font>
@@ -565,12 +528,12 @@ font-weight: bold;
             <string/>
            </property>
            <property name="alignment">
-            <set>Qt::AlignCenter</set>
+            <set>Qt::AlignmentFlag::AlignCenter</set>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="m_resetButton">
+          <widget class="QPushButton" name="m_resetButton">
            <property name="minimumSize">
             <size>
              <width>30</width>
@@ -584,12 +547,16 @@ font-weight: bold;
             </size>
            </property>
            <property name="text">
-            <string>...</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="RSDesktop.qrc">
+             <normaloff>:/img/resources/image/img/reset.svg</normaloff>:/img/resources/image/img/reset.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="setDynamicFilter">
+          <widget class="QPushButton" name="setDynamicFilter">
            <property name="minimumSize">
             <size>
              <width>30</width>
@@ -606,7 +573,14 @@ font-weight: bold;
             <string notr="true"/>
            </property>
            <property name="text">
-            <string>...</string>
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="RSDesktop.qrc">
+             <normaloff>:/img/resources/image/img/execute.svg</normaloff>:/img/resources/image/img/execute.svg</iconset>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -618,6 +592,8 @@ font-weight: bold;
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="RSDesktop.qrc"/>
+ </resources>
  <connections/>
 </ui>

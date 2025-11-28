@@ -12,6 +12,9 @@
     <qresource prefix="/img">
         <file alias="Rex.png">resources/image/img/Rex.png</file>
         <file>resources/image/img/excel.png</file>
+        <file>resources/image/img/excel_export.svg</file>
+        <file>resources/image/img/execute.svg</file>
+        <file>resources/image/img/reset.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>resources/image/img/excel.png</file>

@@ -16,9 +16,6 @@
   <property name="autoFillBackground">
    <bool>true</bool>
   </property>
-  <property name="styleSheet">
-   <string notr="true"/>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -43,13 +40,6 @@
          </property>
          <property name="autoFillBackground">
           <bool>false</bool>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton{
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 white, stop: 1 grey);
-color: black;
-font-weight: bold;
-}</string>
          </property>
          <property name="text">
           <string>Compute...</string>
@@ -79,16 +69,6 @@ font-weight: bold;
          <property name="autoFillBackground">
           <bool>false</bool>
          </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(220, 220, 220);
-border-color: rgb(199, 199, 199);
-color: rgb(0, 0, 0);
-
-QProgressBar::chunk {
-     background-color: darkblue;
-color: lightGreen
- }</string>
-         </property>
          <property name="maximum">
           <number>10000</number>
          </property>
@@ -96,7 +76,7 @@ color: lightGreen
           <number>0</number>
          </property>
          <property name="alignment">
-          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
          </property>
          <property name="textVisible">
           <bool>true</bool>
@@ -122,9 +102,6 @@ color: lightGreen
            <width>2000</width>
            <height>22</height>
           </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(220, 220, 220);</string>
          </property>
         </widget>
        </item>
