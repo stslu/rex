@@ -43,7 +43,7 @@ public:
 
 
 protected slots:
-    void slotCurrentIndexChanged(const QString& text);
+    void slotCurrentIndexChanged(int ind);
 
     /**
      * @brief slotResetButtonClicked : reset the filter widget. Disconnect slots, fill the combo, connect slots

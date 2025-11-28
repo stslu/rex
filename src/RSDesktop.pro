@@ -54,8 +54,8 @@ FORMS += \
     RSFiltersManager.ui \
     RSOptionsManager.ui \
     RSDatabaseConfig.ui \
-    RSOptionsManagerWidget.ui \
-    commons/RSMessageView.ui
+    RSOptionsManagerWidget.ui
+
 
 
 RESOURCES += \

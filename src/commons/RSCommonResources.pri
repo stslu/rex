@@ -27,4 +27,5 @@ HEADERS += \
 FORMS += \
     $$PWD/RSGraphView.ui \
     $$PWD/RexDataGrid.ui \
-    $$PWD/HistoWidget.ui
+    $$PWD/HistoWidget.ui \
+    $$PWD/RSMessageView.ui

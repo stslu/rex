@@ -181,9 +181,45 @@ void RSFiltersManager::setFiltersFieldsFromRexFilter(QComboBox* activeCombo)
 
 void RSFiltersManager::connectFilters()
 {
-    foreach(QComboBox* comboBox, m_comboTextMap.keys()) {
-        connect(comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotCurrentIndexChanged(QString)), Qt::UniqueConnection);
+    qDebug().noquote() << "RSFiltersManager::connectFilters()";
+
+    // foreach(QComboBox* comboBox, m_comboTextMap.keys()) {
+    //     // qDebug().noquote() << "    combo:" << ;
+
+    //     connect(comboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotCurrentIndexChanged(QString)), Qt::UniqueConnection);
+    // }
+
+    if(ui->m_brandEdit){
+        connect(ui->m_brandEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
+    if(ui->m_modelEdit){
+        connect(ui->m_brandEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_technologyEdit){
+        connect(ui->m_technologyEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_physicalMeasurementEdit){
+        connect(ui->m_physicalMeasurementEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_outputSignalEdit){
+        connect(ui->m_outputSignalEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_measurementRangeEdit){
+        connect(ui->m_measurementRangeEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_theoricalAccuracyEdit){
+        connect(ui->m_theoricalAccuracyEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_unitEdit){
+        connect(ui->m_unitEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+    if(ui->m_experimentationEdit){
+        connect(ui->m_experimentationEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+    }
+
+
+
+
 }
 
 void RSFiltersManager::blockFiltersSignals(bool block)
@@ -194,6 +230,7 @@ void RSFiltersManager::blockFiltersSignals(bool block)
 
 void RSFiltersManager::setFilterFields()
 {
+    qDebug().noquote() << "RSFiltersManager::setFilterFields()";
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
     blockFiltersSignals(true);
 
@@ -267,8 +304,9 @@ const QString& RSFiltersManager::initFiltersQuery()
     return filterQuery;
 }
 
-void RSFiltersManager::slotCurrentIndexChanged(const QString& text)
+void RSFiltersManager::slotCurrentIndexChanged(int ind)
 {
+    qDebug().noquote() << "RSFiltersManager::slotCurrentIndexChanged:" << ind;
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
     //! --- --Get the current combo address
@@ -276,7 +314,7 @@ void RSFiltersManager::slotCurrentIndexChanged(const QString& text)
     if(!activeCombo)
         return;
     //! Memorize the last text
-    m_comboTextMap[activeCombo] = text;
+    m_comboTextMap[activeCombo] = activeCombo->currentText();
 
     //! --- --update the field value of this filter in the map
     RSLogger::instance()->info(Q_FUNC_INFO, "update the field value of this filter in the map");
@@ -299,6 +337,7 @@ void RSFiltersManager::slotCurrentIndexChanged(const QString& text)
 
     //!Reset the filters in dynamic mode
     if(isDynamic()) {
+        qDebug().noquote() << "   --> dynamic mode, update all filter";
         setFiltersFieldsFromRexFilter(activeCombo);
     }
 

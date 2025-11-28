@@ -26,8 +26,9 @@ RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), ui(new Ui::RSMain
   , m_messageView(0)
   , m_logic(0)
   , m_databaseAccess(0)
-{   
-    position();
+{
+
+    // position();
 
     createConnections();
 
@@ -35,16 +36,16 @@ RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), ui(new Ui::RSMain
 
     setupUi();
 
-    // this->adjustSize();
-    // this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
-    QScreen *screen = this->screen();
-    if (!screen)
-        screen = QGuiApplication::primaryScreen();  // fallback au cas où
+    // // this->adjustSize();
+    // // this->move(QApplication::desktop()->screen()->rect().center() - this->rect().center());
+    // QScreen *screen = this->screen();
+    // if (!screen)
+    //     screen = QGuiApplication::primaryScreen();  // fallback au cas où
 
-    if (screen) {
-        const QRect screenRect = screen->geometry();  // ou availableGeometry() si tu veux ignorer la barre des tâches
-        this->move(screenRect.center() - this->rect().center());
-    }
+    // if (screen) {
+    //     const QRect screenRect = screen->geometry();  // ou availableGeometry() si tu veux ignorer la barre des tâches
+    //     this->move(screenRect.center() - this->rect().center());
+    // }
 
     // slotInitializeSystem();
     qDebug().noquote() << "--->singleShot slotInitializeSystem";
@@ -272,6 +273,7 @@ void RSMainWindow::keyPressEvent(QKeyEvent *event)
 
 void RSMainWindow::slotInitializeSystem()
 {
+    qDebug().noquote() << "RSMainWindow::slotInitializeSystem...";
     // return;
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
