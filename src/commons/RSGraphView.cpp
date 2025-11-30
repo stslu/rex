@@ -1,6 +1,6 @@
 #include "RSGraphView.h"
 #include "ui_RSGraphView.h"
-#include "RSPictoManager.h"
+// #include "RSPictoManager.h"
 #include "RSSettingsManager.h"
 #include "RSDataManager.h"
 #include "RSMessageView.h"
@@ -67,8 +67,10 @@ RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
     if(ui->measTypeIndicator)
     {
         ui->measTypeIndicator->setVisible(false);
-        QPixmap pixmap = RSPictoManager::Instance()->getIcon(fa::fa_calculator, "black").pixmap(ui->measTypeIndicator->size());
+        // QPixmap pixmap = RSPictoManager::Instance()->getIcon(fa::fa_calculator, "black").pixmap(ui->measTypeIndicator->size());
+        QPixmap pixmap("qrc:/img/resources/image/img/calculator_3.svg");
         ui->measTypeIndicator->setPixmap(pixmap);
+        // qrc:/img/resources/image/img/calculator_3.svg
     }
 
     position();
@@ -488,10 +490,10 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
 
 void RSGraphView::createObjects()
 {
-    ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_backward, "black"));
-    ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_forward, "black"));
-    ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_backward, "black"));
-    ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_forward, "black"));
+    // ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_backward, "black"));
+    // ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_forward, "black"));
+    // ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_backward, "black"));
+    // ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_forward, "black"));
 
     //m_sensorsComboBox
     initDatagridPointers();

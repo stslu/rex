@@ -6,7 +6,7 @@
 
 QT       += core gui sql printsupport widgets
 
-CONFIG +=  libxl qtitangrid qcustomplot gsl qtawesome
+CONFIG +=  libxl qtitangrid qcustomplot gsl # qtawesome
 
 TARGET = RexSensors
 TEMPLATE = app

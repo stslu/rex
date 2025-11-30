@@ -15,6 +15,12 @@
         <file>resources/image/img/excel_export.svg</file>
         <file>resources/image/img/execute.svg</file>
         <file>resources/image/img/reset.svg</file>
+        <file>resources/image/img/fast_backward.svg</file>
+        <file>resources/image/img/fast_forward.svg</file>
+        <file>resources/image/img/file_db.svg</file>
+        <file>resources/image/img/step_backward.svg</file>
+        <file>resources/image/img/step_forward.svg</file>
+        <file>resources/image/img/calculator_3.svg</file>
     </qresource>
     <qresource prefix="/">
         <file>resources/image/img/excel.png</file>

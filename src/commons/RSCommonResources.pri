@@ -6,7 +6,7 @@ SOURCES += \
     $$PWD/RSGraphView.cpp \
     $$PWD/RSGlobalMethods.cpp \
     $$PWD/RSStylesManager.cpp \
-    $$PWD/RSPictoManager.cpp \
+    # $$PWD/RSPictoManager.cpp \
     $$PWD/RSLogger.cpp \
     $$PWD/RexDataGrid.cpp \
     $$PWD/RexDataGridModel.cpp
@@ -16,7 +16,7 @@ HEADERS += \
     $$PWD/RSGraphView.h \
     $$PWD/RSGlobalMethods.h \
     $$PWD/RSStylesManager.h \
-    $$PWD/RSPictoManager.h \
+    # $$PWD/RSPictoManager.h \
     $$PWD/RSLogger.h \
     $$PWD/RexDataGrid.h \
     $$PWD/RexDataGridModel.h \

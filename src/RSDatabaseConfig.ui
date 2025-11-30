@@ -169,6 +169,10 @@
                 <property name="text">
                  <string>...</string>
                 </property>
+                <property name="icon">
+                 <iconset resource="RSDesktop.qrc">
+                  <normaloff>:/img/resources/image/img/file_db.svg</normaloff>:/img/resources/image/img/file_db.svg</iconset>
+                </property>
                </widget>
               </item>
              </layout>
@@ -341,6 +345,10 @@
                 </property>
                 <property name="text">
                  <string>...</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="RSDesktop.qrc">
+                  <normaloff>:/img/resources/image/img/file_db.svg</normaloff>:/img/resources/image/img/file_db.svg</iconset>
                 </property>
                </widget>
               </item>
@@ -658,7 +666,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="RSDesktop.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>m_cancelButton</sender>
@@ -694,7 +704,7 @@
   </connection>
  </connections>
  <buttongroups>
-  <buttongroup name="buttonGroup"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

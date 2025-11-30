@@ -3,7 +3,7 @@
 #include "RSDatabaseAccess.h"
 #include "RSGlobalMethods.h"
 #include "RSMessageView.h"
-#include "RSPictoManager.h"
+// #include "RSPictoManager.h"
 #include "RSSettingsManager.h"
 #include "Signaler.h"
 #include "ui_RSFiltersManager.h"
@@ -314,7 +314,7 @@ void RSFiltersManager::slotCurrentIndexChanged(int ind)
     if(!activeCombo)
         return;
     //! Memorize the last text
-    m_comboTextMap[activeCombo] = activeCombo->currentText();
+    m_comboTextMap[activeCombo] = activeCombo->itemText(ind);
 
     //! --- --update the field value of this filter in the map
     RSLogger::instance()->info(Q_FUNC_INFO, "update the field value of this filter in the map");

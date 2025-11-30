@@ -7,7 +7,7 @@
 #include "RSMessageView.h"
 #include "RSGraphView.h"
 #include "RSSettingsManager.h"
-#include "RSPictoManager.h"
+// #include "RSPictoManager.h"
 #include "RSDataManager.h"
 
 #include <QMessageBox>
@@ -189,7 +189,7 @@ void RSMainWindow::createObjects()
 
     RSDatabaseCreate::Instance(this);
 
-    RSPictoManager::Instance(this);
+    // RSPictoManager::Instance(this);
 
     m_closeApplication = false;
 
