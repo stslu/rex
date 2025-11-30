@@ -66,6 +66,6 @@ include(computations\RSDataComputations.pri)
 include(interfaces\RSInterfaceResources.pri)
 #include(..\QtAwesome\QtAwesome\QtAwesome.pri)
 
-DISTFILES += \
-    resources/image/img/excel.png
+# DISTFILES += \
+#     resources/image/img/excel.png
 
