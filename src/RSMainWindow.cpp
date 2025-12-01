@@ -18,14 +18,14 @@
 
 #include <QDebug>
 
-RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), ui(new Ui::RSMainWindow),IRSMainWindow(),
-    m_timesManager(0),
-    m_filtersManager(0),
-    m_optionsManager(0),
-    m_graphView(0)
-  , m_messageView(0)
-  , m_logic(0)
-  , m_databaseAccess(0)
+RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), IRSMainWindow(),ui(new Ui::RSMainWindow),
+    m_logic(0),
+    m_timesManager(nullptr),
+    m_filtersManager(nullptr),
+    m_optionsManager(nullptr)
+  , m_graphView(nullptr)
+  , m_messageView(nullptr)
+  , m_databaseAccess(nullptr)
 {
 
     // position();
