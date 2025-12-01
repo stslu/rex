@@ -116,7 +116,7 @@ void RSMainWindow::setupUi()
 
     if(!m_graphView)
     {
-        m_graphView = new RSGraphView(m_databaseAccess,this);
+        m_graphView = new RSGraphView(m_databaseAccess,this); //TODO: Exception, vérifier
         m_graphView->setStepViewMax(m_timesManager->stepViewMax());
     }
 
@@ -195,19 +195,44 @@ void RSMainWindow::createObjects()
 
 }
 
+// void RSMainWindow::createConnections()
+// {
+//     //! brief : must update the sensor name list when the selection changes
+//     bool result =  connect(Signaler::instance(),SIGNAL(signal_emitMessage(QMessageBox::Icon , const QString& , const QString& , const QString&)),
+//                            this,SLOT(slotTreatMessage(QMessageBox::Icon , const QString& , const QString& , const QString& )));
+//     if(!result)
+//     {
+//         RSLogger::instance()->info(Q_FUNC_INFO,"Failed to connect slotTreatMessage");
+//     }
+
+//     if(!connect(Signaler::instance(),SIGNAL(signal_closeAppli()),this,SLOT(slot_closeAppli())))
+//         RSLogger::instance()->info(Q_FUNC_INFO,"Failed to connect slot_closeAppli");
+// }
+
+// Nouvelle façon d'utiliser les connect
 void RSMainWindow::createConnections()
 {
-    //! brief : must update the sensor name list when the selection changes
-    bool result =  connect(Signaler::instance(),SIGNAL(signal_emitMessage(QMessageBox::Icon , const QString& , const QString& , const QString&)),
-                           this,SLOT(slotTreatMessage(QMessageBox::Icon , const QString& , const QString& , const QString& )));
-    if(!result)
+    // 1. Connexion pour signal_emitMessage
+    // Note : Plus besoin de spécifier les types d'arguments (QMessageBox::Icon, etc.) dans le connect.
+    // Le compilateur les déduit automatiquement.
+    auto connMessage = connect(Signaler::instance(), &Signaler::signal_emitMessage, this, &RSMainWindow::slotTreatMessage);
+
+    // Bien que la syntaxe moderne garantisse la correspondance à la compilation,
+    // on peut toujours vérifier le retour (QMetaObject::Connection) si Signaler::instance() risque d'être null.
+    if (!connMessage)
     {
-        RSLogger::instance()->info(Q_FUNC_INFO,"Failed to connect slotTreatMessage");
+        RSLogger::instance()->info(Q_FUNC_INFO, "Failed to connect slotTreatMessage");
     }
 
-    if(!connect(Signaler::instance(),SIGNAL(signal_closeAppli()),this,SLOT(slot_closeAppli())))
-        RSLogger::instance()->info(Q_FUNC_INFO,"Failed to connect slot_closeAppli");
+    // 2. Connexion pour signal_closeAppli
+    auto connClose = connect(Signaler::instance(), &Signaler::signal_closeAppli, this, &RSMainWindow::slot_closeAppli);
+
+    if (!connClose)
+    {
+        RSLogger::instance()->info(Q_FUNC_INFO, "Failed to connect slot_closeAppli");
+    }
 }
+
 
 int RSMainWindow::quitConfirmation()
 { 

@@ -144,6 +144,8 @@ protected:
     bool m_g7dbStructureIsOk;
     bool m_g6dbStructureIsOk;
 
+    QVariant loadAlwaysDisplayDatabaseConfigOnStart();
+
     QVariant loadG6DatabaseFile();
     QVariant loadG7DatabaseFile();
     void saveG7UserName() ;
@@ -186,6 +188,8 @@ private:
     QMap<QString, QString> m_databaseUserNameMap;
     QMap<QString, QString> m_databasePasswordMap;
     QMap<QString, QString> m_databasePortMap;
+
+    bool m_alwaysDisplayDatabaseConfigOnStart;
 
     QString m_g7UserName;
     QString m_g6UserName;

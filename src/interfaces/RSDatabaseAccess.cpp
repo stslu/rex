@@ -32,6 +32,7 @@ RSDatabaseAccess::RSDatabaseAccess(QObject* parent)
     , m_experienceBySensorMap(0)
     , m_loadNodesWithNoAst(false)
     , m_loadDeadEntities(true)
+    , m_alwaysDisplayDatabaseConfigOnStart(false)
 {
     loadSettings(QString());
 
@@ -71,6 +72,8 @@ void RSDatabaseAccess::createObjects()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
     m_databaseConfig.reset(new RSDatabaseConfig);
+
+    m_alwaysDisplayDatabaseConfigOnStart = loadAlwaysDisplayDatabaseConfigOnStart().value<bool>();
 
     m_g6DatabaseFile = loadG6DatabaseFile().value<QString>();
 
@@ -723,6 +726,8 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
     RSDataManager::Instance()->setData("RexDatabase.G6Database", loadG6DatabaseFile());
     RSDataManager::Instance()->setData("RexDatabase.G7Database", loadG7DatabaseFile());
 
+    m_alwaysDisplayDatabaseConfigOnStart  = loadAlwaysDisplayDatabaseConfigOnStart().toBool();
+
     m_g7DatabaseFile = loadG7DatabaseFile().toString();
 
     m_g7Port = loadG7Port().toString();
@@ -771,6 +776,18 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
 
+QVariant RSDatabaseAccess::loadAlwaysDisplayDatabaseConfigOnStart() {
+    QString m_id       = "RexDatabase";
+    QString m_key      = "RexDatabase.AlwaysDisplayDatabaseConfigOnStart";
+    QVariant m_default = QVariant(false);
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "AlwaysDisplayDatabaseConfigOnStart = " + data.toString());
+
+    return data;
+}
+
 QVariant RSDatabaseAccess::loadG6DatabaseFile()
 {
     QString m_id       = "RexDatabase";
@@ -805,7 +822,7 @@ QVariant RSDatabaseAccess::loadDisplayOptions()
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
     RSLogger::instance()->info(Q_FUNC_INFO, "DisplayOptions = " + data.toString());
 
-    //    return data;
+    // return data; //On ignore la config
     return QVariant(true);
 }
 
@@ -1161,6 +1178,10 @@ bool RSDatabaseAccess::isG7StructureOK() const
 
 void RSDatabaseAccess::showDatabaseConfig()
 {
+    if(!m_alwaysDisplayDatabaseConfigOnStart){
+        return;
+    }
+
     m_databaseConfig.data()->setG6Path(m_g6DatabaseFile);
     m_databaseConfig.data()->setG7Path(m_g7DatabaseFile);
 
@@ -2733,3 +2754,5 @@ bool RSDatabaseAccess::nodesWithNoAstLoaded() const
 {
     return m_loadNodesWithNoAst;
 }
+
+
