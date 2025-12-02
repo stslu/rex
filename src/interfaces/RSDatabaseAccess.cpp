@@ -1,6 +1,7 @@
 #include "RSDatabaseAccess.h" // big data // not save data
 
 #include <QApplication>
+#include "QtCore"
 #include "RSDataManager.h"
 #include "RSGlobalMethods.h"
 #include "RSMessageView.h"
@@ -25,15 +26,16 @@ RSDatabaseAccess::RSDatabaseAccess(QObject* parent)
     : QObject(parent)
     , m_g7dbStructureIsOk(true)
     , m_g6dbStructureIsOk(true)
-    , m_g7Driver("QIBASE")
-    , m_g6Driver("QIBASE")
+    , m_alwaysDisplayDatabaseConfigOnStart(false)
+    , m_g7Driver("QFIREBIRD")
+    , m_g6Driver("QFIREBIRD")
     , m_g7Port("3050")
     , m_g6Port("3050")
     , m_experienceBySensorMap(0)
     , m_loadNodesWithNoAst(false)
     , m_loadDeadEntities(true)
-    , m_alwaysDisplayDatabaseConfigOnStart(false)
 {
+    m_tempDir.setAutoRemove(true);
     loadSettings(QString());
 
     createObjects();
@@ -50,6 +52,12 @@ RSDatabaseAccess::~RSDatabaseAccess()
 
     close();
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
+
+    if(m_tempDir.remove()){
+        RSLogger::instance()->info("Remove:", m_tempDir.path());
+    } else {
+        RSLogger::instance()->info("Fail to remove:", m_tempDir.path());
+    }
 }
 
 RSDatabaseAccess* RSDatabaseAccess::Instance(QObject* parent)
@@ -89,7 +97,9 @@ void RSDatabaseAccess::createObjects()
         m_loadNodesWithNoAst = data.isValid() ? data.toBool() : false;
     }
 
-    m_rexDatabaseFile = REX::DEFAULT_REX_APP_DB_FILE;
+
+    m_rexDatabaseFile = m_tempDir.path() + "/" + REX::DEFAULT_REX_APP_DB_FILE;
+    qDebug().noquote() << "tempSqlite:" << m_rexDatabaseFile;
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
@@ -158,7 +168,7 @@ void RSDatabaseAccess::addDatabasePort(const QString& databaseName, const QStrin
     m_databasePortMap.insert(databaseName, port);
 }
 
-void RSDatabaseAccess::addDatabaseSql(const QString& databaseName)
+void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
 {
     QString m_databaseDriver   = m_databaseDriverMap.value(databaseName);
     QString m_databaseFullName = m_databaseFullNameMap.value(databaseName);
@@ -181,7 +191,21 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName)
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("databasePort. %1").arg(databasePort));
     databaseSql.setPort(databasePort.toInt());
-    // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1");
+    if(!databaseName.contains("REX")){ //TODO: éviter codage en dur "REX", SQLITE ne supporte pas la suite. Mettre un paramètre additionnel
+        if(utf8) {
+            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=UTF8";
+            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=UTF8"); // base G7 par exemple, supporte UTF8
+        } else {
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=WIN1252";
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=WIN1252");
+
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
+
+            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
+            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO-8859-15"); //Ancienne DB firebird
+        }
+    }
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
@@ -199,7 +223,7 @@ void RSDatabaseAccess::saveDatabaseFullName(const QString& databaseName)
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
 
-bool RSDatabaseAccess::open(const QString& databaseName)
+bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start. db = " + databaseName);
     qDebug().noquote() << "Start. db = " << databaseName;
@@ -240,7 +264,7 @@ bool RSDatabaseAccess::open(const QString& databaseName)
         sqlDatabase = QSqlDatabase::database(databaseName);
 
         if(sqlDatabase.isOpen() == false) {
-            addDatabaseSql(databaseName);
+            addDatabaseSql(databaseName, utf8);
             RSLogger::instance()->info(Q_FUNC_INFO, "saveDatabaseFullName");
             saveDatabaseFullName(databaseName);
         }
@@ -270,72 +294,70 @@ bool RSDatabaseAccess::open(const QString& databaseName)
 bool RSDatabaseAccess::open()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
-    bool m_open = true;
+    bool isOpen = true;
 
-    do {
-        RSMessageView::Instance()->showData("======== DATABASES INITIALIZATION ============\n \tPlease patient...");
-        QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-        m_open = true;
-        addDatabaseDriver("G6", m_g6Driver);
-        addDatabaseFullName("G6", m_g6DatabaseFile);
-        addDatabaseUserName("G6", m_g6UserName);
-        addDatabasePassword("G6", m_g6Password);
-        addDatabasePort("G6", m_g6Port);
-        m_open &= open("G6");
+    RSMessageView::Instance()->showData("======== DATABASES INITIALIZATION ============\n \tPlease patient...");
+    QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+    isOpen = true;
+    addDatabaseDriver("G6", m_g6Driver);
+    addDatabaseFullName("G6", m_g6DatabaseFile);
+    addDatabaseUserName("G6", m_g6UserName);
+    addDatabasePassword("G6", m_g6Password);
+    addDatabasePort("G6", m_g6Port);
+    isOpen &= open("G6", false);
 
-        addDatabaseDriver("G7", m_g7Driver);
-        addDatabaseFullName("G7", m_g7DatabaseFile);
-        addDatabaseUserName("G7", m_g7UserName);
-        addDatabasePassword("G7", m_g7Password);
-        addDatabasePort("G7", m_g7Port);
-        m_open &= open("G7");
+    addDatabaseDriver("G7", m_g7Driver);
+    addDatabaseFullName("G7", m_g7DatabaseFile);
+    addDatabaseUserName("G7", m_g7UserName);
+    addDatabasePassword("G7", m_g7Password);
+    addDatabasePort("G7", m_g7Port);
+    isOpen &= open("G7", true);
 
-        addDatabaseDriver("REX", "QSQLITE");
-        addDatabaseFullName("REX", m_rexDatabaseFile);
-        addDatabaseHostName("REX", "");
-        addDatabaseUserName("REX", "");
-        addDatabasePassword("REX", "");
-        addDatabasePort("REX", "");
-        m_open &= open("REX");
+    addDatabaseDriver("REX", "QSQLITE");
+    addDatabaseFullName("REX", m_rexDatabaseFile);
+    addDatabaseHostName("REX", "");
+    addDatabaseUserName("REX", "");
+    addDatabasePassword("REX", "");
+    addDatabasePort("REX", "");
+    isOpen &= open("REX", false); //utf8 sera ignoré
 
-        // Get the database paths
-        if(m_open == false) {
-            m_databaseConfig.data()->setMessage(tr("Please, set a valid  configration.."));
+    // Get the database paths
+    if(!isOpen) {
+        m_databaseConfig.data()->setMessage(tr("Please, set a valid  configration.."));
 
-            m_databaseConfig.data()->setG6Login(m_g6DatabaseFile, m_g6UserName, m_g6Password);
-            m_databaseConfig.data()->setG7Login(m_g7DatabaseFile, m_g7UserName, m_g7Password);
-            m_databaseConfig.data()->setLoadDeadEntitiesOption(m_loadDeadEntities);
-            m_databaseConfig.data()->setLoadNodeswithNoAstOption(m_loadNodesWithNoAst);
-            m_databaseConfig.data()->setEnabledOptions(m_displayOptions);
+        m_databaseConfig.data()->setG6Login(m_g6DatabaseFile, m_g6UserName, m_g6Password);
+        m_databaseConfig.data()->setG7Login(m_g7DatabaseFile, m_g7UserName, m_g7Password);
+        m_databaseConfig.data()->setLoadDeadEntitiesOption(m_loadDeadEntities);
+        m_databaseConfig.data()->setLoadNodeswithNoAstOption(m_loadNodesWithNoAst);
+        m_databaseConfig.data()->setEnabledOptions(m_displayOptions);
 
-            int m_result = m_databaseConfig->exec();
+        int m_result = m_databaseConfig->exec();
 
-            if(m_result == QDialog::Accepted) {
-                QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-                m_g6DatabaseFile = m_databaseConfig->getG6DatabaseFile();
-                m_g7DatabaseFile = m_databaseConfig->getG7DatabaseFile();
+        if(m_result == QDialog::Accepted) {
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            m_g6DatabaseFile = m_databaseConfig->getG6DatabaseFile();
+            m_g7DatabaseFile = m_databaseConfig->getG7DatabaseFile();
 
-                m_g6UserName = m_databaseConfig->getG6UserName();
-                m_g7UserName = m_databaseConfig->getG7UserName();
+            m_g6UserName = m_databaseConfig->getG6UserName();
+            m_g7UserName = m_databaseConfig->getG7UserName();
 
-                m_g6Password = m_databaseConfig->getG6Pwd();
-                m_g7Password = m_databaseConfig->getG7Pwd();
+            m_g6Password = m_databaseConfig->getG6Pwd();
+            m_g7Password = m_databaseConfig->getG7Pwd();
 
-                QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
-                // open();
-            } else if(m_result == QDialog::Rejected) {
-                emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error Database Config"),
-                                                              tr("RexSensors cannot open database.<br/>"
-                                                                 "<font style='color: gray'>"
-                                                                 "1 - Check Firebird DB Driver<br/>"
-                                                                 "2 - Check SQLite DB Driver <br/>"
-                                                                 "3 - Check G6 & G7 database locations <br/>"
-                                                                 "4 - Check G6 & G7 user name and password"
-                                                                 "</font>"));
-                emit Signaler::instance()->signal_closeAppli();
-            }
+            QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
+            // open();
+        } else if(m_result == QDialog::Rejected) {
+            emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error Database Config"),
+                                                          tr("RexSensors cannot open database.<br/>"
+                                                             "<font style='color: gray'>"
+                                                             "1 - Check Firebird DB Driver<br/>"
+                                                             "2 - Check SQLite DB Driver <br/>"
+                                                             "3 - Check G6 & G7 database locations <br/>"
+                                                             "4 - Check G6 & G7 user name and password"
+                                                             "</font>"));
+            emit Signaler::instance()->signal_closeAppli();
         }
-    } while(m_open == false);
+    }
 
     RSDataManager::Instance()->setData("G6DatabaseFile", m_g6DatabaseFile);
     RSDataManager::Instance()->setData("G7DatabaseFile", m_g7DatabaseFile);
@@ -343,7 +365,7 @@ bool RSDatabaseAccess::open()
     m_databaseConfig.reset();
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
-    return m_open;
+    return isOpen;
 }
 
 void RSDatabaseAccess::close()
@@ -1445,7 +1467,7 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
     }
 
     QSqlQuery m_querySql(m_databaseSql);
-    bool m_exec = true;
+    bool isExecuted = true;
 
     QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
     QSqlQuery m_querySqlRex(m_databaseSqlRex);
@@ -1453,6 +1475,8 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
     bool m_queryRexOneOnly = true;
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
+    //TODO: DB_CODE à ne pas coder en dur
+    //SLU: ATTENTION
     QString strQuery = QString(" select distinct "
                                " mp.MP_CODE, "
                                " mp.MP_NAME, "
@@ -1478,10 +1502,10 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
                                " and mp.DB_CODE = 33813554 "
                                " and mp.MP_CODE is not null"
                                " and mp.AP_CODE is not null");
-    m_exec          &= m_querySql.exec(strQuery);
+    isExecuted  &= m_querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(m_exec == false) {
+    if(isExecuted == false) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
                                                       tr("%1 database cannot execute setG6DatasetTable_acqPoints().<br/>"
                                                          "ErrorText : %2<br/>"
@@ -1529,6 +1553,17 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
         QString m_apNameData               = m_querySql.value(m_apNameNo).toString();
         QString m_astBrandData             = m_querySql.value(m_astBrandNo).toString();
         QString m_astModelData             = m_querySql.value(m_astModelNo).toString();
+
+        // 1. Récupérer les octets bruts
+        QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
+        // 2. Convertir selon l'encodage supposé (ici Latin1 / Windows-1252)
+        // QString text = QString::fromLocal8Bit(rawData);
+        QStringDecoder decoder(QStringDecoder::Latin1);
+        // ou pour Windows-1252:
+        // QStringDecoder decoder("Windows-1252");
+        QString text = decoder(rawData);
+        qDebug().noquote() << "----->MODEL FROM G6:" << m_astModelData << "RAW:" << text;
+
         QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
         QString m_astRangeData             = m_querySql.value(m_astRangeNo).toString();
         QString m_astTheoricalAccuracyData = m_querySql.value(m_astTheoricalAccuracyNo).toString();
@@ -1569,10 +1604,10 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
         }
     }
 
-    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+    isExecuted &= m_querySqlRex.exec(m_queryStringRex);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Fill REX Database");
-    if(m_exec == false) {
+    if(isExecuted == false) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
                                                       tr("setG6DatasetTable_acqPoints Failed to insert data in G6DATASET table ().<br/>"
                                                          "ErrorText : %1<br/>"
@@ -1919,7 +1954,6 @@ void RSDatabaseAccess::setG7DatasetTable()
 void RSDatabaseAccess::setSensorByExpDatasetTable()
 {
     initExperienceBySensorMap();
-    return;
 
     RSMessageView::Instance()->showData("setSensorByExpDatasetTable");
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
@@ -2328,7 +2362,7 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
 
     bool m_exec = true;
 
-    QString strQuery = QString("select  * from REXFILTER ");
+    QString strQuery = QString("select * from REXFILTER ");
     m_exec          &= sqlQuery.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));

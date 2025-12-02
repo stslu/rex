@@ -98,7 +98,7 @@
               </font>
              </property>
              <property name="text">
-              <string>QIBASE</string>
+              <string>QFIREBIRD</string>
              </property>
              <property name="readOnly">
               <bool>true</bool>

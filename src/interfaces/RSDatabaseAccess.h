@@ -12,7 +12,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QString>
-#include <QString>
+#include <QTemporaryDir>
 
 #include "RSDatabaseConfig.h"
 #include "RSDataManager.h"
@@ -48,7 +48,7 @@ public:
     virtual bool isG7StructureOK() const;
 
     virtual bool open();
-    virtual bool open(const QString& databaseName);
+    virtual bool open(const QString& databaseName, bool utf8 = false);
     virtual void close();
 
     virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
@@ -234,7 +234,7 @@ private:
     virtual void addDatabaseUserName(const QString& databaseName, const QString& userName);
     virtual void addDatabasePassword(const QString& databaseName, const QString& password);
     virtual void addDatabasePort(const QString& databaseName, const QString& port);
-    virtual void addDatabaseSql(const QString& databaseName);
+    virtual void addDatabaseSql(const QString& databaseName, bool utf8 = false);
     virtual void saveDatabaseFullName(const QString& databaseName);
 
     /**
@@ -282,6 +282,8 @@ private:
     bool checkG7DatabaseStructure(QSqlDatabase& db) ;
     bool checkG6DatabaseStructure(QSqlDatabase& db) ;
     bool checkDatabaseStructure(QSqlDatabase& db, const  QMap<QString/*Table*/,QStringList/*Fields*/>& tabMap ) const;
+
+    QTemporaryDir m_tempDir;
 
 };
 

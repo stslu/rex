@@ -378,10 +378,13 @@ QList<QString> RSGlobalMethods::getRealTime(QList<double> msecs, QDateTime start
     return m_data;
 }
 
+//TODO: corriger. Le fichier sqlite est bien effacé mais pas le répertoire
 void RSGlobalMethods::removeFile(const QString& filename)
 {
+    qDebug().noquote() << "SQLITE :" << filename;
     QDir m_dir;
     m_dir.remove(filename);
+
 }
 
 QString RSGlobalMethods::rexNameAndVersion()

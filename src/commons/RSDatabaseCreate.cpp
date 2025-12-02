@@ -22,7 +22,7 @@ RSDatabaseCreate::~RSDatabaseCreate()
 
 RSDatabaseCreate* RSDatabaseCreate::Instance(QObject *parent)
 {
-    if(m_instance == 0)
+    if(m_instance == nullptr)
     {
         m_instance = new RSDatabaseCreate(parent);
     }
