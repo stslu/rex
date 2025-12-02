@@ -202,8 +202,14 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
             // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
             // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
 
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO-8859-15"); //Ancienne DB firebird
+
             qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
-            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO-8859-15"); //Ancienne DB firebird
+            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=NONE"); //Ancienne DB firebird
+
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=OCTETS";
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=OCTETS");
         }
     }
 
@@ -1556,13 +1562,11 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 
         // 1. Récupérer les octets bruts
         QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
-        // 2. Convertir selon l'encodage supposé (ici Latin1 / Windows-1252)
-        // QString text = QString::fromLocal8Bit(rawData);
-        QStringDecoder decoder(QStringDecoder::Latin1);
-        // ou pour Windows-1252:
-        // QStringDecoder decoder("Windows-1252");
-        QString text = decoder(rawData);
-        qDebug().noquote() << "----->MODEL FROM G6:" << m_astModelData << "RAW:" << text;
+        qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData. toHex(' ');
+        QString textLatin1 = QString::fromLatin1(rawData);
+        qDebug() << "---->Texte Latin1:" << textLatin1;
+        qDebug() << "---->Texte direct:" << m_astModelData;
+
 
         QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
         QString m_astRangeData             = m_querySql.value(m_astRangeNo).toString();
