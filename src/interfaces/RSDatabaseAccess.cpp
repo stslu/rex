@@ -196,8 +196,8 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
             qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=UTF8";
             databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=UTF8"); // base G7 par exemple, supporte UTF8
         } else {
-            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=WIN1252";
-            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=WIN1252");
+            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=WIN1252";
+            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=WIN1252");
 
             // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
             // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
@@ -205,8 +205,8 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
             // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
             // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO-8859-15"); //Ancienne DB firebird
 
-            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
-            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=NONE"); //Ancienne DB firebird
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=NONE";
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=NONE"); //Ancienne DB firebird
 
             // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=OCTETS";
             // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=OCTETS");
