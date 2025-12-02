@@ -25,6 +25,7 @@
 #include <qsqlindex.h>
 #include <qsqlquery.h>
 #include <qlist.h>
+#include <qstringlist.h>
 #include <qvector.h>
 #include <qtextcodec.h>
 #include <qmutex.h>
@@ -155,6 +156,13 @@ static QDate fromDate(const ISC_DATE *date)
     return QDate(1858, 11, 17).addDays(*date);
 }
 
+/**
+ * Helper function to encode strings using the appropriate codec
+ * 
+ * This is the counterpart to decodeString() for encoding strings when 
+ * writing to the database. Uses Latin1 encoding for legacy databases and
+ * UTF8 for modern databases.
+ */
 static QByteArray encodeString(QFirebirdDriverPrivate::TextCodec codec, const QString &str)
 {
     if (codec == QFirebirdDriverPrivate::TextCodec::Latin1) {
@@ -452,7 +460,6 @@ bool QFirebirdResultPrivate::prepare(const QString &query)
 
     // Get the query type
     char acBuffer[9];
-    isc_info_sql_stmt_type;
     char qType = isc_info_sql_stmt_type;
     isc_dsql_sql_info(status, &stmt, 1, &qType, sizeof(acBuffer), acBuffer);
     if (isError("Unable to get query type", QSqlError::StatementError))
@@ -586,6 +593,8 @@ bool QFirebirdResult::gotoNext(QSqlCachedResult::ValueCache &row, int rowIdx)
     const auto textCodec = d->drv_d_func()->textCodec;
 
     // Process each column
+    // Note: rowIdx is the starting position in the ValueCache for this row,
+    // so idx = rowIdx + i correctly positions each column value in the cache.
     for (int i = 0; i < d->sqlda->sqld; ++i) {
         int idx = rowIdx + i;
         XSQLVAR &v = d->sqlda->sqlvar[i];
@@ -888,13 +897,16 @@ bool QFirebirdDriver::open(const QString &db, const QString &user, const QString
             
             // Determine the text codec to use based on the charset
             // This is the core fix: store the codec for later use when reading strings
+            // Charsets that use Latin1-compatible single-byte encoding
+            static const QStringList latin1Charsets = {
+                u"NONE"_s, u"OCTETS"_s, u"WIN1252"_s, u"CP1252"_s,
+                u"ISO8859_1"_s, u"ISO-8859-1"_s, u"LATIN1"_s,
+                u"ISO8859_15"_s, u"ISO-8859-15"_s,
+                u"ASCII"_s, u"ANSI"_s
+            };
+            
             QString encUpper = val.toUpper();
-            if (encUpper == "NONE"_L1 || encUpper == "OCTETS"_L1 ||
-                encUpper == "WIN1252"_L1 || encUpper == "ISO8859_1"_L1 || 
-                encUpper == "ISO8859_15"_L1 || encUpper == "LATIN1"_L1 ||
-                encUpper == "ASCII"_L1 || encUpper == "ANSI"_L1 ||
-                encUpper == "CP1252"_L1 || encUpper == "ISO-8859-1"_L1 ||
-                encUpper == "ISO-8859-15"_L1) {
+            if (latin1Charsets.contains(encUpper)) {
                 d->textCodec = QFirebirdDriverPrivate::TextCodec::Latin1;
             } else {
                 d->textCodec = QFirebirdDriverPrivate::TextCodec::UTF8;
