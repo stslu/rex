@@ -374,11 +374,16 @@ public:
     ISC_STATUS status[20];
     QMap<QString, QFirebirdEventBuffer*> eventBuffers;
 	QStringConverter::Encoding encoding = QStringConverter::Utf8;
+
+    bool legacyNoLcCtype = false;
 };
 
 typedef QMap<void *, QFirebirdDriver *> QFirebirdBufferDriverMap;
 Q_GLOBAL_STATIC(QFirebirdBufferDriverMap, qBufferDriverMap)
 Q_GLOBAL_STATIC(QMutex, qMutex);
+// Map globale pour mémoriser le mode LEGACY "sans lc_ctype" par connexion
+typedef QMap<isc_db_handle, bool> QFirebirdLegacyModeMap;
+Q_GLOBAL_STATIC(QFirebirdLegacyModeMap, qLegacyNoLcCtypeMap)
 
 static void qFreeEventBuffer(QFirebirdEventBuffer* eBuffer)
 {
@@ -1307,10 +1312,25 @@ bool QFirebirdResult::gotoNext(QSqlCachedResult::ValueCache& row, int rowIdx)
         Q_ASSERT(buf);
         const auto sqltype = sqlvar.sqltype & ~1;
         switch (sqltype) {
-        case SQL_VARYING:
-            // pascal strings - a short with a length information followed by the data
-            row[idx] = QString::fromUtf8(buf + sizeof(short), *(short*)buf);
+        case SQL_VARYING: {
+            // pascal strings - a short with une longueur (short) + les données
+            const short len = *(short*)buf;
+            const char *dataPtr = buf + sizeof(short);
+
+            bool legacyNoLc = false;
+            if (qLegacyNoLcCtypeMap()) {
+                legacyNoLc = qLegacyNoLcCtypeMap()->value(d->firebird, false);
+            }
+
+            if (legacyNoLc) {
+                // Mode legacy "brut" pour base NONE : on suppose des octets 8 bits (latin1-like)
+                row[idx] = QString::fromLatin1(dataPtr, len);
+            } else {
+                // Comportement Qt 6 standard : UTF-8
+                row[idx] = QString::fromUtf8(dataPtr, len);
+            }
             break;
+        }
         case SQL_INT64: {
             Q_ASSERT(sqlvar.sqllen == sizeof(qint64));
             const auto val = *(qint64 *)buf;
@@ -1358,9 +1378,22 @@ bool QFirebirdResult::gotoNext(QSqlCachedResult::ValueCache& row, int rowIdx)
         case SQL_TYPE_DATE:
             row[idx] = fromDate(buf);
             break;
-        case SQL_TEXT:
-            row[idx] = QString::fromUtf8(buf, size);
+        case SQL_TEXT: {
+            const char *dataPtr = buf;
+            const int len = size;
+
+            bool legacyNoLc = false;
+            if (qLegacyNoLcCtypeMap()) {
+                legacyNoLc = qLegacyNoLcCtypeMap()->value(d->firebird, false);
+            }
+
+            if (legacyNoLc) {
+                row[idx] = QString::fromLatin1(dataPtr, len);
+            } else {
+                row[idx] = QString::fromUtf8(dataPtr, len);
+            }
             break;
+        }
         case SQL_BLOB:
             row[idx] = d->fetchBlob((ISC_QUAD*)buf);
             break;
@@ -1599,6 +1632,13 @@ bool QFirebirdDriver::open(const QString &db,
     QString encString;
     QByteArray role;
 
+    enum class RexEncodingMode {
+        Auto,      // comportement par défaut
+        Legacy,    // UNICODE_FSS (mode Qt 5.15)
+        Modern     // UTF-8 explicite
+    };
+    RexEncodingMode rexMode = RexEncodingMode::Auto;
+
     // 1. Utilisation d'une boucle "range-based" (plus lisible et sûr)
     for (auto entryView : opts) {
         
@@ -1622,25 +1662,72 @@ bool QFirebirdDriver::open(const QString &db,
                 role = val.toLocal8Bit();
                 role.truncate(255);
             }
+            else if (opt.compare(u"REX_ENCODING_MODE", Qt::CaseInsensitive) == 0) {
+                // valeurs possibles : LEGACY, MODERN (insensibles à la casse)
+                if (val.compare(u"LEGACY", Qt::CaseInsensitive) == 0) {
+                    rexMode = RexEncodingMode::Legacy;
+                } else if (val.compare(u"MODERN", Qt::CaseInsensitive) == 0) {
+                    rexMode = RexEncodingMode::Modern;
+                } else {
+                    qWarning("Unknown REX_ENCODING_MODE value '%s'. Expected LEGACY or MODERN. Using Auto.", qPrintable(val));
+                    rexMode = RexEncodingMode::Auto;
+                }
+            }
         }
     }
 	
 	// Use UNICODE_FSS when no ISC_DPB_LC_CTYPE is provided
-    if (encString.isEmpty()) {
-        encString = u"UTF-8"_s; // "UNICODE_FSS" correspond généralement à UTF-8 dans Firebird/Interbase
-        d->encoding = QStringConverter::Utf8;
-	} else {
-		// Vérifie si l'encodage existe
-		auto encodingOp = QStringConverter::encodingForName(encString.toLocal8Bit());
-		
-		if (encodingOp.has_value()) {
-			d->encoding = encodingOp.value();
-		} else {
-			qWarning("Unsupported encoding: %s. Using UNICODE_FSS (UTF-8) for ISC_DPB_LC_CTYPE.", qPrintable(encString));
-			encString = u"UTF-8"_s;
-			d->encoding = QStringConverter::Utf8;
-		}
-	}
+    // Gestion du mode d'encodage (REX_ENCODING_MODE)
+    // - LEGACY : on reproduit le comportement Qt 5.15 (fallback UNICODE_FSS)
+    // - MODERN : on force UTF-8 par défaut (comportement Qt 6 actuel)
+    // - Auto   : identique à MODERN pour l'instant (modifiable plus tard)
+
+    // --- GESTION DU MODE D'ENCODAGE (REX_ENCODING_MODE) ---
+
+    // Valeur par défaut : pas de mode legacy brut
+    bool legacyNoLcCtype = false;
+
+    if (rexMode == RexEncodingMode::Legacy) {
+        // Mode LEGACY :
+        // - Si l'utilisateur n'a PAS mis ISC_DPB_LC_CTYPE, on laisse encString vide
+        //   => aucun bloc isc_dpb_lc_ctype dans le DPB, connexion "brute" (NONE).
+        // - Si l'utilisateur a mis ISC_DPB_LC_CTYPE, on le respecte et on tente
+        //   de trouver un QStringConverter correspondant.
+        if (encString.isEmpty()) {
+            legacyNoLcCtype = true;
+            qInfo("QFirebirdDriver: LEGACY mode without ISC_DPB_LC_CTYPE -> no lc_ctype in DPB.");
+        } else {
+            auto encodingOp = QStringConverter::encodingForName(encString.toLocal8Bit());
+            if (encodingOp.has_value()) {
+                d->encoding = encodingOp.value();
+            } else {
+                qWarning("QFirebirdDriver: unsupported encoding '%s' in LEGACY mode. "
+                         "No QStringConverter encoding will be applied.",
+                         qPrintable(encString));
+                // On ne modifie pas d->encoding ici.
+            }
+        }
+    } else {
+        // Mode MODERN ou AUTO : si aucun ISC_DPB_LC_CTYPE fourni, on force UTF-8
+        if (encString.isEmpty()) {
+            encString = u"UTF-8"_s;
+        }
+
+        auto encodingOp = QStringConverter::encodingForName(encString.toLocal8Bit());
+        if (encodingOp.has_value()) {
+            d->encoding = encodingOp.value();
+        } else {
+            qWarning("QFirebirdDriver: unsupported encoding '%s'. Falling back to UTF-8.",
+                     qPrintable(encString));
+            encString = u"UTF-8"_s;
+            d->encoding = QStringConverter::Utf8;
+        }
+    }
+
+    // On mémorise le flag legacyNoLcCtype globalement pour cette connexion (handle Firebird).
+    // À ce stade d->firebird vaut encore 0, on mettra à jour après isc_attach_database.
+    // On utilise une valeur temporaire : on stockera vraiment après attach.
+    bool legacyNoLcCtypeForThisOpen = legacyNoLcCtype;
 
     QByteArray enc = encString.toLocal8Bit(); //"UTF8";
     QByteArray usr = user.toLocal8Bit();
@@ -1657,9 +1744,16 @@ bool QFirebirdDriver::open(const QString &db,
     ba.append(char(isc_dpb_password));
     ba.append(char(pass.length()));
     ba.append(pass.constData(), pass.length());
-    ba.append(char(isc_dpb_lc_ctype));
-    ba.append(char(enc.length()));
-    ba.append(enc.constData(), enc.length());
+
+
+    // ba.append(char(isc_dpb_lc_ctype));
+    // ba.append(char(enc.length()));
+    // ba.append(enc.constData(), enc.length());
+    if (!enc.isEmpty()) {
+        ba.append(char(isc_dpb_lc_ctype));
+        ba.append(char(enc.length()));
+        ba.append(enc.constData(), enc.length());
+    }
 
     if (!role.isEmpty()) {
         ba.append(char(isc_dpb_sql_role_name));
@@ -1681,6 +1775,11 @@ bool QFirebirdDriver::open(const QString &db,
                    QSqlError::ConnectionError)) {
         setOpenError(true);
         return false;
+    }
+
+    // Maintenant d->firebird est valide : on enregistre le flag legacyNoLcCtype
+    if (qLegacyNoLcCtypeMap()) {
+        (*qLegacyNoLcCtypeMap())[d->firebird] = legacyNoLcCtypeForThisOpen;
     }
 
     setOpen(true);
