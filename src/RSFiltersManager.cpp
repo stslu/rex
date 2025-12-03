@@ -7,7 +7,7 @@
 #include "RSSettingsManager.h"
 #include "Signaler.h"
 #include "ui_RSFiltersManager.h"
-
+#include <QDebug>
 #include <RSLogger.h>
 
 namespace RexFiltersDefaultSettings {
@@ -190,35 +190,32 @@ void RSFiltersManager::connectFilters()
     // }
 
     if(ui->m_brandEdit){
-        connect(ui->m_brandEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_brandEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_modelEdit){
-        connect(ui->m_brandEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_modelEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_technologyEdit){
-        connect(ui->m_technologyEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_technologyEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_physicalMeasurementEdit){
-        connect(ui->m_physicalMeasurementEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_physicalMeasurementEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_outputSignalEdit){
-        connect(ui->m_outputSignalEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_outputSignalEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_measurementRangeEdit){
-        connect(ui->m_measurementRangeEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_measurementRangeEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_theoricalAccuracyEdit){
-        connect(ui->m_theoricalAccuracyEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_theoricalAccuracyEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_unitEdit){
-        connect(ui->m_unitEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_unitEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
     if(ui->m_experimentationEdit){
-        connect(ui->m_experimentationEdit, &QComboBox::currentIndexChanged, this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
+        connect(ui->m_experimentationEdit, qOverload<int>(&QComboBox::currentIndexChanged), this, &RSFiltersManager::slotCurrentIndexChanged, Qt::UniqueConnection);
     }
-
-
-
 
 }
 

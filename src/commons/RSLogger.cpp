@@ -4,7 +4,10 @@
 #include <QDebug>
 #include <QDir>
 
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #include <QStringConverter>
+#endif
 
 #include "RSGlobalMethods.h"
 

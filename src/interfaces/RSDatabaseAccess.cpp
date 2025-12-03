@@ -193,23 +193,11 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
     databaseSql.setPort(databasePort.toInt());
     if(!databaseName.contains("REX")){ //TODO: éviter codage en dur "REX", SQLITE ne supporte pas la suite. Mettre un paramètre additionnel
         if(utf8) {
-            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=UTF8";
+            qDebug().noquote() << "    ----- ISC_DPB_LC_CTYPE=UTF8";
             databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=UTF8"); // base G7 par exemple, supporte UTF8
         } else {
-            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=WIN1252";
-            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=NONE");
-
-            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
-            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
-
-            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO-8859-15";
-            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO-8859-15"); //Ancienne DB firebird
-
-            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=NONE";
-            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=NONE"); //Ancienne DB firebird
-
-            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=OCTETS";
-            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=OCTETS");
+            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
+            databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
         }
     }
 
@@ -234,7 +222,7 @@ bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
     RSLogger::instance()->info(Q_FUNC_INFO, "Start. db = " + databaseName);
     qDebug().noquote() << "Start. db = " << databaseName;
 
-    bool m_open        = true;
+    bool isOpen        = false;
     QString dbFullName = m_databaseFullNameMap.value(databaseName);
     if(dbFullName.isEmpty()) {
         RSMessageView::Instance()->showData(QString("Please, set a valid : database, user name, password. (Case sensitive)"));
@@ -245,31 +233,30 @@ bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
 
     QString m_databaseDriver = m_databaseDriverMap.value(databaseName);
 
-    if(m_open == true) {
-        m_open &= !dbFullName.isEmpty();
-    }
-    if(!m_open)
+    isOpen = !dbFullName.isEmpty();
+
+    if(!isOpen)
         RSMessageView::Instance()->showData(QString(tr("Empty database name : %1")).arg(databaseName));
 
     // Check drivers
-    if(m_open == true) {
-        m_open &= QSqlDatabase::drivers().contains(m_databaseDriver);
+    if(isOpen) {
+        isOpen &= QSqlDatabase::drivers().contains(m_databaseDriver);
     }
 
-    if(m_open) {
+    if(isOpen) {
         RSMessageView::Instance()->showData(QString(tr("Driver found : %1")).arg(m_databaseDriver));
     } else {
         RSMessageView::Instance()->showData(QString(tr("Driver NOT found : %1")).arg(m_databaseDriver));
     }
 
     // Open the database
-    if(m_open == true) {
+    if(isOpen) {
         QSqlDatabase sqlDatabase;
 
         RSLogger::instance()->info(Q_FUNC_INFO, "\t init  QSqlDatabase::database() : " + databaseName);
         sqlDatabase = QSqlDatabase::database(databaseName);
 
-        if(sqlDatabase.isOpen() == false) {
+        if(!sqlDatabase.isOpen()) {
             addDatabaseSql(databaseName, utf8);
             RSLogger::instance()->info(Q_FUNC_INFO, "saveDatabaseFullName");
             saveDatabaseFullName(databaseName);
@@ -277,11 +264,12 @@ bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
 
         sqlDatabase = QSqlDatabase::database(databaseName);
 
-        if(sqlDatabase.isOpen() == false) {
-            m_open = sqlDatabase.open();
+        if(!sqlDatabase.isOpen()) {
+            qDebug().noquote() << ">> RSDatabaseAccess::open -" << databaseName << "- ConnectOptions:" << sqlDatabase.connectOptions();
+            isOpen = sqlDatabase.open();
         }
 
-        if(m_open) {
+        if(isOpen) {
             RSMessageView::Instance()->showData(QString("Succeeded to open database: %1.\t %2").arg(databaseName).arg(dbFullName));
 
         } else {
@@ -294,7 +282,7 @@ bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
         }
     }
 
-    return m_open;
+    return isOpen;
 }
 
 bool RSDatabaseAccess::open()
@@ -1560,12 +1548,12 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
         QString m_astBrandData             = m_querySql.value(m_astBrandNo).toString();
         QString m_astModelData             = m_querySql.value(m_astModelNo).toString();
 
-        // 1. Récupérer les octets bruts
-        QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
-        qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData. toHex(' ');
-        QString textLatin1 = QString::fromLatin1(rawData);
-        qDebug() << "---->Texte Latin1:" << textLatin1;
-        qDebug() << "---->Texte direct:" << m_astModelData;
+        // // 1. Récupérer les octets bruts
+        // QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
+        // qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData. toHex(' ');
+        // QString textLatin1 = QString::fromLatin1(rawData);
+        // qDebug() << "---->Texte Latin1:" << textLatin1;
+        // qDebug() << "---->Texte direct:" << m_astModelData;
 
 
         QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
@@ -2077,6 +2065,9 @@ void RSDatabaseAccess::setRexFilterTable(QString& strQuery)
 
     QString m_databaseName   = "REX";
     QSqlDatabase databaseSql = QSqlDatabase::database(m_databaseName);
+
+    qDebug().noquote() << ">> setRexFilterTable -" << m_databaseName << "- ConnectOptions:" << databaseSql.connectOptions();
+
     databaseSql.open();
     QSqlQuery* querySql;
     querySql    = new QSqlQuery(databaseSql);
