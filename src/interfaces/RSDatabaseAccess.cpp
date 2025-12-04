@@ -196,8 +196,18 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
             qDebug().noquote() << "    ----- ISC_DPB_LC_CTYPE=UTF8";
             databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=UTF8"); // base G7 par exemple, supporte UTF8
         } else {
-            qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
+            // qDebug().noquote() << "----- ISC_DPB_LC_CTYPE=ISO8859_1";
+            // databaseSql.setConnectOptions("REX_ENCODING_MODE=LEGACY"); //Ancienne DB firebird
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
+
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
             databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
+#else
+            databaseSql.setConnectOptions("REX_ENCODING_MODE=LEGACY"); //Ancienne DB firebird ATTENTION, nécessite le driver QFirebird pour 6.10 et +
+            // databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=ISO8859_1"); //Ancienne DB firebird
+#endif
+            qDebug().noquote() << ">>> Connection options:" << databaseSql.connectOptions();
         }
     }
 
@@ -1550,12 +1560,10 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 
         // // 1. Récupérer les octets bruts
         // QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
-        // qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData. toHex(' ');
+        // qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData.toHex(' ');
         // QString textLatin1 = QString::fromLatin1(rawData);
         // qDebug() << "---->Texte Latin1:" << textLatin1;
         // qDebug() << "---->Texte direct:" << m_astModelData;
-
-
         QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
         QString m_astRangeData             = m_querySql.value(m_astRangeNo).toString();
         QString m_astTheoricalAccuracyData = m_querySql.value(m_astTheoricalAccuracyNo).toString();

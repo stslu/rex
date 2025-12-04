@@ -92,7 +92,7 @@ void RSOptionsManager::createConnections()
 
     connect(ui->m_calculationsButton, SIGNAL(clicked()), Signaler::instance(), SIGNAL(signal_runReportsCalculations()));
     connect(ui->m_excelButton, SIGNAL(clicked()), Signaler::instance(), SIGNAL(signal_exportToExcel()));
-    connect(ui->m_updateSensorsListBtn, SIGNAL(clicked()), Signaler::instance(), SIGNAL(signal_updateSensorsList()));
+    connect(ui->bntUpdateSensorsList, SIGNAL(clicked()), Signaler::instance(), SIGNAL(signal_updateSensorsList()));
 }
 
 void RSOptionsManager::updateFidelityChecked()

@@ -16,7 +16,6 @@ public:
 
     virtual QVariant headerData(int section, Qt::Orientation orientation = Qt::Orientation::Horizontal,int role = Qt::DisplayRole) const;
 
-
     virtual QModelIndex parent(const QModelIndex &child) const;
 
     virtual bool hasChildren(const QModelIndex &parent) const;

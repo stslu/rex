@@ -75,8 +75,6 @@ bool DataGridModel::isEqual(const DataGridModel& other)
 {
     if(d->fieldsName != other.d->fieldsName)
         return false;
-    if(d->fieldsName != other.d->fieldsName)
-        return false;
 
     return true;
 }
@@ -93,10 +91,14 @@ void DataGridModel::setMatrix( const QStringList& fieldsName, const QList<QVaria
         return;
     }
 
+    beginResetModel();
+
     d->fieldsName = fieldsName;
     d->data = data;
 
     initNbValueByFieldMap();
+
+    endResetModel();
 
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
 }
@@ -144,10 +146,10 @@ int DataGridModel::columnCount(const QModelIndex &parent) const
     if (parent.isValid())
         return 0;
 
-    if(d->fieldsName.count() == 0)
-        return 5;
-    else
-        return d->fieldsName.count();
+    // if(d->fieldsName.count() == 0)
+    //     return 5;
+    // else
+    return d->fieldsName.count(); //TODO: vérifier ça, faut il forcer 5 colonnes ?
 }
 
 QModelIndex DataGridModel::index(int row, int column, const QModelIndex &parent) const
@@ -246,6 +248,7 @@ bool DataGridModel::setData(const QModelIndex &index, const QVariant &value, int
     QVariantList& rowList = const_cast<QVariantList&>(d->data.at(index.row()));
     rowList.replace(index.column(),value);
 
+    emit dataChanged(index, index, {role});
     return true;
 }
 
@@ -254,18 +257,26 @@ Qt::ItemFlags DataGridModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::ItemFlags();
 
-    return Qt::ItemIsEnabled;
+    return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
 void DataGridModel::clearMatrix()
 {
+    beginResetModel();
+
     d->data.clear();
     d->fieldsName.clear();
+
+    endResetModel();
 }
 
 void DataGridModel::clearData()
 {
+    beginResetModel();
+
     d->data.clear();
+
+    endResetModel();
 }
 
 int DataGridModel::headerIndex(const QString& name) const
