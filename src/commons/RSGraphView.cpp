@@ -579,8 +579,10 @@ void RSGraphView::createConnections()
     // connect(ui->m_stepViewEdit, SIGNAL(valueChanged(int)), this, SLOT(slotStepViewValueChanged(int)));
     connect(ui->m_stepMinButton, &QToolButton::clicked, this, &RSGraphView::slotStepMinButtonClicked);
     connect(ui->m_stepMaxButton, &QToolButton::clicked, this, &RSGraphView::slotStepMaxButtonClicked);
+
     connect(ui->m_stepPreviousButton, &QToolButton::clicked, this, &RSGraphView::slotStepPreviousButtonClicked);
     connect(ui->m_stepNextButton, &QToolButton::clicked, this, &RSGraphView::slotStepNextButtonClicked);
+
     connect(ui->m_stepViewEdit, &QSpinBox::valueChanged, this, &RSGraphView::slotStepViewValueChanged);
 
 
@@ -645,6 +647,7 @@ void RSGraphView::slotStepNextButtonClicked()
 
 void RSGraphView::slotStepViewValueChanged(int data)
 {
+    qDebug().noquote() << ">>>>RSGraphView::slotStepViewValueChanged:" << data;
     RSDataManager::Instance()->setData("StepView", data);
 
     //Inform the Logic

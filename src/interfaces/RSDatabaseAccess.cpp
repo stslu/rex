@@ -108,22 +108,22 @@ void RSDatabaseAccess::dbQuery(const QString& query, const QString& databaseName
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
-    bool m_exec = true;
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
+    bool execOk = false;
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "m_querySql = " + m_querySql.executedQuery());
+    RSLogger::instance()->info(Q_FUNC_INFO, "m_querySql = " + querySql.executedQuery());
 
-    m_exec &= m_querySql.exec(query);
+    execOk = querySql.exec(query);
 
-    if(m_exec == false) {
+    if(execOk == false) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute dbQuery().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
                                                           .arg(databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
 
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail");
         return;
@@ -397,19 +397,20 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     QSqlQuery querySql(m_databaseSql);
     QString field;
     QString strQuery;
-    bool m_exec = true;
+    bool execOk = false;
 
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat   = endDate.toString("MM-dd-yyyy");
 
+    //TODO: SI_CODe et DB_CODE dynmique
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and av.AP_CODE = /*AP_CODE*/ %5 "
-                           "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                           "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                           "where av.SI_CODE = 1 "
+                           "and av.DB_CODE = 33813554 "
+                           "and av.AP_CODE = %5 "
+                           "and av.AV_ACQUISITIONDT >= '%2' "
+                           "and av.AV_ACQUISITIONDT < '%3' "
                            "and av.AV_STATUS = 0 "
                            "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4")
                        .arg(field)
@@ -421,11 +422,11 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     } else if(mpType == MeasPointType::Node) {
         field    = "NR_NODEDT";
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and NR.ND_CODE = /*ND_CODE*/ %5 "
-                           "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
-                           "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                           "where NR.SI_CODE = 1 "
+                           "and NR.DB_CODE = 33813554 "
+                           "and NR.ND_CODE = %5 "
+                           "and NR.NR_NODEDT >= '%2' "
+                           "and NR.NR_NODEDT < '%3' "
                            "and NR.NR_STATUS = 0 "
                            "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4")
                        .arg(field)
@@ -436,9 +437,12 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     } else {
     }
 
-    m_exec &= querySql.exec(strQuery);
+    // qDebug().noquote() << "RSDatabaseAccess::getAcquisitionTimeList---";
+    // qDebug().noquote() << strQuery << "\n\n";
 
-    if(m_exec == false) {
+    execOk = querySql.exec(strQuery);
+
+    if(!execOk) {
         RSLogger::instance()->info(Q_FUNC_INFO, "Failed to execute query : \n " + strQuery);
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
                                                       tr("%1 database cannot execute getAcquisitionTimeList().<br/>"
@@ -455,15 +459,17 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     QList<double> dataList;
     while(querySql.next()) {
         // The date of acquisition
-        QString acqDateTime = querySql.value(fieldIndex).toString();
+        // QString acqDateTime = querySql.value(fieldIndex).toString();
+        // QDateTime stepDataTime = QDateTime::fromString(acqDateTime, "yyyy-MM-ddThh:mm:ss");
+
+        //new
+        QDateTime stepDataTime = querySql.value(fieldIndex).toDateTime();
 
         // First value
         if(querySql.at() == 0) {
-            m_startDateTime = QDateTime::fromString(acqDateTime, "yyyy-MM-ddThh:mm:ss");
+            m_startDateTime = stepDataTime;
             dataList.push_back(0);
         } else {
-            QDateTime stepDataTime = QDateTime::fromString(acqDateTime, "yyyy-MM-ddThh:mm:ss");
-
             // We get the elapsed time from m_startDateTime to acqDateTime
             double elapsedTimeMsec = (double) m_startDateTime.msecsTo(stepDataTime);
 
@@ -483,48 +489,49 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     QSqlQuery querySql(m_databaseSql);
     QList<double> dataList;
     QString field;
-    bool m_exec           = true;
-    QString m_startFormat = startDate.toString("MM-dd-yyyy");
-    QString m_endFormat   = endDate.toString("MM-dd-yyyy");
+    bool execOk           = true;
+    QString startFormat = startDate.toString("MM-dd-yyyy");
+    QString endFormat   = endDate.toString("MM-dd-yyyy");
     QString strQuery;
 
+    //TODO: virer SI_, DB_ codé en dur
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_INGVALUE";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and av.AP_CODE = /*AP_CODE*/ %5 "
-                           "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                           "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                           "where av.SI_CODE = 1 "
+                           "and av.DB_CODE = 33813554 "
+                           "and av.AP_CODE = %5 "
+                           "and av.AV_ACQUISITIONDT >= '%2' "
+                           "and av.AV_ACQUISITIONDT < '%3' "
                            "and av.AV_STATUS = 0 "
                            "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4")
                        .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
+                       .arg(startFormat)
+                       .arg(endFormat)
                        .arg(order)
                        .arg(apNdCode);
     } else if(mpType == MeasPointType::Node) {
         field    = "NR_CALCVALUE";
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and NR.ND_CODE = /*ND_CODE*/ %5 "
-                           "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
-                           "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                           "where NR.SI_CODE = 1 "
+                           "and NR.DB_CODE = 33813554 "
+                           "and NR.ND_CODE = %5 "
+                           "and NR.NR_NODEDT >= '%2' "
+                           "and NR.NR_NODEDT < '%3' "
                            "and NR.NR_STATUS = 0 "
                            "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4")
                        .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
+                       .arg(startFormat)
+                       .arg(endFormat)
                        .arg(order)
                        .arg(apNdCode);
     } else {
     }
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query : \n" + strQuery);
-    m_exec &= querySql.exec(strQuery);
+    execOk = querySql.exec(strQuery);
 
-    if(m_exec == false) {
+    if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
                                                       tr("%1 database cannot execute getAcquisitionValueList().<br/>"
                                                          "ErrorText : %2<br/>"
@@ -537,12 +544,17 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
         return QList<double>();
     }
 
-    int m_dataNo = querySql.record().indexOf("IDATA");
+    int dataNo = querySql.record().indexOf("IDATA");
 
+    bool isOk = false;
     while(querySql.next()) {
-        QString m_stepData = querySql.value(m_dataNo).toString();
-        double m_data      = m_stepData.toDouble();
-        dataList.push_back(m_data);
+        // QString stepData = querySql.value(dataNo).toString();
+        // double data      = stepData.toDouble();
+        double stepValue = querySql.value(dataNo).toDouble(&isOk);
+        if(!isOk){
+            //TODO: mettre 0, NAN ?
+        }
+        dataList.push_back(stepValue);
     }
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Succeed. dataListSize = %1").arg(dataList.count()));
@@ -551,64 +563,68 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
 
 int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode, MeasPointType mpType)
 {
-    QString m_databaseName     = "G6";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
-    int m_data            = 0;
+    QString databaseName     = "G6";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery m_querySql(databaseSql);
+    int data            = 0;
     QString field         = "count(*)";
-    bool m_exec           = true;
-    QString m_startFormat = startDate.toString("MM-dd-yyyy");
-    QString m_endFormat   = endDate.toString("MM-dd-yyyy");
+    bool execOk           = false;
+    QString startFormat = startDate.toString("MM-dd-yyyy");
+    QString endFormat   = endDate.toString("MM-dd-yyyy");
     QString strQuery;
 
     if(mpType == MeasPointType::AcqPoint) {
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and av.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and av.AP_CODE = /*AP_CODE*/ %4 "
-                           "and av.AV_ACQUISITIONDT >= /*BEGIN_DT*/ '%2' "
-                           "and av.AV_ACQUISITIONDT < /*BEGIN_DT*/ '%3' "
+                           "where av.SI_CODE = 1 "
+                           "and av.DB_CODE = 33813554 "
+                           "and av.AP_CODE = %4 "
+                           "and av.AV_ACQUISITIONDT >= '%2' "
+                           "and av.AV_ACQUISITIONDT < '%3' "
                            "and av.AV_STATUS = 0")
                        .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
+                       .arg(startFormat)
+                       .arg(endFormat)
                        .arg(apNdCode);
     } else if(mpType == MeasPointType::Node) {
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = /*:SI_CODE*/ 1 "
-                           "and NR.DB_CODE = /*:DB_CODE*/ 33813554 "
-                           "and NR.ND_CODE = /*ND_CODE*/ %4 "
-                           "and NR.NR_NODEDT >= /*BEGIN_DT*/ '%2' "
-                           "and NR.NR_NODEDT < /*BEGIN_DT*/ '%3' "
+                           "where NR.SI_CODE = 1 "
+                           "and NR.DB_CODE =  33813554 "
+                           "and NR.ND_CODE = %4 "
+                           "and NR.NR_NODEDT >= '%2' "
+                           "and NR.NR_NODEDT < '%3' "
                            "and NR.NR_STATUS = 0")
                        .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
+                       .arg(startFormat)
+                       .arg(endFormat)
                        .arg(apNdCode);
     } else {
     }
 
-    m_exec &= m_querySql.exec(strQuery);
+    execOk = m_querySql.exec(strQuery);
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(execOk == false) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getAcquisitionValueSize().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
+                                                          .arg(databaseName)
                                                           .arg(m_querySql.lastError().databaseText())
                                                           .arg(m_querySql.lastError().type()));
         return 0;
     }
 
+    bool isOk = false;
     int m_dataNo = m_querySql.record().indexOf("IDATA");
-
     while(m_querySql.next()) {
-        QString m_format = m_querySql.value(m_dataNo).toString();
-        m_data           = m_format.toInt();
+        // QString m_format = m_querySql.value(m_dataNo).toString();
+        // data           = m_format.toInt();
+        data = m_querySql.value(m_dataNo).toInt(&isOk);
+        if(!isOk){
+            //TODO: mettre 0, NAN ?
+        }
     }
 
-    return m_data;
+    return data;
 }
 
 QDateTime RSDatabaseAccess::getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,
@@ -631,7 +647,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);
     QString field;
-    ;
+
     int dbCode     = 33813554;
     QString format = "dd.MM.yyyy";
     QString strQuery;
@@ -644,6 +660,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                                                 .arg(apNdCode)
                                                 .arg(mpType));
 
+    //TODO: virer SI_, DB_ codés en dur
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 from ACQVALUE av "
@@ -709,11 +726,12 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     }
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Executed Query : \n %1").arg(querySql.executedQuery()));
 
-    int m_dataNo = querySql.record().indexOf(field);
+    int dataNo = querySql.record().indexOf(field);
 
     QDateTime minDateTime;
-    if(querySql.next())
-        minDateTime = querySql.value(m_dataNo).value<QDateTime>();
+    if(querySql.next()){
+        minDateTime = querySql.value(dataNo).value<QDateTime>();
+    }
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("End \t dateTime = %1").arg(minDateTime.toString()));
 
@@ -803,11 +821,11 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
 }
 
 QVariant RSDatabaseAccess::loadAlwaysDisplayDatabaseConfigOnStart() {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.AlwaysDisplayDatabaseConfigOnStart";
-    QVariant m_default = QVariant(false);
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.AlwaysDisplayDatabaseConfigOnStart";
+    QVariant defaultVal = QVariant(false);
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "AlwaysDisplayDatabaseConfigOnStart = " + data.toString());
 
@@ -816,11 +834,11 @@ QVariant RSDatabaseAccess::loadAlwaysDisplayDatabaseConfigOnStart() {
 
 QVariant RSDatabaseAccess::loadG6DatabaseFile()
 {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.G6Database";
-    QVariant m_default = "";
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.G6Database";
+    QVariant defaultVal = "";
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "G6 Path = " + data.value<QString>());
 
@@ -829,11 +847,11 @@ QVariant RSDatabaseAccess::loadG6DatabaseFile()
 
 QVariant RSDatabaseAccess::loadG7DatabaseFile()
 {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.G7Database";
-    QVariant m_default = "";
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.G7Database";
+    QVariant defaultVal = "";
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
     RSLogger::instance()->info(Q_FUNC_INFO, "G7 Path = " + data.value<QString>());
 
     return data;
@@ -841,11 +859,11 @@ QVariant RSDatabaseAccess::loadG7DatabaseFile()
 
 QVariant RSDatabaseAccess::loadDisplayOptions()
 {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.DisplayOptions";
-    QVariant m_default = QVariant(false);
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.DisplayOptions";
+    QVariant defaultVal = QVariant(false);
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
     RSLogger::instance()->info(Q_FUNC_INFO, "DisplayOptions = " + data.toString());
 
     // return data; //On ignore la config
@@ -865,11 +883,11 @@ void RSDatabaseAccess::saveDisplayOptions() const
 
 QVariant RSDatabaseAccess::loadDeadEntitiesOption()
 {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.LoadDeadEntities";
-    QVariant m_default = QVariant(true);
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.LoadDeadEntities";
+    QVariant defaultVal = QVariant(true);
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
     RSLogger::instance()->info(Q_FUNC_INFO, "LoadDeadEntities = " + data.toString());
 
     return data;
@@ -877,11 +895,11 @@ QVariant RSDatabaseAccess::loadDeadEntitiesOption()
 
 QVariant RSDatabaseAccess::loadNodesWithNoAst()
 {
-    QString m_id       = "RexDatabase";
-    QString m_key      = "RexDatabase.loadNodesWithNoAst";
-    QVariant m_default = QVariant(false);
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.loadNodesWithNoAst";
+    QVariant defaultVal = QVariant(false);
 
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
     RSLogger::instance()->info(Q_FUNC_INFO, "loadNodesWithNoAst = " + data.toString());
 
     return data;
