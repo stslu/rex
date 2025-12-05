@@ -192,6 +192,27 @@ void  RSTimesManager::setDateEditValue(QDateEdit* dateEdit, QDate& dateValue)
     dateEdit->blockSignals(false);
 }
 
+// QVariant RSTimesManager::loadStartDate()
+// {
+//     //--- --Upper bound and lower bound
+//     {
+//         ui->m_startDateEdit->setMinimumDate(RexTimeDefaultSettings::DEFAULT_START_DATE_MIN);
+//         QVariant m_default = RexTimeDefaultSettings::DEFAULT_END_DATE;
+//         QVariant data = RSGlobalMethods::Instance()->loadData(m_id, "RSTimesManager.EndDate", m_default);
+//         ui->m_startDateEdit->setMaximumDate(data.value<QDate>());
+//     }
+
+//     {
+//         QString m_key = "RSTimesManager.StartDate";
+//         QVariant m_default = RexTimeDefaultSettings::DEFAULT_START_DATE;
+//         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+//         QDate dateValue = data.value<QDate>();
+//         setDateEditValue(ui->m_startDateEdit, dateValue);
+//         RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  data.value<QDate>().toString());
+//         return data;
+//     }
+// }
+
 QVariant RSTimesManager::loadStartDate()
 {
     //--- --Upper bound and lower bound
@@ -199,19 +220,44 @@ QVariant RSTimesManager::loadStartDate()
         ui->m_startDateEdit->setMinimumDate(RexTimeDefaultSettings::DEFAULT_START_DATE_MIN);
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_END_DATE;
         QVariant data = RSGlobalMethods::Instance()->loadData(m_id, "RSTimesManager.EndDate", m_default);
-        ui->m_startDateEdit->setMaximumDate(data.value<QDate>());
+        QString tempStr = data.toString();
+        QDate dateValue = QDate::fromString(tempStr, Qt::ISODate);
+
+        ui->m_startDateEdit->setMaximumDate(dateValue);
     }
 
     {
         QString m_key = "RSTimesManager.StartDate";
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_START_DATE;
         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-        QDate dateValue = data.value<QDate>();
+        QString tempStr = data.toString();
+        QDate dateValue = QDate::fromString(tempStr, Qt::ISODate);
+
         setDateEditValue(ui->m_startDateEdit, dateValue);
-        RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  data.value<QDate>().toString());
+        RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  dateValue.toString());
         return data;
     }
 }
+
+// QVariant RSTimesManager::loadEndDate()
+// {
+//     {
+//         ui->m_endDateEdit->setMaximumDate(RexTimeDefaultSettings::DEFAULT_END_DATE_MAX);
+//         QVariant m_default = RexTimeDefaultSettings::DEFAULT_START_DATE;
+//         QVariant data = RSGlobalMethods::Instance()->loadData(m_id, "RSTimesManager.StartDate", m_default);
+//         ui->m_endDateEdit->setMinimumDate(data.value<QDate>());
+//     }
+
+//     {
+//         QString m_key = "RSTimesManager.EndDate";
+//         QVariant m_default = RexTimeDefaultSettings::DEFAULT_END_DATE;
+//         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+//         QDate dateValue = data.value<QDate>();
+//         setDateEditValue(ui->m_endDateEdit, dateValue);
+//         RSLogger::instance()->info(Q_FUNC_INFO, "EndDate:  " +  data.value<QDate>().toString());
+//         return data;
+//     }
+// }
 
 QVariant RSTimesManager::loadEndDate()
 {
@@ -219,16 +265,21 @@ QVariant RSTimesManager::loadEndDate()
         ui->m_endDateEdit->setMaximumDate(RexTimeDefaultSettings::DEFAULT_END_DATE_MAX);
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_START_DATE;
         QVariant data = RSGlobalMethods::Instance()->loadData(m_id, "RSTimesManager.StartDate", m_default);
-        ui->m_endDateEdit->setMinimumDate(data.value<QDate>());
+        QString tempStr = data.toString();
+        QDate dateValue = QDate::fromString(tempStr, Qt::ISODate);
+
+        ui->m_endDateEdit->setMinimumDate(dateValue);
     }
 
     {
         QString m_key = "RSTimesManager.EndDate";
         QVariant m_default = RexTimeDefaultSettings::DEFAULT_END_DATE;
         QVariant data =  RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
-        QDate dateValue = data.value<QDate>();
+        QString tempStr = data.toString();
+        QDate dateValue = QDate::fromString(tempStr, Qt::ISODate);
+
         setDateEditValue(ui->m_endDateEdit, dateValue);
-        RSLogger::instance()->info(Q_FUNC_INFO, "EndDate:  " +  data.value<QDate>().toString());
+        RSLogger::instance()->info(Q_FUNC_INFO, "EndDate:  " +  dateValue.toString(Qt::ISODate));
         return data;
     }
 }
@@ -237,17 +288,17 @@ void RSTimesManager::saveStartDate()const
 {
     QString m_id = "RSTimesManager";
     QString m_key = "RSTimesManager.StartDate";
-    QVariant data = ui->m_startDateEdit->date();
+    QVariant data = ui->m_startDateEdit->date().toString(Qt::ISODate);
 
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
     RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  data.value<QDate>().toString());
 }
 
-void RSTimesManager::saveEndDate()const
+void RSTimesManager::saveEndDate() const
 {
     QString m_id = "RSTimesManager";
     QString m_key = "RSTimesManager.EndDate";
-    QVariant data =  ui->m_endDateEdit->date();
+    QVariant data =  ui->m_endDateEdit->date().toString(Qt::ISODate);
 
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
     RSLogger::instance()->info(Q_FUNC_INFO, "StartDate:  " +  data.value<QDate>().toString());
@@ -263,19 +314,24 @@ QVariant RSTimesManager::loadStepDate()
     QVariant m_default = RexTimeDefaultSettings::DEFAULT_STEP_DATE_DAY;
 
     QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
+    bool ok = false;
+    int stepValue = data.toInt(&ok);
+    if(!ok){
+        stepValue = RexTimeDefaultSettings::DEFAULT_STEP_DATE_DAY;;
+    }
     ui->m_stepDateEdit->blockSignals(true);
-    ui->m_stepDateEdit->setValue(data.value<int>());
+    ui->m_stepDateEdit->setValue(stepValue);
     ui->m_stepDateEdit->blockSignals(false);
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "StepDate:  " + QString::number(data.value<int>()));
+    RSLogger::instance()->info(Q_FUNC_INFO, "StepDate:  " + QString::number(stepValue));
 
     return data;
 }
 
-void RSTimesManager::saveStepDate()const
+void RSTimesManager::saveStepDate() const
 {
     QString m_id = "RSTimesManager";
-    QString m_key = "RSTimesManager.data";
+    QString m_key = "RSTimesManager.StepDate";
     QVariant data =  ui->m_stepDateEdit->value();
 
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);

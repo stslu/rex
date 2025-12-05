@@ -572,11 +572,17 @@ void RSGraphView::createConnections()
             this, SLOT(slot_averagesButtonClicked()));
 
     //Steps buttons
-    connect(ui->m_stepMinButton, SIGNAL(clicked()), this, SLOT(slotStepMinButtonClicked()));
-    connect(ui->m_stepMaxButton, SIGNAL(clicked()), this, SLOT(slotStepMaxButtonClicked()));
-    connect(ui->m_stepPreviousButton, SIGNAL(clicked()), this, SLOT(slotStepPreviousButtonClicked()));
-    connect(ui->m_stepNextButton, SIGNAL(clicked()), this, SLOT(slotStepNextButtonClicked()));
-    connect(ui->m_stepViewEdit, SIGNAL(valueChanged(int)), this, SLOT(slotStepViewValueChanged(int)));
+    // connect(ui->m_stepMinButton, SIGNAL(clicked()), this, SLOT(slotStepMinButtonClicked()));
+    // connect(ui->m_stepMaxButton, SIGNAL(clicked()), this, SLOT(slotStepMaxButtonClicked()));
+    // connect(ui->m_stepPreviousButton, SIGNAL(clicked()), this, SLOT(slotStepPreviousButtonClicked()));
+    // connect(ui->m_stepNextButton, SIGNAL(clicked()), this, SLOT(slotStepNextButtonClicked()));
+    // connect(ui->m_stepViewEdit, SIGNAL(valueChanged(int)), this, SLOT(slotStepViewValueChanged(int)));
+    connect(ui->m_stepMinButton, &QToolButton::clicked, this, &RSGraphView::slotStepMinButtonClicked);
+    connect(ui->m_stepMaxButton, &QToolButton::clicked, this, &RSGraphView::slotStepMaxButtonClicked);
+    connect(ui->m_stepPreviousButton, &QToolButton::clicked, this, &RSGraphView::slotStepPreviousButtonClicked);
+    connect(ui->m_stepNextButton, &QToolButton::clicked, this, &RSGraphView::slotStepNextButtonClicked);
+    connect(ui->m_stepViewEdit, &QSpinBox::valueChanged, this, &RSGraphView::slotStepViewValueChanged);
+
 
     //ComboBox
     connect(ui->m_sensorNameEdit, SIGNAL(currentIndexChanged(QString))
@@ -802,6 +808,7 @@ void RSGraphView::clearGraphs(const QDate& startDate, const QDate& endDate)
 
 void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QString& plotName, int width)
 {
+    qDebug().noquote() << "RSGraphView::add 1";
     RSLogger::instance()->info(Q_FUNC_INFO,"start");
 
     double min = RSGlobalMethods::Instance()->min(y);
@@ -835,14 +842,18 @@ void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QStr
     m_plot->addGraph();
     int m_index = m_plot->graphCount() - 1;
     int m_colorId = m_index % m_colors.size();
+
     m_plot->graph(m_index)->setData(x.toVector(), y.toVector());
     m_plot->graph(m_index)->setPen(QPen(QBrush(QColor(m_colors.at(m_colorId))), width));
 
-    m_plot->xAxis->setRange(xMin, xMax);
+    m_plot->xAxis->setRange(xMin, xMax); //SLU: test
     m_plot->xAxis->setLabel("x");
 
     m_plot->yAxis->setRange(m_yMin, m_yMax);
     m_plot->yAxis->setLabel("y");
+
+    // m_plot->rescaleAxes(true); //SLU: test
+    qDebug().noquote() << "    >> minX, maxX:" << xMin << "/" << xMax;
 
     m_plot->replot();
 
@@ -851,6 +862,7 @@ void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QStr
 
 void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QDateTime& startDateTime, const QString& plotName, int step, int width)
 {
+    qDebug().noquote() << "RSGraphView::add 2";
     RSLogger::instance()->info(Q_FUNC_INFO,"start");
 
     double m_min = RSGlobalMethods::Instance()->min(y);
@@ -894,7 +906,7 @@ void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QDat
     m_xTicker->addTicks(m_xTicks, m_xLabels);
     m_xTicker->setSubTickCount(step);
 
-    m_plot->xAxis->setRange(xMin, xMax);
+    m_plot->xAxis->setRange(xMin, xMax); //SLU: test
     m_plot->xAxis->setLabel("x");
     m_plot->xAxis->setTicker(m_xTicker);
     m_plot->xAxis->setTickLabelRotation(60);
@@ -902,9 +914,12 @@ void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QDat
     m_plot->xAxis->setTickLength(6, 6);
 
     m_plot->yAxis->setRange(m_yMin, m_yMax);
-    m_plot->yAxis->setLabel("y");
+    m_plot->yAxis->setLabel("y"); //SLU: test
     QSharedPointer<QCPAxisTicker> m_yTicker(new QCPAxisTicker);
     m_plot->yAxis->setTicker(m_yTicker);
+
+    qDebug().noquote() << "    >> minX, maxX:" << xMin << "/" << xMax;
+    // m_plot->rescaleAxes(true); //SLU: test, remplace m_plot->xAxis->setRange(xMin, xMax); + m_plot->yAxis->setLabel("y");
 
     m_plot->replot();
     RSLogger::instance()->info(Q_FUNC_INFO,"End");
@@ -1384,11 +1399,15 @@ void RSGraphView::plotHistoGram(QCustomPlot* customPlot
     }
 
 
-    customPlot->clearGraphs();
-    customPlot->clearItems();
-    customPlot->clearFocus();
+    // customPlot->clearGraphs();
+    // customPlot->clearItems();
+    // customPlot->clearFocus();
+    // customPlot->clearPlottables();
+    // customPlot->clearMask();
+
     customPlot->clearPlottables();
-    customPlot->clearMask();
+    customPlot->clearItems();
+    customPlot->clearGraphs();
 
     //--- --set dark background gradient:
     QLinearGradient gradient(0, 0, 0, 400);
@@ -1479,7 +1498,7 @@ void RSGraphView::plotHistoGram(QCustomPlot* customPlot
 
     customPlot->legend->setFont(legendFont);
 
-    customPlot->setInteractions(QCP::iRangeZoom);
+    customPlot->setInteractions(QCP::iRangeZoom  | QCP::iRangeDrag);
 
     customPlot->replot();
 
