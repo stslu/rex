@@ -906,42 +906,42 @@ QVariant RSDatabaseAccess::loadNodesWithNoAst()
 }
 void RSDatabaseAccess::saveDeadEntitiesOption() const
 {
-    QString m_id  = "RexDatabase";
-    QString m_key = "RexDatabase.LoadDeadEntities";
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.LoadDeadEntities";
     QVariant data = QVariant(m_loadDeadEntities);
     RSLogger::instance()->info(Q_FUNC_INFO, "Save G7 Path = " + data.value<QString>());
-    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+    RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
 void RSDatabaseAccess::saveNodesWithNoSensorOption() const
 {
-    QString m_id  = "RexDatabase";
-    QString m_key = "RexDatabase.loadNodesWithNoAst";
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.loadNodesWithNoAst";
     QVariant data = QVariant(m_loadNodesWithNoAst);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Save G7 Path = " + data.value<QString>());
-    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+    RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
 void RSDatabaseAccess::saveG6DatabaseFile()
 {
-    QString m_id  = "RexDatabase";
-    QString m_key = "RexDatabase.G6Database";
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.G6Database";
     QVariant data = m_g6DatabaseFile; // RSDataManager::Instance()->getData(m_key);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Save G6 Path = " + data.value<QString>());
-    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+    RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
 //[RexSensors]
 void RSDatabaseAccess::saveG7DatabaseFile()
 {
-    QString m_id  = "RexDatabase";
-    QString m_key = "RexDatabase.G7Database";
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.G7Database";
     QVariant data = m_g7DatabaseFile; // RSDataManager::Instance()->getData(m_key);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Save G7 Path = " + data.value<QString>());
-    RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+    RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
 bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, const QDate& end, int evtCode,
@@ -1076,9 +1076,9 @@ QList<int> RSDatabaseAccess::getSensorCodeList(const QString& field, const QStri
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
     QList<int> dataList;
 
     QString strQuery = QString("select distinct MP_CODE IDATA "
@@ -1090,26 +1090,26 @@ QList<int> RSDatabaseAccess::getSensorCodeList(const QString& field, const QStri
                            .arg(field)
                            .arg(name);
 
-    bool m_exec = m_querySql.exec(strQuery);
+    bool exec = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!exec) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorNameList().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
         return QList<int>();
     }
 
-    int m_dataNo = m_querySql.record().indexOf("IDATA");
+    int m_dataNo = querySql.record().indexOf("IDATA");
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
-    while(m_querySql.next()) {
-        int data = m_querySql.value(m_dataNo).value<int>();
+    while(querySql.next()) {
+        int data = querySql.value(m_dataNo).value<int>();
         dataList.push_back(data);
     }
 
@@ -1122,30 +1122,30 @@ QString RSDatabaseAccess::getSensorUnicProperty(int mpCode, const QString& field
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
 
     QString strQuery = QString("select distinct %1 from REXFILTER where MP_CODE = '%2' ").arg(field).arg(mpCode);
 
-    bool m_exec = m_querySql.exec(strQuery);
+    bool execOk = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(execOk == false) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorUnicProperty().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query");
         return QString();
     }
 
     QString techno;
-    if(m_querySql.first()) {
-        int val = m_querySql.value(0).toInt();
+    if(querySql.first()) {
+        int val = querySql.value(0).toInt();
         techno  = QString::number(val);
     }
 
@@ -1166,7 +1166,8 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
     QSqlDatabase dbSql = QSqlDatabase::database(dbName);
     QSqlQuery sqlQuery(dbSql);
 
-    QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME /*EXP NAME*/, T_ENTITYTAG.TAG_CODE"
+    // TAG_NAME = nom expérience
+    QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
                                "  FROM T_ENTITIES"
                                "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
                                "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
@@ -1179,10 +1180,10 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
                            .arg(mpCodeList.join(","))
                            .arg(expList.join("','"));
 
-    bool m_exec = sqlQuery.exec(strQuery);
+    bool execOk = sqlQuery.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Try to execute query : \n %1 ").arg(strQuery));
-    if(m_exec == false) {
+    if(execOk == false) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
                                                       tr("%1 database cannot execute initSensorsByExperimentationMap().<br/>"
                                                          "ErrorText : %2<br/>"
@@ -1420,11 +1421,11 @@ void RSDatabaseAccess::initExperienceBySensorMap()
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName = "G7";
-    bool m_exec            = true;
+    QString databaseName = "G7";
+    bool execOk = false;
 
     // Get data from G7
-    QSqlQuery m_querySqlG7(QSqlDatabase::database("G7"));
+    QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  T_ENTITIES.ENTITY_ID,T_ENTITIES.ENT_CODE, TAG_NAME"
@@ -1435,31 +1436,31 @@ void RSDatabaseAccess::initExperienceBySensorMap()
                                " WHERE T_ENTITIES.CNT_CODE = 10"
                                "   AND T_ENTITIES.SRC_CODE = 1"
                                "   AND T_TAGCATEGORIES.TCT_CODE = 2");
-    m_exec          &= m_querySqlG7.exec(strQuery);
-    if(!m_exec)
+    execOk = querySqlG7.exec(strQuery);
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed select on G7");
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setSensorByExpDatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3 \n query : %4")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySqlG7.lastError().databaseText())
-                                                          .arg(m_querySqlG7.lastError().type())
+                                                          .arg(databaseName)
+                                                          .arg(querySqlG7.lastError().databaseText())
+                                                          .arg(querySqlG7.lastError().type())
                                                           .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute query");
         return;
     }
 
-    int entCodeCol = m_querySqlG7.record().indexOf("ENTITY_ID");
-    int tagNameCol = m_querySqlG7.record().indexOf("TAG_NAME");
+    int entCodeCol = querySqlG7.record().indexOf("ENTITY_ID");
+    int tagNameCol = querySqlG7.record().indexOf("TAG_NAME");
 
     QMap<int, QStringList>::iterator it;
-    while(m_querySqlG7.next()) {
-        QVariant entCode = m_querySqlG7.value(entCodeCol);
-        QVariant tagName = m_querySqlG7.value(tagNameCol).toString();
+    while(querySqlG7.next()) {
+        QVariant entCode = querySqlG7.value(entCodeCol);
+        QVariant tagName = querySqlG7.value(tagNameCol).toString();
         if(entCode.isNull() || tagName.isNull())
             continue;
 
@@ -1480,21 +1481,21 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "G6";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName     = "G6";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
 
-    if(!checkG6DatabaseStructure(m_databaseSql)) {
+    if(!checkG6DatabaseStructure(databaseSql)) {
         m_g6dbStructureIsOk = false;
         return;
     }
 
-    QSqlQuery m_querySql(m_databaseSql);
-    bool isExecuted = true;
+    QSqlQuery querySql(databaseSql);
+    bool isExecuted = false;
 
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
 
-    bool m_queryRexOneOnly = true;
+    bool queryRexOneOnly = true;
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     //TODO: DB_CODE à ne pas coder en dur
@@ -1524,36 +1525,36 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
                                " and mp.DB_CODE = 33813554 "
                                " and mp.MP_CODE is not null"
                                " and mp.AP_CODE is not null");
-    isExecuted  &= m_querySql.exec(strQuery);
+    isExecuted  = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(isExecuted == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!isExecuted) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setG6DatasetTable_acqPoints().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3 \n query : %4")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type())
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type())
                                                           .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute query");
         return;
     }
 
-    int m_mpCodeNo               = m_querySql.record().indexOf("MP_CODE");
-    int m_mpNameNo               = m_querySql.record().indexOf("MP_NAME");
-    int m_apCodeNo               = m_querySql.record().indexOf("AP_CODE");
-    int m_apNameNo               = m_querySql.record().indexOf("AP_NAME");
-    int m_astBrandNo             = m_querySql.record().indexOf("AST_BRAND");
-    int m_astModelNo             = m_querySql.record().indexOf("AST_MODEL");
-    int m_astTechnologyNo        = m_querySql.record().indexOf("AST_TECHNOLOGY");
-    int m_astRangeNo             = m_querySql.record().indexOf("AST_RANGE");
-    int m_astTheoricalAccuracyNo = m_querySql.record().indexOf("AST_THEORETICALACCURACY");
-    int m_astUnitNo              = m_querySql.record().indexOf("AST_UNIT");
-    int physicalMeasurementCol   = m_querySql.record().indexOf("AST_PHYSICALMEASUREMENT");
-    int outputSignalCol          = m_querySql.record().indexOf("AST_OUTPUTSIGNAL");
+    int mpCodeNo               = querySql.record().indexOf("MP_CODE");
+    int mpNameNo               = querySql.record().indexOf("MP_NAME");
+    int apCodeNo               = querySql.record().indexOf("AP_CODE");
+    int apNameNo               = querySql.record().indexOf("AP_NAME");
+    int astBrandNo             = querySql.record().indexOf("AST_BRAND");
+    int astModelNo             = querySql.record().indexOf("AST_MODEL");
+    int astTechnologyNo        = querySql.record().indexOf("AST_TECHNOLOGY");
+    int astRangeNo             = querySql.record().indexOf("AST_RANGE");
+    int astTheoricalAccuracyNo = querySql.record().indexOf("AST_THEORETICALACCURACY");
+    int astUnitNo              = querySql.record().indexOf("AST_UNIT");
+    int physicalMeasurementCol   = querySql.record().indexOf("AST_PHYSICALMEASUREMENT");
+    int outputSignalCol          = querySql.record().indexOf("AST_OUTPUTSIGNAL");
 
-    QString m_queryStringRex = "insert into G6DATASET ("
+    QString queryStringRex = "insert into G6DATASET ("
                                "MP_CODE, "
                                "MP_NAME, "
                                "AP_CODE, "
@@ -1568,70 +1569,70 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
                                "AST_OUTPUTSIGNAL"
                                ") values ";
 
-    while(m_querySql.next()) {
-        QString m_mpCodeData               = m_querySql.value(m_mpCodeNo).toString();
-        QString m_mpNameData               = m_querySql.value(m_mpNameNo).toString();
-        QString m_apCodeData               = m_querySql.value(m_apCodeNo).toString();
-        QString m_apNameData               = m_querySql.value(m_apNameNo).toString();
-        QString m_astBrandData             = m_querySql.value(m_astBrandNo).toString();
-        QString m_astModelData             = m_querySql.value(m_astModelNo).toString();
+    while(querySql.next()) {
+        QString mpCodeData               = querySql.value(mpCodeNo).toString();
+        QString mpNameData               = querySql.value(mpNameNo).toString();
+        QString apCodeData               = querySql.value(apCodeNo).toString();
+        QString apNameData               = querySql.value(apNameNo).toString();
+        QString astBrandData             = querySql.value(astBrandNo).toString();
+        QString astModelData             = querySql.value(astModelNo).toString();
 
         // // 1. Récupérer les octets bruts
-        // QByteArray rawData = m_querySql.value(m_astModelNo).toByteArray();
+        // QByteArray rawData = querySql.value(astModelNo).toByteArray();
         // qDebug() << "\n---->Octets bruts avec OCTETS:" << rawData.toHex(' ');
         // QString textLatin1 = QString::fromLatin1(rawData);
         // qDebug() << "---->Texte Latin1:" << textLatin1;
-        // qDebug() << "---->Texte direct:" << m_astModelData;
-        QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
-        QString m_astRangeData             = m_querySql.value(m_astRangeNo).toString();
-        QString m_astTheoricalAccuracyData = m_querySql.value(m_astTheoricalAccuracyNo).toString();
-        QString m_astUnitData              = m_querySql.value(m_astUnitNo).toString();
-        QString physicalMeasurement        = m_querySql.value(physicalMeasurementCol).toString();
-        QString outputSignal               = m_querySql.value(outputSignalCol).toString();
+        // qDebug() << "---->Texte direct:" << astModelData;
+        QString astTechnologyData        = querySql.value(astTechnologyNo).toString();
+        QString astRangeData             = querySql.value(astRangeNo).toString();
+        QString astTheoricalAccuracyData = querySql.value(astTheoricalAccuracyNo).toString();
+        QString astUnitData              = querySql.value(astUnitNo).toString();
+        QString physicalMeasurement        = querySql.value(physicalMeasurementCol).toString();
+        QString outputSignal               = querySql.value(outputSignalCol).toString();
 
-        if(m_queryRexOneOnly == true) {
-            m_queryStringRex += QString("('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
-                                    .arg(m_mpCodeData)
-                                    .arg(m_mpNameData)
-                                    .arg(m_apCodeData)
-                                    .arg(m_apNameData)
-                                    .arg(m_astBrandData)
-                                    .arg(m_astModelData)
-                                    .arg(m_astTechnologyData)
-                                    .arg(m_astRangeData)
-                                    .arg(m_astTheoricalAccuracyData)
-                                    .arg(m_astUnitData)
+        if(queryRexOneOnly == true) {
+            queryStringRex += QString("('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                                    .arg(mpCodeData)
+                                    .arg(mpNameData)
+                                    .arg(apCodeData)
+                                    .arg(apNameData)
+                                    .arg(astBrandData)
+                                    .arg(astModelData)
+                                    .arg(astTechnologyData)
+                                    .arg(astRangeData)
+                                    .arg(astTheoricalAccuracyData)
+                                    .arg(astUnitData)
                                     .arg(physicalMeasurement)
                                     .arg(outputSignal);
 
-            m_queryRexOneOnly = false;
+            queryRexOneOnly = false;
         } else {
-            m_queryStringRex += QString(",('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
-                                    .arg(m_mpCodeData)
-                                    .arg(m_mpNameData)
-                                    .arg(m_apCodeData)
-                                    .arg(m_apNameData)
-                                    .arg(m_astBrandData)
-                                    .arg(m_astModelData)
-                                    .arg(m_astTechnologyData)
-                                    .arg(m_astRangeData)
-                                    .arg(m_astTheoricalAccuracyData)
-                                    .arg(m_astUnitData)
+            queryStringRex += QString(",('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                                    .arg(mpCodeData)
+                                    .arg(mpNameData)
+                                    .arg(apCodeData)
+                                    .arg(apNameData)
+                                    .arg(astBrandData)
+                                    .arg(astModelData)
+                                    .arg(astTechnologyData)
+                                    .arg(astRangeData)
+                                    .arg(astTheoricalAccuracyData)
+                                    .arg(astUnitData)
                                     .arg(physicalMeasurement)
                                     .arg(outputSignal);
         }
     }
 
-    isExecuted &= m_querySqlRex.exec(m_queryStringRex);
+    isExecuted = querySqlRex.exec(queryStringRex);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Fill REX Database");
-    if(isExecuted == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!isExecuted) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("setG6DatasetTable_acqPoints Failed to insert data in G6DATASET table ().<br/>"
                                                          "ErrorText : %1<br/>"
                                                          "ErrorType : %2")
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail m_querySqlRex : ");
         return;
     }
@@ -1642,21 +1643,21 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "G6";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName     = "G6";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
 
-    if(!checkG6DatabaseStructure(m_databaseSql)) {
+    if(!checkG6DatabaseStructure(databaseSql)) {
         m_g6dbStructureIsOk = false;
         return;
     }
 
-    QSqlQuery m_querySql(m_databaseSql);
-    bool m_exec = true;
+    QSqlQuery querySql(databaseSql);
+    bool execOk = false;
 
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
 
-    bool m_queryRexOneOnly = true;
+    bool queryRexOneOnly = true;
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" select distinct "
@@ -1691,36 +1692,36 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
         strQuery.append(" AND ND.AST_CODE IS NOT NULL ");
     }
 
-    m_exec &= m_querySql.exec(strQuery);
+    execOk = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setG6DatasetTable_nodes().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3 \n query : %4")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type())
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type())
                                                           .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute query");
         return;
     }
 
-    int m_mpCodeNo               = m_querySql.record().indexOf("MP_CODE");
-    int m_mpNameNo               = m_querySql.record().indexOf("MP_NAME");
-    int m_apCodeNo               = m_querySql.record().indexOf("ND_CODE");
-    int m_apNameNo               = m_querySql.record().indexOf("ND_NAME");
-    int m_astBrandNo             = m_querySql.record().indexOf("AST_BRAND");
-    int m_astModelNo             = m_querySql.record().indexOf("AST_MODEL");
-    int m_astTechnologyNo        = m_querySql.record().indexOf("AST_TECHNOLOGY");
-    int m_astRangeNo             = m_querySql.record().indexOf("AST_RANGE");
-    int m_astTheoricalAccuracyNo = m_querySql.record().indexOf("AST_THEORETICALACCURACY");
-    int m_astUnitNo              = m_querySql.record().indexOf("AST_UNIT");
-    int physicalMeasurementCol   = m_querySql.record().indexOf("AST_PHYSICALMEASUREMENT");
-    int outputSignalCol          = m_querySql.record().indexOf("AST_OUTPUTSIGNAL");
+    int mpCodeNo               = querySql.record().indexOf("MP_CODE");
+    int mpNameNo               = querySql.record().indexOf("MP_NAME");
+    int apCodeNo               = querySql.record().indexOf("ND_CODE");
+    int apNameNo               = querySql.record().indexOf("ND_NAME");
+    int astBrandNo             = querySql.record().indexOf("AST_BRAND");
+    int astModelNo             = querySql.record().indexOf("AST_MODEL");
+    int astTechnologyNo        = querySql.record().indexOf("AST_TECHNOLOGY");
+    int astRangeNo             = querySql.record().indexOf("AST_RANGE");
+    int astTheoricalAccuracyNo = querySql.record().indexOf("AST_THEORETICALACCURACY");
+    int astUnitNo              = querySql.record().indexOf("AST_UNIT");
+    int physicalMeasurementCol   = querySql.record().indexOf("AST_PHYSICALMEASUREMENT");
+    int outputSignalCol          = querySql.record().indexOf("AST_OUTPUTSIGNAL");
 
-    QString m_queryStringRex = "insert into G6DATASET ("
+    QString queryStringRex = "insert into G6DATASET ("
                                "MP_CODE, "
                                "MP_NAME, "
                                "ND_CODE, "
@@ -1735,63 +1736,63 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
                                "AST_OUTPUTSIGNAL"
                                ") values ";
 
-    while(m_querySql.next()) {
-        QString m_mpCodeData               = m_querySql.value(m_mpCodeNo).toString();
-        QString m_mpNameData               = m_querySql.value(m_mpNameNo).toString();
-        QString m_apCodeData               = m_querySql.value(m_apCodeNo).toString();
-        QString m_apNameData               = m_querySql.value(m_apNameNo).toString();
-        QString m_astBrandData             = m_querySql.value(m_astBrandNo).toString();
-        QString m_astModelData             = m_querySql.value(m_astModelNo).toString();
-        QString m_astTechnologyData        = m_querySql.value(m_astTechnologyNo).toString();
-        QString m_astRangeData             = m_querySql.value(m_astRangeNo).toString();
-        QString m_astTheoricalAccuracyData = m_querySql.value(m_astTheoricalAccuracyNo).toString();
-        QString m_astUnitData              = m_querySql.value(m_astUnitNo).toString();
-        QString physicalMeasurement        = m_querySql.value(physicalMeasurementCol).toString();
-        QString outputSignal               = m_querySql.value(outputSignalCol).toString();
+    while(querySql.next()) {
+        QString mpCodeData               = querySql.value(mpCodeNo).toString();
+        QString mpNameData               = querySql.value(mpNameNo).toString();
+        QString apCodeData               = querySql.value(apCodeNo).toString();
+        QString apNameData               = querySql.value(apNameNo).toString();
+        QString astBrandData             = querySql.value(astBrandNo).toString();
+        QString astModelData             = querySql.value(astModelNo).toString();
+        QString astTechnologyData        = querySql.value(astTechnologyNo).toString();
+        QString astRangeData             = querySql.value(astRangeNo).toString();
+        QString astTheoricalAccuracyData = querySql.value(astTheoricalAccuracyNo).toString();
+        QString astUnitData              = querySql.value(astUnitNo).toString();
+        QString physicalMeasurement        = querySql.value(physicalMeasurementCol).toString();
+        QString outputSignal               = querySql.value(outputSignalCol).toString();
 
-        if(m_queryRexOneOnly == true) {
-            m_queryStringRex += QString("('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
-                                    .arg(m_mpCodeData)
-                                    .arg(m_mpNameData)
-                                    .arg(m_apCodeData)
-                                    .arg(m_apNameData)
-                                    .arg(m_astBrandData)
-                                    .arg(m_astModelData)
-                                    .arg(m_astTechnologyData)
-                                    .arg(m_astRangeData)
-                                    .arg(m_astTheoricalAccuracyData)
-                                    .arg(m_astUnitData)
+        if(queryRexOneOnly == true) {
+            queryStringRex += QString("('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                                    .arg(mpCodeData)
+                                    .arg(mpNameData)
+                                    .arg(apCodeData)
+                                    .arg(apNameData)
+                                    .arg(astBrandData)
+                                    .arg(astModelData)
+                                    .arg(astTechnologyData)
+                                    .arg(astRangeData)
+                                    .arg(astTheoricalAccuracyData)
+                                    .arg(astUnitData)
                                     .arg(physicalMeasurement)
                                     .arg(outputSignal);
 
-            m_queryRexOneOnly = false;
+            queryRexOneOnly = false;
         } else {
-            m_queryStringRex += QString(",('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
-                                    .arg(m_mpCodeData)
-                                    .arg(m_mpNameData)
-                                    .arg(m_apCodeData)
-                                    .arg(m_apNameData)
-                                    .arg(m_astBrandData)
-                                    .arg(m_astModelData)
-                                    .arg(m_astTechnologyData)
-                                    .arg(m_astRangeData)
-                                    .arg(m_astTheoricalAccuracyData)
-                                    .arg(m_astUnitData)
+            queryStringRex += QString(",('%1', '%2', '%3', '%4', '%5', '%6', '%7', '%8', '%9', '%10','%11','%12')")
+                                    .arg(mpCodeData)
+                                    .arg(mpNameData)
+                                    .arg(apCodeData)
+                                    .arg(apNameData)
+                                    .arg(astBrandData)
+                                    .arg(astModelData)
+                                    .arg(astTechnologyData)
+                                    .arg(astRangeData)
+                                    .arg(astTheoricalAccuracyData)
+                                    .arg(astUnitData)
                                     .arg(physicalMeasurement)
                                     .arg(outputSignal);
         }
     }
 
-    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+    execOk = querySqlRex.exec(queryStringRex);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Fill REX Database");
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("setG6DatasetTable_acqPoints Failed to insert data in G6DATASET table ().<br/>"
                                                          "ErrorText : %1<br/>"
                                                          "ErrorType : %2")
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail m_querySqlRex : ");
         return;
     }
@@ -1802,21 +1803,21 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "G6";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName     = "G6";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
 
-    if(!checkG6DatabaseStructure(m_databaseSql)) {
+    if(!checkG6DatabaseStructure(databaseSql)) {
         m_g6dbStructureIsOk = false;
         return;
     }
 
-    QSqlQuery m_querySql(m_databaseSql);
-    bool m_exec = true;
+    QSqlQuery querySql(databaseSql);
+    bool execOk = false;
 
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
 
-    bool m_queryRexOneOnly = true;
+    bool queryRexOneOnly = true;
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  MP.MP_CODE, MP.MP_NAME FROM MEASUREPOINT MP "
@@ -1825,49 +1826,49 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
                                " and MP.AP_CODE  IS null "
                                " and mp.ND_CODE  IS null");
 
-    m_exec &= m_querySql.exec(strQuery);
+    execOk = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(m_exec == false) {
+    if(!execOk) {
         emit Signaler::instance()
-            ->signal_emitMessage(QMessageBox::Critical, "red", tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(m_databaseName),
+            ->signal_emitMessage(QMessageBox::Critical, "red", tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(databaseName),
                                  tr("%1 Failed to execute ().<br/> ErrorText : %2<br/> ErrorType : %3 \n Query : %4")
-                                     .arg(m_databaseName)
-                                     .arg(m_querySql.lastError().databaseText())
-                                     .arg(m_querySql.lastError().type())
+                                     .arg(databaseName)
+                                     .arg(querySql.lastError().databaseText())
+                                     .arg(querySql.lastError().type())
                                      .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute query");
         return;
     }
 
-    int m_mpCodeNo = m_querySql.record().indexOf("MP_CODE");
-    int m_mpNameNo = m_querySql.record().indexOf("MP_NAME");
+    int mpCodeNo = querySql.record().indexOf("MP_CODE");
+    int mpNameNo = querySql.record().indexOf("MP_NAME");
 
-    QString m_queryStringRex = "insert into G6DATASET (MP_CODE, MP_NAME ) VALUES ";
+    QString queryStringRex = "insert into G6DATASET (MP_CODE, MP_NAME ) VALUES ";
 
-    while(m_querySql.next()) {
-        QString m_mpCodeData = m_querySql.value(m_mpCodeNo).toString();
-        QString m_mpNameData = m_querySql.value(m_mpNameNo).toString();
+    while(querySql.next()) {
+        QString m_mpCodeData = querySql.value(mpCodeNo).toString();
+        QString m_mpNameData = querySql.value(mpNameNo).toString();
 
-        if(m_queryRexOneOnly == true) {
-            m_queryStringRex += QString("('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
+        if(queryRexOneOnly == true) {
+            queryStringRex += QString("('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
 
-            m_queryRexOneOnly = false;
+            queryRexOneOnly = false;
         } else {
-            m_queryStringRex += QString(",('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
+            queryStringRex += QString(",('%1', '%2')").arg(m_mpCodeData).arg(m_mpNameData);
         }
     }
 
-    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+    execOk = querySqlRex.exec(queryStringRex);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Fill REX Database");
-    if(m_exec == false) {
+    if(!execOk) {
         emit Signaler::instance()
-            ->signal_emitMessage(QMessageBox::Critical, "red", tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(m_databaseName),
+            ->signal_emitMessage(QMessageBox::Critical, "red", tr("setG6DatasetTable_deadPoints(). Error %1 Database").arg(databaseName),
                                  tr("%1 Failed to execute ().<br/> ErrorText : %2<br/> ErrorType : %3 \n Query : %4")
-                                     .arg(m_databaseName)
-                                     .arg(m_querySql.lastError().databaseText())
-                                     .arg(m_querySql.lastError().type())
+                                     .arg(databaseName)
+                                     .arg(querySql.lastError().databaseText())
+                                     .arg(querySql.lastError().type())
                                      .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail m_querySqlRex : ");
         return;
@@ -1879,29 +1880,29 @@ void RSDatabaseAccess::setG7DatasetTable()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "G7";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName     = "G7";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
 
-    if(!checkG7DatabaseStructure(m_databaseSql)) {
+    if(!checkG7DatabaseStructure(databaseSql)) {
         return;
     }
 
-    QSqlQuery m_querySql(m_databaseSql);
-    bool m_exec = true;
+    QSqlQuery querySql(databaseSql);
+    bool execOk = true;
 
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
 
-    QString m_queryStringRex = "insert into G7DATASET ("
+    QString queryStringRex = "insert into G7DATASET ("
                                "ENT_CODE, "
                                "ENTITY_ID, "
                                "ENT_NAME, "
                                "TAG_NAME"
                                ") values ";
 
-    bool m_queryRexOneOnly = true;
+    bool queryRexOneOnly = true;
 
-    m_exec &= m_querySql.exec(QString("select distinct e.ENT_CODE, e.ENTITY_ID, e.ENT_NAME, "
+    execOk = querySql.exec(QString("select distinct e.ENT_CODE, e.ENTITY_ID, e.ENT_NAME, "
                                       "t.TAG_NAME from T_ENTITIES e "
                                       "left join T_ENTITYTAG et "
                                       "on et.ENT_CODE = e.ENT_CODE "
@@ -1913,56 +1914,56 @@ void RSDatabaseAccess::setG7DatasetTable()
                                       "and e.SRC_CODE = 1 "
                                       "and tc.TCT_CODE = 2"));
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setG7DatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + m_querySqlRex.executedQuery());
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
+        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + querySqlRex.executedQuery());
         return;
     }
 
-    int m_entCodeNo  = m_querySql.record().indexOf("ENT_CODE");
-    int m_entityIdNo = m_querySql.record().indexOf("ENTITY_ID");
-    int m_entNameNo  = m_querySql.record().indexOf("ENT_NAME");
-    int m_tagNameNo  = m_querySql.record().indexOf("TAG_NAME");
+    int entCodeNo  = querySql.record().indexOf("ENT_CODE");
+    int entityIdNo = querySql.record().indexOf("ENTITY_ID");
+    int entNameNo  = querySql.record().indexOf("ENT_NAME");
+    int tagNameNo  = querySql.record().indexOf("TAG_NAME");
 
-    while(m_querySql.next()) {
-        QString m_entCodeData  = m_querySql.value(m_entCodeNo).toString();
-        QString m_entityIdData = m_querySql.value(m_entityIdNo).toString();
-        QString m_entNameData  = m_querySql.value(m_entNameNo).toString();
-        QString m_tagNameData  = m_querySql.value(m_tagNameNo).toString();
+    while(querySql.next()) {
+        QString entCodeData  = querySql.value(entCodeNo).toString();
+        QString entityIdData = querySql.value(entityIdNo).toString();
+        QString entNameData  = querySql.value(entNameNo).toString();
+        QString tagNameData  = querySql.value(tagNameNo).toString();
 
-        if(m_queryRexOneOnly == true) {
-            m_queryStringRex += QString("('%1', '%2', '%3', '%4')")
-                                    .arg(m_entCodeData)
-                                    .arg(m_entityIdData)
-                                    .arg(m_entNameData)
-                                    .arg(m_tagNameData);
-            m_queryRexOneOnly = false;
+        if(queryRexOneOnly == true) {
+            queryStringRex += QString("('%1', '%2', '%3', '%4')")
+                                    .arg(entCodeData)
+                                    .arg(entityIdData)
+                                    .arg(entNameData)
+                                    .arg(tagNameData);
+            queryRexOneOnly = false;
         } else {
-            m_queryStringRex += QString(",('%1', '%2', '%3', '%4')")
-                                    .arg(m_entCodeData)
-                                    .arg(m_entityIdData)
-                                    .arg(m_entNameData)
-                                    .arg(m_tagNameData);
+            queryStringRex += QString(",('%1', '%2', '%3', '%4')")
+                                    .arg(entCodeData)
+                                    .arg(entityIdData)
+                                    .arg(entNameData)
+                                    .arg(tagNameData);
         }
     }
 
-    m_exec &= m_querySqlRex.exec(m_queryStringRex);
+    execOk = querySqlRex.exec(queryStringRex);
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setG7DatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySqlRex.lastError().databaseText())
-                                                          .arg(m_querySqlRex.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + m_querySqlRex.executedQuery());
+                                                          .arg(databaseName)
+                                                          .arg(querySqlRex.lastError().databaseText())
+                                                          .arg(querySqlRex.lastError().type()));
+        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + querySqlRex.executedQuery());
         return;
     }
 
@@ -1976,14 +1977,15 @@ void RSDatabaseAccess::setSensorByExpDatasetTable()
     RSMessageView::Instance()->showData("setSensorByExpDatasetTable");
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName = "G7";
+    QString databaseName = "G7";
 
-    bool m_exec = true;
+    bool execOk = true;
 
     // Get data from G7
     RSMessageView::Instance()->showData("Get data from G7");
-    QSqlQuery m_querySqlG7(QSqlDatabase::database("G7"));
+    QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
+    //TODO:
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME"
                                " FROM T_ENTITIES"
@@ -1993,48 +1995,47 @@ void RSDatabaseAccess::setSensorByExpDatasetTable()
                                " WHERE T_ENTITIES.CNT_CODE = 10"
                                "   AND T_ENTITIES.SRC_CODE = 1"
                                "   AND T_TAGCATEGORIES.TCT_CODE = 2");
-    m_exec          &= m_querySqlG7.exec(strQuery);
-    if(!m_exec)
+    execOk  = querySqlG7.exec(strQuery);
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed select on G7");
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setSensorByExpDatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3 \n query : %4")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySqlG7.lastError().databaseText())
-                                                          .arg(m_querySqlG7.lastError().type())
+                                                          .arg(databaseName)
+                                                          .arg(querySqlG7.lastError().databaseText())
+                                                          .arg(querySqlG7.lastError().type())
                                                           .arg(strQuery));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute query");
         return;
     }
 
-    int entNameCol = m_querySqlG7.record().indexOf("ENT_NAME");
-    int entCodeCol = m_querySqlG7.record().indexOf("ENT_CODE");
-    int tagNameCol = m_querySqlG7.record().indexOf("TAG_NAME");
+    int entNameCol = querySqlG7.record().indexOf("ENT_NAME");
+    int entCodeCol = querySqlG7.record().indexOf("ENT_CODE");
+    int tagNameCol = querySqlG7.record().indexOf("TAG_NAME");
 
-    QString m_queryStringRex = "insert into SENSORBYEXPDATASET (ENT_NAME, TAG_NAME, TAG_NAME ) values ";
-    while(m_querySqlG7.next()) {
-        QString entName = m_querySqlG7.value(entNameCol).toString();
-        QString entCode = m_querySqlG7.value(entCodeCol).toString();
-        QString tagName = m_querySqlG7.value(tagNameCol).toString();
-        if(m_querySqlG7.at() == 0)
-            m_queryStringRex += QString("('%1', '%2', '%3')").arg(entName).arg(entCode).arg(tagName);
+    QString queryStringRex = "insert into SENSORBYEXPDATASET (ENT_NAME, TAG_NAME, TAG_NAME ) values ";
+    while(querySqlG7.next()) {
+        QString entName = querySqlG7.value(entNameCol).toString();
+        QString entCode = querySqlG7.value(entCodeCol).toString();
+        QString tagName = querySqlG7.value(tagNameCol).toString();
+        if(querySqlG7.at() == 0)
+            queryStringRex += QString("('%1', '%2', '%3')").arg(entName).arg(entCode).arg(tagName);
         else
-            m_queryStringRex += QString(",('%1', '%2', '%3')").arg(entName).arg(entCode).arg(tagName);
+            queryStringRex += QString(",('%1', '%2', '%3')").arg(entName).arg(entCode).arg(tagName);
     }
 
     // Put data in REX
     RSMessageView::Instance()->showData("SENSORBYEXPDATASET");
     {
         QSqlQuery m_querySqlREX(QSqlDatabase::database("REX"));
-        m_exec &= m_querySqlREX.exec(m_queryStringRex);
+        execOk = m_querySqlREX.exec(queryStringRex);
 
-        if(m_exec == false) {
-            emit Signaler::instance()
-                ->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+        if(!execOk) {
+            emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                      tr("setSensorByExpDatasetTable Failed to insert data in SENSORBYEXPDATASET table ().<br/>"
                                         "ErrorText : %1<br/>"
                                         "ErrorType : %2")
@@ -2055,27 +2056,27 @@ void RSDatabaseAccess::setRexDatasetTable()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName        = "REX";
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
-    bool m_exec = true;
+    QString databaseName        = "REX";
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
+    bool execOk = false;
 
-    m_exec &= m_querySqlRex.exec(QString("drop view if exists REXDATASET"));
+    execOk = querySqlRex.exec(QString("drop view if exists REXDATASET"));
 
-    m_exec &= m_querySqlRex.exec(QString("create view if not exists REXDATASET as "
+    execOk &= querySqlRex.exec(QString("create view if not exists REXDATASET as "
                                          "select distinct g6.*, g7.* from G6DATASET g6 "
                                          "left join G7DATASET g7 "
                                          "on g7.ENTITY_ID = g6.MP_CODE"));
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setRexDatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySqlRex.lastError().databaseText())
-                                                          .arg(m_querySqlRex.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + m_querySqlRex.executedQuery());
+                                                          .arg(databaseName)
+                                                          .arg(querySqlRex.lastError().databaseText())
+                                                          .arg(querySqlRex.lastError().type()));
+        RSLogger::instance()->info(Q_FUNC_INFO, "End. m_exec == false Fail.. Query is : " + querySqlRex.executedQuery());
         return;
     }
 
@@ -2089,15 +2090,15 @@ void RSDatabaseAccess::setRexFilterTable(QString& strQuery)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName   = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName   = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
 
-    qDebug().noquote() << ">> setRexFilterTable -" << m_databaseName << "- ConnectOptions:" << databaseSql.connectOptions();
+    qDebug().noquote() << ">> setRexFilterTable -" << databaseName << "- ConnectOptions:" << databaseSql.connectOptions();
 
     databaseSql.open();
     QSqlQuery* querySql;
     querySql    = new QSqlQuery(databaseSql);
-    bool m_exec = true;
+    bool execOk = false;
     QString filterQuery;
 
     if(strQuery.isEmpty())
@@ -2110,18 +2111,18 @@ void RSDatabaseAccess::setRexFilterTable(QString& strQuery)
     }
     RSLogger::instance()->info(Q_FUNC_INFO, " criterias are : " + filterQuery);
 
-    m_exec &= querySql->exec(QString("drop view if exists REXFILTER"));
+    execOk = querySql->exec(QString("drop view if exists REXFILTER"));
 
     QString completeQuery = QString("create view if not exists REXFILTER as select DISTINCT * from REXDATASET r %1").arg(filterQuery);
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute Query: \n" + completeQuery);
-    m_exec &= querySql->exec(completeQuery);
+    execOk &= querySql->exec(completeQuery);
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute setRexFilterTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
+                                                          .arg(databaseName)
                                                           .arg(querySql->lastError().databaseText())
                                                           .arg(querySql->lastError().type()));
 
@@ -2141,15 +2142,15 @@ QStringList RSDatabaseAccess::getDataColumn(const QString& table, const QString&
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName   = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName   = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
     // databaseSql.open();
     QSqlQuery* querySql;
     querySql = new QSqlQuery(databaseSql);
 
     QStringList sensorsList;
 
-    bool m_exec = true;
+    bool execOk = false;
 
     QString strQuery = QString("select distinct %1 IDATA "
                                "from %2 "
@@ -2159,14 +2160,14 @@ QStringList RSDatabaseAccess::getDataColumn(const QString& table, const QString&
                            .arg(field)
                            .arg(table);
 
-    m_exec &= querySql->exec(strQuery);
+    execOk = querySql->exec(strQuery);
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getDataColumn().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
+                                                          .arg(databaseName)
                                                           .arg(querySql->lastError().databaseText())
                                                           .arg(querySql->lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "Failed to execute query: \n " + strQuery);
@@ -2174,11 +2175,11 @@ QStringList RSDatabaseAccess::getDataColumn(const QString& table, const QString&
     }
     RSLogger::instance()->info(Q_FUNC_INFO, "Executed query: \n " + strQuery);
 
-    int m_dataNo = querySql->record().indexOf("IDATA");
+    int dataNo = querySql->record().indexOf("IDATA");
 
     while(querySql->next()) {
-        QString m_data = querySql->value(m_dataNo).toString();
-        sensorsList.push_back(m_data);
+        QString data = querySql->value(dataNo).toString();
+        sensorsList.push_back(data);
     }
 
     RSLogger::instance()->info(Q_FUNC_INFO, "clear the query");
@@ -2196,14 +2197,14 @@ void RSDatabaseAccess::createDatasetTable()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName        = "REX";
-    QSqlDatabase m_databaseSqlRex = QSqlDatabase::database("REX");
-    QSqlQuery m_querySqlRex(m_databaseSqlRex);
-    bool m_exec = true;
+    QString databaseName        = "REX";
+    QSqlDatabase databaseSqlRex = QSqlDatabase::database("REX");
+    QSqlQuery querySqlRex(databaseSqlRex);
+    bool execOk = false;
 
-    m_exec &= m_querySqlRex.exec(QString("drop table if exists G6DATASET"));
+    execOk = querySqlRex.exec(QString("drop table if exists G6DATASET"));
 
-    m_exec &= m_querySqlRex.exec(QString("create table if not exists G6DATASET ( "
+    execOk &= querySqlRex.exec(QString("create table if not exists G6DATASET ( "
                                          "MP_CODE VARCHAR(64), "
                                          "MP_NAME VARCHAR(64), "
                                          "AP_CODE VARCHAR(64), "
@@ -2219,47 +2220,47 @@ void RSDatabaseAccess::createDatasetTable()
                                          "AST_PHYSICALMEASUREMENT VARCHAR(64),"
                                          "AST_OUTPUTSIGNAL VARCHAR(64)"
                                          ")"));
-    if(!m_exec)
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed to create G6DATASET");
 
-    m_exec &= m_querySqlRex.exec(QString("drop table if exists G7DATASET"));
+    execOk &= querySqlRex.exec(QString("drop table if exists G7DATASET"));
 
-    m_exec &= m_querySqlRex.exec(QString("create table if not exists G7DATASET ( "
+    execOk &= querySqlRex.exec(QString("create table if not exists G7DATASET ( "
                                          "ENT_CODE VARCHAR(64), "
                                          "ENTITY_ID VARCHAR(64), "
                                          "ENT_NAME VARCHAR(64), "
                                          "TAG_NAME VARCHAR(64)"
                                          ")"));
-    if(!m_exec)
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed to create G7DATASET");
 
-    m_exec &= m_querySqlRex.exec(QString("drop table if exists BRAND_FIDELITY"));
+    execOk &= querySqlRex.exec(QString("drop table if exists BRAND_FIDELITY"));
 
-    m_exec &= m_querySqlRex.exec(QString("create table if not exists BRAND_FIDELITY ( "
+    execOk &= querySqlRex.exec(QString("create table if not exists BRAND_FIDELITY ( "
                                          "ID INTEGER PRIMARY KEY AUTOINCREMENT, "
                                          "BRAND VARCHAR(64), "
                                          "FIDELITY DOUBLE"
                                          ")"));
-    if(!m_exec)
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed to create BRAND_FIDELITY");
 
-    m_exec &= m_querySqlRex.exec(QString("drop table if exists SENSORBYEXPDATASET"));
-    m_exec &= m_querySqlRex.exec(QString("create table if not exists SENSORBYEXPDATASET ( "
+    execOk &= querySqlRex.exec(QString("drop table if exists SENSORBYEXPDATASET"));
+    execOk &= querySqlRex.exec(QString("create table if not exists SENSORBYEXPDATASET ( "
                                          "ENT_NAME VARCHAR(64), "
                                          "ENT_CODE VARCHAR(64), "
                                          "TAG_NAME VARCHAR(64)"
                                          ")"));
-    if(!m_exec)
+    if(!execOk)
         RSMessageView::Instance()->showData("REX: failed to create SENSORBYEXPDATASET");
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute createDatasetTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySqlRex.lastError().databaseText())
-                                                          .arg(m_querySqlRex.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySqlRex.lastError().databaseText())
+                                                          .arg(querySqlRex.lastError().type()));
 
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail");
         return;
@@ -2291,8 +2292,8 @@ bool RSDatabaseAccess::checkFilterQueryAndBuildRexFilterTable(QString& strQuery)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName   = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(m_databaseName);
+    QString databaseName   = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
     QSqlQuery* querySql;
     QString filterQuery;
     querySql = new QSqlQuery(databaseSql);
@@ -2310,13 +2311,13 @@ bool RSDatabaseAccess::checkFilterQueryAndBuildRexFilterTable(QString& strQuery)
                                   "from REXDATASET r %1")
                               .arg(filterQuery);
 
-    bool m_exec = querySql->exec(queryString);
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    bool execOk = querySql->exec(queryString);
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute checkFilterQueryAndBuildRexFilterTable().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
+                                                          .arg(databaseName)
                                                           .arg(querySql->lastError().databaseText())
                                                           .arg(querySql->lastError().type()));
 
@@ -2330,23 +2331,22 @@ bool RSDatabaseAccess::checkFilterQueryAndBuildRexFilterTable(QString& strQuery)
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Executed Query :\n " + queryString);
 
-    int m_dataNo    = querySql->record().indexOf("IDATA");
-    int m_dataCount = 0;
+    int dataNo    = querySql->record().indexOf("IDATA");
+    int dataCount = 0;
 
     while(querySql->next()) {
-        m_dataCount = querySql->value(m_dataNo).toInt();
+        dataCount = querySql->value(dataNo).toInt();
     }
 
-    bool m_data = (m_dataCount > 0) ? true : false;
+    bool data = (dataCount > 0) ? true : false;
 
     // Update the REXFILTER table.
-    if(m_data == true) {
+    if(data) {
         RSLogger::instance()->info(Q_FUNC_INFO, "setRexFilterTable   ");
         setRexFilterTable(filterQuery);
     } else {
         RSLogger::instance()->info(Q_FUNC_INFO, "End. No Data!");
-        emit Signaler::instance()
-            ->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName), tr("No Data!"));
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName), tr("No Data!"));
     }
 
     querySql->clear();
@@ -2356,7 +2356,7 @@ bool RSDatabaseAccess::checkFilterQueryAndBuildRexFilterTable(QString& strQuery)
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 
-    return m_data;
+    return data;
 }
 
 QStringList RSDatabaseAccess::getSensorNameList()
@@ -2376,23 +2376,23 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery sqlQuery(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery sqlQuery(databaseSql);
     QList<SensorInfos> dataList;
 
-    bool m_exec = true;
+    bool execOk = false;
 
     QString strQuery = QString("select * from REXFILTER ");
-    m_exec          &= sqlQuery.exec(strQuery);
+    execOk  = sqlQuery.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorNameList().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
+                                                          .arg(databaseName)
                                                           .arg(sqlQuery.lastError().databaseText())
                                                           .arg(sqlQuery.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
