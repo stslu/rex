@@ -2451,11 +2451,11 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
     QStringList dataList;
-    bool m_exec = true;
+    bool execOk = false;
 
     QString strQuery = QString("select distinct MP_NAME IDATA "
                                "from REXFILTER "
@@ -2465,27 +2465,27 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
                                "order by MP_NAME")
                            .arg(field)
                            .arg(name);
-    m_exec &= m_querySql.exec(strQuery);
+    execOk = querySql.exec(strQuery);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorNameList().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
         return QStringList();
     }
 
-    int m_dataNo = m_querySql.record().indexOf("IDATA");
+    int dataNo = querySql.record().indexOf("IDATA");
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
-    while(m_querySql.next()) {
-        QString m_data = m_querySql.value(m_dataNo).toString();
-        dataList.push_back(m_data);
+    while(querySql.next()) {
+        QString data = querySql.value(dataNo).toString();
+        dataList.push_back(data);
     }
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found %1 sensors").arg(dataList.count()));
@@ -2494,11 +2494,11 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
 
 QPair<int, MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QString& name) const
 {
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
     QPair<int, MeasPointType> data;
-    bool m_exec = true;
+    bool execOk = false;
 
     const QString strQuery = QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
                                      "   where RF.MP_NAME = '%1' "
@@ -2508,27 +2508,27 @@ QPair<int, MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QStri
                                  .arg(name);
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Execute Query:\n" + strQuery);
-    m_exec &= m_querySql.exec(strQuery);
+    execOk = querySql.exec(strQuery);
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorNameCode().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         return QPair<int, MeasPointType>();
     }
 
-    int apCodeNo = m_querySql.record().indexOf("AP_CODE");
-    int ndCodeNo = m_querySql.record().indexOf("ND_CODE");
+    int apCodeNo = querySql.record().indexOf("AP_CODE");
+    int ndCodeNo = querySql.record().indexOf("ND_CODE");
 
     QVariant apCode, ndCode;
 
-    while(m_querySql.next()) {
-        apCode = m_querySql.value(apCodeNo).toString();
-        ndCode = m_querySql.value(ndCodeNo).toString();
+    while(querySql.next()) {
+        apCode = querySql.value(apCodeNo).toString();
+        ndCode = querySql.value(ndCodeNo).toString();
     }
 
     if(!apCode.toString().trimmed().isEmpty()) {
@@ -2545,38 +2545,38 @@ QPair<int, MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QStri
 
 int RSDatabaseAccess::getSensorNameCode(const QString& name)
 {
-    QString m_databaseName     = "REX";
-    QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
-    QSqlQuery m_querySql(m_databaseSql);
+    QString databaseName     = "REX";
+    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+    QSqlQuery querySql(databaseSql);
     int apOrNdCode;
-    bool m_exec = true;
+    bool execOk = false;
 
-    m_exec &= m_querySql.exec(QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
+    execOk = querySql.exec(QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
                                       "where RF.MP_NAME = '%1' "
                                       "and RF.MP_NAME <> '' "
                                       "and RF.MP_NAME is not null "
                                       "limit 1")
                                   .arg(name));
 
-    if(m_exec == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
+    if(!execOk) {
+        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getSensorNameCode().<br/>"
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
-                                                          .arg(m_databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(databaseName)
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         return 0;
     }
 
-    int apCodeNo = m_querySql.record().indexOf("AP_CODE");
-    int ndCodeNo = m_querySql.record().indexOf("ND_CODE");
+    int apCodeNo = querySql.record().indexOf("AP_CODE");
+    int ndCodeNo = querySql.record().indexOf("ND_CODE");
 
     QVariant apCode, ndCode;
 
-    while(m_querySql.next()) {
-        apCode = m_querySql.value(apCodeNo).toString();
-        ndCode = m_querySql.value(ndCodeNo).toString();
+    while(querySql.next()) {
+        apCode = querySql.value(apCodeNo).toString();
+        ndCode = querySql.value(ndCodeNo).toString();
     }
 
     apOrNdCode = apCode.isValid() ? apCode.toInt() : ndCode.toInt();
