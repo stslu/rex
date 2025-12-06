@@ -406,8 +406,8 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = 1 "
-                           "and av.DB_CODE = 33813554 "
+                           "where av.SI_CODE = %6 "
+                           "and av.DB_CODE = %7 "
                            "and av.AP_CODE = %5 "
                            "and av.AV_ACQUISITIONDT >= '%2' "
                            "and av.AV_ACQUISITIONDT < '%3' "
@@ -417,13 +417,15 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
                        .arg(m_startFormat)
                        .arg(m_endFormat)
                        .arg(order)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
 
     } else if(mpType == MeasPointType::Node) {
         field    = "NR_NODEDT";
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = 1 "
-                           "and NR.DB_CODE = 33813554 "
+                           "where NR.SI_CODE = %6 "
+                           "and NR.DB_CODE = %7 "
                            "and NR.ND_CODE = %5 "
                            "and NR.NR_NODEDT >= '%2' "
                            "and NR.NR_NODEDT < '%3' "
@@ -433,7 +435,9 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
                        .arg(m_startFormat)
                        .arg(m_endFormat)
                        .arg(order)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
     } else {
     }
 
@@ -498,6 +502,7 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_INGVALUE";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
+                           "where av.SI_CODE = 1 "
                            "where av.SI_CODE = 1 "
                            "and av.DB_CODE = 33813554 "
                            "and av.AP_CODE = %5 "
@@ -794,6 +799,10 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
 
     m_loadDeadEntities = loadDeadEntitiesOption().toBool();
 
+    m_siCode = loadSICode().toString();
+
+    m_dbCode = loadDBCode().toString();
+
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
 
@@ -813,6 +822,9 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
     saveG7Password();
     saveDeadEntitiesOption();
     saveNodesWithNoSensorOption();
+
+    saveSICode();
+    saveDBCode();
 
     //! We do not save for the moment. Use the file
     saveDisplayOptions();
@@ -1404,6 +1416,48 @@ void RSDatabaseAccess::saveG6Port()
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Save m_g6Port = " + data.value<QString>());
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
+}
+
+QVariant RSDatabaseAccess::loadSICode() {
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.SICode";
+    QVariant defaultVal = "1";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "SICode = " + data.value<QString>());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveSICode() {
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.SICode";
+    QVariant data = m_siCode;
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "Save m_siCode = " + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(id, key, data);
+}
+
+QVariant RSDatabaseAccess::loadDBCode() {
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.DBCode";
+    QVariant defaultVal = "33813554";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "DBCode = " + data.value<QString>());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveDBCode() {
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.DBCode";
+    QVariant data = m_dbCode;
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "Save m_dbCode = " + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
 const QMap<int, QStringList>* RSDatabaseAccess::experienceBySensorMap()

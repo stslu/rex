@@ -177,6 +177,12 @@ protected:
     void saveG7Port() ;
     void saveG6Port() ;
 
+    QVariant loadSICode();
+    void saveSICode();
+
+    QVariant loadDBCode();
+    void saveDBCode();
+
     void initExperienceBySensorMap();
 
 
@@ -202,6 +208,9 @@ private:
 
     QString m_g7Port;
     QString m_g6Port;
+
+    QString m_siCode; // QString, on garde la façon de faire stupide Gérard Kesse
+    QString m_dbCode; // QString, on garde la façon de faire stupide Gérard Kesse
 
     QDateTime m_startDateTime;
 
