@@ -404,10 +404,10 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     QString strQuery;
     bool execOk = false;
 
+    //TODO: binding
     QString m_startFormat = startDate.toString("MM-dd-yyyy");
     QString m_endFormat   = endDate.toString("MM-dd-yyyy");
 
-    //TODO: SI_CODe et DB_CODE dynmique
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
@@ -499,6 +499,8 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     QList<double> dataList;
     QString field;
     bool execOk           = true;
+
+    //TODO: binding
     QString startFormat = startDate.toString("MM-dd-yyyy");
     QString endFormat   = endDate.toString("MM-dd-yyyy");
     QString strQuery;
@@ -582,6 +584,8 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
     int data            = 0;
     QString field         = "count(*)";
     bool execOk           = false;
+
+    //TODO: binding
     QString startFormat = startDate.toString("MM-dd-yyyy");
     QString endFormat   = endDate.toString("MM-dd-yyyy");
     QString strQuery;
@@ -665,7 +669,9 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QSqlQuery querySql(m_databaseSql);
     QString field;
 
-    int dbCode     = 33813554;
+    // int dbCode     = 33813554;
+
+    //TODO: binding
     QString format = "dd.MM.yyyy";
     QString strQuery;
 
@@ -687,7 +693,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                            "and av.AV_ACQUISITIONDT < '%5' "
                            "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 ")
                        .arg(field)
-                       .arg(dbCode)
+                       .arg(m_dbCode)
                        .arg(apNdCode)
                        .arg(strStartDate)
                        .arg(strEndDate)
@@ -703,7 +709,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                            "and NR.NR_NODEDT < '%5' "
                            "and NR.NR_STATUS = 0 order by NR_NODEDT %6 ")
                        .arg(field)
-                       .arg(dbCode)
+                       .arg(m_dbCode)
                        .arg(apNdCode)
                        .arg(strStartDate)
                        .arg(strEndDate)
@@ -991,8 +997,8 @@ bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, con
 
     querySql = new QSqlQuery(dbSql);
 
-    QString format = "dd.MM.yyyy"; //TODO: utiliser le binding !!!!!!!
-
+    // Pour le logger
+    QString format = "dd.MM.yyyy";
     QString strStart = start.toString(format);
     QString strEnd   = end.toString(format);
     RSLogger::instance()->info(Q_FUNC_INFO, QString("start = %1 end = %2 mpCode = %3").arg(strStart).arg(strEnd).arg(mpCode));
@@ -1001,28 +1007,32 @@ bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, con
                                "("
                                " SELECT "
                                " CASE   "
-                               "   WHEN T_JOURNAL.JRN_ENDDATETIME > '%1' OR T_JOURNAL.JRN_ENDDATETIME IS NULL THEN  '%1' "
+                               "   WHEN T_JOURNAL.JRN_ENDDATETIME > :dt_end OR T_JOURNAL.JRN_ENDDATETIME IS NULL THEN :dt_end "
                                "   ELSE T_JOURNAL.JRN_ENDDATETIME  "
                                " END   as endDate,"
                                " CASE"
-                               "   WHEN T_JOURNAL.JRN_CREATEDATETIME < '%2' OR T_JOURNAL.JRN_CREATEDATETIME IS NULL THEN  '%2'  "
+                               "   WHEN T_JOURNAL.JRN_CREATEDATETIME < :dt_start OR T_JOURNAL.JRN_CREATEDATETIME IS NULL THEN :dt_start "
                                "   ELSE T_JOURNAL.JRN_CREATEDATETIME  "
                                " END   as startDate "
                                " FROM  T_ENTITIES INNER JOIN  T_ENTITYJOURNAL  ON T_ENTITIES.ENT_CODE = T_ENTITYJOURNAL.ENT_CODE  "
                                " LEFT JOIN T_JOURNAL on T_JOURNAL.JRN_CODE = T_ENTITYJOURNAL.JRN_CODE "
                                " LEFT JOIN T_EVENT on T_JOURNAL.EVT_CODE = T_EVENT.EVT_CODE "
-                               " WHERE (T_ENTITIES.ENTITY_ID = '%3' "
-                               "   AND  T_JOURNAL.EVT_CODE = '%4' "
-                               "   AND (T_JOURNAL.JRN_ENDDATETIME >  '%2' OR T_JOURNAL.JRN_ENDDATETIME IS NULL)"
-                               "   AND  (T_JOURNAL.JRN_CREATEDATETIME < '%1'  OR T_JOURNAL.JRN_CREATEDATETIME IS NULL)"
-                               "   AND  T_ENTITIES.CNT_CODE = 10))")
-                           .arg(strEnd)
-                           .arg(strStart)
-                           .arg(mpCode)
-                           .arg(evtCode);
+                               " WHERE (T_ENTITIES.ENTITY_ID = :mp_Code "
+                               "   AND  T_JOURNAL.EVT_CODE = :evt_code "
+                               "   AND (T_JOURNAL.JRN_ENDDATETIME >  :dt_start OR T_JOURNAL.JRN_ENDDATETIME IS NULL)"
+                               "   AND  (T_JOURNAL.JRN_CREATEDATETIME < :dt_end  OR T_JOURNAL.JRN_CREATEDATETIME IS NULL)"
+                               "   AND  T_ENTITIES.CNT_CODE = :cnt_code))");
+
+    querySql->prepare(strQuery);
+    querySql->bindValue(":dt_start", start);
+    querySql->bindValue(":dt_end", end);
+    querySql->bindValue(":mp_code", mpCode);
+    querySql->bindValue(":cnt_code", m_g7ContainerTypeCode);
+    querySql->bindValue(":evt_code", evtCode);
+
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute Query : \n" + strQuery);
-    if(!querySql->exec(strQuery)) {
+    if(!querySql->exec()) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
                                                       tr("%1 initSensorFailureList() Failed to execute Query.<br/>"
                                                          "ErrorText : %2<br/>"
@@ -1202,7 +1212,6 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
     QSqlQuery sqlQuery(dbSql);
 
     // TAG_NAME = nom expérience
-    //TODO: virer codage en dur CNT_CODE, SRC_CODE, TCT_CODE
     QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
                                "  FROM T_ENTITIES"
                                "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
@@ -1649,9 +1658,6 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 
     bool queryRexOneOnly = true;
 
-    //! brief DB_CODE = 33813554 is to be transfered in a config file
-    //TODO: DB_CODE à ne pas coder en dur
-    //SLU: ATTENTION
     QString strQuery = QString(" select distinct "
                                " mp.MP_CODE, "
                                " mp.MP_NAME, "
@@ -1673,11 +1679,16 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
                                " left join ACQSENSORTYPE ast "
                                " on ast.SI_CODE = ap.SI_CODE "
                                " and ast.AST_CODE = ap.AST_CODE "
-                               " where mp.SI_CODE = 1 "
-                               " and mp.DB_CODE = 33813554 "
+                               " where mp.SI_CODE = %1 "
+                               " and mp.DB_CODE = %2 "
                                " and mp.MP_CODE is not null"
-                               " and mp.AP_CODE is not null");
+                               " and mp.AP_CODE is not null").arg(m_siCode).arg(m_dbCode);
+
+    // qDebug().noquote() << "RSDatabaseAccess::setG6DatasetTable_acqPoints\n";
+
     isExecuted  = querySql.exec(strQuery);
+
+
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
     if(!isExecuted) {
@@ -1811,7 +1822,6 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
 
     bool queryRexOneOnly = true;
 
-    //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" select distinct "
                                " mp.MP_CODE, "
                                " mp.MP_NAME, "
@@ -1833,11 +1843,11 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
                                " left join ACQSENSORTYPE AST "
                                " on ND.SI_CODE = AST.SI_CODE "
                                " and ND.AST_CODE = AST.AST_CODE "
-                               " where mp.SI_CODE = 1 "
-                               " and mp.DB_CODE = 33813554 "
+                               " where mp.SI_CODE = %1 "
+                               " and mp.DB_CODE = %2 "
                                " and mp.MP_CODE is NOT NULL"
                                " and mp.ND_CODE is NOT NULL"
-                               " and mp.AP_CODE is NULL");
+                               " and mp.AP_CODE is NULL").arg(m_siCode).arg(m_dbCode);
 
     //! Case where we want to skip nodes without any sensor type
     if(m_loadNodesWithNoAst == false) {
@@ -2140,8 +2150,6 @@ void RSDatabaseAccess::setSensorByExpDatasetTable()
     RSMessageView::Instance()->showData("Get data from G7");
     QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
-    //TODO:
-    //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME"
                                " FROM T_ENTITIES"
                                " RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
