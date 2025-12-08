@@ -31,6 +31,11 @@ RSDatabaseAccess::RSDatabaseAccess(QObject* parent)
     , m_g6Driver("QFIREBIRD")
     , m_g7Port("3050")
     , m_g6Port("3050")
+    , m_siCode("1")
+    , m_dbCode("33813554")
+    , m_g7SourceCode("1")
+    , m_g7TagCategoryCode("2")
+    , m_g7ContainerTypeCode("10")
     , m_experienceBySensorMap(0)
     , m_loadNodesWithNoAst(false)
     , m_loadDeadEntities(true)
@@ -672,12 +677,11 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                                                 .arg(apNdCode)
                                                 .arg(mpType));
 
-    //TODO: virer SI_, DB_ codés en dur
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 from ACQVALUE av "
                            "where av.SI_CODE = %7 "
-                           "and av.DB_CODE =   '%2' "
+                           "and av.DB_CODE = %2 "
                            "and av.AP_CODE = '%3' "
                            "and av.AV_ACQUISITIONDT >= '%4' "
                            "and av.AV_ACQUISITIONDT < '%5' "
@@ -693,7 +697,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
         field    = "NR_NODEDT";
         strQuery = QString("select %1 from NODERESULT NR "
                            "where NR.SI_CODE = %7"
-                           "and NR.DB_CODE =   '%2' "
+                           "and NR.DB_CODE = %2 "
                            "and NR.ND_CODE = '%3' "
                            "and NR.NR_NODEDT >= '%4' "
                            "and NR.NR_NODEDT < '%5' "
@@ -812,6 +816,13 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
 
     m_dbCode = loadDBCode().toString();
 
+    m_g7SourceCode = loadG7SourceCode().toString();
+
+    m_g7TagCategoryCode = loadG7TagCategoryCode().toString();
+
+    m_g7ContainerTypeCode = loadG7ContainerTypeCode().toString();
+
+
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
 
@@ -834,6 +845,9 @@ void RSDatabaseAccess::saveSettings(const QString& fileName)
 
     saveSICode();
     saveDBCode();
+    saveG7SourceCode();
+    saveG7TagCategoryCode();
+    saveG7ContainerTypeCode();
 
     //! We do not save for the moment. Use the file
     saveDisplayOptions();
@@ -1194,13 +1208,17 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
                                "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
                                "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
                                "  LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-                               "  WHERE T_ENTITIES.CNT_CODE = 10"
-                               "  AND T_ENTITIES.SRC_CODE = 1"
-                               "  AND T_TAGCATEGORIES.TCT_CODE = 2"
+                               "  WHERE T_ENTITIES.CNT_CODE = %3"
+                               "  AND T_ENTITIES.SRC_CODE = %4"
+                               "  AND T_TAGCATEGORIES.TCT_CODE = %5"
                                "  AND T_ENTITIES.ENTITY_ID IN(%1)"
                                "  AND T_TAG.TAG_NAME IN('%2')")
                            .arg(mpCodeList.join(","))
-                           .arg(expList.join("','"));
+                           .arg(expList.join("','"))
+                           .arg(m_g7ContainerTypeCode)
+                           .arg(m_g7SourceCode)
+                           .arg(m_g7TagCategoryCode);
+
 
     bool execOk = sqlQuery.exec(strQuery);
 
@@ -1470,6 +1488,75 @@ void RSDatabaseAccess::saveDBCode() {
     RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
+// SRC_CODE (table T_SOURCE, 1 = GW)
+QVariant RSDatabaseAccess::loadG7SourceCode() {
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.G7SourceCode";
+    QVariant defaultVal = "1";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "G7SourceCode = " + data.value<QString>());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveG7SourceCode() {
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.G7SourceCode";
+    QVariant data = m_g7SourceCode;
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "Save m_g7SourceCode = " + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(id, key, data);
+}
+
+// TCT_CODE: (Tag category code) Experimentation = 2
+QVariant RSDatabaseAccess::loadG7TagCategoryCode() {
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.G7TagCategoryCode";
+    QVariant defaultVal = "2";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "G7TagCategoryCode = " + data.value<QString>());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveG7TagCategoryCode() {
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.G7TagCategoryCode";
+    QVariant data = m_g7TagCategoryCode;
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "Save m_g7TagCategoryCode = " + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(id, key, data);
+}
+
+// CNT_CODE : (container type code) MeasurePoint = 10
+QVariant RSDatabaseAccess::loadG7ContainerTypeCode() {
+    QString id       = "RexDatabase";
+    QString key      = "RexDatabase.G7ContainerTypeCode";
+    QVariant defaultVal = "10";
+
+    QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "G7ContainerTypeCode = " + data.value<QString>());
+
+    return data;
+}
+
+void RSDatabaseAccess::saveG7ContainerTypeCode() {
+    QString id  = "RexDatabase";
+    QString key = "RexDatabase.G7ContainerTypeCode";
+    QVariant data = m_g7ContainerTypeCode;
+
+    RSLogger::instance()->info(Q_FUNC_INFO, "Save m_g7ContainerTypeCode = " + data.value<QString>());
+    RSGlobalMethods::Instance()->saveData(id, key, data);
+}
+
+
+
+
 const QMap<int, QStringList>* RSDatabaseAccess::experienceBySensorMap()
 {
     if(!m_experienceBySensorMap || m_experienceBySensorMap->isEmpty())
@@ -1491,16 +1578,16 @@ void RSDatabaseAccess::initExperienceBySensorMap()
     // Get data from G7
     QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
-    //TODO: virer ce qui est codé en dur : container type (CNT_CODE) et SRC_CODE (1 = GW) et T_TAGCATEGORIES
+    //TODO: virer ce qui est codé en dur : container type (CNT_CODE 10 = MPs) et SRC_CODE (1 = GW) et T_TAGCATEGORIES
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  T_ENTITIES.ENTITY_ID,T_ENTITIES.ENT_CODE, TAG_NAME"
                                " FROM T_ENTITIES"
                                " RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
                                " LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
                                " LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-                               " WHERE T_ENTITIES.CNT_CODE = 10"
-                               "   AND T_ENTITIES.SRC_CODE = 1"
-                               "   AND T_TAGCATEGORIES.TCT_CODE = 2");
+                               " WHERE T_ENTITIES.CNT_CODE = %1"
+                               "   AND T_ENTITIES.SRC_CODE = %2"
+                               "   AND T_TAGCATEGORIES.TCT_CODE = %3").arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode);
     execOk = querySqlG7.exec(strQuery);
     if(!execOk)
         RSMessageView::Instance()->showData("REX: failed select on G7");
@@ -1967,17 +2054,20 @@ void RSDatabaseAccess::setG7DatasetTable()
 
     bool queryRexOneOnly = true;
 
-    execOk = querySql.exec(QString("select distinct e.ENT_CODE, e.ENTITY_ID, e.ENT_NAME, "
-                                      "t.TAG_NAME from T_ENTITIES e "
-                                      "left join T_ENTITYTAG et "
-                                      "on et.ENT_CODE = e.ENT_CODE "
-                                      "left join T_TAG t "
-                                      "on t.TAG_CODE = et.TAG_CODE "
-                                      "left join T_TAGCATEGORIES tc "
-                                      "on tc.TCT_CODE = t.TCT_CODE "
-                                      "where e.CNT_CODE = 10 "
-                                      "and e.SRC_CODE = 1 "
-                                      "and tc.TCT_CODE = 2"));
+
+    QString strQuery = QString("select distinct e.ENT_CODE, e.ENTITY_ID, e.ENT_NAME, "
+                               "t.TAG_NAME from T_ENTITIES e "
+                               "left join T_ENTITYTAG et "
+                               "on et.ENT_CODE = e.ENT_CODE "
+                               "left join T_TAG t "
+                               "on t.TAG_CODE = et.TAG_CODE "
+                               "left join T_TAGCATEGORIES tc "
+                               "on tc.TCT_CODE = t.TCT_CODE "
+                               "where e.CNT_CODE = %1 "
+                               "and e.SRC_CODE = %2 "
+                               "and tc.TCT_CODE = %3").arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode);
+
+    execOk = querySql.exec(strQuery);
 
     if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
@@ -2057,9 +2147,10 @@ void RSDatabaseAccess::setSensorByExpDatasetTable()
                                " RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
                                " LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
                                " LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-                               " WHERE T_ENTITIES.CNT_CODE = 10"
-                               "   AND T_ENTITIES.SRC_CODE = 1"
-                               "   AND T_TAGCATEGORIES.TCT_CODE = 2");
+                               " WHERE T_ENTITIES.CNT_CODE = %1"
+                               "   AND T_ENTITIES.SRC_CODE = %2"
+                               "   AND T_TAGCATEGORIES.TCT_CODE = %3").arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode);
+
     execOk  = querySqlG7.exec(strQuery);
     if(!execOk)
         RSMessageView::Instance()->showData("REX: failed select on G7");

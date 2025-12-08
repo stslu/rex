@@ -183,6 +183,17 @@ protected:
     QVariant loadDBCode();
     void saveDBCode();
 
+    QVariant loadG7SourceCode();
+    void saveG7SourceCode();
+
+    QVariant loadG7TagCategoryCode();
+    void saveG7TagCategoryCode();
+
+    QVariant loadG7ContainerTypeCode();
+    void saveG7ContainerTypeCode();
+
+
+
     void initExperienceBySensorMap();
 
 
@@ -211,6 +222,11 @@ private:
 
     QString m_siCode; // QString, on garde la façon de faire stupide Gérard Kesse
     QString m_dbCode; // QString, on garde la façon de faire stupide Gérard Kesse
+
+    QString m_g7SourceCode; // Kesse, tu es ...
+    QString m_g7TagCategoryCode;
+    QString m_g7ContainerTypeCode;
+
 
     QDateTime m_startDateTime;
 
