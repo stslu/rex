@@ -565,48 +565,41 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
 {
     QString databaseName     = "G6";
     QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
-    QSqlQuery m_querySql(databaseSql);
-    int data            = 0;
-    QString field         = "count(*)";
-    bool execOk           = false;
+    QSqlQuery querySql(databaseSql);
+    int data  = 0;
+    bool execOk  = false;
 
-    //TODO: binding
-    QString startFormat = startDate.toString("MM-dd-yyyy");
-    QString endFormat   = endDate.toString("MM-dd-yyyy");
     QString strQuery;
 
     if(mpType == MeasPointType::AcqPoint) {
-        strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = %5 "
-                           "and av.DB_CODE = %6 "
-                           "and av.AP_CODE = %4 "
-                           "and av.AV_ACQUISITIONDT >= '%2' "
-                           "and av.AV_ACQUISITIONDT < '%3' "
-                           "and av.AV_STATUS = 0")
-                       .arg(field)
-                       .arg(startFormat)
-                       .arg(endFormat)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
+        strQuery = QString("select count(*) as IDATA from ACQVALUE av "
+                           "where av.SI_CODE = :si_code "
+                           "and av.DB_CODE = :db_code "
+                           "and av.AP_CODE = :apnd_code "
+                           "and av.AV_ACQUISITIONDT >= :dt_start "
+                           "and av.AV_ACQUISITIONDT < :dt_end "
+                           "and av.AV_STATUS = 0");
     } else if(mpType == MeasPointType::Node) {
-        strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = %5 "
-                           "and NR.DB_CODE =  %6 "
-                           "and NR.ND_CODE = %4 "
-                           "and NR.NR_NODEDT >= '%2' "
-                           "and NR.NR_NODEDT < '%3' "
-                           "and NR.NR_STATUS = 0")
-                       .arg(field)
-                       .arg(startFormat)
-                       .arg(endFormat)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
+        strQuery = QString("select count(*) as IDATA from NODERESULT NR "
+                           "where NR.SI_CODE = :si_code "
+                           "and NR.DB_CODE =  :db_code "
+                           "and NR.ND_CODE = :apnd_code "
+                           "and NR.NR_NODEDT >= :dt_start "
+                           "and NR.NR_NODEDT < :dt_end "
+                           "and NR.NR_STATUS = 0");
     } else {
+        //TODO: logger
+        return -1;
     }
 
-    execOk = m_querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+    querySql.bindValue(":apnd_code", apNdCode);
+    querySql.bindValue(":dt_start", startDate);
+    querySql.bindValue(":dt_end", endDate);
+
+    execOk = querySql.exec();
 
     if(execOk == false) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
@@ -614,17 +607,17 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                                                          "ErrorText : %2<br/>"
                                                          "ErrorType : %3")
                                                           .arg(databaseName)
-                                                          .arg(m_querySql.lastError().databaseText())
-                                                          .arg(m_querySql.lastError().type()));
+                                                          .arg(querySql.lastError().databaseText())
+                                                          .arg(querySql.lastError().type()));
         return 0;
     }
 
     bool isOk = false;
-    int m_dataNo = m_querySql.record().indexOf("IDATA");
-    while(m_querySql.next()) {
+    int m_dataNo = querySql.record().indexOf("IDATA");
+    while(querySql.next()) {
         // QString m_format = m_querySql.value(m_dataNo).toString();
         // data           = m_format.toInt();
-        data = m_querySql.value(m_dataNo).toInt(&isOk);
+        data = querySql.value(m_dataNo).toInt(&isOk);
         if(!isOk){
             //TODO: mettre 0, NAN ?
         }
