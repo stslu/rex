@@ -498,44 +498,38 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
 
     //TODO: virer SI_, DB_ codé en dur
     if(mpType == MeasPointType::AcqPoint) {
-        field    = "AV_INGVALUE";
-        strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = %6 "
-                           "and av.DB_CODE = %7 "
-                           "and av.AP_CODE = %5 "
-                           "and av.AV_ACQUISITIONDT >= '%2' "
-                           "and av.AV_ACQUISITIONDT < '%3' "
+        strQuery = QString("select AV_INGVALUE as IDATA from ACQVALUE av "
+                           "where av.SI_CODE = :si_code "
+                           "and av.DB_CODE = :db_code "
+                           "and av.AP_CODE = :apnd_code "
+                           "and av.AV_ACQUISITIONDT >= :dt_start "
+                           "and av.AV_ACQUISITIONDT < :dt_end "
                            "and av.AV_STATUS = 0 "
-                           "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4")
-                       .arg(field)
-                       .arg(startFormat)
-                       .arg(endFormat)
-                       .arg(order)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
+                           "order by av.SI_CODE %1, av.DB_CODE %1, av.AP_CODE %1, av.AV_ACQUISITIONDT %1").arg(order);
+
     } else if(mpType == MeasPointType::Node) {
-        field    = "NR_CALCVALUE";
-        strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = %6 "
-                           "and NR.DB_CODE = %7 "
-                           "and NR.ND_CODE = %5 "
-                           "and NR.NR_NODEDT >= '%2' "
-                           "and NR.NR_NODEDT < '%3' "
+        strQuery = QString("select NR_CALCVALUE as IDATA from NODERESULT NR "
+                           "where NR.SI_CODE = :si_code "
+                           "and NR.DB_CODE = :db_code "
+                           "and NR.ND_CODE = :apnd_code "
+                           "and NR.NR_NODEDT >= :dt_start "
+                           "and NR.NR_NODEDT < :dt_end "
                            "and NR.NR_STATUS = 0 "
-                           "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4")
-                       .arg(field)
-                       .arg(startFormat)
-                       .arg(endFormat)
-                       .arg(order)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
+                           "order by NR.SI_CODE %1, NR.DB_CODE %1, NR.ND_CODE %1, NR.NR_NODEDT %1").arg(order);
     } else {
+        //TODO: logger + message
+        return QList<double>();
     }
 
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+    querySql.bindValue(":apnd_code", apNdCode);
+    querySql.bindValue(":dt_start", startDate);
+    querySql.bindValue(":dt_end", endDate);
+
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query : \n" + strQuery);
-    execOk = querySql.exec(strQuery);
+    execOk = querySql.exec();
 
     if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
