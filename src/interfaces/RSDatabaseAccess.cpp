@@ -502,9 +502,8 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_INGVALUE";
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = 1 "
-                           "where av.SI_CODE = 1 "
-                           "and av.DB_CODE = 33813554 "
+                           "where av.SI_CODE = %6 "
+                           "and av.DB_CODE = %7 "
                            "and av.AP_CODE = %5 "
                            "and av.AV_ACQUISITIONDT >= '%2' "
                            "and av.AV_ACQUISITIONDT < '%3' "
@@ -514,12 +513,14 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
                        .arg(startFormat)
                        .arg(endFormat)
                        .arg(order)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
     } else if(mpType == MeasPointType::Node) {
         field    = "NR_CALCVALUE";
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = 1 "
-                           "and NR.DB_CODE = 33813554 "
+                           "where NR.SI_CODE = %6 "
+                           "and NR.DB_CODE = %7 "
                            "and NR.ND_CODE = %5 "
                            "and NR.NR_NODEDT >= '%2' "
                            "and NR.NR_NODEDT < '%3' "
@@ -529,7 +530,9 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
                        .arg(startFormat)
                        .arg(endFormat)
                        .arg(order)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
     } else {
     }
 
@@ -580,8 +583,8 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
 
     if(mpType == MeasPointType::AcqPoint) {
         strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = 1 "
-                           "and av.DB_CODE = 33813554 "
+                           "where av.SI_CODE = %5 "
+                           "and av.DB_CODE = %6 "
                            "and av.AP_CODE = %4 "
                            "and av.AV_ACQUISITIONDT >= '%2' "
                            "and av.AV_ACQUISITIONDT < '%3' "
@@ -589,11 +592,13 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                        .arg(field)
                        .arg(startFormat)
                        .arg(endFormat)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
     } else if(mpType == MeasPointType::Node) {
         strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = 1 "
-                           "and NR.DB_CODE =  33813554 "
+                           "where NR.SI_CODE = %5 "
+                           "and NR.DB_CODE =  %6 "
                            "and NR.ND_CODE = %4 "
                            "and NR.NR_NODEDT >= '%2' "
                            "and NR.NR_NODEDT < '%3' "
@@ -601,7 +606,9 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                        .arg(field)
                        .arg(startFormat)
                        .arg(endFormat)
-                       .arg(apNdCode);
+                       .arg(apNdCode)
+                       .arg(m_siCode)
+                       .arg(m_dbCode);
     } else {
     }
 
@@ -669,7 +676,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     if(mpType == MeasPointType::AcqPoint) {
         field    = "AV_ACQUISITIONDT";
         strQuery = QString("select %1 from ACQVALUE av "
-                           "where av.SI_CODE = '1' "
+                           "where av.SI_CODE = %7 "
                            "and av.DB_CODE =   '%2' "
                            "and av.AP_CODE = '%3' "
                            "and av.AV_ACQUISITIONDT >= '%4' "
@@ -680,11 +687,12 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                        .arg(apNdCode)
                        .arg(strStartDate)
                        .arg(strEndDate)
-                       .arg(order);
+                       .arg(order)
+                       .arg(m_siCode);
     } else if(mpType == MeasPointType::Node) {
         field    = "NR_NODEDT";
         strQuery = QString("select %1 from NODERESULT NR "
-                           "where NR.SI_CODE = '1' "
+                           "where NR.SI_CODE = %7"
                            "and NR.DB_CODE =   '%2' "
                            "and NR.ND_CODE = '%3' "
                            "and NR.NR_NODEDT >= '%4' "
@@ -695,7 +703,8 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                        .arg(apNdCode)
                        .arg(strStartDate)
                        .arg(strEndDate)
-                       .arg(order);
+                       .arg(order)
+                       .arg(m_siCode);
     } else {
         QString msg = QString("Unknown .MeasPointType: %1").arg(static_cast<int>(mpType));
         RSLogger::instance()->info(Q_FUNC_INFO, msg);
@@ -968,7 +977,7 @@ bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, con
 
     querySql = new QSqlQuery(dbSql);
 
-    QString format = "dd.MM.yyyy";
+    QString format = "dd.MM.yyyy"; //TODO: utiliser le binding !!!!!!!
 
     QString strStart = start.toString(format);
     QString strEnd   = end.toString(format);
@@ -1179,6 +1188,7 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
     QSqlQuery sqlQuery(dbSql);
 
     // TAG_NAME = nom expérience
+    //TODO: virer codage en dur CNT_CODE, SRC_CODE, TCT_CODE
     QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
                                "  FROM T_ENTITIES"
                                "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
@@ -1481,6 +1491,7 @@ void RSDatabaseAccess::initExperienceBySensorMap()
     // Get data from G7
     QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
+    //TODO: virer ce qui est codé en dur : container type (CNT_CODE) et SRC_CODE (1 = GW) et T_TAGCATEGORIES
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  T_ENTITIES.ENTITY_ID,T_ENTITIES.ENT_CODE, TAG_NAME"
                                " FROM T_ENTITIES"
@@ -1875,10 +1886,10 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  MP.MP_CODE, MP.MP_NAME FROM MEASUREPOINT MP "
-                               " where MP.SI_CODE = 1  "
-                               " and MP.DB_CODE = 33813554  "
+                               " where MP.SI_CODE = %1  "
+                               " and MP.DB_CODE = %2  "
                                " and MP.AP_CODE  IS null "
-                               " and mp.ND_CODE  IS null");
+                               " and mp.ND_CODE  IS null").arg(m_siCode).arg(m_dbCode);
 
     execOk = querySql.exec(strQuery);
 
