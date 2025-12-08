@@ -177,10 +177,10 @@ protected:
     void saveG7Port() ;
     void saveG6Port() ;
 
-    QVariant loadSICode();
+    int loadSICode();
     void saveSICode();
 
-    QVariant loadDBCode();
+    int loadDBCode();
     void saveDBCode();
 
     QVariant loadG7SourceCode();
@@ -220,8 +220,8 @@ private:
     QString m_g7Port;
     QString m_g6Port;
 
-    QString m_siCode; // QString, on garde la façon de faire stupide Gérard Kesse
-    QString m_dbCode; // QString, on garde la façon de faire stupide Gérard Kesse
+    int m_siCode; // QString, on garde la façon de faire stupide Gérard Kesse
+    int m_dbCode; // QString, on garde la façon de faire stupide Gérard Kesse
 
     QString m_g7SourceCode; // Kesse, tu es ...
     QString m_g7TagCategoryCode;

@@ -31,8 +31,8 @@ RSDatabaseAccess::RSDatabaseAccess(QObject* parent)
     , m_g6Driver("QFIREBIRD")
     , m_g7Port("3050")
     , m_g6Port("3050")
-    , m_siCode("1")
-    , m_dbCode("33813554")
+    , m_siCode(1)
+    , m_dbCode(33813554)
     , m_g7SourceCode("1")
     , m_g7TagCategoryCode("2")
     , m_g7ContainerTypeCode("10")
@@ -405,51 +405,42 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     bool execOk = false;
 
     //TODO: binding
-    QString m_startFormat = startDate.toString("MM-dd-yyyy");
-    QString m_endFormat   = endDate.toString("MM-dd-yyyy");
+    QString startFormat = startDate.toString("MM-dd-yyyy");
+    QString endFormat   = endDate.toString("MM-dd-yyyy");
 
     if(mpType == MeasPointType::AcqPoint) {
-        field    = "AV_ACQUISITIONDT";
-        strQuery = QString("select %1 as IDATA from ACQVALUE av "
-                           "where av.SI_CODE = %6 "
-                           "and av.DB_CODE = %7 "
-                           "and av.AP_CODE = %5 "
-                           "and av.AV_ACQUISITIONDT >= '%2' "
-                           "and av.AV_ACQUISITIONDT < '%3' "
+        strQuery = QString("select AV_ACQUISITIONDT as IDATA from ACQVALUE av "
+                           "where av.SI_CODE = :si_code "
+                           "and av.DB_CODE = :db_code "
+                           "and av.AP_CODE = :apnd_code "
+                           "and av.AV_ACQUISITIONDT >= :dt_start "
+                           "and av.AV_ACQUISITIONDT < :dt_end "
                            "and av.AV_STATUS = 0 "
-                           "order by av.SI_CODE %4, av.DB_CODE %4, av.AP_CODE %4, av.AV_ACQUISITIONDT %4")
-                       .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
-                       .arg(order)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
-
+                           "order by av.SI_CODE %1, av.DB_CODE %1, av.AP_CODE %1, av.AV_ACQUISITIONDT %1").arg(order);
     } else if(mpType == MeasPointType::Node) {
-        field    = "NR_NODEDT";
-        strQuery = QString("select %1 as IDATA from NODERESULT NR "
-                           "where NR.SI_CODE = %6 "
-                           "and NR.DB_CODE = %7 "
-                           "and NR.ND_CODE = %5 "
-                           "and NR.NR_NODEDT >= '%2' "
-                           "and NR.NR_NODEDT < '%3' "
+        strQuery = QString("select NR_NODEDT as IDATA from NODERESULT NR "
+                           "where NR.SI_CODE = :si_code "
+                           "and NR.DB_CODE = :db_code "
+                           "and NR.ND_CODE = :apnd_code "
+                           "and NR.NR_NODEDT >= :dt_start "
+                           "and NR.NR_NODEDT < :dt_end "
                            "and NR.NR_STATUS = 0 "
-                           "order by NR.SI_CODE %4, NR.DB_CODE %4, NR.ND_CODE %4, NR.NR_NODEDT %4")
-                       .arg(field)
-                       .arg(m_startFormat)
-                       .arg(m_endFormat)
-                       .arg(order)
-                       .arg(apNdCode)
-                       .arg(m_siCode)
-                       .arg(m_dbCode);
+                           "order by NR.SI_CODE %1, NR.DB_CODE %1, NR.ND_CODE %1, NR.NR_NODEDT %1").arg(order);
     } else {
+        //TODO: ajouter message dans le logguer + QMessageBox
+        return QList<double>();
     }
 
-    // qDebug().noquote() << "RSDatabaseAccess::getAcquisitionTimeList---";
-    // qDebug().noquote() << strQuery << "\n\n";
+    qDebug().noquote() << "QList<double> RSDatabaseAccess::getAcquisitionTimeList\n" << strQuery;
 
-    execOk = querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+    querySql.bindValue(":apnd_code", apNdCode);
+    querySql.bindValue(":dt_start", startDate);
+    querySql.bindValue(":dt_end", endDate);
+
+    execOk = querySql.exec();
 
     if(!execOk) {
         RSLogger::instance()->info(Q_FUNC_INFO, "Failed to execute query : \n " + strQuery);
@@ -818,9 +809,9 @@ void RSDatabaseAccess::loadSettings(const QString& fileName)
 
     m_loadDeadEntities = loadDeadEntitiesOption().toBool();
 
-    m_siCode = loadSICode().toString();
+    m_siCode = loadSICode();
 
-    m_dbCode = loadDBCode().toString();
+    m_dbCode = loadDBCode();
 
     m_g7SourceCode = loadG7SourceCode().toString();
 
@@ -1455,16 +1446,20 @@ void RSDatabaseAccess::saveG6Port()
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
 }
 
-QVariant RSDatabaseAccess::loadSICode() {
+int RSDatabaseAccess::loadSICode() {
     QString id       = "RexDatabase";
     QString key      = "RexDatabase.SICode";
-    QVariant defaultVal = "1";
+    int defaultVal = 1;
 
     QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+    bool isOk = false;
+    int val = data.toInt(&isOk);
+    if(!isOk){
+        val = -1;
+    }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "SICode = " + data.value<QString>());
-
-    return data;
+    RSLogger::instance()->info(Q_FUNC_INFO, QString("SICode = %1").arg(val));
+    return val;
 }
 
 void RSDatabaseAccess::saveSICode() {
@@ -1476,16 +1471,22 @@ void RSDatabaseAccess::saveSICode() {
     RSGlobalMethods::Instance()->saveData(id, key, data);
 }
 
-QVariant RSDatabaseAccess::loadDBCode() {
+int RSDatabaseAccess::loadDBCode()
+{
     QString id       = "RexDatabase";
     QString key      = "RexDatabase.DBCode";
-    QVariant defaultVal = "33813554";
+    int defaultVal = 33813554;
 
     QVariant data = RSGlobalMethods::Instance()->loadData(id, key, defaultVal);
+    bool isOk = false;
+    int val = data.toInt(&isOk);
+    if(!isOk){
+        val = -1;
+    }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "DBCode = " + data.value<QString>());
+    RSLogger::instance()->info(Q_FUNC_INFO, QString("DBCode = %1").arg(val));
 
-    return data;
+    return val;
 }
 
 void RSDatabaseAccess::saveDBCode() {
