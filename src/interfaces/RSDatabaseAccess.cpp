@@ -191,7 +191,7 @@ void RSDatabaseAccess::addDatabaseSql(const QString& databaseName, bool utf8)
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("databasePort. %1").arg(databasePort));
     databaseSql.setPort(databasePort.toInt());
-    if(!databaseName.contains("REX")){ //TODO: éviter codage en dur "REX", SQLITE ne supporte pas la suite. Mettre un paramètre additionnel
+    if(!databaseName.contains("REX")){ //"REX", SQLITE ne supporte pas la suite. Mettre un paramètre additionnel
         if(utf8) {
             qDebug().noquote() << "    ----- ISC_DPB_LC_CTYPE=UTF8";
             databaseSql.setConnectOptions("ISC_DPB_LC_CTYPE=UTF8"); // base G7 par exemple, supporte UTF8
