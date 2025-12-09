@@ -2211,11 +2211,18 @@ void RSDatabaseAccess::setSensorByExpDatasetTable()
                                " RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
                                " LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
                                " LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-                               " WHERE T_ENTITIES.CNT_CODE = %1"
-                               "   AND T_ENTITIES.SRC_CODE = %2"
-                               "   AND T_TAGCATEGORIES.TCT_CODE = %3").arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode);
+                               " WHERE T_ENTITIES.CNT_CODE = :cnt_code"
+                               "   AND T_ENTITIES.SRC_CODE = :src_code"
+                               "   AND T_TAGCATEGORIES.TCT_CODE = :tct_code");
 
-    execOk  = querySqlG7.exec(strQuery);
+    querySqlG7.prepare(strQuery);
+    querySqlG7.bindValue(":cnt_code", m_g7ContainerTypeCode);
+    querySqlG7.bindValue(":src_code", m_g7SourceCode);
+    querySqlG7.bindValue(":tct_code", m_g7TagCategoryCode);
+
+    execOk = querySqlG7.exec();
+
+
     if(!execOk)
         RSMessageView::Instance()->showData("REX: failed select on G7");
 
