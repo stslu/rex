@@ -1106,12 +1106,16 @@ QList<int> RSDatabaseAccess::getSensorCodeList(const QString& field, const QStri
                                "from REXFILTER "
                                "where MP_CODE <> '' "
                                "and MP_CODE is not null "
-                               "and %1 = '%2' "
-                               "order by MP_NAME")
-                           .arg(field)
-                           .arg(name);
+                               "and :field = :name "
+                               "order by MP_NAME");
+    //TODO: vérifier prepare, c'est du SqLite
+    // .arg(field)
+    // .arg(name);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":field", field);
+    querySql.bindValue(":name", name);
 
-    bool exec = querySql.exec(strQuery);
+    bool exec = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
     if(!exec) {
@@ -1147,9 +1151,12 @@ QString RSDatabaseAccess::getSensorUnicProperty(int mpCode, const QString& field
     QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
     QSqlQuery querySql(databaseSql);
 
-    QString strQuery = QString("select distinct %1 from REXFILTER where MP_CODE = '%2' ").arg(field).arg(mpCode);
+    QString strQuery = QString("select distinct %1 from REXFILTER where MP_CODE = :mp_code ").arg(field);
 
-    bool execOk = querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":mp_code", mpCode);
+
+    bool execOk = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
     if(execOk == false) {
