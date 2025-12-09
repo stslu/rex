@@ -2688,11 +2688,13 @@ QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QStr
                                "from REXFILTER "
                                "where MP_NAME <> '' "
                                "and MP_NAME is not null "
-                               "and %1 = '%2' "
-                               "order by MP_NAME")
-                           .arg(field)
-                           .arg(name);
-    execOk = querySql.exec(strQuery);
+                               "and :field = :name "
+                               "order by MP_NAME");
+    querySql.prepare(strQuery);
+    querySql.bindValue(":field", field);
+    querySql.bindValue(":name", name);
+
+    execOk = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
     if(!execOk) {
@@ -2728,14 +2730,17 @@ QPair<int, MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QStri
     bool execOk = false;
 
     const QString strQuery = QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
-                                     "   where RF.MP_NAME = '%1' "
+                                     "   where RF.MP_NAME = :mp_name "
                                      "   and RF.MP_NAME <> '' "
                                      "   and RF.MP_NAME is not null "
-                                     "   limit 1")
-                                 .arg(name);
+                                     "   limit 1");
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Execute Query:\n" + strQuery);
-    execOk = querySql.exec(strQuery);
+
+    querySql.prepare(strQuery);
+    querySql.bindValue(":mp_name", name);
+
+    execOk = querySql.exec();
 
     if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
@@ -2778,12 +2783,16 @@ int RSDatabaseAccess::getSensorNameCode(const QString& name)
     int apOrNdCode;
     bool execOk = false;
 
-    execOk = querySql.exec(QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
-                                      "where RF.MP_NAME = '%1' "
-                                      "and RF.MP_NAME <> '' "
-                                      "and RF.MP_NAME is not null "
-                                      "limit 1")
-                                  .arg(name));
+    QString strQuery = QString("select RF.AP_CODE,RF.ND_CODE from REXFILTER RF "
+                               "where RF.MP_NAME = :mp_name "
+                               "and RF.MP_NAME <> '' "
+                               "and RF.MP_NAME is not null "
+                               "limit 1");
+
+    querySql.prepare(strQuery);
+    querySql.bindValue(":mp_name", name);
+
+    execOk = querySql.exec();
 
     if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
