@@ -1183,6 +1183,7 @@ QString RSDatabaseAccess::getSensorUnicProperty(int mpCode, const QString& field
 }
 
 // Get the measure points associated to the sensors
+//INUTILISE ?
 bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCodeList, const QStringList& expList,
                                                        QMap<QString, QStringList>& map)
 {
@@ -1194,25 +1195,64 @@ bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCode
     QSqlDatabase dbSql = QSqlDatabase::database(dbName);
     QSqlQuery sqlQuery(dbSql);
 
-    // TAG_NAME = nom expérience
-    QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
-                               "  FROM T_ENTITIES"
-                               "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
-                               "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
-                               "  LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-                               "  WHERE T_ENTITIES.CNT_CODE = %3"
-                               "  AND T_ENTITIES.SRC_CODE = %4"
-                               "  AND T_TAGCATEGORIES.TCT_CODE = %5"
-                               "  AND T_ENTITIES.ENTITY_ID IN(%1)"
-                               "  AND T_TAG.TAG_NAME IN('%2')")
-                           .arg(mpCodeList.join(","))
-                           .arg(expList.join("','"))
-                           .arg(m_g7ContainerTypeCode)
-                           .arg(m_g7SourceCode)
-                           .arg(m_g7TagCategoryCode);
+    // Ancienne version
+    // // TAG_NAME = nom expérience
+    // QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
+    //                            "  FROM T_ENTITIES"
+    //                            "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
+    //                            "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
+    //                            "  LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
+    //                            "  WHERE T_ENTITIES.CNT_CODE = %3"
+    //                            "  AND T_ENTITIES.SRC_CODE = %4"
+    //                            "  AND T_TAGCATEGORIES.TCT_CODE = %5"
+    //                            "  AND T_ENTITIES.ENTITY_ID IN(%1)"
+    //                            "  AND T_TAG.TAG_NAME IN('%2')")
+    //                        .arg(mpCodeList.join(","))
+    //                        .arg(expList.join("','"))
+    //                        .arg(m_g7ContainerTypeCode)
+    //                        .arg(m_g7SourceCode)
+    //                        .arg(m_g7TagCategoryCode);
 
 
-    bool execOk = sqlQuery.exec(strQuery);
+    // bool execOk = sqlQuery.exec(strQuery);
+
+
+
+    //Nouvelle version avec prepare
+    // Génère '?,?,?,...' (autant que de codes)
+
+    QStringList ent_placeholders_list;
+    for (int i = 0; i < mpCodeList.size(); ++i)
+        ent_placeholders_list << "?";
+    QString ent_placeholders = ent_placeholders_list.join(",");
+
+    QStringList tag_placeholders_list;
+    for (int i = 0; i < expList.size(); ++i)
+        tag_placeholders_list << "?";
+    QString tag_placeholders = tag_placeholders_list.join(",");
+
+    QString strQuery =
+        "SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE "
+        "FROM T_ENTITIES "
+        "RIGHT JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE = T_ENTITIES.ENT_CODE "
+        "LEFT JOIN T_TAG ON T_ENTITYTAG.TAG_CODE = T_TAG.TAG_CODE "
+        "LEFT JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE = T_TAGCATEGORIES.TCT_CODE "
+        "WHERE T_ENTITIES.CNT_CODE = ? "
+        "AND T_ENTITIES.SRC_CODE = ? "
+        "AND T_TAGCATEGORIES.TCT_CODE = ? "
+        "AND T_ENTITIES.ENTITY_ID IN (" + ent_placeholders + ") "
+        "AND T_TAG.TAG_NAME IN (" + tag_placeholders + ")";
+
+    sqlQuery.prepare(strQuery);
+    sqlQuery.addBindValue(m_g7ContainerTypeCode);
+    sqlQuery.addBindValue(m_g7SourceCode);
+    sqlQuery.addBindValue(m_g7TagCategoryCode);
+    for (const QString &code : mpCodeList)
+        sqlQuery.addBindValue(code);
+    for (const QString &tag : expList)
+        sqlQuery.addBindValue(tag);
+
+    bool execOk = sqlQuery.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Try to execute query : \n %1 ").arg(strQuery));
     if(execOk == false) {
