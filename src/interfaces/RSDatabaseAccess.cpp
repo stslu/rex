@@ -589,7 +589,7 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
                            "and NR.NR_STATUS = 0");
     } else {
         //TODO: logger
-        return -1;
+        return 0;
     }
 
     querySql.prepare(strQuery);
@@ -601,7 +601,7 @@ int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDat
 
     execOk = querySql.exec();
 
-    if(execOk == false) {
+    if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
                                                       tr("%1 database cannot execute getAcquisitionValueSize().<br/>"
                                                          "ErrorText : %2<br/>"
@@ -645,7 +645,6 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
     QString m_databaseName     = "G6";
     QSqlDatabase m_databaseSql = QSqlDatabase::database(m_databaseName);
     QSqlQuery querySql(m_databaseSql);
-    QString field;
 
     // int dbCode     = 33813554;
 
@@ -661,44 +660,36 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
                                                 .arg(apNdCode)
                                                 .arg(mpType));
 
+    QString field;
+
     if(mpType == MeasPointType::AcqPoint) {
-        field    = "AV_ACQUISITIONDT";
-        strQuery = QString("select %1 from ACQVALUE av "
-                           "where av.SI_CODE = %7 "
-                           "and av.DB_CODE = %2 "
-                           "and av.AP_CODE = '%3' "
-                           "and av.AV_ACQUISITIONDT >= '%4' "
-                           "and av.AV_ACQUISITIONDT < '%5' "
-                           "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %6 ")
-                       .arg(field)
-                       .arg(m_dbCode)
-                       .arg(apNdCode)
-                       .arg(strStartDate)
-                       .arg(strEndDate)
-                       .arg(order)
-                       .arg(m_siCode);
+        field = "AV_ACQUISITIONDT"; // beoin plus tard
+        strQuery = QString("select AV_ACQUISITIONDT from ACQVALUE av "
+                           "where av.SI_CODE = :si_code "
+                           "and av.DB_CODE = :db_code "
+                           "and av.AP_CODE = :apnd_code "
+                           "and av.AV_ACQUISITIONDT >= :dt_start "
+                           "and av.AV_ACQUISITIONDT < :dt_end "
+                           "and av.AV_STATUS = 0 order by AV_ACQUISITIONDT %1 ")
+                       .arg(order);
     } else if(mpType == MeasPointType::Node) {
-        field    = "NR_NODEDT";
-        strQuery = QString("select %1 from NODERESULT NR "
-                           "where NR.SI_CODE = %7"
-                           "and NR.DB_CODE = %2 "
-                           "and NR.ND_CODE = '%3' "
-                           "and NR.NR_NODEDT >= '%4' "
-                           "and NR.NR_NODEDT < '%5' "
-                           "and NR.NR_STATUS = 0 order by NR_NODEDT %6 ")
-                       .arg(field)
-                       .arg(m_dbCode)
-                       .arg(apNdCode)
-                       .arg(strStartDate)
-                       .arg(strEndDate)
-                       .arg(order)
-                       .arg(m_siCode);
+        field = "NR_NODEDT";
+        strQuery = QString("select NR_NODEDT from NODERESULT NR "
+                           "where NR.SI_CODE = :si_code "
+                           "and NR.DB_CODE = :db_code "
+                           "and NR.ND_CODE = :apnd_code "
+                           "and NR.NR_NODEDT >= :dt_start "
+                           "and NR.NR_NODEDT < :dt_end "
+                           "and NR.NR_STATUS = 0 order by NR_NODEDT %1 ")
+                       .arg(order);
     } else {
         QString msg = QString("Unknown .MeasPointType: %1").arg(static_cast<int>(mpType));
         RSLogger::instance()->info(Q_FUNC_INFO, msg);
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName), msg);
     }
 
+
+    // querySql.prepare(strQuery);
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to prepare Query ");
     if(!querySql.prepare(strQuery)) {
         RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Failed to prepare query : %1").arg(querySql.executedQuery()));
@@ -713,8 +704,14 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
         dateTimeLimit = QDateTime();
     }
 
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+    querySql.bindValue(":apnd_code", apNdCode);
+    querySql.bindValue(":dt_start", startDate);
+    querySql.bindValue(":dt_end", endDate);
+
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute Query : " + strQuery);
-    if(!querySql.exec(strQuery)) {
+    if(!querySql.exec()) {
         RSLogger::instance()->info(Q_FUNC_INFO, QString("End. m_exec == false Executed query  = %1").arg(strQuery));
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(m_databaseName),
                                                       tr("%1 database cannot execute getAcquisitionRelativeFirstTime().<br/>"
@@ -726,6 +723,7 @@ void RSDatabaseAccess::execQueryForLimitDateTime(const QDate& startDate, const Q
 
         dateTimeLimit = QDateTime();
     }
+
     RSLogger::instance()->info(Q_FUNC_INFO, QString("Executed Query : \n %1").arg(querySql.executedQuery()));
 
     int dataNo = querySql.record().indexOf(field);
