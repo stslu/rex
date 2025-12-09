@@ -1719,16 +1719,18 @@ void RSDatabaseAccess::setG6DatasetTable_acqPoints()
                                " left join ACQSENSORTYPE ast "
                                " on ast.SI_CODE = ap.SI_CODE "
                                " and ast.AST_CODE = ap.AST_CODE "
-                               " where mp.SI_CODE = %1 "
-                               " and mp.DB_CODE = %2 "
+                               " where mp.SI_CODE = :si_code "
+                               " and mp.DB_CODE = :db_code "
                                " and mp.MP_CODE is not null"
-                               " and mp.AP_CODE is not null").arg(m_siCode).arg(m_dbCode);
+                               " and mp.AP_CODE is not null");
 
     // qDebug().noquote() << "RSDatabaseAccess::setG6DatasetTable_acqPoints\n";
+    //.arg(m_siCode).arg(m_dbCode)
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
 
-    isExecuted  = querySql.exec(strQuery);
-
-
+    isExecuted  = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
     if(!isExecuted) {
@@ -1883,18 +1885,22 @@ void RSDatabaseAccess::setG6DatasetTable_nodes()
                                " left join ACQSENSORTYPE AST "
                                " on ND.SI_CODE = AST.SI_CODE "
                                " and ND.AST_CODE = AST.AST_CODE "
-                               " where mp.SI_CODE = %1 "
-                               " and mp.DB_CODE = %2 "
+                               " where mp.SI_CODE = :si_code "
+                               " and mp.DB_CODE = :db_code "
                                " and mp.MP_CODE is NOT NULL"
                                " and mp.ND_CODE is NOT NULL"
-                               " and mp.AP_CODE is NULL").arg(m_siCode).arg(m_dbCode);
+                               " and mp.AP_CODE is NULL");
 
     //! Case where we want to skip nodes without any sensor type
     if(m_loadNodesWithNoAst == false) {
         strQuery.append(" AND ND.AST_CODE IS NOT NULL ");
     }
 
-    execOk = querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+
+    execOk = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
     if(!execOk) {
