@@ -2029,12 +2029,16 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
 
     //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  MP.MP_CODE, MP.MP_NAME FROM MEASUREPOINT MP "
-                               " where MP.SI_CODE = %1  "
-                               " and MP.DB_CODE = %2  "
+                               " where MP.SI_CODE = :si_code  "
+                               " and MP.DB_CODE = :db_code "
                                " and MP.AP_CODE  IS null "
-                               " and mp.ND_CODE  IS null").arg(m_siCode).arg(m_dbCode);
+                               " and mp.ND_CODE  IS null");
 
-    execOk = querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    querySql.bindValue(":si_code", m_siCode);
+    querySql.bindValue(":db_code", m_dbCode);
+
+    execOk = querySql.exec();
 
     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute query:\n " + strQuery);
     if(!execOk) {
@@ -2119,11 +2123,17 @@ void RSDatabaseAccess::setG7DatasetTable()
                                "on t.TAG_CODE = et.TAG_CODE "
                                "left join T_TAGCATEGORIES tc "
                                "on tc.TCT_CODE = t.TCT_CODE "
-                               "where e.CNT_CODE = %1 "
-                               "and e.SRC_CODE = %2 "
-                               "and tc.TCT_CODE = %3").arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode);
+                               "where e.CNT_CODE = :cnt_code "
+                               "and e.SRC_CODE = :src_code "
+                               "and tc.TCT_CODE = :tct_code");
 
-    execOk = querySql.exec(strQuery);
+    querySql.prepare(strQuery);
+    //.arg(m_g7ContainerTypeCode).arg(m_g7SourceCode).arg(m_g7TagCategoryCode)
+    querySql.bindValue(":cnt_code", m_g7ContainerTypeCode);
+    querySql.bindValue(":src_code", m_g7SourceCode);
+    querySql.bindValue(":tct_code", m_g7TagCategoryCode);
+
+    execOk = querySql.exec();
 
     if(!execOk) {
         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
