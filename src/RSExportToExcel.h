@@ -2,10 +2,16 @@
 #define RSEXPORTTOEXCEL_H
 
 #include <RSLogger.h>
-#include <libxl.h>
 #include <QObject>
 
-using namespace libxl;
+
+#include <xlsxcellrange.h>
+#include <xlsxchart.h>
+#include <xlsxchartsheet.h>
+#include <xlsxdocument.h>
+#include <xlsxrichstring.h>
+#include <xlsxworkbook.h>
+
 
 class RSExportToExcel : public QObject
 {
@@ -15,7 +21,6 @@ public:
 
     ~RSExportToExcel();
 
-    void exportData();
     void addSheet(const QStringList &fields,
                   const QList<QVariantList> &data,
                   const QString &sheetName,
@@ -38,27 +43,23 @@ protected:
                          const QDate &end,
                          QString &info);
 
-    int getRow(const QString &sheetName);
-
     void addData(const QString &sheetName, int row, int col, const QString &data);
-
     void createFormat();
 
-    void createDataLineGroup(
-        Sheet *sheet, int row, int col, int size, const QString &data, Format *format = 0);
-
-    void adjustSheetSize(Sheet *sheet);
+    // void createDataLineGroup(Sheet *sheet, int row, int col, int size, const QString &data, Format *format = 0);
+    // const Format &format = Format()
+    void createDataLineGroup(int row, int col, int size, const QString& data, const QXlsx::Format& format = QXlsx::Format());
 
 private:
-    Book *m_book;
+
     QString m_rexReportPath;
     QString m_rexReportFile;
 
-    Format *m_sheetTitleFormat;
-    Format *m_tableTitleFormat;
-    Format *m_tableHeaderFormat;
-    Format *m_tableBodyFormat;
-    Format *m_tableColumnDataFormat;
+    // Format *m_sheetTitleFormat;
+    // Format *m_tableTitleFormat;
+    // Format *m_tableHeaderFormat;
+    // Format *m_tableBodyFormat;
+    // Format *m_tableColumnDataFormat;
     QString m_filePath;
 
     int m_trend;
@@ -66,6 +67,10 @@ private:
     double m_noiseFactor;
     int m_stepsDay;
     int m_nbSteps;
+
+    // Passage à qxlsx
+    QXlsx::Document m_xlsx;
+
 };
 
 #endif // RSEXPORTTOEXCEL_H
