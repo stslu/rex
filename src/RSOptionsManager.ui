@@ -408,7 +408,7 @@
                   <number>10</number>
                  </property>
                  <item row="0" column="0">
-                  <widget class="QPushButton" name="m_excelButton">
+                  <widget class="QPushButton" name="btnExcel">
                    <property name="enabled">
                     <bool>true</bool>
                    </property>

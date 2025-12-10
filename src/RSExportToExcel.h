@@ -26,9 +26,10 @@ public:
     bool saveFile();
     void setParameters(int trend, double sigma, double noiseFactor);
 
-protected:
-    void createDataSheets();
+    QString filePath() const;
+    void setFilePath(const QString& newFilePath);
 
+protected:
     void createDataSheet(const QString &sheetName,
                          const QString &pageTitle,
                          const QStringList &fields,

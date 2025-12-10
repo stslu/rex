@@ -156,25 +156,25 @@ void RSLogicActionsManager::slot_emitMessage(QMessageBox::Icon icon, const QStri
     m_mainWidnow->treatMessage(icon, color, title, msg);
 }
 
+//TODO: débugguer l'export excel
 void RSLogicActionsManager::slot_exportToExcel()
 {
+    QString fileName = QString("RexExport_%1").arg(QDateTime::currentDateTime().toString("yyyy_MM_dd hh.mm.ss"));
+
+    QString filePath = QFileDialog::getSaveFileName(NULL,
+            tr("Select file"),
+            fileName,
+            "Microsoft Excel (*.xlsx);;");
+
+    if(filePath.isEmpty()){
+        //TODO: logguer
+        return;
+    }
+
+    qDebug().noquote() << "File name:" << filePath;
+
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
     RSGraphView* graphView = dynamic_cast<RSGraphView*>(m_graphView);
-
-    QMessageBox message;
-    message.setWindowTitle(tr("Export Data to Excel Format"));
-    message.setIcon(QMessageBox::Question);
-    message.setText(tr("<font style=\"color:lime; font-weight: bold;\">Export Data to Excel Format</font>"));
-    message.setInformativeText("Are you sure you want to continue ?");
-    message.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
-    message.setCursor(Qt::PointingHandCursor);
-
-    QSpacerItem* m_spacer = new QSpacerItem(400, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    QGridLayout* m_layout = (QGridLayout*) message.layout();
-    m_layout->addItem(m_spacer, m_layout->rowCount(), 0, 1, m_layout->columnCount());
-
-    if(message.exec() == QMessageBox::No)
-        return;
 
     QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 
@@ -193,6 +193,8 @@ void RSLogicActionsManager::slot_exportToExcel()
 
     RSExportToExcel exportExcel(m_optionsMgrPtr->trend(), m_optionsMgrPtr->sigma(), m_optionsMgrPtr->noiseFactor(),
                                 m_timeManagerPtr->stepDays(), m_timeManagerPtr->stepViewMax());
+
+    exportExcel.setFilePath(filePath);
 
     QString info;
     if(!m_databaseAccess->deadEntitiesLoaded()) {
