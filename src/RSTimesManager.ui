@@ -197,7 +197,7 @@ QDateEdit {
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="m_stepViewEdit">
+            <widget class="QSpinBox" name="stepViewEdit">
              <property name="enabled">
               <bool>true</bool>
              </property>

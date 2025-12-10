@@ -90,7 +90,7 @@ void RSTimesManager::updateStepViewMax(bool emitSignal )
 
     RSLogger::instance()->info(Q_FUNC_INFO, "New stepViewMax : " + QString::number(m_stepViewMax));
 
-    ui->m_stepViewEdit->setValue(m_stepViewMax);
+    ui->stepViewEdit->setValue(m_stepViewMax);
 
     if(emitSignal)
         emit Signaler::instance()->signal_stepViewMaxChanged(m_stepViewMax);
@@ -100,7 +100,7 @@ void RSTimesManager::updateStepViewMax(bool emitSignal )
 
 int RSTimesManager::stepViewMax() const
 {
-    return ui->m_stepViewEdit->value();
+    return ui->stepViewEdit->value();
 }
 
 void RSTimesManager::slotStartDateValueChanged(const QDate& data)
@@ -138,7 +138,7 @@ void RSTimesManager::slotStepDateValueChanged(int data)
 void RSTimesManager::setStepViewValue(int data)
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "set value to " + QString::number(data));
-    ui->m_stepViewEdit->setValue(data);
+    ui->stepViewEdit->setValue(data);
 }
 
 QDateTime RSTimesManager::getStartDateInView() const

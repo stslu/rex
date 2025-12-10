@@ -74,7 +74,7 @@ const Qtitan::Grid* RexDataGrid::grid() const
 
 const DataGridModel*  RexDataGrid::qTitanGridModel()  const
 {
-    DataGridModel* qTitanModel = 0;
+    DataGridModel* qTitanModel = nullptr;
     if(d->grid)
     {
         Qtitan::GridTableView* view = d->grid->view<Qtitan::GridTableView>();
@@ -115,9 +115,10 @@ void RexDataGrid::slotTitanGridRowClicked(RowClickEventArgs* args)
 
 Qtitan::GridTableView* RexDataGrid::view()const
 {
-    Qtitan::GridTableView* view = 0;
-    if(d->grid)
+    Qtitan::GridTableView* view = nullptr;
+    if(d->grid){
         view = d->grid->view<Qtitan::GridTableView>();
+    }
     return view;
 }
 
@@ -227,6 +228,15 @@ Qtitan::Grid *RexDataGrid::initQtitanDataGrid(QWidget* parent)
         return NULL;
     }
     pGrid->setViewType(Qtitan::Grid::GridViewType::TableView);
+
+    //TODO: pour le moment, on laissa ça. Voir la démo qtitandatagrid\bin\Styles_StyledWidgetsDemo.exe
+    pGrid->setStyleSheet(
+        "Qtitan--Grid { "
+        "   selection-background-color: #0067c0; "
+        "   selection-color: white; "
+        "   alternate-background-color: transparent; " /* Sécurité pour l'alternance mais ne fonctionne pas :( */
+        "}"
+        );
 
     pGrid->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     pGrid->installEventFilter(this);

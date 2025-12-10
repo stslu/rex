@@ -14,12 +14,12 @@
    <string>RSGraphView</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../RSDesktop.qrc">
+   <iconset>
     <normaloff>:/img/Rex.png</normaloff>:/img/Rex.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QTabWidget" name="m_tabView">
+    <widget class="QTabWidget" name="tabView">
      <property name="font">
       <font>
        <family>Arial Narrow</family>
@@ -32,7 +32,7 @@
       <cursorShape>ArrowCursor</cursorShape>
      </property>
      <property name="tabShape">
-      <enum>QTabWidget::TabShape::Triangular</enum>
+      <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
       <number>0</number>
@@ -55,7 +55,7 @@
         <widget class="QCustomPlot" name="m_trendPlot" native="true"/>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="m_trendRunButton">
+        <widget class="QPushButton" name="trendRunButton">
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
@@ -77,7 +77,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="m_stepMinButton">
+          <widget class="QToolButton" name="stepMinButton">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
@@ -91,7 +91,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="m_stepPreviousButton">
+          <widget class="QToolButton" name="stepPreviousButton">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
@@ -105,14 +105,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QSpinBox" name="m_stepViewEdit">
+          <widget class="QSpinBox" name="stepViewEdit">
            <property name="alignment">
-            <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="m_stepNextButton">
+          <widget class="QToolButton" name="stepNextButton">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
@@ -126,7 +126,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QToolButton" name="m_stepMaxButton">
+          <widget class="QToolButton" name="stepMaxButton">
            <property name="cursor">
             <cursorShape>PointingHandCursor</cursorShape>
            </property>
@@ -142,7 +142,7 @@
          <item>
           <spacer name="horizontalSpacer_4">
            <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -167,7 +167,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="m_sensorNameEdit">
+          <widget class="QComboBox" name="sensorNameEdit">
            <property name="minimumSize">
             <size>
              <width>200</width>
@@ -198,7 +198,7 @@
          <item>
           <spacer name="horizontalSpacer_5">
            <property name="orientation">
-            <enum>Qt::Orientation::Horizontal</enum>
+            <enum>Qt::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -233,7 +233,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="m_trendClearButton">
+        <widget class="QPushButton" name="trendClearButton">
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
@@ -243,7 +243,7 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QPushButton" name="m_averagesButton">
+        <widget class="QPushButton" name="averagesButton">
          <property name="minimumSize">
           <size>
            <width>30</width>
@@ -260,7 +260,7 @@
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
          <property name="layoutDirection">
-          <enum>Qt::LayoutDirection::LeftToRight</enum>
+          <enum>Qt::LeftToRight</enum>
          </property>
          <property name="text">
           <string>Compute Averages</string>
@@ -270,7 +270,7 @@
        <item row="0" column="3">
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -293,7 +293,7 @@
        <item row="0" column="2">
         <spacer name="horizontalSpacer_3">
          <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
+          <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -307,7 +307,7 @@
         <widget class="QCustomPlot" name="m_deviationPlot" native="true"/>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="m_deviationRunButton">
+        <widget class="QPushButton" name="deviationRunButton">
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
@@ -317,7 +317,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="m_deviationClearButton">
+        <widget class="QPushButton" name="deviationClearButton">
          <property name="cursor">
           <cursorShape>PointingHandCursor</cursorShape>
          </property>
@@ -343,12 +343,12 @@
       </attribute>
       <layout class="QGridLayout" name="gridLayout_5"/>
      </widget>
-     <widget class="QWidget" name="m_fidelitiesChartsTab">
+     <widget class="QWidget" name="fidelitiesChartsTab">
       <attribute name="title">
        <string>Fidelities</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="m_noisesChartsPage">
+     <widget class="QWidget" name="noisesChartsPage">
       <attribute name="title">
        <string>Noises</string>
       </attribute>

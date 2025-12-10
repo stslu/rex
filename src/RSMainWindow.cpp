@@ -28,6 +28,7 @@ RSMainWindow::RSMainWindow(QWidget *parent) : QWidget(parent), IRSMainWindow(),u
   , m_databaseAccess(nullptr)
 {
 
+    // qApp->setStyle(QLatin1String("fusion"));
     // position();
 
     createConnections();

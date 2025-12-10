@@ -23,8 +23,7 @@ const int   DEFAULT_STEP_VIEW_IDX_MIN = 0;
 
 //QMap<HistoEnum,HistoWidget> HistoWidget::s_histogramMap;
 
-RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess
-                         ,QWidget *parent) : QWidget(parent)
+RSGraphView::RSGraphView(RSDatabaseAccess* dbAccess, QWidget *parent) : QWidget(parent)
   , IRSGraphView()
   , ui(new Ui::RSGraphView)
   , m_databaseAccess(dbAccess)
@@ -251,7 +250,7 @@ void RSGraphView::position()
 
 void  RSGraphView::createDistributionsHistogramsPage()
 {
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
     QWidget* container = ui->m_sensorsDistributionChartTab;
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
@@ -310,7 +309,7 @@ void  RSGraphView::createDistributionsHistogramsPage()
 
 void RSGraphView::createFailuresHistogramsPage()
 {
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
     QWidget* container = ui->m_failuresChartsPage;
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
@@ -360,9 +359,9 @@ void RSGraphView::createFailuresHistogramsPage()
 
 void  RSGraphView::createNoisesHistogramsPage()
 {
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
-    QWidget* container = ui->m_noisesChartsPage;
+    QWidget* container = ui->noisesChartsPage;
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
     container->setLayout(new QGridLayout(container));
 
@@ -403,9 +402,9 @@ void  RSGraphView::createNoisesHistogramsPage()
 
 void RSGraphView::createFidelitiesHistogramsPage()
 {
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
-    QWidget* container = ui->m_fidelitiesChartsTab;
+    QWidget* container = ui->fidelitiesChartsTab;
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
     container->setLayout(new QGridLayout(container));
 
@@ -463,7 +462,7 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
 
     QSplitter *mainSplitter = new QSplitter(/*Parent killer*/container);
 
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
     mainSplitter->addWidget(dataGrid);
 
@@ -490,22 +489,22 @@ void RSGraphView::createDatagridPage(QWidget* container,RexDataGrid* dataGrid)
 
 void RSGraphView::createObjects()
 {
-    // ui->m_stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_backward, "black"));
+    // ui->stepMinButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_backward, "black"));
     // ui->m_stepMaxButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_fast_forward, "black"));
-    // ui->m_stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_backward, "black"));
-    // ui->m_stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_forward, "black"));
+    // ui->stepPreviousButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_backward, "black"));
+    // ui->stepNextButton->setIcon(RSPictoManager::Instance()->getIcon(fa::fa_step_forward, "black"));
 
     //m_sensorsComboBox
     initDatagridPointers();
-    m_noiseFailsFidelityDataGrid->ui().m_comboBox->setVisible(false);
+    m_noiseFailsFidelityDataGrid->ui().comboBox->setVisible(false);
 
     m_sensorsDataGrid->ui().progressBar->setVisible(false);
-    m_sensorsDataGrid->ui().m_comboBox->setVisible(true);
-    m_sensorsDataGrid->ui().m_comboBox->addItem("List of sensors by experimentation");
-    m_sensorsDataGrid->ui().m_comboBox->addItem("List of sensors by brand");
-    m_sensorsDataGrid->ui().m_comboBox->addItem("List of sensors by technology");
-    m_sensorsDataGrid->ui().m_comboBox->addItem("List of sensors by physical measurement");
-    m_sensorsDataGrid->ui().m_comboBox->addItem("List of sensors by Measure range");
+    m_sensorsDataGrid->ui().comboBox->setVisible(true);
+    m_sensorsDataGrid->ui().comboBox->addItem("List of sensors by experimentation");
+    m_sensorsDataGrid->ui().comboBox->addItem("List of sensors by brand");
+    m_sensorsDataGrid->ui().comboBox->addItem("List of sensors by technology");
+    m_sensorsDataGrid->ui().comboBox->addItem("List of sensors by physical measurement");
+    m_sensorsDataGrid->ui().comboBox->addItem("List of sensors by Measure range");
 
     m_sensorsDataGrid->ui().m_runReportsCalculations->setVisible(false);
     loadSettings(QString());
@@ -513,8 +512,8 @@ void RSGraphView::createObjects()
     m_colors << "red" << "green" << "blue" << "cyan" << "teal" << "maroon";
     m_plotMap.insert("Trend", ui->m_trendPlot);
     m_plotMap.insert("Deviation", ui->m_deviationPlot);
-    ui->m_tabView->setCurrentWidget(ui->m_trendTab);
-    // ui->m_tabView->setStyleSheet("font: 11pt Arial Narrow;");
+    ui->tabView->setCurrentWidget(ui->m_trendTab);
+    // ui->tabView->setStyleSheet("font: 11pt Arial Narrow;");
 
     m_lastOneOnly = true;
     m_runFlag = false;
@@ -528,7 +527,7 @@ void RSGraphView::createObjects()
     createDistributionsHistogramsPage();
 
 
-    ui->m_tabView->tabBar()->setExpanding(true);
+    ui->tabView->tabBar()->setExpanding(true);
 
     m_sensorsDataGrid->progressBar()->setVisible(false);
 
@@ -536,63 +535,56 @@ void RSGraphView::createObjects()
 
 int RSGraphView::step() const
 {
-    return ui->m_stepViewEdit->value();
+    return ui->stepViewEdit->value();
 }
 
 int RSGraphView::minStep() const
 {
-    return ui->m_stepViewEdit->minimum();
+    return ui->stepViewEdit->minimum();
 }
 
 int RSGraphView::maxStep() const
 {
-    return ui->m_stepViewEdit->maximum();
+    return ui->stepViewEdit->maximum();
 }
 
 void RSGraphView::createConnections()
 {
     //Button Run
-    connect(ui->m_trendRunButton, SIGNAL(clicked()),
-            this, SLOT(slotTrendRunButtonClicked()));
+    connect(ui->trendRunButton, SIGNAL(clicked()), this, SLOT(slotTrendRunButtonClicked()));
 
     //Button Clear
-    connect(ui->m_trendClearButton, SIGNAL(clicked()),
-            this, SLOT(slotTrendClearButtonClicked()));
+    connect(ui->trendClearButton, SIGNAL(clicked()), this, SLOT(slotTtrendClearButtonClicked()));
 
     //Button Run
-    connect(ui->m_deviationRunButton, SIGNAL(clicked()),
-            this, SLOT(slotTrendRunButtonClicked()));
+    connect(ui->deviationRunButton, SIGNAL(clicked()), this, SLOT(slotTrendRunButtonClicked()));
 
     //Button Clear
-    connect(ui->m_deviationClearButton, SIGNAL(clicked()),
-            this, SLOT(slotTrendClearButtonClicked()));
+    connect(ui->deviationClearButton, SIGNAL(clicked()), this, SLOT(slotTtrendClearButtonClicked()));
 
     //Button averages
-    connect(ui->m_averagesButton, SIGNAL(clicked()),
-            this, SLOT(slot_averagesButtonClicked()));
+    connect(ui->averagesButton, SIGNAL(clicked()), this, SLOT(slot_averagesButtonClicked()));
 
     //Steps buttons
-    // connect(ui->m_stepMinButton, SIGNAL(clicked()), this, SLOT(slotStepMinButtonClicked()));
+    // connect(ui->stepMinButton, SIGNAL(clicked()), this, SLOT(slotStepMinButtonClicked()));
     // connect(ui->m_stepMaxButton, SIGNAL(clicked()), this, SLOT(slotStepMaxButtonClicked()));
-    // connect(ui->m_stepPreviousButton, SIGNAL(clicked()), this, SLOT(slotStepPreviousButtonClicked()));
-    // connect(ui->m_stepNextButton, SIGNAL(clicked()), this, SLOT(slotStepNextButtonClicked()));
-    // connect(ui->m_stepViewEdit, SIGNAL(valueChanged(int)), this, SLOT(slotStepViewValueChanged(int)));
-    connect(ui->m_stepMinButton, &QToolButton::clicked, this, &RSGraphView::slotStepMinButtonClicked);
-    connect(ui->m_stepMaxButton, &QToolButton::clicked, this, &RSGraphView::slotStepMaxButtonClicked);
+    // connect(ui->stepPreviousButton, SIGNAL(clicked()), this, SLOT(slotStepPreviousButtonClicked()));
+    // connect(ui->stepNextButton, SIGNAL(clicked()), this, SLOT(slotStepNextButtonClicked()));
+    // connect(ui->stepViewEdit, SIGNAL(valueChanged(int)), this, SLOT(slotStepViewValueChanged(int)));
+    connect(ui->stepMinButton, &QToolButton::clicked, this, &RSGraphView::slotStepMinButtonClicked);
+    connect(ui->stepMaxButton, &QToolButton::clicked, this, &RSGraphView::slotStepMaxButtonClicked);
 
-    connect(ui->m_stepPreviousButton, &QToolButton::clicked, this, &RSGraphView::slotStepPreviousButtonClicked);
-    connect(ui->m_stepNextButton, &QToolButton::clicked, this, &RSGraphView::slotStepNextButtonClicked);
+    connect(ui->stepPreviousButton, &QToolButton::clicked, this, &RSGraphView::slotStepPreviousButtonClicked);
+    connect(ui->stepNextButton, &QToolButton::clicked, this, &RSGraphView::slotStepNextButtonClicked);
 
     //qOverload (pour passage en int en 5.15, -> avaznt QString passé en deprecated
-    connect(ui->m_stepViewEdit, qOverload<int>(&QSpinBox::valueChanged), this, &RSGraphView::slotStepViewValueChanged);
+    connect(ui->stepViewEdit, qOverload<int>(&QSpinBox::valueChanged), this, &RSGraphView::slotStepViewValueChanged);
 
 
     //ComboBox
-    connect(ui->m_sensorNameEdit, SIGNAL(currentIndexChanged(QString))
-            , this, SLOT(slotSensorNameIndexChanged(QString)));
+    connect(ui->sensorNameEdit, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotSensorNameIndexChanged(QString)));
     //ComboBox
-    connect(m_sensorsDataGrid->ui().m_comboBox, SIGNAL(currentIndexChanged(int))
-            , this, SLOT(slotSensorListNameIndexChanged(int)));
+    connect(m_sensorsDataGrid->ui().comboBox, SIGNAL(currentIndexChanged(int)) , this, SLOT(slotSensorListNameIndexChanged(int)));
 
 }
 
@@ -610,7 +602,7 @@ void RSGraphView::slotTrendRunButtonClicked()
     emit Signaler::instance()->signal_plotCurves();
 }
 
-void RSGraphView::slotTrendClearButtonClicked()
+void RSGraphView::slotTtrendClearButtonClicked()
 {
     RSLogger::instance()->info(Q_FUNC_INFO," clearGraphs");
 
@@ -621,7 +613,7 @@ void RSGraphView::slotStepMinButtonClicked()
 {
     RSLogger::instance()->info(Q_FUNC_INFO," set step : " + RSGraphViewDefaultSettings::DEFAULT_STEP_VIEW_IDX_MIN);
 
-    ui->m_stepViewEdit->setValue(RSGraphViewDefaultSettings::DEFAULT_STEP_VIEW_IDX_MIN + 1);
+    ui->stepViewEdit->setValue(RSGraphViewDefaultSettings::DEFAULT_STEP_VIEW_IDX_MIN + 1);
 }
 
 void RSGraphView::slotStepMaxButtonClicked()
@@ -630,20 +622,20 @@ void RSGraphView::slotStepMaxButtonClicked()
 
     RSLogger::instance()->info(Q_FUNC_INFO," set step : " + QString::number(stepViewMax));
 
-    ui->m_stepViewEdit->setValue(stepViewMax);
+    ui->stepViewEdit->setValue(stepViewMax);
 }
 
 void RSGraphView::slotStepPreviousButtonClicked()
 {
-    RSLogger::instance()->info(Q_FUNC_INFO," step Down m_stepViewEdit" );
-    ui->m_stepViewEdit->stepDown();
+    RSLogger::instance()->info(Q_FUNC_INFO," step Down stepViewEdit" );
+    ui->stepViewEdit->stepDown();
 }
 
 void RSGraphView::slotStepNextButtonClicked()
 {
     RSLogger::instance()->info(Q_FUNC_INFO," step Up " );
 
-    ui->m_stepViewEdit->stepUp();
+    ui->stepViewEdit->stepUp();
 }
 
 void RSGraphView::slotStepViewValueChanged(int data)
@@ -660,13 +652,13 @@ void RSGraphView::slotStepViewValueChanged(int data)
 void RSGraphView::slotStepViewValueChangedEx(int data)
 {
     RSLogger::instance()->info(Q_FUNC_INFO," set value : " + QString::number(data) );
-    ui->m_stepViewEdit->setValue(data + 1);
+    ui->stepViewEdit->setValue(data + 1);
 }
 
 void RSGraphView::slotStepViewMaxValueChanged(int data)
 {
-    ui->m_stepViewEdit->setMaximum(data);
-    ui->m_stepViewEdit->setSuffix(QString(" / %1").arg(data));
+    ui->stepViewEdit->setMaximum(data);
+    ui->stepViewEdit->setSuffix(QString(" / %1").arg(data));
 }
 
 void RSGraphView::slotSensorNameIndexChanged(const QString& sensorName)
@@ -679,7 +671,7 @@ void RSGraphView::slotSensorNameIndexChanged(const QString& sensorName)
     m_sensorCode = pair.first;
     m_measPointType = pair.second;
 
-    int index = ui->m_sensorNameEdit->currentIndex();
+    int index = ui->sensorNameEdit->currentIndex();
 
     RSDataManager::Instance()->setData("SensorName", sensorName);
     RSDataManager::Instance()->setData("SensorNameCode", m_sensorCode);
@@ -690,7 +682,7 @@ void RSGraphView::slotSensorNameIndexChanged(const QString& sensorName)
     displayMeasPointTypeIndicator();
 
     //Put the step to the lowest value
-    ui->m_stepViewEdit->setValue(this->maxStep());
+    ui->stepViewEdit->setValue(this->maxStep());
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End. emitUpdateStepViewMax");
 
@@ -739,13 +731,13 @@ void RSGraphView::updateSensorsDatagrid(int index)
     }
 
 
-    ui->m_tabView->setCurrentWidget(ui->m_sensorsDatagridTab);
+    ui->tabView->setCurrentWidget(ui->m_sensorsDatagridTab);
 }
 
 QPair<int,MeasPointType> RSGraphView::getSensorCodeTypePair() const
 {
-//    QString& sensorName = ui->m_sensorNameEdit->currentText();
-    QString sensorName = ui->m_sensorNameEdit->currentText();
+//    QString& sensorName = ui->sensorNameEdit->currentText();
+    QString sensorName = ui->sensorNameEdit->currentText();
     QPair<int,MeasPointType>  pair = m_databaseAccess->getSensorNameCodeAndType(sensorName);
 
     return pair;
@@ -932,10 +924,10 @@ void RSGraphView::add(const QList<double>& x, const QList<double>& y, const QDat
 void RSGraphView::setSensorNameList()
 {
     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
-    ui->m_sensorNameEdit->blockSignals(true);
+    ui->sensorNameEdit->blockSignals(true);
 
     //2--- --Clear the current list
-    ui->m_sensorNameEdit->clear();
+    ui->sensorNameEdit->clear();
 
     //1--- --Get the current sensors in REXFILTER table
     m_sensorsDetailedInfo = m_databaseAccess->getSensorsDetailedInfoSet();
@@ -947,15 +939,15 @@ void RSGraphView::setSensorNameList()
 
     if(dataList.size() == 0)
     {
-        ui->m_sensorNameEdit->blockSignals(false);
+        ui->sensorNameEdit->blockSignals(false);
         return;
     }
 
     //3--- --Add the new list
-    ui->m_sensorNameEdit->addItems(dataList);
+    ui->sensorNameEdit->addItems(dataList);
     int sensorNameIndex = RSDataManager::Instance()->getData("SensorNameIndex").toInt();
     sensorNameIndex = 0;
-    ui->m_sensorNameEdit->setCurrentIndex(sensorNameIndex);
+    ui->sensorNameEdit->setCurrentIndex(sensorNameIndex);
 
     //4--- --Get the sensor code
     int sensorCode = m_databaseAccess->getSensorNameCode(dataList.at(sensorNameIndex));
@@ -966,7 +958,7 @@ void RSGraphView::setSensorNameList()
     RSMessageView::Instance()->showData(msg);
 
     //Get the current sensor name on the combo
-    QString m_sensorName = ui->m_sensorNameEdit->currentText();
+    QString m_sensorName = ui->sensorNameEdit->currentText();
     int m_sensorNameCode = m_databaseAccess->getSensorNameCode(m_sensorName);
 
     //update the DataMaager
@@ -974,7 +966,7 @@ void RSGraphView::setSensorNameList()
     RSDataManager::Instance()->setData("SensorNameCode", m_sensorNameCode);
     RSDataManager::Instance()->setData("SensorNameIndex", sensorNameIndex);
 
-    ui->m_sensorNameEdit->blockSignals(false);
+    ui->sensorNameEdit->blockSignals(false);
 
     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. m_sensorName = %1  \t nbSensors = %2").arg(m_sensorName).arg(dataList.count()) );
 }
@@ -1003,22 +995,22 @@ QStringList RSGraphView::getCurSensorNamesList() const
 {
     QStringList sensorsList;
 
-    for (int i = 0; i < ui->m_sensorNameEdit->count(); i++)
-        sensorsList.append( ui->m_sensorNameEdit->itemText(i));
+    for (int i = 0; i < ui->sensorNameEdit->count(); i++)
+        sensorsList.append( ui->sensorNameEdit->itemText(i));
 
     return sensorsList;
 }
 
 QString RSGraphView::currentExperimentationName() const
 {
-    return ui->m_sensorNameEdit->currentText();
+    return ui->sensorNameEdit->currentText();
 }
 
 void RSGraphView::clearGraphsAndSensorList()
 {
-    ui->m_sensorNameEdit->blockSignals(true);
-    ui->m_sensorNameEdit->clear();
-    ui->m_sensorNameEdit->blockSignals(false);
+    ui->sensorNameEdit->blockSignals(true);
+    ui->sensorNameEdit->clear();
+    ui->sensorNameEdit->blockSignals(false);
     clearGraphs();
 }
 
@@ -1045,17 +1037,17 @@ QVariant RSGraphView::loadSensorName()
     QVariant m_default = RSGraphViewDefaultSettings::DEFAULT_SENSOR_NAME_INDEX;
 
     //Get the sensor Name
-    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, ui->m_sensorNameEdit->itemData(0).value<QString>());
+    QVariant data = RSGlobalMethods::Instance()->loadData(m_id, m_key, ui->sensorNameEdit->itemData(0).value<QString>());
     const QString sensorName = data.value<QString>();
 
     //Look for the index
-    int index = ui->m_sensorNameEdit->findText(sensorName);
+    int index = ui->sensorNameEdit->findText(sensorName);
     if(index < 0)
         index = RSGraphViewDefaultSettings::DEFAULT_SENSOR_NAME_INDEX;
 
-    ui->m_sensorNameEdit->blockSignals(true);
-    ui->m_sensorNameEdit->setCurrentIndex(index);
-    ui->m_sensorNameEdit->blockSignals(false);
+    ui->sensorNameEdit->blockSignals(true);
+    ui->sensorNameEdit->setCurrentIndex(index);
+    ui->sensorNameEdit->blockSignals(false);
 
     displayMeasPointTypeIndicator();
 
@@ -1079,7 +1071,7 @@ void RSGraphView::saveSensorName()const
 {
     QString m_id = "RSGraphView";
     QString m_key = "RSGraphView.SensorName";
-    QVariant data = ui->m_sensorNameEdit->currentText();
+    QVariant data = ui->sensorNameEdit->currentText();
     RSGlobalMethods::Instance()->saveData(m_id, m_key, data);
 }
 
@@ -1089,9 +1081,9 @@ QVariant  RSGraphView::loadStepView()
     QString m_key = "RSGraphView.stepView";
     QVariant m_default = RSGraphViewDefaultSettings::DEFAULT_STEP_INDEX;
 
-    ui->m_stepViewEdit->blockSignals(true);
-    ui->m_stepViewEdit->setValue(RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default).value<int>());
-    ui->m_stepViewEdit->blockSignals(false);
+    ui->stepViewEdit->blockSignals(true);
+    ui->stepViewEdit->setValue(RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default).value<int>());
+    ui->stepViewEdit->blockSignals(false);
 
     return RSGlobalMethods::Instance()->loadData(m_id, m_key, m_default);
 }
@@ -1100,7 +1092,7 @@ void  RSGraphView::saveStepView()const
 {
     QString m_id = "RSGraphView";
     QString m_key = "RSGraphView.stepView";
-    QVariant m_data = ui->m_stepViewEdit->value();
+    QVariant m_data = ui->stepViewEdit->value();
 
     RSGlobalMethods::Instance()->saveData(m_id, m_key, m_data);
 }
@@ -1112,17 +1104,17 @@ void  RSGraphView::setStepViewMax(int step)
 
     //If the current step is over the maxStep
 
-    ui->m_stepViewEdit->blockSignals(true);
-    ui->m_stepViewEdit->setValue(0 + 1 );
-    ui->m_stepViewEdit->setMaximum(m_stepViewMax);
-    ui->m_stepViewEdit->setSuffix(QString(" / %1").arg(m_stepViewMax));
-    ui->m_stepViewEdit->blockSignals(false);
+    ui->stepViewEdit->blockSignals(true);
+    ui->stepViewEdit->setValue(0 + 1 );
+    ui->stepViewEdit->setMaximum(m_stepViewMax);
+    ui->stepViewEdit->setSuffix(QString(" / %1").arg(m_stepViewMax));
+    ui->stepViewEdit->blockSignals(false);
 
 }
 
 QString  RSGraphView::sensorName() const
 {
-    return ui->m_sensorNameEdit->currentText();
+    return ui->sensorNameEdit->currentText();
 }
 
 void RSGraphView::slot_averagesButtonClicked()
@@ -1642,11 +1634,11 @@ void RSGraphView::initDatagridPointers()
 
 void RSGraphView::displayDataTab()
 {
-    ui->m_tabView->setCurrentWidget(ui->m_dataPageNoiseFailsFidelity);
+    ui->tabView->setCurrentWidget(ui->m_dataPageNoiseFailsFidelity);
 }
 
 void  RSGraphView::displayTab(int tableIndex)
 {
-    if(tableIndex < ui->m_tabView->count())
-        ui->m_tabView->setCurrentIndex(tableIndex);
+    if(tableIndex < ui->tabView->count())
+        ui->tabView->setCurrentIndex(tableIndex);
 }

@@ -129,7 +129,7 @@ public:
 
         lineEdit->setText(m_name);
 
-        m_dataGrid->ui().m_comboBox->setVisible(false);
+        m_dataGrid->ui().comboBox->setVisible(false);
 
         setTitle(name);
 
@@ -208,7 +208,7 @@ public:
     void displayTab(int);
 protected slots:
     void slotTrendRunButtonClicked();
-    void slotTrendClearButtonClicked();
+    void slotTtrendClearButtonClicked();
 
     void slotStepMinButtonClicked();
     void slotStepMaxButtonClicked();
