@@ -583,7 +583,8 @@ void RSGraphView::createConnections()
     connect(ui->m_stepPreviousButton, &QToolButton::clicked, this, &RSGraphView::slotStepPreviousButtonClicked);
     connect(ui->m_stepNextButton, &QToolButton::clicked, this, &RSGraphView::slotStepNextButtonClicked);
 
-    connect(ui->m_stepViewEdit, &QSpinBox::valueChanged, this, &RSGraphView::slotStepViewValueChanged);
+    //qOverload (pour passage en int en 5.15, -> avaznt QString passé en deprecated
+    connect(ui->m_stepViewEdit, qOverload<int>(&QSpinBox::valueChanged), this, &RSGraphView::slotStepViewValueChanged);
 
 
     //ComboBox
