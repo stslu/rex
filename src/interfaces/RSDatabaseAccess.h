@@ -32,24 +32,15 @@ public:
     void loadSettings(const QString& fileName) ;
     void saveSettings(const QString& fileName) ;
 
-    // sensor code, Technology
-    const QMap<int ,QString>& getTechnologyBySensorMap();
-
-    // sensor code, Sensor name
-    const QMap<int ,QString> getSensorNameOfSensorCodeMap();
-    virtual QList<int> getSensorCodeList(const QString& field, const QString& name);
-    virtual QString getSensorUnicProperty(int mpCode, const QString& field);
     virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
     virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+
     virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
     virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
     virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
     virtual QDateTime getStartDateTime() const;
 
-
-    virtual  bool initSensorsByExperimentationMap(const QStringList& acqPointsCodeList, const QStringList& expList,QMap<QString, QStringList>& sensorsByExpMap);
     virtual bool initSensorFailureList(int sensorCode, const QDate& start, const QDate& end, int evtCode,QList<quint64>& failuresList) const;
-    void initMapsOfSensorNameCodeTechnology();
 
     virtual bool isG6StructureOK() const;
     virtual bool isG7StructureOK() const;
@@ -94,7 +85,7 @@ public:
      * @param Criteria : criteria on the field
      * @return QStringList of sensors
      */
-    QStringList getSensorNameList(const QString& field, const QString& Criteria);
+    // QStringList getSensorNameList(const QString& field, const QString& Criteria);
 
     int getSensorNameCode(const QString& name);
     QPair<int,MeasPointType> getSensorNameCodeAndType(const QString& name) const;
@@ -186,8 +177,6 @@ protected:
 
     QVariant loadG7ContainerTypeCode();
     void saveG7ContainerTypeCode();
-
-
 
     void initExperienceBySensorMap();
 

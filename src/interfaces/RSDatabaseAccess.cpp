@@ -1081,245 +1081,245 @@ bool RSDatabaseAccess::initSensorFailureList(int mpCode, const QDate& start, con
     return true;
 }
 
-void RSDatabaseAccess::initMapsOfSensorNameCodeTechnology()
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Start"));
-    m_technologyBySensorMap.clear();
-    m_sensorNameOfSensorCodeMap.clear();
+// void RSDatabaseAccess::initMapsOfSensorNameCodeTechnology()
+// {
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Start"));
+//     m_technologyBySensorMap.clear();
+//     m_sensorNameOfSensorCodeMap.clear();
 
-    QString dbName     = "REX";
-    QSqlDatabase dbSql = QSqlDatabase::database(dbName);
-    QSqlQuery querySql(dbSql);
+//     QString dbName     = "REX";
+//     QSqlDatabase dbSql = QSqlDatabase::database(dbName);
+//     QSqlQuery querySql(dbSql);
 
-    QString strQuery = "select MP_CODE,MP_NAME, AST_TECHNOLOGY FROM REXFILTER";
+//     QString strQuery = "select MP_CODE,MP_NAME, AST_TECHNOLOGY FROM REXFILTER";
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute Query : " + strQuery);
-    if(!querySql.exec(strQuery)) {
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. Failed to execute Query");
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
-                                                      tr("%1 database cannot execute initTechnologyBySensorMap().<br/>"
-                                                         "ErrorText : %2<br/>"
-                                                         "ErrorType : %3")
-                                                          .arg(dbName)
-                                                          .arg(querySql.lastError().databaseText())
-                                                          .arg(querySql.lastError().type()));
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, "Try to execute Query : " + strQuery);
+//     if(!querySql.exec(strQuery)) {
+//         RSLogger::instance()->info(Q_FUNC_INFO, "End. Failed to execute Query");
+//         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
+//                                                       tr("%1 database cannot execute initTechnologyBySensorMap().<br/>"
+//                                                          "ErrorText : %2<br/>"
+//                                                          "ErrorType : %3")
+//                                                           .arg(dbName)
+//                                                           .arg(querySql.lastError().databaseText())
+//                                                           .arg(querySql.lastError().type()));
+//     }
 
-    int sensorField = querySql.record().indexOf("MP_CODE");
-    int technoField = querySql.record().indexOf("AST_TECHNOLOGY");
-    int nameField   = querySql.record().indexOf("MP_NAME");
-    while(querySql.next()) {
-        int mpCode                          = querySql.value(sensorField).value<int>();
-        m_technologyBySensorMap[mpCode]     = querySql.value(technoField).toString();
-        m_sensorNameOfSensorCodeMap[mpCode] = querySql.value(nameField).toString();
-    }
+//     int sensorField = querySql.record().indexOf("MP_CODE");
+//     int technoField = querySql.record().indexOf("AST_TECHNOLOGY");
+//     int nameField   = querySql.record().indexOf("MP_NAME");
+//     while(querySql.next()) {
+//         int mpCode                          = querySql.value(sensorField).value<int>();
+//         m_technologyBySensorMap[mpCode]     = querySql.value(technoField).toString();
+//         m_sensorNameOfSensorCodeMap[mpCode] = querySql.value(nameField).toString();
+//     }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("End"));
-}
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("End"));
+// }
 
-const QMap<int /*sensor code*/, QString /*Technology*/>& RSDatabaseAccess::getTechnologyBySensorMap()
-{
-    if(m_technologyBySensorMap.isEmpty())
-        initMapsOfSensorNameCodeTechnology();
-    return m_technologyBySensorMap;
-}
+// const QMap<int /*sensor code*/, QString /*Technology*/>& RSDatabaseAccess::getTechnologyBySensorMap()
+// {
+//     if(m_technologyBySensorMap.isEmpty())
+//         initMapsOfSensorNameCodeTechnology();
+//     return m_technologyBySensorMap;
+// }
 
-const QMap<int /*sensor code*/, QString /*Sensor name*/> RSDatabaseAccess::getSensorNameOfSensorCodeMap()
-{
-    // if(m_sensorNameOfSensorCodeMap.isEmpty())
-    initMapsOfSensorNameCodeTechnology();
-    return m_sensorNameOfSensorCodeMap;
-}
+// const QMap<int /*sensor code*/, QString /*Sensor name*/> RSDatabaseAccess::getSensorNameOfSensorCodeMap()
+// {
+//     // if(m_sensorNameOfSensorCodeMap.isEmpty())
+//     initMapsOfSensorNameCodeTechnology();
+//     return m_sensorNameOfSensorCodeMap;
+// }
 
-QList<int> RSDatabaseAccess::getSensorCodeList(const QString& field, const QString& name)
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, "Start");
+// QList<int> RSDatabaseAccess::getSensorCodeList(const QString& field, const QString& name)
+// {
+//     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString databaseName     = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
-    QSqlQuery querySql(databaseSql);
-    QList<int> dataList;
+//     QString databaseName     = "REX";
+//     QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+//     QSqlQuery querySql(databaseSql);
+//     QList<int> dataList;
 
-    QString strQuery = QString("select distinct MP_CODE IDATA "
-                               "from REXFILTER "
-                               "where MP_CODE <> '' "
-                               "and MP_CODE is not null "
-                               "and :field = :name "
-                               "order by MP_NAME");
-    //TODO: vérifier prepare, c'est du SqLite
-    // .arg(field)
-    // .arg(name);
-    querySql.prepare(strQuery);
-    querySql.bindValue(":field", field);
-    querySql.bindValue(":name", name);
+//     QString strQuery = QString("select distinct MP_CODE IDATA "
+//                                "from REXFILTER "
+//                                "where MP_CODE <> '' "
+//                                "and MP_CODE is not null "
+//                                "and :field = :name "
+//                                "order by MP_NAME");
+//     //TODO: vérifier prepare, c'est du SqLite
+//     // .arg(field)
+//     // .arg(name);
+//     querySql.prepare(strQuery);
+//     querySql.bindValue(":field", field);
+//     querySql.bindValue(":name", name);
 
-    bool exec = querySql.exec();
+//     bool exec = querySql.exec();
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(!exec) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
-                                                      tr("%1 database cannot execute getSensorNameList().<br/>"
-                                                         "ErrorText : %2<br/>"
-                                                         "ErrorType : %3")
-                                                          .arg(databaseName)
-                                                          .arg(querySql.lastError().databaseText())
-                                                          .arg(querySql.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
-        return QList<int>();
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
+//     if(!exec) {
+//         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
+//                                                       tr("%1 database cannot execute getSensorNameList().<br/>"
+//                                                          "ErrorText : %2<br/>"
+//                                                          "ErrorType : %3")
+//                                                           .arg(databaseName)
+//                                                           .arg(querySql.lastError().databaseText())
+//                                                           .arg(querySql.lastError().type()));
+//         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
+//         return QList<int>();
+//     }
 
-    int m_dataNo = querySql.record().indexOf("IDATA");
+//     int m_dataNo = querySql.record().indexOf("IDATA");
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
-    while(querySql.next()) {
-        int data = querySql.value(m_dataNo).value<int>();
-        dataList.push_back(data);
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
+//     while(querySql.next()) {
+//         int data = querySql.value(m_dataNo).value<int>();
+//         dataList.push_back(data);
+//     }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found %1 sensors").arg(dataList.count()));
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found %1 sensors").arg(dataList.count()));
 
-    return dataList;
-}
+//     return dataList;
+// }
 
-QString RSDatabaseAccess::getSensorUnicProperty(int mpCode, const QString& field)
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, "Start");
+// QString RSDatabaseAccess::getSensorUnicProperty(int mpCode, const QString& field)
+// {
+//     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString databaseName     = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
-    QSqlQuery querySql(databaseSql);
+//     QString databaseName     = "REX";
+//     QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+//     QSqlQuery querySql(databaseSql);
 
-    QString strQuery = QString("select distinct %1 from REXFILTER where MP_CODE = :mp_code ").arg(field);
+//     QString strQuery = QString("select distinct %1 from REXFILTER where MP_CODE = :mp_code ").arg(field);
 
-    querySql.prepare(strQuery);
-    querySql.bindValue(":mp_code", mpCode);
+//     querySql.prepare(strQuery);
+//     querySql.bindValue(":mp_code", mpCode);
 
-    bool execOk = querySql.exec();
+//     bool execOk = querySql.exec();
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(execOk == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
-                                                      tr("%1 database cannot execute getSensorUnicProperty().<br/>"
-                                                         "ErrorText : %2<br/>"
-                                                         "ErrorType : %3")
-                                                          .arg(databaseName)
-                                                          .arg(querySql.lastError().databaseText())
-                                                          .arg(querySql.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query");
-        return QString();
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
+//     if(execOk == false) {
+//         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
+//                                                       tr("%1 database cannot execute getSensorUnicProperty().<br/>"
+//                                                          "ErrorText : %2<br/>"
+//                                                          "ErrorType : %3")
+//                                                           .arg(databaseName)
+//                                                           .arg(querySql.lastError().databaseText())
+//                                                           .arg(querySql.lastError().type()));
+//         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query");
+//         return QString();
+//     }
 
-    QString techno;
-    if(querySql.first()) {
-        int val = querySql.value(0).toInt();
-        techno  = QString::number(val);
-    }
+//     QString techno;
+//     if(querySql.first()) {
+//         int val = querySql.value(0).toInt();
+//         techno  = QString::number(val);
+//     }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found  techno : %1").arg(techno));
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found  techno : %1").arg(techno));
 
-    return techno;
-}
+//     return techno;
+// }
 
 // Get the measure points associated to the sensors
 //INUTILISE ?
-bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCodeList, const QStringList& expList,
-                                                       QMap<QString, QStringList>& map)
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, "Start. mpCodeList : \n" + mpCodeList.join(','));
+// bool RSDatabaseAccess::initSensorsByExperimentationMap(const QStringList& mpCodeList, const QStringList& expList,
+//                                                        QMap<QString, QStringList>& map)
+// {
+//     RSLogger::instance()->info(Q_FUNC_INFO, "Start. mpCodeList : \n" + mpCodeList.join(','));
 
-    map.clear();
+//     map.clear();
 
-    QString dbName     = "G7";
-    QSqlDatabase dbSql = QSqlDatabase::database(dbName);
-    QSqlQuery sqlQuery(dbSql);
+//     QString dbName     = "G7";
+//     QSqlDatabase dbSql = QSqlDatabase::database(dbName);
+//     QSqlQuery sqlQuery(dbSql);
 
-    // Ancienne version
-    // // TAG_NAME = nom expérience
-    // QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
-    //                            "  FROM T_ENTITIES"
-    //                            "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
-    //                            "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
-    //                            "  LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
-    //                            "  WHERE T_ENTITIES.CNT_CODE = %3"
-    //                            "  AND T_ENTITIES.SRC_CODE = %4"
-    //                            "  AND T_TAGCATEGORIES.TCT_CODE = %5"
-    //                            "  AND T_ENTITIES.ENTITY_ID IN(%1)"
-    //                            "  AND T_TAG.TAG_NAME IN('%2')")
-    //                        .arg(mpCodeList.join(","))
-    //                        .arg(expList.join("','"))
-    //                        .arg(m_g7ContainerTypeCode)
-    //                        .arg(m_g7SourceCode)
-    //                        .arg(m_g7TagCategoryCode);
-
-
-    // bool execOk = sqlQuery.exec(strQuery);
+//     // Ancienne version
+//     // // TAG_NAME = nom expérience
+//     // QString strQuery = QString("SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE"
+//     //                            "  FROM T_ENTITIES"
+//     //                            "  RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
+//     //                            "  LEFT   JOIN T_TAG ON T_ENTITYTAG.TAG_CODE  = T_TAG.TAG_CODE"
+//     //                            "  LEFT   JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE  = T_TAGCATEGORIES.TCT_CODE"
+//     //                            "  WHERE T_ENTITIES.CNT_CODE = %3"
+//     //                            "  AND T_ENTITIES.SRC_CODE = %4"
+//     //                            "  AND T_TAGCATEGORIES.TCT_CODE = %5"
+//     //                            "  AND T_ENTITIES.ENTITY_ID IN(%1)"
+//     //                            "  AND T_TAG.TAG_NAME IN('%2')")
+//     //                        .arg(mpCodeList.join(","))
+//     //                        .arg(expList.join("','"))
+//     //                        .arg(m_g7ContainerTypeCode)
+//     //                        .arg(m_g7SourceCode)
+//     //                        .arg(m_g7TagCategoryCode);
 
 
+//     // bool execOk = sqlQuery.exec(strQuery);
 
-    //Nouvelle version avec prepare
-    // Génère '?,?,?,...' (autant que de codes)
 
-    QStringList ent_placeholders_list;
-    for (int i = 0; i < mpCodeList.size(); ++i)
-        ent_placeholders_list << "?";
-    QString ent_placeholders = ent_placeholders_list.join(",");
 
-    QStringList tag_placeholders_list;
-    for (int i = 0; i < expList.size(); ++i)
-        tag_placeholders_list << "?";
-    QString tag_placeholders = tag_placeholders_list.join(",");
+//     //Nouvelle version avec prepare
+//     // Génère '?,?,?,...' (autant que de codes)
 
-    QString strQuery =
-        "SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE "
-        "FROM T_ENTITIES "
-        "RIGHT JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE = T_ENTITIES.ENT_CODE "
-        "LEFT JOIN T_TAG ON T_ENTITYTAG.TAG_CODE = T_TAG.TAG_CODE "
-        "LEFT JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE = T_TAGCATEGORIES.TCT_CODE "
-        "WHERE T_ENTITIES.CNT_CODE = ? "
-        "AND T_ENTITIES.SRC_CODE = ? "
-        "AND T_TAGCATEGORIES.TCT_CODE = ? "
-        "AND T_ENTITIES.ENTITY_ID IN (" + ent_placeholders + ") "
-        "AND T_TAG.TAG_NAME IN (" + tag_placeholders + ")";
+//     QStringList ent_placeholders_list;
+//     for (int i = 0; i < mpCodeList.size(); ++i)
+//         ent_placeholders_list << "?";
+//     QString ent_placeholders = ent_placeholders_list.join(",");
 
-    sqlQuery.prepare(strQuery);
-    sqlQuery.addBindValue(m_g7ContainerTypeCode);
-    sqlQuery.addBindValue(m_g7SourceCode);
-    sqlQuery.addBindValue(m_g7TagCategoryCode);
-    for (const QString &code : mpCodeList)
-        sqlQuery.addBindValue(code);
-    for (const QString &tag : expList)
-        sqlQuery.addBindValue(tag);
+//     QStringList tag_placeholders_list;
+//     for (int i = 0; i < expList.size(); ++i)
+//         tag_placeholders_list << "?";
+//     QString tag_placeholders = tag_placeholders_list.join(",");
 
-    bool execOk = sqlQuery.exec();
+//     QString strQuery =
+//         "SELECT ENT_NAME, T_ENTITIES.ENT_CODE, TAG_NAME, T_ENTITYTAG.TAG_CODE "
+//         "FROM T_ENTITIES "
+//         "RIGHT JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE = T_ENTITIES.ENT_CODE "
+//         "LEFT JOIN T_TAG ON T_ENTITYTAG.TAG_CODE = T_TAG.TAG_CODE "
+//         "LEFT JOIN T_TAGCATEGORIES ON T_TAG.TCT_CODE = T_TAGCATEGORIES.TCT_CODE "
+//         "WHERE T_ENTITIES.CNT_CODE = ? "
+//         "AND T_ENTITIES.SRC_CODE = ? "
+//         "AND T_TAGCATEGORIES.TCT_CODE = ? "
+//         "AND T_ENTITIES.ENTITY_ID IN (" + ent_placeholders + ") "
+//         "AND T_TAG.TAG_NAME IN (" + tag_placeholders + ")";
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Try to execute query : \n %1 ").arg(strQuery));
-    if(execOk == false) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
-                                                      tr("%1 database cannot execute initSensorsByExperimentationMap().<br/>"
-                                                         "ErrorText : %2<br/>"
-                                                         "ErrorType : %3")
-                                                          .arg(dbName)
-                                                          .arg(sqlQuery.lastError().databaseText())
-                                                          .arg(sqlQuery.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query");
-        return false;
-    }
+//     sqlQuery.prepare(strQuery);
+//     sqlQuery.addBindValue(m_g7ContainerTypeCode);
+//     sqlQuery.addBindValue(m_g7SourceCode);
+//     sqlQuery.addBindValue(m_g7TagCategoryCode);
+//     for (const QString &code : mpCodeList)
+//         sqlQuery.addBindValue(code);
+//     for (const QString &tag : expList)
+//         sqlQuery.addBindValue(tag);
 
-    int expCol        = sqlQuery.record().indexOf("TAG_NAME");
-    int sensorNameCol = sqlQuery.record().indexOf("ENT_NAME");
-    while(sqlQuery.next()) {
-        QString expName    = sqlQuery.value(expCol).toString();
-        QString sensorName = sqlQuery.value(sensorNameCol).toString();
-        map[expName].append(sensorName);
-    }
+//     bool execOk = sqlQuery.exec();
 
-    QString msg;
-    Q_FOREACH(const QString& key, map.keys())
-        msg.append("%1 = %2 sensors \t").arg(key).arg(map[key].count());
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Try to execute query : \n %1 ").arg(strQuery));
+//     if(execOk == false) {
+//         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(dbName),
+//                                                       tr("%1 database cannot execute initSensorsByExperimentationMap().<br/>"
+//                                                          "ErrorText : %2<br/>"
+//                                                          "ErrorType : %3")
+//                                                           .arg(dbName)
+//                                                           .arg(sqlQuery.lastError().databaseText())
+//                                                           .arg(sqlQuery.lastError().type()));
+//         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query");
+//         return false;
+//     }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, "End. .Query succeeded. \n" + msg);
-    return true;
-}
+//     int expCol        = sqlQuery.record().indexOf("TAG_NAME");
+//     int sensorNameCol = sqlQuery.record().indexOf("ENT_NAME");
+//     while(sqlQuery.next()) {
+//         QString expName    = sqlQuery.value(expCol).toString();
+//         QString sensorName = sqlQuery.value(sensorNameCol).toString();
+//         map[expName].append(sensorName);
+//     }
+
+//     QString msg;
+//     Q_FOREACH(const QString& key, map.keys())
+//         msg.append("%1 = %2 sensors \t").arg(key).arg(map[key].count());
+
+//     RSLogger::instance()->info(Q_FUNC_INFO, "End. .Query succeeded. \n" + msg);
+//     return true;
+// }
 
 bool RSDatabaseAccess::isG6StructureOK() const
 {
@@ -2712,52 +2712,52 @@ QList<SensorInfos> RSDatabaseAccess::getSensorsDetailedInfoSet() const
     return dataList;
 }
 
-QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QString& name)
-{
-    RSLogger::instance()->info(Q_FUNC_INFO, "Start");
+// QStringList RSDatabaseAccess::getSensorNameList(const QString& field, const QString& name)
+// {
+//     RSLogger::instance()->info(Q_FUNC_INFO, "Start");
 
-    QString databaseName     = "REX";
-    QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
-    QSqlQuery querySql(databaseSql);
-    QStringList dataList;
-    bool execOk = false;
+//     QString databaseName     = "REX";
+//     QSqlDatabase databaseSql = QSqlDatabase::database(databaseName);
+//     QSqlQuery querySql(databaseSql);
+//     QStringList dataList;
+//     bool execOk = false;
 
-    QString strQuery = QString("select distinct MP_NAME IDATA "
-                               "from REXFILTER "
-                               "where MP_NAME <> '' "
-                               "and MP_NAME is not null "
-                               "and :field = :name "
-                               "order by MP_NAME");
-    querySql.prepare(strQuery);
-    querySql.bindValue(":field", field);
-    querySql.bindValue(":name", name);
+//     QString strQuery = QString("select distinct MP_NAME IDATA "
+//                                "from REXFILTER "
+//                                "where MP_NAME <> '' "
+//                                "and MP_NAME is not null "
+//                                "and :field = :name "
+//                                "order by MP_NAME");
+//     querySql.prepare(strQuery);
+//     querySql.bindValue(":field", field);
+//     querySql.bindValue(":name", name);
 
-    execOk = querySql.exec();
+//     execOk = querySql.exec();
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
-    if(!execOk) {
-        emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
-                                                      tr("%1 database cannot execute getSensorNameList().<br/>"
-                                                         "ErrorText : %2<br/>"
-                                                         "ErrorType : %3")
-                                                          .arg(databaseName)
-                                                          .arg(querySql.lastError().databaseText())
-                                                          .arg(querySql.lastError().type()));
-        RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
-        return QStringList();
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Exec query : %1 ").arg(strQuery));
+//     if(!execOk) {
+//         emit Signaler::instance()->signal_emitMessage(QMessageBox::Critical, "red", tr("Error %1 Database").arg(databaseName),
+//                                                       tr("%1 database cannot execute getSensorNameList().<br/>"
+//                                                          "ErrorText : %2<br/>"
+//                                                          "ErrorType : %3")
+//                                                           .arg(databaseName)
+//                                                           .arg(querySql.lastError().databaseText())
+//                                                           .arg(querySql.lastError().type()));
+//         RSLogger::instance()->info(Q_FUNC_INFO, "End. Fail to execute Query : " + strQuery);
+//         return QStringList();
+//     }
 
-    int dataNo = querySql.record().indexOf("IDATA");
+//     int dataNo = querySql.record().indexOf("IDATA");
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
-    while(querySql.next()) {
-        QString data = querySql.value(dataNo).toString();
-        dataList.push_back(data);
-    }
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("Gathe the data"));
+//     while(querySql.next()) {
+//         QString data = querySql.value(dataNo).toString();
+//         dataList.push_back(data);
+//     }
 
-    RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found %1 sensors").arg(dataList.count()));
-    return dataList;
-}
+//     RSLogger::instance()->info(Q_FUNC_INFO, QString("End. Found %1 sensors").arg(dataList.count()));
+//     return dataList;
+// }
 
 QPair<int, MeasPointType> RSDatabaseAccess::getSensorNameCodeAndType(const QString& name) const
 {

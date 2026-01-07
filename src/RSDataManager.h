@@ -194,20 +194,9 @@ public:
     static RSDataManager* Instance(QObject *parent = 0);
 
     void setFidelityForBrandMap(const QString& brand, const double& value);
-    const QMap<QString, double>& getSensorFidelityByBrandMap() const;
-
     void setNoiseForBrandMap(const QString& sensor, const double& value);
-    const QMap<QString, double>& getNoiseForBrandMap() const;
-
     void setNoiseFidelitySensorBrandArray(const QString& brand, const QString& sensor,const double& fidelity,const double& noise);
-    const  QVector<RSDataManager::NoiseFidelitySensorBrand>& getNoiseFidelitySensorBrandArray() const;
 
-    const  QVector<RSDataManager::MtbfBySensorBrandTechnology>& getMtbfBySensorBrandTechnologyArray() const;
-
-    void setSensorMtbfArray(const QString& brand,const QString& sensor, const QString& techno, double mtbf);
-
-    void clearFidelityAndNoiseMap();
-    void clearMtbfMap();
 
 private:
 
