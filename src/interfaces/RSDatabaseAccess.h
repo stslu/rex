@@ -32,17 +32,24 @@ public:
     void loadSettings(const QString& fileName) ;
     void saveSettings(const QString& fileName) ;
 
-    const QMap<int /*sensor code*/,QString /*Technology*/>& getTechnologyBySensorMap();
+    // sensor code, Technology
+    const QMap<int ,QString>& getTechnologyBySensorMap();
 
-    const QMap<int /*sensor code*/,QString /*Sensor name*/> getSensorNameOfSensorCodeMap();
-    void initMapsOfSensorNameCodeTechnology();
-
+    // sensor code, Sensor name
+    const QMap<int ,QString> getSensorNameOfSensorCodeMap();
     virtual QList<int> getSensorCodeList(const QString& field, const QString& name);
-    virtual bool initSensorFailureList(int sensorCode, const QDate& start, const QDate& end, int evtCode,QList<quint64>& failuresList) const;
-
     virtual QString getSensorUnicProperty(int mpCode, const QString& field);
+    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
+    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
+    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
+    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
+    virtual QDateTime getStartDateTime() const;
+
 
     virtual  bool initSensorsByExperimentationMap(const QStringList& acqPointsCodeList, const QStringList& expList,QMap<QString, QStringList>& sensorsByExpMap);
+    virtual bool initSensorFailureList(int sensorCode, const QDate& start, const QDate& end, int evtCode,QList<quint64>& failuresList) const;
+    void initMapsOfSensorNameCodeTechnology();
 
     virtual bool isG6StructureOK() const;
     virtual bool isG7StructureOK() const;
@@ -50,18 +57,6 @@ public:
     virtual bool open();
     virtual bool open(const QString& databaseName, bool utf8 = false);
     virtual void close();
-
-    virtual QList<double> getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString &order = "ASC");
-
-    virtual QList<double> getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
-
-    virtual  int getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
-
-    virtual QDateTime getAcquisitionRelativeFirstTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType, const QString& order = "ASC");
-
-    virtual QDateTime getAcquisitionRelativeLastTime(const QDate& startDate, const QDate& endDate, int apNdCode,MeasPointType mpType);
-
-    virtual QDateTime getStartDateTime() const;
 
     virtual void showDatabaseConfig();
 

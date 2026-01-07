@@ -11,6 +11,9 @@
 
 #include <QDebug>
 
+
+#include <QSqlDriver> //pour test supportbatch
+
 namespace RexDatabaseSettings {
 const QString DEFAULT_REX_VERSION = "0.0.1";
 const QString DEFAULT_REX_NAME    = "RexSensors";
@@ -18,6 +21,30 @@ const QString DEFAULT_REX_NAME    = "RexSensors";
 const QString DEFAULT_REX_CONFIG_FILE = "./RexSensors.ini";
 const QString DEFAULT_REX_APP_DB_FILE = "./RexSensors.dat";
 } // namespace RexDatabaseSettings
+
+
+
+
+
+void testSupportBatch(const QSqlDatabase& db) {
+    // Récupère la connexion à la base de données (assurez-vous qu'elle est initialisée)
+
+    // Vérifie si la connexion est valide
+    if (!db.isValid()) {
+        qDebug() << "La base de données n'est pas connectée ou configurée.";
+        return;
+    }
+
+    // Vérification de la fonctionnalité "BatchOperations"
+    if (db.driver()->hasFeature(QSqlDriver::BatchOperations)) {
+        qDebug() << "✅ Le driver supporte nativement les transactions Batch.";
+        qDebug() << "C'est le mode le plus performant.";
+    } else {
+        qDebug() << "⚠️ Le driver NE supporte PAS nativement le Batch.";
+        qDebug() << "Qt va émuler le batch (en faisant une boucle d'inserts).";
+        qDebug() << "Cela reste fonctionnel, mais l'utilisation de transactions est CRITIQUE ici.";
+    }
+}
 
 //! Database test : G6 and G7. user = SYSDBA, pwd = masterkey
 RSDatabaseAccess* RSDatabaseAccess::m_instance = 0;
@@ -108,6 +135,8 @@ void RSDatabaseAccess::createObjects()
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
+
+
 
 void RSDatabaseAccess::dbQuery(const QString& query, const QString& databaseName)
 {
@@ -284,6 +313,8 @@ bool RSDatabaseAccess::open(const QString& databaseName, bool utf8)
             isOpen = sqlDatabase.open();
         }
 
+        testSupportBatch(sqlDatabase); //JUSTE POUR TESTER SI ON A LE BULKINSERT
+
         if(isOpen) {
             RSMessageView::Instance()->showData(QString("Succeeded to open database: %1.\t %2").arg(databaseName).arg(dbFullName));
 
@@ -394,6 +425,8 @@ void RSDatabaseAccess::close()
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
 
+// Récupère les dates des valeurs (noeuds ou acqpoint) entre startDate et endDate
+// renvoie la liste de ces dates QList<Double>
 QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, const QDate& endDate, int apNdCode, MeasPointType mpType,
                                                        const QString& order)
 {
@@ -481,6 +514,9 @@ QList<double> RSDatabaseAccess::getAcquisitionTimeList(const QDate& startDate, c
     return dataList;
 }
 
+// Récupère les valeurs (noeuds ou acqpoint) entre startDate et endDate
+// renvoie la liste de ces valeurs QList<Double>
+// POURQUOI NE PAS FUSIONNER les DEUX (getAcquisitionTimeList et getAcquisitionValueList), ils utilisent les mêmes tables ?
 QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, const QDate& endDate, int apNdCode, MeasPointType mpType,
                                                         const QString& order)
 {
@@ -561,6 +597,8 @@ QList<double> RSDatabaseAccess::getAcquisitionValueList(const QDate& startDate, 
     return dataList;
 }
 
+// Renvoie le nombre de valurs (noeuds, acqpoints) entre 2 dates.
+// POURQUOI NE PAS UTILISER lLES REQUETES PRECEDENTES ????
 int RSDatabaseAccess::getAcquisitionValueSize(const QDate& startDate, const QDate& endDate, int apNdCode, MeasPointType mpType)
 {
     QString databaseName     = "G6";
@@ -1620,8 +1658,6 @@ void RSDatabaseAccess::initExperienceBySensorMap()
     // Get data from G7
     QSqlQuery querySqlG7(QSqlDatabase::database("G7"));
 
-    //TODO: virer ce qui est codé en dur : container type (CNT_CODE 10 = MPs) et SRC_CODE (1 = GW) et T_TAGCATEGORIES
-    //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  T_ENTITIES.ENTITY_ID,T_ENTITIES.ENT_CODE, TAG_NAME"
                                " FROM T_ENTITIES"
                                " RIGHT  JOIN T_ENTITYTAG ON T_ENTITYTAG.ENT_CODE  = T_ENTITIES.ENT_CODE"
@@ -1677,6 +1713,9 @@ void RSDatabaseAccess::initExperienceBySensorMap()
 
     RSLogger::instance()->info(Q_FUNC_INFO, "End");
 }
+
+
+
 
 void RSDatabaseAccess::setG6DatasetTable_acqPoints()
 {
@@ -2027,12 +2066,11 @@ void RSDatabaseAccess::setG6DatasetTable_deadPoints()
 
     bool queryRexOneOnly = true;
 
-    //! brief DB_CODE = 33813554 is to be transfered in a config file
     QString strQuery = QString(" SELECT distinct  MP.MP_CODE, MP.MP_NAME FROM MEASUREPOINT MP "
                                " where MP.SI_CODE = :si_code  "
                                " and MP.DB_CODE = :db_code "
                                " and MP.AP_CODE  IS null "
-                               " and mp.ND_CODE  IS null");
+                               " and MP.ND_CODE  IS null");
 
     querySql.prepare(strQuery);
     querySql.bindValue(":si_code", m_siCode);

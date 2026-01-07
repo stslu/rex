@@ -7,6 +7,8 @@
 #include <Signaler.h>
 #include "IRSFiltersManager.h"
 
+#include "MultiSelectComboBox.h"
+
 namespace Ui
 {
 class RSFiltersManager;

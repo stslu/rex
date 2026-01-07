@@ -19,6 +19,7 @@ DESTDIR = bin
 
 
 SOURCES += main.cpp \
+    MultiSelectComboBox.cpp \
     RSExportToExcel.cpp \
     RSDatabaseConfig.cpp \
     RSDataManager.cpp \
@@ -31,6 +32,7 @@ SOURCES += main.cpp \
     commons/RSMessageView.cpp
 
 HEADERS  += \
+    MultiSelectComboBox.h \
     RSExportToExcel.h \
     RSDatabaseConfig.h \
     RSDataManager.h \

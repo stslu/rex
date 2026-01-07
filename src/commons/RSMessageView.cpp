@@ -1,7 +1,7 @@
 #include "RSMessageView.h"
 #include "ui_RSMessageView.h"
 #include "RSGlobalMethods.h"
-#include "RSSettingsManager.h"
+// #include "RSSettingsManager.h"
 
 #include <QApplication>
 #include <QSize>
